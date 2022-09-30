@@ -1,7 +1,9 @@
 vala_files = files(
     'DisplayWidget.vala',
     'Indicator.vala',
-    'MainWidget.vala'
+    'MainWidget.vala',
+    'Sound' / 'MediaControls.vala',
+    'Sound' / 'VolumeControls.vala'
 )
 
 executable(
