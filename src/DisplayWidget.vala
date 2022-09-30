@@ -5,8 +5,13 @@
 
 public class QuickSettings.DisplayWidget : Gtk.Box {
     construct {
-        var settings_icon = new Gtk.Image.from_icon_name ("open-menu-symbolic");
+        var volume = new Gtk.Image.from_icon_name ("audio-volume-medium-symbolic") {
+            pixel_size = 24
+        };
 
-        append (settings_icon);
+        var settings = new Gtk.Image.from_icon_name ("open-menu-symbolic");
+
+        spacing = 6;
+        append (volume);
     }
 }
