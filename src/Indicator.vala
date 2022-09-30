@@ -34,6 +34,29 @@ public class QuickSettings.Indicator : Gtk.Application {
         min-width: 24px;
         margin: 0 -1px 0 -1px;
     }
+
+    .image-button.submenu,
+        button.image-button.circular {
+        background-color: alpha(@text_color, 0.15);
+    }
+
+    .image-button.submenu:focus,
+        button.image-button.circular:focus {
+        background-color: @selected_bg_color;
+    }
+
+    button.image-button.circular:disabled {
+        background-color: @insensitive_bg_color;
+    }
+
+    button.image-button.submenu {
+        border-radius: 12px;
+        background-repeat: no-repeat no-repeat;
+        background-size: 16px;
+        background-image: -gtk-icontheme('pan-end-symbolic');
+        padding: 4px calc(6px + 16px) 4px 7px;
+        background-position: calc(100% - 3px) 50%;
+    }
     """;
 
 

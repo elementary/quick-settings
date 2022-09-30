@@ -9,7 +9,11 @@ public class QuickSettings.MainWidget : Gtk.Box {
             margin_bottom = 9
         };
 
-        var volume_controls = new VolumeControls () {
+        var volume_controls = new VolumeControls ("audio-volume-medium-symbolic", "computer-symbolic") {
+            margin_bottom = 0
+        };
+
+        var mic_controls = new VolumeControls ("audio-input-microphone-symbolic", "audio-card-symbolic") {
             margin_bottom = 6
         };
 
@@ -23,6 +27,7 @@ public class QuickSettings.MainWidget : Gtk.Box {
         margin_bottom = 3;
         append (media_controls);
         append (volume_controls);
+        append (mic_controls);
         append (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
         append (button);
 
