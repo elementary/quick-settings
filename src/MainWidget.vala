@@ -17,9 +17,39 @@ public class QuickSettings.MainWidget : Gtk.Box {
             margin_bottom = 6
         };
 
-        var button = new Gtk.Button.with_label (_("System Settings…"));
-        button.add_css_class (Granite.STYLE_CLASS_MENUITEM);
-        button.get_first_child ().halign = Gtk.Align.START;
+        var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
+            halign = Gtk.Align.START,
+            hexpand = true,
+            tooltip_text = _("System Settings…")
+        };
+        settings_button.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
+
+        var lock_button = new Gtk.Button.from_icon_name ("system-lock-screen-symbolic") {
+            tooltip_text = _("Lock")
+        };
+        lock_button.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
+
+        // FIXME:no symbolic logout icon
+        var logout_button = new Gtk.Button.from_icon_name ("go-next-symbolic") {
+            tooltip_text = _("Log out…")
+        };
+        logout_button.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
+
+        var shutdown_button = new Gtk.Button.from_icon_name ("system-shutdown-symbolic") {
+            tooltip_text = _("Shut down…")
+        };
+        shutdown_button.add_css_class (Granite.STYLE_CLASS_CIRCULAR);
+
+        var actions_box = new Gtk.Box (Gtk.Orientation.HORIZONTAL, 12) {
+            margin_top = 6,
+            margin_end = 12,
+            margin_bottom = 6,
+            margin_start = 12
+        };
+        actions_box.append (settings_button);
+        actions_box.append (lock_button);
+        actions_box.append (logout_button);
+        actions_box.append (shutdown_button);
 
         orientation = Gtk.Orientation.VERTICAL;
         spacing = 3;
@@ -29,9 +59,9 @@ public class QuickSettings.MainWidget : Gtk.Box {
         append (volume_controls);
         append (mic_controls);
         append (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-        append (button);
+        append (actions_box);
 
-        button.clicked.connect (() => {
+        settings_button.clicked.connect (() => {
             var appinfo = new DesktopAppInfo ("io.elementary.settings.desktop");
             try {
                 appinfo.launch (null, null);
