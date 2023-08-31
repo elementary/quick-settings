@@ -1,0 +1,39 @@
+/*
+ * SPDX-License-Identifier: GPL-3.0-or-later
+ * SPDX-FileCopyrightText: 2023 elementary, Inc. (https://elementary.io)
+ */
+
+public class QuickSettings.SettingsToggle : Gtk.Box {
+    public bool active { get; set; }
+    public Icon icon { get; construct; }
+    public string label { get; construct; }
+
+    public SettingsToggle (Icon icon, string label) {
+        Object (
+            icon: icon,
+            label: label
+        );
+    }
+
+    construct {
+        var button = new Gtk.ToggleButton () {
+            halign = CENTER,
+            image = new Gtk.Image.from_gicon (icon, MENU)
+        };
+        button.get_style_context ().add_class ("circular");
+
+        var label_widget = new Gtk.Label (label) {
+            ellipsize = MIDDLE,
+            max_width_chars = 16
+        };
+        label_widget.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
+
+        hexpand = true;
+        orientation = VERTICAL;
+        spacing = 3;
+        add (button);
+        add (label_widget);
+
+        button.bind_property ("active", this, "active", SYNC_CREATE | BIDIRECTIONAL);
+    }
+}
