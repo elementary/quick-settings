@@ -10,7 +10,7 @@ config_file = configure_file(
 sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
-    'DBus' / 'PantheonAccountsServicePlugin.vala',
+    'DBus' / 'AccountsService.vala',
     'Widgets' / 'SettingsToggle.vala'
 ]
 

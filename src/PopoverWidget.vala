@@ -6,70 +6,52 @@
 public class QuickSettings.PopoverWidget : Gtk.Box {
     public signal void close ();
 
+    private const string FDO_ACCOUNTS_NAME = "org.freedesktop.Accounts";
+    private const string FDO_ACCOUNTS_PATH = "/org/freedesktop/Accounts";
+
+    private Pantheon.AccountsService? pantheon_service = null;
+
     class construct {
         set_css_name ("quicksettings");
     }
 
     construct {
-        Pantheon.AccountsService? pantheon_act = null;
-
-        string? user_path = null;
-        try {
-            FDO.Accounts? accounts_service = GLib.Bus.get_proxy_sync (
-                GLib.BusType.SYSTEM,
-               "org.freedesktop.Accounts",
-               "/org/freedesktop/Accounts"
-            );
-
-            user_path = accounts_service.find_user_by_name (Environment.get_user_name ());
-        } catch (Error e) {
-            critical (e.message);
-        }
-
-        if (user_path != null) {
-            try {
-                pantheon_act = GLib.Bus.get_proxy_sync (
-                    GLib.BusType.SYSTEM,
-                    "org.freedesktop.Accounts",
-                    user_path,
-                    GLib.DBusProxyFlags.GET_INVALIDATED_PROPERTIES
-                );
-            } catch (Error e) {
-                warning ("Unable to get AccountsService proxy, color scheme preference may be incorrect");
-            }
-        }
-
         var toggle_box = new Gtk.Box (HORIZONTAL, 6);
 
-        if (((DBusProxy) pantheon_act).get_cached_property ("PrefersColorScheme") != null) {
-            var darkmode_button = new SettingsToggle (
-                new ThemedIcon ("dark-mode-symbolic"),
-                _("Dark Mode")
-            );
+        setup_accounts_services.begin ((obj, res) => {
+            setup_accounts_services.end (res);
 
-            toggle_box.add (darkmode_button);
+            if (((DBusProxy) pantheon_service).get_cached_property ("PrefersColorScheme") != null) {
+                var darkmode_button = new SettingsToggle (
+                    new ThemedIcon ("dark-mode-symbolic"),
+                    _("Dark Mode")
+                );
 
-            darkmode_button.active = pantheon_act.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
+                toggle_box.add (darkmode_button);
+                show_all ();
 
-            var settings = new Settings ("io.elementary.settings-daemon.prefers-color-scheme");
+                darkmode_button.active = pantheon_service.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
 
-            darkmode_button.notify["active"].connect (() => {
-                settings.set_string ("prefer-dark-schedule", "disabled");
+                var settings = new Settings ("io.elementary.settings-daemon.prefers-color-scheme");
 
-                if (darkmode_button.active) {
-                    pantheon_act.prefers_color_scheme = Granite.Settings.ColorScheme.DARK;
-                } else {
-                    pantheon_act.prefers_color_scheme = Granite.Settings.ColorScheme.NO_PREFERENCE;
-                }
-            });
+                darkmode_button.notify["active"].connect (() => {
+                    settings.set_string ("prefer-dark-schedule", "disabled");
 
-            ((DBusProxy) pantheon_act).g_properties_changed.connect ((changed, invalid) => {
-                var color_scheme = changed.lookup_value ("PrefersColorScheme", new VariantType ("i"));
-                if (color_scheme != null) {
-                    darkmode_button.active = (Granite.Settings.ColorScheme) color_scheme.get_int32 () == Granite.Settings.ColorScheme.DARK;
-                }
-            });
-        }
+                    if (darkmode_button.active) {
+                        pantheon_service.prefers_color_scheme = Granite.Settings.ColorScheme.DARK;
+                    } else {
+                        pantheon_service.prefers_color_scheme = Granite.Settings.ColorScheme.NO_PREFERENCE;
+                    }
+                });
+
+                ((DBusProxy) pantheon_service).g_properties_changed.connect ((changed, invalid) => {
+                    var color_scheme = changed.lookup_value ("PrefersColorScheme", new VariantType ("i"));
+                    if (color_scheme != null) {
+                        darkmode_button.active = (Granite.Settings.ColorScheme) color_scheme.get_int32 () == Granite.Settings.ColorScheme.DARK;
+                    }
+                });
+            }
+        });
 
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic", MENU) {
             halign = START,
@@ -95,5 +77,33 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                 critical ("Failed to open system settings: %s", e.message);
             }
         });
+    }
+
+    private async void setup_accounts_services () {
+        unowned GLib.DBusConnection connection;
+        string path;
+
+        try {
+            connection = yield GLib.Bus.get (SYSTEM);
+
+            var reply = yield connection.call (
+                FDO_ACCOUNTS_NAME, FDO_ACCOUNTS_PATH,
+                FDO_ACCOUNTS_NAME, "FindUserByName",
+                new Variant.tuple ({ new Variant.string (Environment.get_user_name ()) }),
+                new VariantType ("(o)"),
+                NONE,
+                -1
+            );
+            reply.get_child (0, "o", out path);
+        } catch {
+            critical ("Could not connect to AccountsService");
+            return;
+        }
+
+        try {
+            pantheon_service = yield connection.get_proxy (FDO_ACCOUNTS_NAME, path, GET_INVALIDATED_PROPERTIES);
+        } catch {
+            critical ("Unable to get Pantheon's AccountsService proxy, Dark mode toggle will not be available");
+        }
     }
 }
