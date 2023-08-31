@@ -10,6 +10,7 @@ config_file = configure_file(
 sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
+    'DBus' / 'PantheonAccountsServicePlugin.vala'
 ]
 
 shared_module(
@@ -20,6 +21,7 @@ shared_module(
     dependencies: [
         glib_dep,
         gobject_dep,
+        granite_dep,
         gtk_dep,
         wingpanel_dep
     ],
