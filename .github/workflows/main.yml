@@ -29,7 +29,8 @@ jobs:
       env:
         DESTDIR: out
       run: |
-        meson build install
+        meson build
+        ninja -C build install
 
   lint:
 
