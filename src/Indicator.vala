@@ -23,7 +23,7 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
 
     public override Gtk.Widget get_display_widget () {
         var indicator_icon = new Gtk.Image () {
-            icon_name = "system-shutdown-symbolic",
+            icon_name = "quick-settings-symbolic",
             pixel_size = 24
         };
 

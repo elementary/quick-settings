@@ -4,3 +4,8 @@
     <file compressed="true">Indicator.css</file>
   </gresource>
 </gresources>
+<gresources>
+  <gresource prefix="org/elementary/wingpanel/icons">
+    <file alias="scalable/status/quick-settings-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/quick-settings.svg</file>
+  </gresource>
+</gresources>
