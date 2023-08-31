@@ -11,6 +11,7 @@ sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
     'DBus' / 'AccountsService.vala',
+    'DBus' / 'BluezAdapter.vala',
     'Views' / 'A11yView.vala',
     'Widgets' / 'SettingsToggle.vala'
 ]

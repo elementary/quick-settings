@@ -8,5 +8,9 @@
   <gresource prefix="org/elementary/wingpanel/icons">
     <file alias="scalable/status/dark-mode-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/dark-mode.svg</file>
     <file alias="scalable/status/quick-settings-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/quick-settings.svg</file>
+
+    <file alias="scalable/status/quicksettings-bluetooth-active-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/bluetooth/active.svg</file>
+    <file alias="scalable/status/quicksettings-bluetooth-disabled-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/bluetooth/disabled.svg</file>
+    <file alias="scalable/status/quicksettings-bluetooth-paired-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/bluetooth/paired.svg</file>
   </gresource>
 </gresources>

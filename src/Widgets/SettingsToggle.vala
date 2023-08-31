@@ -5,7 +5,7 @@
 
 public class QuickSettings.SettingsToggle : Gtk.Box {
     public bool active { get; set; }
-    public Icon icon { get; construct; }
+    public Icon icon { get; construct set; }
     public string label { get; construct; }
     public string settings_uri { get; set; default = "settings://"; }
 
@@ -19,9 +19,11 @@ public class QuickSettings.SettingsToggle : Gtk.Box {
     }
 
     construct {
+        var image = new Gtk.Image.from_gicon (icon, MENU);
+
         var button = new Gtk.ToggleButton () {
             halign = CENTER,
-            image = new Gtk.Image.from_gicon (icon, MENU)
+            image = image
         };
         button.get_style_context ().add_class ("circular");
 
@@ -38,6 +40,8 @@ public class QuickSettings.SettingsToggle : Gtk.Box {
         add (label_widget);
 
         button.bind_property ("active", this, "active", SYNC_CREATE | BIDIRECTIONAL);
+
+        bind_property ("icon", image, "gicon");
 
         middle_click_gesture = new Gtk.GestureMultiPress (button) {
             button = Gdk.BUTTON_MIDDLE
