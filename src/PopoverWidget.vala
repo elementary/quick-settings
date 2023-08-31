@@ -21,14 +21,12 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic", MENU) {
             halign = CENTER,
-            hexpand = true,
             tooltip_text = _("System Settings…")
         };
         settings_button.get_style_context ().add_class ("circular");
 
         var a11y_button = new Gtk.Button.from_icon_name ("preferences-desktop-accessibility-symbolic", MENU) {
             halign = CENTER,
-            hexpand = true,
             tooltip_text = _("Accessiblity Settings…")
         };
         a11y_button.get_style_context ().add_class ("circular");
