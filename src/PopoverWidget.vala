@@ -248,9 +248,19 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                     get_bluetooth_status ();
                 }
             });
+        } else if (iface is QuickSettings.BluezDevice) {
+            unowned var device = (QuickSettings.BluezDevice) iface;
 
-            get_bluetooth_status ();
+            ((DBusProxy) device).g_properties_changed.connect ((changed, invalid) => {
+                var connected = changed.lookup_value ("Connected", new VariantType ("b"));
+                var paired = changed.lookup_value ("Paired", new VariantType ("b"));
+                if (connected != null || paired != null) {
+                    get_bluetooth_status ();
+                }
+            });
         }
+
+        get_bluetooth_status ();
     }
 
     private void on_interface_removed (GLib.DBusObject object, GLib.DBusInterface iface) {
@@ -276,7 +286,24 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         }
 
         if (powered) {
-            bluetooth_toggle.icon = new ThemedIcon ("quicksettings-bluetooth-active-symbolic");
+            var paired = false;
+            foreach (unowned var object in bluetooth_manager.get_objects ()) {
+                DBusInterface? iface = object.get_interface ("org.bluez.Device1");
+                if (iface == null) {
+                    continue;
+                }
+
+                var device = (QuickSettings.BluezDevice) iface;
+                if (device.connected) {
+                    paired = true;
+                }
+            }
+
+            if (paired) {
+                bluetooth_toggle.icon = new ThemedIcon ("quicksettings-bluetooth-paired-symbolic");
+            } else {
+                bluetooth_toggle.icon = new ThemedIcon ("quicksettings-bluetooth-active-symbolic");
+            }
         } else {
             bluetooth_toggle.icon = new ThemedIcon ("quicksettings-bluetooth-disabled-symbolic");
         }
