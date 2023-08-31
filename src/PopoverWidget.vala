@@ -40,7 +40,9 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                 var darkmode_button = new SettingsToggle (
                     new ThemedIcon ("dark-mode-symbolic"),
                     _("Dark Mode")
-                );
+                ) {
+                    settings_uri = "settings://desktop/appearance"
+                };
 
                 toggle_box.add (darkmode_button);
                 show_all ();
