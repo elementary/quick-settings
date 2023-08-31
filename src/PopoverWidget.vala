@@ -95,14 +95,12 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         setup_bluetooth.begin ((obj, res) => {
             var bluetooth_manager = setup_bluetooth.end (res);
-            if (bluetooth_manager == null) {
-                return;
+            if (bluetooth_manager != null) {
+                var bluetooth_toggle = new BluetoothToggle (bluetooth_manager);
+
+                toggle_box.add (bluetooth_toggle);
+                show_all ();
             }
-
-            var bluetooth_toggle = new BluetoothToggle (bluetooth_manager);
-
-            toggle_box.add (bluetooth_toggle);
-            show_all ();
         });
 
         realize.connect (() => {
