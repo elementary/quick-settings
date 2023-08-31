@@ -112,6 +112,10 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             toggle_box.add (bluetooth_toggle);
             show_all ();
 
+            bluetooth_toggle.notify["active"].connect (() => {
+                set_bluetooth_status.begin (bluetooth_toggle.active);
+            });
+
             bluetooth_manager.get_objects ().foreach ((object) => {
                 object.get_interfaces ().foreach ((iface) => on_interface_added (object, iface));
             });
@@ -124,7 +128,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                 object.get_interfaces ().foreach ((iface) => on_interface_removed (object, iface));
             });
 
-            update_bluetooth_status ();
+            get_bluetooth_status ();
         });
 
         realize.connect (() => {
@@ -215,12 +219,18 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     [CCode (cname="quick_settings_bluez_adapter_proxy_get_type")]
     extern static GLib.Type get_adapter_proxy_type ();
 
+    //TODO: Do not rely on this when it is possible to do it natively in Vala
+    [CCode (cname="quick_settings_bluez_device_proxy_get_type")]
+    extern static GLib.Type get_device_proxy_type ();
+
     private GLib.Type object_manager_get_proxy_type (DBusObjectManagerClient manager, string object_path, string? interface_name) {
         if (interface_name == null) {
             return typeof (GLib.DBusObjectProxy);
         }
 
         switch (interface_name) {
+            case "org.bluez.Device1":
+                return get_device_proxy_type ();
             case "org.bluez.Adapter1":
                 return get_adapter_proxy_type ();
             default:
@@ -235,19 +245,19 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             ((DBusProxy) adapter).g_properties_changed.connect ((changed, invalid) => {
                 var powered = changed.lookup_value ("Powered", new VariantType ("b"));
                 if (powered != null) {
-                    update_bluetooth_status ();
+                    get_bluetooth_status ();
                 }
             });
 
-            update_bluetooth_status ();
+            get_bluetooth_status ();
         }
     }
 
     private void on_interface_removed (GLib.DBusObject object, GLib.DBusInterface iface) {
-        update_bluetooth_status ();
+        get_bluetooth_status ();
     }
 
-    private void update_bluetooth_status () {
+    private void get_bluetooth_status () {
         var powered = false;
         foreach (unowned var object in bluetooth_manager.get_objects ()) {
             DBusInterface? iface = object.get_interface ("org.bluez.Adapter1");
@@ -261,12 +271,46 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             }
         }
 
+        if (bluetooth_toggle.active != powered) {
+            bluetooth_toggle.active = powered;
+        }
+
         if (powered) {
-            bluetooth_toggle.active = true;
             bluetooth_toggle.icon = new ThemedIcon ("quicksettings-bluetooth-active-symbolic");
         } else {
-            bluetooth_toggle.active = false;
             bluetooth_toggle.icon = new ThemedIcon ("quicksettings-bluetooth-disabled-symbolic");
+        }
+    }
+
+    private async void set_bluetooth_status (bool status) {
+        foreach (unowned var object in bluetooth_manager.get_objects ()) {
+            DBusInterface? iface = object.get_interface ("org.bluez.Adapter1");
+            if (iface == null) {
+                continue;
+            }
+
+            var adapter = (QuickSettings.BluezAdapter) iface;
+            if (adapter.powered != status) {
+                adapter.powered = status;
+            }
+        }
+
+        if (!status) {
+            foreach (unowned var object in bluetooth_manager.get_objects ()) {
+                DBusInterface? iface = object.get_interface ("org.bluez.Device1");
+                if (iface == null) {
+                    continue;
+                }
+
+                var device = (QuickSettings.BluezDevice) iface;
+                if (device.connected) {
+                    try {
+                        yield device.disconnect ();
+                    } catch (Error e) {
+                        critical (e.message);
+                    }
+                }
+            }
         }
     }
 }

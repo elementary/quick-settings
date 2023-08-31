@@ -12,6 +12,7 @@ sources = [
     'PopoverWidget.vala',
     'DBus' / 'AccountsService.vala',
     'DBus' / 'BluezAdapter.vala',
+    'DBus' / 'BluezDevice.vala',
     'Views' / 'A11yView.vala',
     'Widgets' / 'SettingsToggle.vala'
 ]
