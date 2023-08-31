@@ -69,7 +69,11 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                     break;
             }
 
+            var settings = new Settings ("io.elementary.settings-daemon.prefers-color-scheme");
+
             darkmode_button.toggled.connect (() => {
+                settings.set_string ("prefer-dark-schedule", "disabled");
+
                 if (darkmode_button.active) {
                     pantheon_act.prefers_color_scheme = Granite.Settings.ColorScheme.DARK;
                 } else {
