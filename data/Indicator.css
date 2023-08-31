@@ -14,7 +14,7 @@ quicksettings .image-button.circular {
     min-width: 2.1666rem; /* 26px */
 }
 
-quicksettings .image-button:not(:focus).circular {
+quicksettings .image-button.circular {
     background: alpha(@text_color, 0.1);
 }
 

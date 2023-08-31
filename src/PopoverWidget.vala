@@ -42,36 +42,18 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         var toggle_box = new Gtk.Box (HORIZONTAL, 6);
 
         if (((DBusProxy) pantheon_act).get_cached_property ("PrefersColorScheme") != null) {
-            var darkmode_button = new Gtk.ToggleButton () {
-                halign = CENTER,
-                image =  new Gtk.Image.from_icon_name ("dark-mode-symbolic", MENU)
-            };
-            darkmode_button.get_style_context ().add_class ("circular");
+            var darkmode_button = new SettingsToggle (
+                new ThemedIcon ("dark-mode-symbolic"),
+                _("Dark Mode")
+            );
 
-            var darkmode_label = new Gtk.Label (_("Dark Mode")) {
-                ellipsize = MIDDLE,
-                max_width_chars = 16
-            };
-            darkmode_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
+            toggle_box.add (darkmode_button);
 
-            var darkmode_box = new Gtk.Box (VERTICAL, 3) {
-                hexpand = true
-            };
-            darkmode_box.add (darkmode_button);
-            darkmode_box.add (darkmode_label);
-
-            toggle_box.add (darkmode_box);
-
-            switch (pantheon_act.prefers_color_scheme) {
-                case Granite.Settings.ColorScheme.DARK:
-                    break;
-                default:
-                    break;
-            }
+            darkmode_button.active = pantheon_act.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
 
             var settings = new Settings ("io.elementary.settings-daemon.prefers-color-scheme");
 
-            darkmode_button.toggled.connect (() => {
+            darkmode_button.notify["active"].connect (() => {
                 settings.set_string ("prefer-dark-schedule", "disabled");
 
                 if (darkmode_button.active) {
@@ -84,14 +66,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             ((DBusProxy) pantheon_act).g_properties_changed.connect ((changed, invalid) => {
                 var color_scheme = changed.lookup_value ("PrefersColorScheme", new VariantType ("i"));
                 if (color_scheme != null) {
-                    switch ((Granite.Settings.ColorScheme) color_scheme.get_int32 ()) {
-                        case Granite.Settings.ColorScheme.DARK:
-
-                            break;
-                        default:
-
-                            break;
-                    }
+                    darkmode_button.active = (Granite.Settings.ColorScheme) color_scheme.get_int32 () == Granite.Settings.ColorScheme.DARK;
                 }
             });
         }

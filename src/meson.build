@@ -10,7 +10,8 @@ config_file = configure_file(
 sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
-    'DBus' / 'PantheonAccountsServicePlugin.vala'
+    'DBus' / 'PantheonAccountsServicePlugin.vala',
+    'Widgets' / 'SettingsToggle.vala'
 ]
 
 shared_module(
