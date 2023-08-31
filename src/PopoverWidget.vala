@@ -4,11 +4,11 @@
  */
 
 public class QuickSettings.PopoverWidget : Gtk.Box {
-    public signal void close ();
-
     private const string FDO_ACCOUNTS_NAME = "org.freedesktop.Accounts";
     private const string FDO_ACCOUNTS_PATH = "/org/freedesktop/Accounts";
 
+    private Gtk.Popover? popover;
+    private Hdy.Deck deck;
     private Pantheon.AccountsService? pantheon_service = null;
 
     class construct {
@@ -17,21 +17,45 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
     construct {
         var toggle_box = new Gtk.Box (HORIZONTAL, 6);
+        toggle_box.get_style_context ().add_class ("togglebox");
 
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic", MENU) {
-            halign = START,
+            halign = CENTER,
             hexpand = true,
             tooltip_text = _("System Settings…")
         };
         settings_button.get_style_context ().add_class ("circular");
 
+        var a11y_button = new Gtk.Button.from_icon_name ("preferences-desktop-accessibility-symbolic", MENU) {
+            halign = CENTER,
+            hexpand = true,
+            tooltip_text = _("Accessiblity Settings…")
+        };
+        a11y_button.get_style_context ().add_class ("circular");
+
+        var a11y_revealer = new Gtk.Revealer () {
+            child = a11y_button,
+            transition_type = SLIDE_LEFT
+        };
+
         var session_box = new Gtk.Box (HORIZONTAL, 6);
         session_box.add (settings_button);
+        session_box.add (a11y_revealer);
+        session_box.get_style_context ().add_class ("togglebox");
 
-        orientation = VERTICAL;
-        add (toggle_box);
-        add (new Gtk.Separator (HORIZONTAL));
-        add (session_box);
+        var main_box = new Gtk.Box (VERTICAL, 0);
+        main_box.add (toggle_box);
+        main_box.add (new Gtk.Separator (HORIZONTAL));
+        main_box.add (session_box);
+
+        deck = new Hdy.Deck () {
+            can_swipe_back = true,
+            vhomogeneous = false,
+            interpolate_size = true
+        };
+        deck.add (main_box);
+
+        add (deck);
 
         setup_accounts_services.begin ((obj, res) => {
             setup_accounts_services.end (res);
@@ -70,8 +94,23 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             }
         });
 
+        realize.connect (() => {
+            popover = (Gtk.Popover) get_ancestor (typeof (Gtk.Popover));
+            popover.closed.connect (() => {
+                deck.navigate (BACK);
+            });
+        });
+
+        a11y_button.clicked.connect (() => {
+            var a11y_view = new A11yView ();
+
+            deck.add (a11y_view);
+            show_all ();
+            deck.visible_child = a11y_view;
+        });
+
         settings_button.clicked.connect (() => {
-            close ();
+            popover.popdown ();
 
             try {
                 AppInfo.launch_default_for_uri ("settings://", null);
@@ -79,6 +118,28 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                 critical ("Failed to open system settings: %s", e.message);
             }
         });
+
+        deck.notify["visible-child"].connect (() => {
+            if (!deck.transition_running) {
+                update_navigation ();
+            }
+        });
+
+        deck.notify["transition-running"].connect (() => {
+            if (!deck.transition_running) {
+                update_navigation ();
+            }
+        });
+
+        var glib_settings = new Settings ("io.elementary.desktop.quick-settings");
+        glib_settings.bind ("show-a11y", a11y_revealer, "reveal-child", GET);
+    }
+
+    private void update_navigation () {
+        while (deck.get_adjacent_child (FORWARD) != null) {
+            var next_child = deck.get_adjacent_child (FORWARD);
+            next_child.destroy ();
+        }
     }
 
     private async void setup_accounts_services () {

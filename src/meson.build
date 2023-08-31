@@ -11,6 +11,7 @@ sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
     'DBus' / 'AccountsService.vala',
+    'Views' / 'A11yView.vala',
     'Widgets' / 'SettingsToggle.vala'
 ]
 
@@ -24,6 +25,7 @@ shared_module(
         gobject_dep,
         granite_dep,
         gtk_dep,
+        handy_dep,
         wingpanel_dep
     ],
     install: true,
