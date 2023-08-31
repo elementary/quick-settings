@@ -39,6 +39,8 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             }
         }
 
+        var toggle_box = new Gtk.Box (HORIZONTAL, 6);
+
         if (((DBusProxy) pantheon_act).get_cached_property ("PrefersColorScheme") != null) {
             var darkmode_button = new Gtk.ToggleButton () {
                 halign = CENTER,
@@ -52,11 +54,13 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             };
             darkmode_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
-            var darkmode_box = new Gtk.Box (VERTICAL, 3);
+            var darkmode_box = new Gtk.Box (VERTICAL, 3) {
+                hexpand = true
+            };
             darkmode_box.add (darkmode_button);
             darkmode_box.add (darkmode_label);
 
-            add (darkmode_box);
+            toggle_box.add (darkmode_box);
 
             switch (pantheon_act.prefers_color_scheme) {
                 case Granite.Settings.ColorScheme.DARK:
@@ -88,7 +92,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             });
         }
 
-
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic", MENU) {
             halign = START,
             hexpand = true,
@@ -96,10 +99,13 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         };
         settings_button.get_style_context ().add_class ("circular");
 
+        var session_box = new Gtk.Box (HORIZONTAL, 6);
+        session_box.add (settings_button);
+
         orientation = VERTICAL;
-        spacing = 6;
+        add (toggle_box);
         add (new Gtk.Separator (HORIZONTAL));
-        add (settings_button);
+        add (session_box);
 
         settings_button.clicked.connect (() => {
             close ();

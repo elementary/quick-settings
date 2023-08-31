@@ -3,8 +3,8 @@
  * SPDX-FileCopyrightText: 2023 elementary, Inc. (https://elementary.io)
  */
 
-quicksettings {
-    padding: 0.5em 0;
+quicksettings > box {
+    padding: 0.5em;
 }
 
 quicksettings .image-button.circular {
