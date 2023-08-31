@@ -11,12 +11,12 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
     public Indicator (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (
             code_name: "quick-settings",
-            server_type: server_type
+            server_type: server_type,
+            visible: true
         );
     }
 
     construct {
-        visible = true;
         GLib.Intl.bindtextdomain (Constants.GETTEXT_PACKAGE, Constants.LOCALEDIR);
         GLib.Intl.bind_textdomain_codeset (Constants.GETTEXT_PACKAGE, "UTF-8");
     }
