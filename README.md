@@ -5,6 +5,9 @@ Prototype quick settings menu
 
 You'll need the following dependencies:
 
+* libgtk-3-dev
+* libgranite-dev >=6.0.0
+* libhandy-1-dev >=1.0
 * libwingpanel-dev
 * meson
 * valac
