@@ -4,6 +4,7 @@ project(
     version: '0.0.1'
 )
 
+gnome = import('gnome')
 prefix = get_option('prefix')
 libdir = prefix / get_option('libdir')
 
@@ -16,4 +17,5 @@ gtk_dep = dependency('gtk+-3.0')
 wingpanel_dep = dependency('wingpanel')
 wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
 
+subdir('data')
 subdir('src')
