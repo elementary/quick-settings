@@ -9,9 +9,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
     private Gtk.Popover? popover;
     private Hdy.Deck deck;
-    private SettingsToggle bluetooth_toggle;
 
-    private DBusObjectManagerClient? bluetooth_manager = null;
     private Pantheon.AccountsService? pantheon_service = null;
 
     class construct {
@@ -96,39 +94,15 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         });
 
         setup_bluetooth.begin ((obj, res) => {
-            setup_bluetooth.end (res);
-
+            var bluetooth_manager = setup_bluetooth.end (res);
             if (bluetooth_manager == null) {
                 return;
             }
 
-            bluetooth_toggle = new SettingsToggle (
-                new ThemedIcon ("quicksettings-bluetooth-active-symbolic"),
-                _("Bluetooth")
-            ) {
-                settings_uri = "settings://network/bluetooth"
-            };
+            var bluetooth_toggle = new BluetoothToggle (bluetooth_manager);
 
             toggle_box.add (bluetooth_toggle);
             show_all ();
-
-            bluetooth_toggle.notify["active"].connect (() => {
-                set_bluetooth_status.begin (bluetooth_toggle.active);
-            });
-
-            bluetooth_manager.get_objects ().foreach ((object) => {
-                object.get_interfaces ().foreach ((iface) => on_interface_added (object, iface));
-            });
-            bluetooth_manager.interface_added.connect (on_interface_added);
-            bluetooth_manager.interface_removed.connect (on_interface_removed);
-            bluetooth_manager.object_added.connect ((object) => {
-                object.get_interfaces ().foreach ((iface) => on_interface_added (object, iface));
-            });
-            bluetooth_manager.object_removed.connect ((object) => {
-                object.get_interfaces ().foreach ((iface) => on_interface_removed (object, iface));
-            });
-
-            get_bluetooth_status ();
         });
 
         realize.connect (() => {
@@ -200,21 +174,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         }
     }
 
-    private async void setup_bluetooth () {
-        try {
-            bluetooth_manager = yield new GLib.DBusObjectManagerClient.for_bus.begin (
-                BusType.SYSTEM,
-                NONE,
-                "org.bluez",
-                "/",
-                object_manager_get_proxy_type,
-                null
-            );
-        } catch (Error e) {
-            critical (e.message);
-        }
-    }
-
     //TODO: Do not rely on this when it is possible to do it natively in Vala
     [CCode (cname="quick_settings_bluez_adapter_proxy_get_type")]
     extern static GLib.Type get_adapter_proxy_type ();
@@ -238,106 +197,19 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         }
     }
 
-    private void on_interface_added (GLib.DBusObject object, GLib.DBusInterface iface) {
-        if (iface is QuickSettings.BluezAdapter) {
-            unowned var adapter = (QuickSettings.BluezAdapter) iface;
-
-            ((DBusProxy) adapter).g_properties_changed.connect ((changed, invalid) => {
-                var powered = changed.lookup_value ("Powered", new VariantType ("b"));
-                if (powered != null) {
-                    get_bluetooth_status ();
-                }
-            });
-        } else if (iface is QuickSettings.BluezDevice) {
-            unowned var device = (QuickSettings.BluezDevice) iface;
-
-            ((DBusProxy) device).g_properties_changed.connect ((changed, invalid) => {
-                var connected = changed.lookup_value ("Connected", new VariantType ("b"));
-                var paired = changed.lookup_value ("Paired", new VariantType ("b"));
-                if (connected != null || paired != null) {
-                    get_bluetooth_status ();
-                }
-            });
-        }
-
-        get_bluetooth_status ();
-    }
-
-    private void on_interface_removed (GLib.DBusObject object, GLib.DBusInterface iface) {
-        get_bluetooth_status ();
-    }
-
-    private void get_bluetooth_status () {
-        var powered = false;
-        foreach (unowned var object in bluetooth_manager.get_objects ()) {
-            DBusInterface? iface = object.get_interface ("org.bluez.Adapter1");
-            if (iface == null) {
-                continue;
-            }
-
-            if (((QuickSettings.BluezAdapter) iface).powered) {
-                powered = true;
-                break;
-            }
-        }
-
-        if (bluetooth_toggle.active != powered) {
-            bluetooth_toggle.active = powered;
-        }
-
-        if (powered) {
-            var paired = false;
-            foreach (unowned var object in bluetooth_manager.get_objects ()) {
-                DBusInterface? iface = object.get_interface ("org.bluez.Device1");
-                if (iface == null) {
-                    continue;
-                }
-
-                var device = (QuickSettings.BluezDevice) iface;
-                if (device.connected) {
-                    paired = true;
-                }
-            }
-
-            if (paired) {
-                bluetooth_toggle.icon = new ThemedIcon ("quicksettings-bluetooth-paired-symbolic");
-            } else {
-                bluetooth_toggle.icon = new ThemedIcon ("quicksettings-bluetooth-active-symbolic");
-            }
-        } else {
-            bluetooth_toggle.icon = new ThemedIcon ("quicksettings-bluetooth-disabled-symbolic");
-        }
-    }
-
-    private async void set_bluetooth_status (bool status) {
-        foreach (unowned var object in bluetooth_manager.get_objects ()) {
-            DBusInterface? iface = object.get_interface ("org.bluez.Adapter1");
-            if (iface == null) {
-                continue;
-            }
-
-            var adapter = (QuickSettings.BluezAdapter) iface;
-            if (adapter.powered != status) {
-                adapter.powered = status;
-            }
-        }
-
-        if (!status) {
-            foreach (unowned var object in bluetooth_manager.get_objects ()) {
-                DBusInterface? iface = object.get_interface ("org.bluez.Device1");
-                if (iface == null) {
-                    continue;
-                }
-
-                var device = (QuickSettings.BluezDevice) iface;
-                if (device.connected) {
-                    try {
-                        yield device.disconnect ();
-                    } catch (Error e) {
-                        critical (e.message);
-                    }
-                }
-            }
+    private async DBusObjectManagerClient? setup_bluetooth () {
+        try {
+            return yield new GLib.DBusObjectManagerClient.for_bus.begin (
+                BusType.SYSTEM,
+                NONE,
+                "org.bluez",
+                "/",
+                object_manager_get_proxy_type,
+                null
+            );
+        } catch (Error e) {
+            critical (e.message);
+            return null;
         }
     }
 }
