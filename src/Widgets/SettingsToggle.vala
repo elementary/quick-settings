@@ -7,6 +7,9 @@ public class QuickSettings.SettingsToggle : Gtk.Box {
     public bool active { get; set; }
     public Icon icon { get; construct; }
     public string label { get; construct; }
+    public string settings_uri { get; set;}
+
+    private Gtk.GestureMultiPress middle_click_gesture;
 
     public SettingsToggle (Icon icon, string label) {
         Object (
@@ -35,5 +38,19 @@ public class QuickSettings.SettingsToggle : Gtk.Box {
         add (label_widget);
 
         button.bind_property ("active", this, "active", SYNC_CREATE | BIDIRECTIONAL);
+
+        middle_click_gesture = new Gtk.GestureMultiPress (button) {
+            button = Gdk.BUTTON_MIDDLE
+        };
+        middle_click_gesture.pressed.connect (() => {
+            try {
+                AppInfo.launch_default_for_uri (settings_uri, null);
+
+                var popover = (Gtk.Popover) get_ancestor (typeof (Gtk.Popover));
+                popover.popdown ();
+            } catch (Error e) {
+                critical ("Failed to open system settings: %s", e.message);
+            }
+        });
     }
 }
