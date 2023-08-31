@@ -12,6 +12,7 @@ sources = [
     'PopoverWidget.vala',
     'DBus' / 'AccountsService.vala',
     'Views' / 'A11yView.vala',
+    'Widgets' / 'DarkModeToggle.vala',
     'Widgets' / 'SettingsToggle.vala'
 ]
 

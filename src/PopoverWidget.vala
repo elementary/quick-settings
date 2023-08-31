@@ -9,7 +9,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
     private Gtk.Popover? popover;
     private Hdy.Deck deck;
-    private Pantheon.AccountsService? pantheon_service = null;
 
     class construct {
         set_css_name ("quicksettings");
@@ -56,39 +55,13 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         add (deck);
 
         setup_accounts_services.begin ((obj, res) => {
-            setup_accounts_services.end (res);
-
-            if (((DBusProxy) pantheon_service).get_cached_property ("PrefersColorScheme") != null) {
-                var darkmode_button = new SettingsToggle (
-                    new ThemedIcon ("dark-mode-symbolic"),
-                    _("Dark Mode")
-                ) {
-                    settings_uri = "settings://desktop/appearance"
-                };
-
+            var pantheon_service = setup_accounts_services.end (res);
+            if (pantheon_service != null &&
+                ((DBusProxy) pantheon_service).get_cached_property ("PrefersColorScheme") != null
+            ) {
+                var darkmode_button = new DarkModeToggle (pantheon_service);
                 toggle_box.add (darkmode_button);
                 show_all ();
-
-                darkmode_button.active = pantheon_service.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
-
-                var settings = new Settings ("io.elementary.settings-daemon.prefers-color-scheme");
-
-                darkmode_button.notify["active"].connect (() => {
-                    settings.set_string ("prefer-dark-schedule", "disabled");
-
-                    if (darkmode_button.active) {
-                        pantheon_service.prefers_color_scheme = Granite.Settings.ColorScheme.DARK;
-                    } else {
-                        pantheon_service.prefers_color_scheme = Granite.Settings.ColorScheme.NO_PREFERENCE;
-                    }
-                });
-
-                ((DBusProxy) pantheon_service).g_properties_changed.connect ((changed, invalid) => {
-                    var color_scheme = changed.lookup_value ("PrefersColorScheme", new VariantType ("i"));
-                    if (color_scheme != null) {
-                        darkmode_button.active = (Granite.Settings.ColorScheme) color_scheme.get_int32 () == Granite.Settings.ColorScheme.DARK;
-                    }
-                });
             }
         });
 
@@ -133,7 +106,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         }
     }
 
-    private async void setup_accounts_services () {
+    private async Pantheon.AccountsService? setup_accounts_services () {
         unowned GLib.DBusConnection connection;
         string path;
 
@@ -151,13 +124,14 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             reply.get_child (0, "o", out path);
         } catch {
             critical ("Could not connect to AccountsService");
-            return;
+            return null;
         }
 
         try {
-            pantheon_service = yield connection.get_proxy (FDO_ACCOUNTS_NAME, path, GET_INVALIDATED_PROPERTIES);
+            return yield connection.get_proxy (FDO_ACCOUNTS_NAME, path, GET_INVALIDATED_PROPERTIES);
         } catch {
             critical ("Unable to get Pantheon's AccountsService proxy, Dark mode toggle will not be available");
+            return null;
         }
     }
 }
