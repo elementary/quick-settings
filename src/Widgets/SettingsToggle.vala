@@ -7,7 +7,7 @@ public class QuickSettings.SettingsToggle : Gtk.Box {
     public bool active { get; set; }
     public Icon icon { get; construct; }
     public string label { get; construct; }
-    public string settings_uri { get; set;}
+    public string settings_uri { get; set; default = "settings://"; }
 
     private Gtk.GestureMultiPress middle_click_gesture;
 
