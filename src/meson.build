@@ -15,6 +15,7 @@ sources = [
     'DBus' / 'BluezDevice.vala',
     'Views' / 'A11yView.vala',
     'Widgets' / 'BluetoothToggle.vala',
+    'Widgets' / 'DarkModeToggle.vala',
     'Widgets' / 'SettingsToggle.vala'
 ]
 
