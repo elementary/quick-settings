@@ -18,6 +18,21 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     construct {
         var toggle_box = new Gtk.Box (HORIZONTAL, 6);
 
+        var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic", MENU) {
+            halign = START,
+            hexpand = true,
+            tooltip_text = _("System Settings…")
+        };
+        settings_button.get_style_context ().add_class ("circular");
+
+        var session_box = new Gtk.Box (HORIZONTAL, 6);
+        session_box.add (settings_button);
+
+        orientation = VERTICAL;
+        add (toggle_box);
+        add (new Gtk.Separator (HORIZONTAL));
+        add (session_box);
+
         setup_accounts_services.begin ((obj, res) => {
             setup_accounts_services.end (res);
 
@@ -52,21 +67,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                 });
             }
         });
-
-        var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic", MENU) {
-            halign = START,
-            hexpand = true,
-            tooltip_text = _("System Settings…")
-        };
-        settings_button.get_style_context ().add_class ("circular");
-
-        var session_box = new Gtk.Box (HORIZONTAL, 6);
-        session_box.add (settings_button);
-
-        orientation = VERTICAL;
-        add (toggle_box);
-        add (new Gtk.Separator (HORIZONTAL));
-        add (session_box);
 
         settings_button.clicked.connect (() => {
             close ();
