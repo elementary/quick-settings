@@ -117,26 +117,19 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             }
         });
 
-        deck.notify["visible-child"].connect (() => {
-            if (!deck.transition_running) {
-                update_navigation ();
-            }
-        });
-
-        deck.notify["transition-running"].connect (() => {
-            if (!deck.transition_running) {
-                update_navigation ();
-            }
-        });
+        deck.notify["visible-child"].connect (update_navigation);
+        deck.notify["transition-running"].connect (update_navigation);
 
         var glib_settings = new Settings ("io.elementary.desktop.quick-settings");
         glib_settings.bind ("show-a11y", a11y_revealer, "reveal-child", GET);
     }
 
     private void update_navigation () {
-        while (deck.get_adjacent_child (FORWARD) != null) {
-            var next_child = deck.get_adjacent_child (FORWARD);
-            next_child.destroy ();
+        if (!deck.transition_running) {
+            while (deck.get_adjacent_child (FORWARD) != null) {
+                var next_child = deck.get_adjacent_child (FORWARD);
+                next_child.destroy ();
+            }
         }
     }
 
