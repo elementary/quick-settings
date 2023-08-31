@@ -7,10 +7,16 @@ config_file = configure_file(
     configuration: config_data
 )
 
+sources = [
+    'Indicator.vala',
+    'PopoverWidget.vala',
+]
+
 shared_module(
     'quick-settings',
     config_file,
-    'Indicator.vala',
+    gresource,
+    sources,
     dependencies: [
         glib_dep,
         gobject_dep,

@@ -6,6 +6,8 @@
 public class QuickSettings.Indicator : Wingpanel.Indicator {
     public Wingpanel.IndicatorManager.ServerType server_type { get; construct; }
 
+    private PopoverWidget? popover_widget;
+
     public Indicator (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (
             code_name: "quick-settings",
@@ -29,12 +31,22 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
     }
 
     public override Gtk.Widget? get_widget () {
-        var label = new Gtk.Label ("Hello World");
+        if (popover_widget == null) {
+            var provider = new Gtk.CssProvider ();
+            provider.load_from_resource ("io/elementary/quick-settings/Indicator.css");
 
-        var box = new Gtk.Box (VERTICAL, 0);
-        box.add (label);
+            Gtk.StyleContext.add_provider_for_screen (
+                Gdk.Screen.get_default (),
+                provider,
+                Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
+            );
 
-        return box;
+            popover_widget = new PopoverWidget ();
+
+            popover_widget.close.connect (() => close ());
+        }
+
+        return popover_widget;
     }
 
     public override void opened () {}
