@@ -31,15 +31,32 @@ public class QuickSettings.A11yView : Gtk.Box {
             tooltip_text = _("Increase text size")
         };
 
+        var screen_reader = new SettingsToggle (
+            new ThemedIcon ("orca-symbolic"),
+            _("Screen Reader")
+        ) {
+            settings_uri = "settings://sound"
+        };
+
+        var onscreen_keyboard = new SettingsToggle (
+            new ThemedIcon ("input-keyboard-symbolic"),
+            _("Onscreen Keyboard")
+        ) {
+            settings_uri = "settings://input/keyboard/behavior"
+        };
+
+        var toggle_box = new Gtk.Box (HORIZONTAL, 6) {
+            homogeneous = true
+        };
+        toggle_box.get_style_context ().add_class ("togglebox");
+        toggle_box.add (screen_reader);
+        toggle_box.add (onscreen_keyboard);
+
         var font_size_box = new Gtk.Box (HORIZONTAL, 0);
         font_size_box.get_style_context ().add_class ("font-size");
         font_size_box.add (zoom_out_button);
         font_size_box.add (zoom_scale);
         font_size_box.add (zoom_in_button);
-
-        var screen_reader = new Granite.SwitchModelButton (_("Screen Reader"));
-
-        var onscreen_keyboard = new Granite.SwitchModelButton (_("Onscreen Keyboard"));
 
         var slow_keys = new Granite.SwitchModelButton (_("Slow Keys"));
 
@@ -51,10 +68,9 @@ public class QuickSettings.A11yView : Gtk.Box {
 
         orientation = VERTICAL;
         add (back_button);
-        add (new Gtk.Separator (HORIZONTAL));
+        add (toggle_box);
         add (font_size_box);
-        add (screen_reader);
-        add (onscreen_keyboard);
+        add (new Gtk.Separator (HORIZONTAL));
         add (slow_keys);
         add (bounce_keys);
         add (sticky_keys);
