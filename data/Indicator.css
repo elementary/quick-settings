@@ -9,7 +9,7 @@ quicksettings .togglebox {
 }
 
 quicksettings .back-button {
-    margin: 0.666rem 1.333rem; /* 6px 12px */
+    margin: 0.666rem 0.999rem 0.666rem; /* 6px 9px 6px */
 }
 
 quicksettings box.font-size scale {
