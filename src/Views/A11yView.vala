@@ -4,7 +4,6 @@
  */
 
 public class QuickSettings.A11yView : Gtk.Box {
-    private Gtk.Adjustment zoom_adjustment;
     private Gtk.Button zoom_in_button;
     private Gtk.Button zoom_out_button;
     private Settings interface_settings;
@@ -19,7 +18,7 @@ public class QuickSettings.A11yView : Gtk.Box {
             tooltip_text = _("Decrease text size")
         };
 
-        zoom_adjustment = new Gtk.Adjustment (-1, 0.75, 1.75, 0.05, 0, 0);
+        var zoom_adjustment = new Gtk.Adjustment (-1, 0.75, 1.75, 0.05, 0, 0);
 
         var zoom_scale = new Gtk.Scale (HORIZONTAL, zoom_adjustment) {
             draw_value = false,
@@ -66,18 +65,12 @@ public class QuickSettings.A11yView : Gtk.Box {
             deck.navigate (BACK);
         });
 
-        zoom_adjustment.value_changed.connect (() => {
-            interface_settings.set_double ("text-scaling-factor", zoom_adjustment.value);
-        });
-
         zoom_in_button.clicked.connect (() => {
-            var scaling_factor = interface_settings.get_double ("text-scaling-factor");
-            interface_settings.set_double ("text-scaling-factor", scaling_factor + 0.05);
+            zoom_adjustment.value += 0.05;
         });
 
         zoom_out_button.clicked.connect (() => {
-            var scaling_factor = interface_settings.get_double ("text-scaling-factor");
-            interface_settings.set_double ("text-scaling-factor", scaling_factor - 0.05);
+            zoom_adjustment.value += -0.05;
         });
 
         var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
@@ -85,6 +78,7 @@ public class QuickSettings.A11yView : Gtk.Box {
         applications_settings.bind ("screen-reader-enabled", screen_reader, "active", DEFAULT);
 
         interface_settings = new Settings ("org.gnome.desktop.interface");
+        interface_settings.bind ("text-scaling-factor", zoom_adjustment, "value", DEFAULT);
         interface_settings.changed["text-scaling-factor"].connect (update_zoom_buttons);
         update_zoom_buttons ();
 
@@ -101,6 +95,5 @@ public class QuickSettings.A11yView : Gtk.Box {
         var scaling_factor = interface_settings.get_double ("text-scaling-factor");
         zoom_in_button.sensitive = scaling_factor < 1.75;
         zoom_out_button.sensitive = scaling_factor > 0.75;
-        zoom_adjustment.value = scaling_factor;
     }
 }
