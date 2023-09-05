@@ -65,6 +65,15 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             }
         });
 
+        setup_sensor_proxy.begin ((obj, res) => {
+            var sensor_proxy = setup_sensor_proxy.end (res);
+            if (sensor_proxy.has_accelerometer) {
+                var rotation_toggle = new RotationToggle ();
+                toggle_box.add (rotation_toggle);
+                show_all ();
+            };
+        });
+
         realize.connect (() => {
             popover = (Gtk.Popover) get_ancestor (typeof (Gtk.Popover));
             popover.closed.connect (() => {
@@ -131,6 +140,15 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             return yield connection.get_proxy (FDO_ACCOUNTS_NAME, path, GET_INVALIDATED_PROPERTIES);
         } catch {
             critical ("Unable to get Pantheon's AccountsService proxy, Dark mode toggle will not be available");
+            return null;
+        }
+    }
+
+    private async SensorProxy? setup_sensor_proxy () {
+        try {
+            return yield Bus.get_proxy (BusType.SYSTEM, "net.hadess.SensorProxy", "/net/hadess/SensorProxy");
+        } catch (Error e) {
+            info ("Unable to connect to SensorProxy bus, probably means no accelerometer supported: %s", e.message);
             return null;
         }
     }
