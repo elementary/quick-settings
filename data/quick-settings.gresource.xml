@@ -12,5 +12,8 @@
     <file alias="scalable/status/quicksettings-bluetooth-active-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/bluetooth/active.svg</file>
     <file alias="scalable/status/quicksettings-bluetooth-disabled-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/bluetooth/disabled.svg</file>
     <file alias="scalable/status/quicksettings-bluetooth-paired-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/bluetooth/paired.svg</file>
+
+    <file alias="scalable/status/quick-settings-rotation-allowed-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/rotation-allowed.svg</file>
+    <file alias="scalable/status/quick-settings-rotation-locked-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/rotation-locked.svg</file>
   </gresource>
 </gresources>

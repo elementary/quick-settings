@@ -4,7 +4,6 @@
  */
 
 public class QuickSettings.A11yView : Gtk.Box {
-    private Gtk.Button zoom_default_button;
     private Gtk.Button zoom_in_button;
     private Gtk.Button zoom_out_button;
     private Settings interface_settings;
@@ -15,30 +14,49 @@ public class QuickSettings.A11yView : Gtk.Box {
         };
         back_button.get_style_context ().add_class (Granite.STYLE_CLASS_BACK_BUTTON);
 
-        zoom_out_button = new Gtk.Button.from_icon_name ("zoom-out-symbolic", MENU) {
+        zoom_out_button = new Gtk.Button.from_icon_name ("format-text-smaller-symbolic", MENU) {
             tooltip_text = _("Decrease text size")
         };
 
-        zoom_default_button = new Gtk.Button.with_label ("100%") {
-            tooltip_text = _("Default text size")
-        };
+        var zoom_adjustment = new Gtk.Adjustment (-1, 0.75, 1.75, 0.05, 0, 0);
 
-        zoom_in_button = new Gtk.Button.from_icon_name ("zoom-in-symbolic", MENU) {
+        var zoom_scale = new Gtk.Scale (HORIZONTAL, zoom_adjustment) {
+            draw_value = false,
+            hexpand = true
+        };
+        zoom_scale.add_mark (1, BOTTOM, null);
+        zoom_scale.add_mark (1.5, BOTTOM, null);
+
+        zoom_in_button = new Gtk.Button.from_icon_name ("format-text-larger-symbolic", MENU) {
             tooltip_text = _("Increase text size")
         };
 
-        var font_size_box = new Gtk.Box (HORIZONTAL, 0) {
-            homogeneous = true,
-            hexpand = true
+        var screen_reader = new SettingsToggle (
+            new ThemedIcon ("orca-symbolic"),
+            _("Screen Reader")
+        ) {
+            settings_uri = "settings://sound"
         };
-        font_size_box.get_style_context ().add_class (Gtk.STYLE_CLASS_LINKED);
+
+        var onscreen_keyboard = new SettingsToggle (
+            new ThemedIcon ("input-keyboard-symbolic"),
+            _("Onscreen Keyboard")
+        ) {
+            settings_uri = "settings://input/keyboard/behavior"
+        };
+
+        var toggle_box = new Gtk.Box (HORIZONTAL, 6) {
+            homogeneous = true
+        };
+        toggle_box.get_style_context ().add_class ("togglebox");
+        toggle_box.add (screen_reader);
+        toggle_box.add (onscreen_keyboard);
+
+        var font_size_box = new Gtk.Box (HORIZONTAL, 0);
+        font_size_box.get_style_context ().add_class ("font-size");
         font_size_box.add (zoom_out_button);
-        font_size_box.add (zoom_default_button);
+        font_size_box.add (zoom_scale);
         font_size_box.add (zoom_in_button);
-
-        var screen_reader = new Granite.SwitchModelButton (_("Screen Reader"));
-
-        var onscreen_keyboard = new Granite.SwitchModelButton (_("Onscreen Keyboard"));
 
         var slow_keys = new Granite.SwitchModelButton (_("Slow Keys"));
 
@@ -50,10 +68,9 @@ public class QuickSettings.A11yView : Gtk.Box {
 
         orientation = VERTICAL;
         add (back_button);
-        add (new Gtk.Separator (HORIZONTAL));
+        add (toggle_box);
         add (font_size_box);
-        add (screen_reader);
-        add (onscreen_keyboard);
+        add (new Gtk.Separator (HORIZONTAL));
         add (slow_keys);
         add (bounce_keys);
         add (sticky_keys);
@@ -64,18 +81,12 @@ public class QuickSettings.A11yView : Gtk.Box {
             deck.navigate (BACK);
         });
 
-        zoom_default_button.clicked.connect (() => {
-            interface_settings.reset ("text-scaling-factor");
-        });
-
         zoom_in_button.clicked.connect (() => {
-            var scaling_factor = interface_settings.get_double ("text-scaling-factor");
-            interface_settings.set_double ("text-scaling-factor", scaling_factor + 0.25);
+            zoom_adjustment.value += 0.05;
         });
 
         zoom_out_button.clicked.connect (() => {
-            var scaling_factor = interface_settings.get_double ("text-scaling-factor");
-            interface_settings.set_double ("text-scaling-factor", scaling_factor - 0.25);
+            zoom_adjustment.value += -0.05;
         });
 
         var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
@@ -83,6 +94,7 @@ public class QuickSettings.A11yView : Gtk.Box {
         applications_settings.bind ("screen-reader-enabled", screen_reader, "active", DEFAULT);
 
         interface_settings = new Settings ("org.gnome.desktop.interface");
+        interface_settings.bind ("text-scaling-factor", zoom_adjustment, "value", DEFAULT);
         interface_settings.changed["text-scaling-factor"].connect (update_zoom_buttons);
         update_zoom_buttons ();
 
@@ -97,8 +109,7 @@ public class QuickSettings.A11yView : Gtk.Box {
 
     private void update_zoom_buttons () {
         var scaling_factor = interface_settings.get_double ("text-scaling-factor");
-        zoom_in_button.sensitive = scaling_factor < 1.5;
+        zoom_in_button.sensitive = scaling_factor < 1.75;
         zoom_out_button.sensitive = scaling_factor > 0.75;
-        zoom_default_button.label = "%.0f%%".printf (scaling_factor * 100);
     }
 }
