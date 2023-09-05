@@ -3,8 +3,13 @@
  * SPDX-FileCopyrightText: 2023 elementary, Inc. (https://elementary.io)
  */
 
+[DBus (name = "org.bluez.Adapter1")]
+public interface QuickSettings.Bluez.Adapter : Object {
+    public abstract bool powered { get; set; }
+}
+
 [DBus (name = "org.bluez.Device1")]
-public interface QuickSettings.BluezDevice : Object {
+public interface QuickSettings.Bluez.Device : Object {
     public abstract void cancel_pairing () throws Error;
     public abstract async void connect () throws Error;
     public abstract void connect_profile (string UUID) throws Error; //vala-lint=naming-convention

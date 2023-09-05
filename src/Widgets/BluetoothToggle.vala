@@ -37,8 +37,8 @@ public class QuickSettings.BluetoothToggle: SettingsToggle {
     }
 
     private void on_interface_added (GLib.DBusObject object, GLib.DBusInterface iface) {
-        if (iface is QuickSettings.BluezAdapter) {
-            unowned var adapter = (QuickSettings.BluezAdapter) iface;
+        if (iface is Bluez.Adapter) {
+            unowned var adapter = (Bluez.Adapter) iface;
 
             ((DBusProxy) adapter).g_properties_changed.connect ((changed, invalid) => {
                 var powered = changed.lookup_value ("Powered", new VariantType ("b"));
@@ -46,8 +46,8 @@ public class QuickSettings.BluetoothToggle: SettingsToggle {
                     get_bluetooth_status ();
                 }
             });
-        } else if (iface is QuickSettings.BluezDevice) {
-            unowned var device = (QuickSettings.BluezDevice) iface;
+        } else if (iface is Bluez.Device) {
+            unowned var device = (Bluez.Device) iface;
 
             ((DBusProxy) device).g_properties_changed.connect ((changed, invalid) => {
                 var connected = changed.lookup_value ("Connected", new VariantType ("b"));
@@ -73,7 +73,7 @@ public class QuickSettings.BluetoothToggle: SettingsToggle {
                 continue;
             }
 
-            if (((QuickSettings.BluezAdapter) iface).powered) {
+            if (((Bluez.Adapter) iface).powered) {
                 powered = true;
                 break;
             }
@@ -91,7 +91,7 @@ public class QuickSettings.BluetoothToggle: SettingsToggle {
                     continue;
                 }
 
-                var device = (QuickSettings.BluezDevice) iface;
+                var device = (Bluez.Device) iface;
                 if (device.connected) {
                     paired = true;
                 }
@@ -114,7 +114,7 @@ public class QuickSettings.BluetoothToggle: SettingsToggle {
                 continue;
             }
 
-            var adapter = (QuickSettings.BluezAdapter) iface;
+            var adapter = (Bluez.Adapter) iface;
             if (adapter.powered != status) {
                 adapter.powered = status;
             }
@@ -127,7 +127,7 @@ public class QuickSettings.BluetoothToggle: SettingsToggle {
                     continue;
                 }
 
-                var device = (QuickSettings.BluezDevice) iface;
+                var device = (Bluez.Device) iface;
                 if (device.connected) {
                     try {
                         yield device.disconnect ();
