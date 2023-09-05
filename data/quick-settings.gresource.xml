@@ -8,7 +8,7 @@
   <gresource prefix="org/elementary/wingpanel/icons">
     <file alias="scalable/status/dark-mode-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/dark-mode.svg</file>
     <file alias="scalable/status/quick-settings-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/quick-settings.svg</file>
-    <file alias="scalable/status/rotation-allowed-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/rotation-allowed.svg</file>
-    <file alias="scalable/status/rotation-locked-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/rotation-locked.svg</file>
+    <file alias="scalable/status/quick-settings-rotation-allowed-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/rotation-allowed.svg</file>
+    <file alias="scalable/status/quick-settings-rotation-locked-symbolic.svg" compressed="true" preprocess="xml-stripblanks">icons/rotation-locked.svg</file>
   </gresource>
 </gresources>

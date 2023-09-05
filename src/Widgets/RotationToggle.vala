@@ -6,7 +6,7 @@
 public class QuickSettings.RotationToggle: SettingsToggle {
     public RotationToggle () {
         Object (
-            icon: new ThemedIcon ("rotation-locked-symbolic"),
+            icon: new ThemedIcon ("quick-settings-rotation-locked-symbolic"),
             label: _("Rotation Lock")
         );
     }
@@ -16,5 +16,10 @@ public class QuickSettings.RotationToggle: SettingsToggle {
 
         var touchscreen_settings = new Settings ("org.gnome.settings-daemon.peripherals.touchscreen");
         touchscreen_settings.bind ("orientation-lock", this, "active", DEFAULT);
+
+        bind_property ("active", this, "icon", SYNC_CREATE, (binding, srcval, ref targetval) => {
+            targetval = (bool) srcval ?  new ThemedIcon ("quick-settings-rotation-locked-symbolic") : new ThemedIcon ("quick-settings-rotation-allowed-symbolic");
+            return true;
+        });
     }
 }
