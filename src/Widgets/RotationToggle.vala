@@ -18,7 +18,11 @@ public class QuickSettings.RotationToggle: SettingsToggle {
         touchscreen_settings.bind ("orientation-lock", this, "active", DEFAULT);
 
         bind_property ("active", this, "icon", SYNC_CREATE, (binding, srcval, ref targetval) => {
-            targetval = (bool) srcval ?  new ThemedIcon ("quick-settings-rotation-locked-symbolic") : new ThemedIcon ("quick-settings-rotation-allowed-symbolic");
+            if ((bool) srcval) {
+                targetval = new ThemedIcon ("quick-settings-rotation-locked-symbolic");
+            } else {
+                targetval = new ThemedIcon ("quick-settings-rotation-allowed-symbolic");
+            }
             return true;
         });
     }
