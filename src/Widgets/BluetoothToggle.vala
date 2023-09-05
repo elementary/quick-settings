@@ -9,7 +9,7 @@ public class QuickSettings.BluetoothToggle: SettingsToggle {
     public BluetoothToggle (DBusObjectManagerClient bluetooth_manager) {
         Object (
             bluetooth_manager: bluetooth_manager,
-            icon: new ThemedIcon ("quicksettings-bluetooth-active-symbolic"),
+            icon: new ThemedIcon ("quick-settings-bluetooth-active-symbolic"),
             label: _("Bluetooth")
         );
     }
@@ -98,12 +98,12 @@ public class QuickSettings.BluetoothToggle: SettingsToggle {
             }
 
             if (paired) {
-                icon = new ThemedIcon ("quicksettings-bluetooth-paired-symbolic");
+                icon = new ThemedIcon ("quick-settings-bluetooth-paired-symbolic");
             } else {
-                icon = new ThemedIcon ("quicksettings-bluetooth-active-symbolic");
+                icon = new ThemedIcon ("quick-settings-bluetooth-active-symbolic");
             }
         } else {
-            icon = new ThemedIcon ("quicksettings-bluetooth-disabled-symbolic");
+            icon = new ThemedIcon ("quick-settings-bluetooth-disabled-symbolic");
         }
     }
 
