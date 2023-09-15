@@ -65,6 +65,16 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             }
         });
 
+        setup_bluetooth.begin ((obj, res) => {
+            var bluetooth_manager = setup_bluetooth.end (res);
+            if (bluetooth_manager != null) {
+                var bluetooth_toggle = new BluetoothToggle (bluetooth_manager);
+
+                toggle_box.add (bluetooth_toggle);
+                show_all ();
+            }
+        });
+
         setup_sensor_proxy.begin ((obj, res) => {
             var sensor_proxy = setup_sensor_proxy.end (res);
             if (sensor_proxy.has_accelerometer) {
@@ -140,6 +150,45 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             return yield connection.get_proxy (FDO_ACCOUNTS_NAME, path, GET_INVALIDATED_PROPERTIES);
         } catch {
             critical ("Unable to get Pantheon's AccountsService proxy, Dark mode toggle will not be available");
+            return null;
+        }
+    }
+
+    //TODO: Do not rely on this when it is possible to do it natively in Vala
+    [CCode (cname="quick_settings_bluez_adapter_proxy_get_type")]
+    extern static GLib.Type get_adapter_proxy_type ();
+
+    //TODO: Do not rely on this when it is possible to do it natively in Vala
+    [CCode (cname="quick_settings_bluez_device_proxy_get_type")]
+    extern static GLib.Type get_device_proxy_type ();
+
+    private GLib.Type object_manager_get_proxy_type (DBusObjectManagerClient manager, string object_path, string? interface_name) {
+        if (interface_name == null) {
+            return typeof (GLib.DBusObjectProxy);
+        }
+
+        switch (interface_name) {
+            case "org.bluez.Device1":
+                return get_device_proxy_type ();
+            case "org.bluez.Adapter1":
+                return get_adapter_proxy_type ();
+            default:
+                return typeof (GLib.DBusProxy);
+        }
+    }
+
+    private async DBusObjectManagerClient? setup_bluetooth () {
+        try {
+            return yield new GLib.DBusObjectManagerClient.for_bus.begin (
+                BusType.SYSTEM,
+                NONE,
+                "org.bluez",
+                "/",
+                object_manager_get_proxy_type,
+                null
+            );
+        } catch (Error e) {
+            critical (e.message);
             return null;
         }
     }
