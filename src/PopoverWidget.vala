@@ -11,6 +11,8 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
     private Gtk.Popover? popover;
     private Hdy.Deck deck;
+    private EndSessionDialog? current_dialog = null;
+    private SystemInterface system_interface;
 
     public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (server_type: server_type);
@@ -72,12 +74,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         session_box.add (shutdown_button);
         session_box.get_style_context ().add_class ("togglebox");
 
-        if (server_type == Wingpanel.IndicatorManager.ServerType.GREETER) {
-            session_box.remove (settings_button);
-            session_box.remove (logout_button);
-            session_box.remove (suspend_button);
-        }
-
         var main_box = new Gtk.Box (VERTICAL, 0);
         main_box.add (toggle_box);
         main_box.add (new Gtk.Separator (HORIZONTAL));
@@ -91,6 +87,65 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         deck.add (main_box);
 
         add (deck);
+
+        if (server_type == Wingpanel.IndicatorManager.ServerType.SESSION) {
+            setup_session_interface.begin ((obj, res) => {
+                var session_interface = setup_session_interface.end (res);
+
+                logout_button.clicked.connect (() => {
+                    popover.popdown ();
+
+                    session_interface.logout.begin (0, (obj, res) => {
+                        try {
+                            session_interface.logout.end (res);
+                        } catch (Error e) {
+                            if (!(e is GLib.IOError.CANCELLED)) {
+                                warning ("Unable to open logout dialog: %s", e.message);
+                            }
+                        }
+                    });
+                });
+
+                shutdown_button.clicked.connect (() => {
+                    popover.popdown ();
+
+                    // Ask gnome-session to "reboot" which throws the EndSessionDialog
+                    // Our "reboot" dialog also has a shutdown button to give the choice between reboot/shutdown
+                    session_interface.reboot.begin ((obj, res) => {
+                        try {
+                            session_interface.reboot.end (res);
+                        } catch (Error e) {
+                            if (!(e is GLib.IOError.CANCELLED)) {
+                                critical ("Unable to open shutdown dialog: %s", e.message);
+                            }
+                        }
+                    });
+                });
+            });
+
+            setup_lock_interface.begin ((obj, res) => {
+                var lock_interface = setup_lock_interface.end (res);
+
+                lock_button.clicked.connect (() => {
+                    popover.popdown ();
+
+                    try {
+                        lock_interface.lock ();
+                    } catch (GLib.Error e) {
+                        critical ("Unable to lock: %s", e.message);
+                    }
+                });
+            });
+        } else {
+            session_box.remove (settings_button);
+            session_box.remove (logout_button);
+            session_box.remove (suspend_button);
+
+            shutdown_button.clicked.connect (() => {
+                popover.popdown ();
+                show_dialog (EndSessionDialogType.RESTART, Gtk.get_current_event_time ());
+            });
+        }
 
         setup_accounts_services.begin ((obj, res) => {
             var pantheon_service = setup_accounts_services.end (res);
@@ -110,6 +165,32 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                 toggle_box.add (rotation_toggle);
                 show_all ();
             };
+        });
+
+        setup_system_interface.begin ((obj, res) => {
+            system_interface = setup_system_interface.end (res);
+
+            suspend_button.clicked.connect (() => {
+                popover.popdown ();
+
+                try {
+                    system_interface.suspend (true);
+                } catch (GLib.Error e) {
+                    critical ("Unable to lock: %s", e.message);
+                }
+            });
+
+            if (server_type == GREETER) {
+                lock_button.clicked.connect (() => {
+                    popover.popdown ();
+
+                    try {
+                        system_interface.suspend (true);
+                    } catch (GLib.Error e) {
+                        critical ("Unable to lock: %s", e.message);
+                    }
+                });
+            }
         });
 
         realize.connect (() => {
@@ -142,6 +223,26 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var glib_settings = new Settings ("io.elementary.desktop.quick-settings");
         glib_settings.bind ("show-a11y", a11y_revealer, "reveal-child", GET);
+
+        var keybinding_settings = new Settings ("org.gnome.settings-daemon.plugins.media-keys");
+        logout_button.tooltip_markup = Granite.markup_accel_tooltip (
+            keybinding_settings.get_strv ("logout"), _("Log Out…")
+        );
+        lock_button.tooltip_markup = Granite.markup_accel_tooltip (
+            keybinding_settings.get_strv ("screensaver"), _("Lock")
+        );
+
+        keybinding_settings.changed["logout"].connect (() => {
+            logout_button.tooltip_markup = Granite.markup_accel_tooltip (
+                keybinding_settings.get_strv ("logout"), _("Log Out…")
+            );
+        });
+
+        keybinding_settings.changed["screensaver"].connect (() => {
+            lock_button.tooltip_markup = Granite.markup_accel_tooltip (
+                keybinding_settings.get_strv ("screensaver"), _("Lock")
+            );
+        });
     }
 
     private void update_navigation () {
@@ -189,5 +290,88 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             info ("Unable to connect to SensorProxy bus, probably means no accelerometer supported: %s", e.message);
             return null;
         }
+    }
+
+    private async SessionInterface? setup_session_interface () {
+        try {
+            return yield Bus.get_proxy (BusType.SESSION, "org.gnome.SessionManager", "/org/gnome/SessionManager");
+        } catch (IOError e) {
+            critical ("Unable to connect to GNOME session interface: %s", e.message);
+            return null;
+        }
+    }
+
+    private async SystemInterface? setup_system_interface () {
+        try {
+            return yield Bus.get_proxy (BusType.SYSTEM, "org.freedesktop.login1", "/org/freedesktop/login1");
+        } catch (IOError e) {
+            critical ("Unable to connect to the login interface: %s", e.message);
+            return null;
+        }
+    }
+
+    private async LockInterface? setup_lock_interface () {
+        try {
+            return yield Bus.get_proxy (BusType.SESSION, "org.gnome.ScreenSaver", "/org/gnome/ScreenSaver");
+        } catch (IOError e) {
+            critical ("Unable to connect to lock interface: %s", e.message);
+            return null;
+        }
+    }
+
+    private void show_dialog (EndSessionDialogType type, uint32 triggering_event_timestamp) {
+        popover.popdown ();
+
+        if (current_dialog != null) {
+            if (current_dialog.dialog_type != type) {
+                current_dialog.destroy ();
+            } else {
+                return;
+            }
+        }
+
+        unowned var server = EndSessionDialogServer.get_default ();
+
+        current_dialog = new EndSessionDialog (type) {
+            transient_for = (Gtk.Window) get_toplevel ()
+        };
+        current_dialog.destroy.connect (() => {
+            server.closed ();
+            current_dialog = null;
+        });
+
+        current_dialog.cancelled.connect (() => {
+            server.canceled ();
+        });
+
+        current_dialog.logout.connect (() => {
+            server.confirmed_logout ();
+        });
+
+        current_dialog.shutdown.connect (() => {
+            if (server_type == Wingpanel.IndicatorManager.ServerType.SESSION) {
+                server.confirmed_shutdown ();
+            } else {
+                try {
+                    system_interface.power_off (false);
+                } catch (Error e) {
+                    warning ("Unable to shutdown: %s", e.message);
+                }
+            }
+        });
+
+        current_dialog.reboot.connect (() => {
+            if (server_type == Wingpanel.IndicatorManager.ServerType.SESSION) {
+                server.confirmed_reboot ();
+            } else {
+                try {
+                    system_interface.reboot (false);
+                } catch (Error e) {
+                    warning ("Unable to reboot: %s", e.message);
+                }
+            }
+        });
+
+        current_dialog.present_with_time (triggering_event_timestamp);
     }
 }

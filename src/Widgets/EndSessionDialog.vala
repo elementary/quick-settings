@@ -8,13 +8,13 @@
  * docs taken from unity indicator-session's
  * src/backend-dbus/org.gnome.SessionManager.EndSessionDialog.xml
  */
-public enum Session.Widgets.EndSessionDialogType {
+public enum QuickSettings.EndSessionDialogType {
     LOGOUT = 0,
     SHUTDOWN = 1,
     RESTART = 2
 }
 
-public class Session.Widgets.EndSessionDialog : Hdy.Window {
+public class QuickSettings.EndSessionDialog : Hdy.Window {
     public signal void reboot ();
     public signal void shutdown ();
     public signal void logout ();
@@ -22,7 +22,7 @@ public class Session.Widgets.EndSessionDialog : Hdy.Window {
 
     public EndSessionDialogType dialog_type { get; construct; }
 
-    public EndSessionDialog (Session.Widgets.EndSessionDialogType type) {
+    public EndSessionDialog (QuickSettings.EndSessionDialogType type) {
         Object (dialog_type: type);
     }
 

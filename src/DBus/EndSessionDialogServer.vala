@@ -4,7 +4,7 @@
  */
 
 [DBus (name = "io.elementary.wingpanel.session.EndSessionDialog")]
-public class Session.EndSessionDialogServer : Object {
+public class QuickSettings.EndSessionDialogServer : Object {
     private static EndSessionDialogServer? instance;
 
     [DBus (visible = false)]
@@ -43,7 +43,7 @@ public class Session.EndSessionDialogServer : Object {
     }
 
     public void open (uint type, uint timestamp, uint open_length, ObjectPath[] inhibiters) throws Error {
-        if (type > (int)Widgets.EndSessionDialogType.RESTART) {
+        if (type > (int) EndSessionDialogType.RESTART) {
             throw new DBusError.NOT_SUPPORTED ("Hibernate, suspend and hybrid sleep are not supported actions yet");
         }
 
