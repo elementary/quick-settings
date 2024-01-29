@@ -41,7 +41,7 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );
 
-            popover_widget = new PopoverWidget ();
+            popover_widget = new PopoverWidget (server_type);
         }
 
         return popover_widget;

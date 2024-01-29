@@ -4,11 +4,17 @@
  */
 
 public class QuickSettings.PopoverWidget : Gtk.Box {
+    public Wingpanel.IndicatorManager.ServerType server_type { get; construct; }
+
     private const string FDO_ACCOUNTS_NAME = "org.freedesktop.Accounts";
     private const string FDO_ACCOUNTS_PATH = "/org/freedesktop/Accounts";
 
     private Gtk.Popover? popover;
     private Hdy.Deck deck;
+
+    public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
+        Object (server_type: server_type);
+    }
 
     class construct {
         set_css_name ("quicksettings");
@@ -18,27 +24,59 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         var toggle_box = new Gtk.Box (HORIZONTAL, 6);
         toggle_box.get_style_context ().add_class ("togglebox");
 
-        var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic", MENU) {
+        var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
             halign = CENTER,
             tooltip_text = _("System Settings…")
         };
         settings_button.get_style_context ().add_class ("circular");
 
-        var a11y_button = new Gtk.Button.from_icon_name ("preferences-desktop-accessibility-symbolic", MENU) {
+        var a11y_button = new Gtk.Button.from_icon_name ("preferences-desktop-accessibility-symbolic") {
             halign = CENTER,
             tooltip_text = _("Accessiblity Settings…")
         };
         a11y_button.get_style_context ().add_class ("circular");
 
         var a11y_revealer = new Gtk.Revealer () {
+            halign = START,
+            hexpand = true,
             child = a11y_button,
             transition_type = SLIDE_LEFT
         };
 
+        var logout_button = new Gtk.Button.from_icon_name ("system-log-out-symbolic") {
+            tooltip_text = _("Log Out…")
+        };
+        logout_button.get_style_context ().add_class ("circular");
+
+        var suspend_button = new Gtk.Button.from_icon_name ("system-suspend-symbolic") {
+            tooltip_text = _("Suspend")
+        };
+        suspend_button.get_style_context ().add_class ("circular");
+
+        var lock_button = new Gtk.Button.from_icon_name ("system-lock-screen-symbolic") {
+            tooltip_text = _("Lock")
+        };
+        lock_button.get_style_context ().add_class ("circular");
+
+        var shutdown_button = new Gtk.Button.from_icon_name ("system-shutdown-symbolic") {
+            tooltip_text = _("Shut Down…")
+        };
+        shutdown_button.get_style_context ().add_class ("circular");
+
         var session_box = new Gtk.Box (HORIZONTAL, 6);
         session_box.add (settings_button);
         session_box.add (a11y_revealer);
+        session_box.add (logout_button);
+        session_box.add (suspend_button);
+        session_box.add (lock_button);
+        session_box.add (shutdown_button);
         session_box.get_style_context ().add_class ("togglebox");
+
+        if (server_type == Wingpanel.IndicatorManager.ServerType.GREETER) {
+            session_box.remove (settings_button);
+            session_box.remove (logout_button);
+            session_box.remove (suspend_button);
+        }
 
         var main_box = new Gtk.Box (VERTICAL, 0);
         main_box.add (toggle_box);

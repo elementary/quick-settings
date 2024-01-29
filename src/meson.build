@@ -11,9 +11,11 @@ sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
     'DBus' / 'AccountsService.vala',
+    'DBus' / 'EndSessionDialogServer.vala',
     'DBus' / 'SensorProxy.vala',
     'Views' / 'A11yView.vala',
     'Widgets' / 'DarkModeToggle.vala',
+    'Widgets' / 'EndSessionDialog.vala',
     'Widgets' / 'RotationToggle.vala',
     'Widgets' / 'SettingsToggle.vala'
 ]
