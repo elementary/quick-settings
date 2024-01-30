@@ -5,6 +5,7 @@ project(
 )
 
 gnome = import('gnome')
+i18n = import('i18n')
 prefix = get_option('prefix')
 libdir = prefix / get_option('libdir')
 datadir = prefix / get_option('datadir')
@@ -21,6 +22,7 @@ wingpanel_dep = dependency('wingpanel')
 wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
 
 subdir('data')
+subdir('po')
 subdir('src')
 
 gnome.post_install(glib_compile_schemas: true)
