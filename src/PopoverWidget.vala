@@ -243,6 +243,11 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                 keybinding_settings.get_strv ("screensaver"), _("Lock")
             );
         });
+
+        EndSessionDialogServer.init ();
+        EndSessionDialogServer.get_default ().show_dialog.connect (
+            (type, timestamp) => show_dialog ((EndSessionDialogType) type, timestamp)
+        );
     }
 
     private void update_navigation () {
