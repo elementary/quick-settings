@@ -212,7 +212,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
         });
 
         current_dialog.shutdown.connect (() => {
-            if (server_type == Wingpanel.IndicatorManager.ServerType.SESSION) {
+            if (server_type == SESSION) {
                 server.confirmed_shutdown ();
             } else {
                 try {
@@ -224,7 +224,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
         });
 
         current_dialog.reboot.connect (() => {
-            if (server_type == Wingpanel.IndicatorManager.ServerType.SESSION) {
+            if (server_type == SESSION) {
                 server.confirmed_reboot ();
             } else {
                 try {
