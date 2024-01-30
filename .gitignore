@@ -1,0 +1,6 @@
+*~
+.debhelper/
+debhelper-build-stamp
+files
+io.elementary.quick-settings/
+io.elementary.quick-settings.substvars
