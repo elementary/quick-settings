@@ -106,6 +106,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         grid.attach (primary_label, 1, 0);
         grid.attach (secondary_label, 1, 1);
         grid.attach (action_area, 0, 2, 2, 1);
+        grid.show_all ();
 
         deletable = false;
         resizable = false;
