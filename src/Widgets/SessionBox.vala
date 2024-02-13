@@ -36,9 +36,9 @@ public class QuickSettings.SessionBox : Gtk.Box {
         shutdown_button.get_style_context ().add_class ("circular");
 
         spacing = 6;
-        add (logout_button);
         add (suspend_button);
         add (lock_button);
+        add (logout_button);
         add (shutdown_button);
 
         realize.connect (() => {
