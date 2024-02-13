@@ -21,8 +21,11 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     }
 
     construct {
+        var powermode_toggle = new PowerModeToggle ();
+
         var toggle_box = new Gtk.Box (HORIZONTAL, 6);
         toggle_box.get_style_context ().add_class ("togglebox");
+        toggle_box.add (powermode_toggle);
 
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
             halign = CENTER,
