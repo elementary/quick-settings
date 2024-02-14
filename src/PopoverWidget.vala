@@ -21,8 +21,12 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     }
 
     construct {
-        var toggle_box = new Gtk.Box (HORIZONTAL, 6) {
-            homogeneous = true
+        var toggle_box = new Gtk.FlowBox () {
+            column_spacing = 6,
+            homogeneous = true,
+            max_children_per_line = 3,
+            row_spacing = 12,
+            selection_mode = NONE
         };
         toggle_box.get_style_context ().add_class ("togglebox");
 
