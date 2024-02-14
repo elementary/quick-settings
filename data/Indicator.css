@@ -3,17 +3,8 @@
  * SPDX-FileCopyrightText: 2023 elementary, Inc. (https://elementary.io)
  */
 
-quicksettings box.font-size,
 quicksettings .togglebox {
     padding: 0.666rem; /* 6px */
-}
-
-quicksettings .back-button {
-    margin: 0.666rem 0.999rem 0.666rem; /* 6px 9px 6px */
-}
-
-quicksettings box.font-size scale {
-    margin: 0.666rem 0.666rem 0; /* 6px */
 }
 
 quicksettings separator.horizontal {
@@ -24,26 +15,22 @@ quicksettings .image-button.toggle {
     border-radius: 1em;
 }
 
-quicksettings .image-button.circular,
-quicksettings .image-button.toggle {
+quicksettings .image-button {
     border: none;
     box-shadow: none;
     min-height: 2.1666rem; /* 26px */
     min-width: 2.1666rem; /* 26px */
 }
 
-quicksettings .image-button.circular,
-quicksettings .image-button.toggle {
+quicksettings .image-button {
     background: alpha(@text_color, 0.1);
 }
 
-quicksettings .image-button:checked.circular,
-quicksettings .image-button:checked.toggle {
+quicksettings .image-button:checked {
     background: @selected_bg_color;
     color: @selected_fg_color;
 }
 
-quicksettings .image-button:disabled.circular,
-quicksettings .image-button:disabled.toggle {
+quicksettings .image-button:disabled {
     background: @insensitive_bg_color;
 }
