@@ -72,7 +72,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         add (deck);
 
         if (server_type == GREETER) {
-            toggle_box.remove (settings_button);
+            bottom_box.remove (settings_button);
         }
 
         setup_accounts_services.begin ((obj, res) => {
