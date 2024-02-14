@@ -21,6 +21,8 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     }
 
     construct {
+        var powermode_toggle = new PowerModeToggle ();
+
         var toggle_box = new Gtk.FlowBox () {
             column_spacing = 6,
             homogeneous = true,
@@ -29,6 +31,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             selection_mode = NONE
         };
         toggle_box.get_style_context ().add_class ("togglebox");
+        toggle_box.add (powermode_toggle);
 
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
             tooltip_text = _("System Settings…")
