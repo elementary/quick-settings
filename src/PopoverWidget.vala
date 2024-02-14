@@ -20,17 +20,19 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     }
 
     construct {
-        var toggle_box = new Gtk.Box (HORIZONTAL, 6);
+        var toggle_box = new Gtk.Box (HORIZONTAL, 6) {
+            homogeneous = true
+        };
         toggle_box.get_style_context ().add_class ("togglebox");
 
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
-            halign = START,
-            hexpand = true,
             tooltip_text = _("System Settings…")
         };
         settings_button.get_style_context ().add_class ("circular");
 
         var session_box = new SessionBox (server_type) {
+            halign = END,
+            hexpand = true,
             margin_start = 6
         };
 
