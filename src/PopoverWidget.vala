@@ -47,7 +47,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         add (main_box);
 
         if (server_type == GREETER) {
-            remove (settings_button);
+            bottom_box.remove (settings_button);
         }
 
         setup_accounts_services.begin ((obj, res) => {
@@ -86,7 +86,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var glib_settings = new Settings ("io.elementary.desktop.quick-settings");
 
-        if (glib_settings.get_boolean ("show-a11y")) {
+        if (server_type == GREETER || glib_settings.get_boolean ("show-a11y")) {
             var screen_reader = new SettingsToggle (
                 new ThemedIcon ("orca-symbolic"),
                 _("Screen Reader")
