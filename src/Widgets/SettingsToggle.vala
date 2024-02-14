@@ -3,7 +3,7 @@
  * SPDX-FileCopyrightText: 2023 elementary, Inc. (https://elementary.io)
  */
 
-public class QuickSettings.SettingsToggle : Gtk.Box {
+public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
     public bool active { get; set; }
     public Icon icon { get; construct set; }
     public string label { get; construct; }
@@ -30,15 +30,17 @@ public class QuickSettings.SettingsToggle : Gtk.Box {
             ellipsize = MIDDLE,
             justify = CENTER,
             lines = 2,
-            max_width_chars = 13
+            max_width_chars = 13,
+            mnemonic_widget = button
         };
         label_widget.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
-        hexpand = true;
-        orientation = VERTICAL;
-        spacing = 3;
-        add (button);
-        add (label_widget);
+        var box = new Gtk.Box (VERTICAL, 3);
+        box.add (button);
+        box.add (label_widget);
+
+        can_focus = false;
+        child = box;
 
         button.bind_property ("active", this, "active", SYNC_CREATE | BIDIRECTIONAL);
 
