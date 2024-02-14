@@ -23,12 +23,17 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     construct {
         var powermode_toggle = new PowerModeToggle ();
 
-        var toggle_box = new Gtk.Box (HORIZONTAL, 6);
+        var toggle_box = new Gtk.FlowBox () {
+            column_spacing = 6,
+            homogeneous = true,
+            max_children_per_line = 3,
+            row_spacing = 12,
+            selection_mode = NONE
+        };
         toggle_box.get_style_context ().add_class ("togglebox");
         toggle_box.add (powermode_toggle);
 
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
-            halign = CENTER,
             tooltip_text = _("System Settings…")
         };
         settings_button.get_style_context ().add_class ("circular");
@@ -48,6 +53,8 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         };
 
         var session_box = new SessionBox (server_type) {
+            halign = END,
+            hexpand = true,
             margin_start = 6
         };
 
@@ -72,7 +79,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         add (deck);
 
         if (server_type == GREETER) {
-            remove (settings_button);
+            bottom_box.remove (settings_button);
         }
 
         setup_accounts_services.begin ((obj, res) => {
