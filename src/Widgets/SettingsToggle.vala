@@ -25,7 +25,6 @@ public class QuickSettings.SettingsToggle : Gtk.Box {
             halign = CENTER,
             image = image
         };
-        button.get_style_context ().add_class ("circular");
 
         var label_widget = new Gtk.Label (label) {
             ellipsize = MIDDLE,
