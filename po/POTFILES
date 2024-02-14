@@ -6,7 +6,6 @@ src/DBus/LockInterface.vala
 src/DBus/SensorProxy.vala
 src/DBus/SessionInterface.vala
 src/DBus/SystemInterface.vala
-src/Views/A11yView.vala
 src/Widgets/DarkModeToggle.vala
 src/Widgets/EndSessionDialog.vala
 src/Widgets/RotationToggle.vala

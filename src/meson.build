@@ -16,7 +16,6 @@ sources = [
     'DBus' / 'SensorProxy.vala',
     'DBus' / 'SessionInterface.vala',
     'DBus' / 'SystemInterface.vala',
-    'Views' / 'A11yView.vala',
     'Widgets' / 'DarkModeToggle.vala',
     'Widgets' / 'EndSessionDialog.vala',
     'Widgets' / 'RotationToggle.vala',
