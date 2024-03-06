@@ -20,6 +20,20 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     }
 
     construct {
+        var screen_reader = new SettingsToggle (
+            new ThemedIcon ("orca-symbolic"),
+            _("Screen Reader")
+        ) {
+            settings_uri = "settings://sound"
+        };
+
+        var onscreen_keyboard = new SettingsToggle (
+            new ThemedIcon ("input-keyboard-symbolic"),
+            _("Onscreen Keyboard")
+        ) {
+            settings_uri = "settings://input/keyboard/behavior"
+        };
+
         var toggle_box = new Gtk.FlowBox () {
             column_spacing = 6,
             homogeneous = true,
@@ -28,6 +42,8 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             selection_mode = NONE
         };
         toggle_box.get_style_context ().add_class ("togglebox");
+
+        var text_scale = new TextScale ();
 
         var scale_box = new Gtk.Box (VERTICAL, 0);
 
@@ -93,32 +109,32 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             }
         });
 
+        var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
+        applications_settings.bind ("screen-keyboard-enabled", onscreen_keyboard, "active", DEFAULT);
+        applications_settings.bind ("screen-reader-enabled", screen_reader, "active", DEFAULT);
+
         var glib_settings = new Settings ("io.elementary.desktop.quick-settings");
 
         if (server_type == GREETER || glib_settings.get_boolean ("show-a11y")) {
-            var screen_reader = new SettingsToggle (
-                new ThemedIcon ("orca-symbolic"),
-                _("Screen Reader")
-            ) {
-                settings_uri = "settings://sound"
-            };
-
-            var onscreen_keyboard = new SettingsToggle (
-                new ThemedIcon ("input-keyboard-symbolic"),
-                _("Onscreen Keyboard")
-            ) {
-                settings_uri = "settings://input/keyboard/behavior"
-            };
-
             toggle_box.add (screen_reader);
             toggle_box.add (onscreen_keyboard);
 
-            scale_box.add (new TextScale ());
-
-            var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
-            applications_settings.bind ("screen-keyboard-enabled", onscreen_keyboard, "active", DEFAULT);
-            applications_settings.bind ("screen-reader-enabled", screen_reader, "active", DEFAULT);
+            scale_box.add (text_scale);
         }
+
+        glib_settings.changed["show-a11y"].connect (() => {
+            if (glib_settings.get_boolean ("show-a11y") && screen_reader.parent == null) {
+                toggle_box.add (screen_reader);
+                toggle_box.add (onscreen_keyboard);
+
+                scale_box.add (text_scale);
+            } else {
+                toggle_box.remove (screen_reader);
+                toggle_box.remove (onscreen_keyboard);
+
+                scale_box.remove (text_scale);
+            }
+        });
     }
 
     private async Pantheon.AccountsService? setup_accounts_services () {
