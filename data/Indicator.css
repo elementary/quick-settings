@@ -3,8 +3,13 @@
  * SPDX-FileCopyrightText: 2023 elementary, Inc. (https://elementary.io)
  */
 
+quicksettings box.font-size,
 quicksettings .togglebox {
     padding: 0.666rem; /* 6px */
+}
+
+quicksettings box.font-size scale {
+    margin: 0.666rem 0.666rem 0; /* 6px */
 }
 
 quicksettings separator.horizontal {
