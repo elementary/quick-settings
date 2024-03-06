@@ -20,7 +20,8 @@ sources = [
     'Widgets' / 'EndSessionDialog.vala',
     'Widgets' / 'RotationToggle.vala',
     'Widgets' / 'SettingsToggle.vala',
-    'Widgets' / 'SessionBox.vala'
+    'Widgets' / 'SessionBox.vala',
+    'Widgets' / 'TextScale.vala',
 ]
 
 shared_module(
