@@ -10,7 +10,9 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     private const string FDO_ACCOUNTS_PATH = "/org/freedesktop/Accounts";
 
     private Gtk.Popover? popover;
-    private Hdy.Deck deck;
+    private Gtk.Button zoom_in_button;
+    private Gtk.Button zoom_out_button;
+    private Settings interface_settings;
 
     public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (server_type: server_type);
@@ -30,24 +32,12 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         };
         toggle_box.get_style_context ().add_class ("togglebox");
 
+        var scale_box = new Gtk.Box (VERTICAL, 0);
+
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
             tooltip_text = _("System Settings…")
         };
         settings_button.get_style_context ().add_class ("circular");
-
-        var a11y_button = new Gtk.Button.from_icon_name ("preferences-desktop-accessibility-symbolic") {
-            halign = CENTER,
-            margin_start = 6,
-            tooltip_text = _("Accessiblity Settings…")
-        };
-        a11y_button.get_style_context ().add_class ("circular");
-
-        var a11y_revealer = new Gtk.Revealer () {
-            halign = START,
-            hexpand = true,
-            child = a11y_button,
-            transition_type = SLIDE_LEFT
-        };
 
         var session_box = new SessionBox (server_type) {
             halign = END,
@@ -57,23 +47,16 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var bottom_box = new Gtk.Box (HORIZONTAL, 0);
         bottom_box.add (settings_button);
-        bottom_box.add (a11y_revealer);
         bottom_box.add (session_box);
         bottom_box.get_style_context ().add_class ("togglebox");
 
         var main_box = new Gtk.Box (VERTICAL, 0);
         main_box.add (toggle_box);
+        main_box.add (scale_box);
         main_box.add (new Gtk.Separator (HORIZONTAL));
         main_box.add (bottom_box);
 
-        deck = new Hdy.Deck () {
-            can_swipe_back = true,
-            vhomogeneous = false,
-            interpolate_size = true
-        };
-        deck.add (main_box);
-
-        add (deck);
+        add (main_box);
 
         if (server_type == GREETER) {
             bottom_box.remove (settings_button);
@@ -101,17 +84,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         realize.connect (() => {
             popover = (Gtk.Popover) get_ancestor (typeof (Gtk.Popover));
-            popover.closed.connect (() => {
-                deck.navigate (BACK);
-            });
-        });
-
-        a11y_button.clicked.connect (() => {
-            var a11y_view = new A11yView ();
-
-            deck.add (a11y_view);
-            show_all ();
-            deck.visible_child = a11y_view;
         });
 
         settings_button.clicked.connect (() => {
@@ -124,20 +96,76 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             }
         });
 
-        deck.notify["visible-child"].connect (update_navigation);
-        deck.notify["transition-running"].connect (update_navigation);
-
         var glib_settings = new Settings ("io.elementary.desktop.quick-settings");
-        glib_settings.bind ("show-a11y", a11y_revealer, "reveal-child", GET);
+
+        if (server_type == GREETER || glib_settings.get_boolean ("show-a11y")) {
+            var screen_reader = new SettingsToggle (
+                new ThemedIcon ("orca-symbolic"),
+                _("Screen Reader")
+            ) {
+                settings_uri = "settings://sound"
+            };
+
+            var onscreen_keyboard = new SettingsToggle (
+                new ThemedIcon ("input-keyboard-symbolic"),
+                _("Onscreen Keyboard")
+            ) {
+                settings_uri = "settings://input/keyboard/behavior"
+            };
+
+            toggle_box.add (screen_reader);
+            toggle_box.add (onscreen_keyboard);
+
+            zoom_out_button = new Gtk.Button.from_icon_name ("format-text-smaller-symbolic") {
+                tooltip_text = _("Decrease text size")
+            };
+            zoom_out_button.get_style_context ().add_class ("circular");
+
+            var zoom_adjustment = new Gtk.Adjustment (-1, 0.75, 1.75, 0.05, 0, 0);
+
+            var zoom_scale = new Gtk.Scale (HORIZONTAL, zoom_adjustment) {
+                draw_value = false,
+                hexpand = true
+            };
+            zoom_scale.add_mark (1, BOTTOM, null);
+            zoom_scale.add_mark (1.5, BOTTOM, null);
+
+            zoom_in_button = new Gtk.Button.from_icon_name ("format-text-larger-symbolic") {
+                tooltip_text = _("Increase text size")
+            };
+            zoom_in_button.get_style_context ().add_class ("circular");
+
+            var font_size_box = new Gtk.Box (HORIZONTAL, 0);
+            font_size_box.get_style_context ().add_class ("font-size");
+            font_size_box.add (zoom_out_button);
+            font_size_box.add (zoom_scale);
+            font_size_box.add (zoom_in_button);
+
+            scale_box.add (font_size_box);
+
+            interface_settings = new Settings ("org.gnome.desktop.interface");
+            interface_settings.bind ("text-scaling-factor", zoom_adjustment, "value", DEFAULT);
+            interface_settings.changed["text-scaling-factor"].connect (update_zoom_buttons);
+            update_zoom_buttons ();
+
+            zoom_in_button.clicked.connect (() => {
+                zoom_adjustment.value += 0.05;
+            });
+
+            zoom_out_button.clicked.connect (() => {
+                zoom_adjustment.value += -0.05;
+            });
+
+            var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
+            applications_settings.bind ("screen-keyboard-enabled", onscreen_keyboard, "active", DEFAULT);
+            applications_settings.bind ("screen-reader-enabled", screen_reader, "active", DEFAULT);
+        }
     }
 
-    private void update_navigation () {
-        if (!deck.transition_running) {
-            while (deck.get_adjacent_child (FORWARD) != null) {
-                var next_child = deck.get_adjacent_child (FORWARD);
-                next_child.destroy ();
-            }
-        }
+    private void update_zoom_buttons () {
+        var scaling_factor = interface_settings.get_double ("text-scaling-factor");
+        zoom_in_button.sensitive = scaling_factor < 1.75;
+        zoom_out_button.sensitive = scaling_factor > 0.75;
     }
 
     private async Pantheon.AccountsService? setup_accounts_services () {

@@ -28,7 +28,9 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
 
         var label_widget = new Gtk.Label (label) {
             ellipsize = MIDDLE,
-            max_width_chars = 16,
+            justify = CENTER,
+            lines = 2,
+            max_width_chars = 13,
             mnemonic_widget = button
         };
         label_widget.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
