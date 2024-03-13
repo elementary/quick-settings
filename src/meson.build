@@ -11,7 +11,6 @@ sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
     'DBus' / 'AccountsService.vala',
-    'DBus' / 'EndSessionDialogServer.vala',
     'DBus' / 'LockInterface.vala',
     'DBus' / 'SensorProxy.vala',
     'DBus' / 'SessionInterface.vala',

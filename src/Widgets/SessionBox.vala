@@ -148,11 +148,6 @@ public class QuickSettings.SessionBox : Gtk.Box {
                 keybinding_settings.get_strv ("screensaver"), _("Lock")
             );
         });
-
-        EndSessionDialogServer.init ();
-        EndSessionDialogServer.get_default ().show_dialog.connect (
-            (type, timestamp) => show_dialog ((EndSessionDialogType) type, timestamp)
-        );
     }
 
     private async SessionInterface? setup_session_interface () {
@@ -193,45 +188,26 @@ public class QuickSettings.SessionBox : Gtk.Box {
             }
         }
 
-        unowned var server = EndSessionDialogServer.get_default ();
-
         current_dialog = new EndSessionDialog (type) {
             transient_for = (Gtk.Window) get_toplevel ()
         };
         current_dialog.destroy.connect (() => {
-            server.closed ();
             current_dialog = null;
         });
 
-        current_dialog.cancelled.connect (() => {
-            server.canceled ();
-        });
-
-        current_dialog.logout.connect (() => {
-            server.confirmed_logout ();
-        });
-
         current_dialog.shutdown.connect (() => {
-            if (server_type == SESSION) {
-                server.confirmed_shutdown ();
-            } else {
-                try {
-                    system_interface.power_off (false);
-                } catch (Error e) {
-                    warning ("Unable to shutdown: %s", e.message);
-                }
+            try {
+                system_interface.power_off (false);
+            } catch (Error e) {
+                warning ("Unable to shutdown: %s", e.message);
             }
         });
 
         current_dialog.reboot.connect (() => {
-            if (server_type == SESSION) {
-                server.confirmed_reboot ();
-            } else {
-                try {
-                    system_interface.reboot (false);
-                } catch (Error e) {
-                    warning ("Unable to reboot: %s", e.message);
-                }
+            try {
+                system_interface.reboot (false);
+            } catch (Error e) {
+                warning ("Unable to reboot: %s", e.message);
             }
         });
 
