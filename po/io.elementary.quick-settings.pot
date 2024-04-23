@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-01-29 17:33-0800\n"
+"POT-Creation-Date: 2024-04-23 17:01+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,48 +17,16 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 
-#: src/PopoverWidget.vala:29
-msgid "System Settings…"
-msgstr ""
-
-#: src/PopoverWidget.vala:36
-msgid "Accessiblity Settings…"
-msgstr ""
-
-#: src/Views/A11yView.vala:12
-msgid "Back"
-msgstr ""
-
-#: src/Views/A11yView.vala:18
-msgid "Decrease text size"
-msgstr ""
-
-#: src/Views/A11yView.vala:31
-msgid "Increase text size"
-msgstr ""
-
-#: src/Views/A11yView.vala:36
+#: src/PopoverWidget.vala:25
 msgid "Screen Reader"
 msgstr ""
 
-#: src/Views/A11yView.vala:43
+#: src/PopoverWidget.vala:32
 msgid "Onscreen Keyboard"
 msgstr ""
 
-#: src/Views/A11yView.vala:61
-msgid "Slow Keys"
-msgstr ""
-
-#: src/Views/A11yView.vala:63
-msgid "Bounce Keys"
-msgstr ""
-
-#: src/Views/A11yView.vala:65
-msgid "Sticky Keys"
-msgstr ""
-
-#: src/Views/A11yView.vala:67
-msgid "Dwell Click"
+#: src/PopoverWidget.vala:51
+msgid "System Settings…"
 msgstr ""
 
 #: src/Widgets/DarkModeToggle.vala:13
@@ -117,4 +85,12 @@ msgstr ""
 
 #: src/Widgets/SessionBox.vala:34
 msgid "Shut Down…"
+msgstr ""
+
+#: src/Widgets/TextScale.vala:17
+msgid "Decrease text size"
+msgstr ""
+
+#: src/Widgets/TextScale.vala:31
+msgid "Increase text size"
 msgstr ""
