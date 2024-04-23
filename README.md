@@ -1,5 +1,5 @@
 # Quick Settings Indicator
-Prototype quick settings menu
+[![Translation status](https://l10n.elementary.io/widget/wingpanel/quick-settings/svg-badge.svg)](https://l10n.elementary.io/engage/wingpanel/)
 
 ## Building and Installation
 
