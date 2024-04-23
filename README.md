@@ -5,6 +5,8 @@
 
 You'll need the following dependencies:
 
+* libgranite-dev
+* libhandy-1-dev
 * libwingpanel-dev
 * meson
 * valac
