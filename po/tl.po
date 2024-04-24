@@ -8,13 +8,17 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-04-25 16:13+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
+"Language-Team: Tagalog <https://l10n.elementary.io/projects/wingpanel/"
+"quick-settings/tl/>\n"
 "Language: tl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1 && n != 2 && n != 3 && (n % 10 == 4 "
+"|| n % 10 == 6 || n % 10 == 9);\n"
+"X-Generator: Weblate 5.0.2\n"
 
 #: src/PopoverWidget.vala:25
 msgid "Screen Reader"
@@ -34,35 +38,37 @@ msgstr ""
 
 #: src/Widgets/EndSessionDialog.vala:35
 msgid "Are you sure you want to Log Out?"
-msgstr ""
+msgstr "Sigurado ka bang gusto mong mag-Log Out?"
 
 #: src/Widgets/EndSessionDialog.vala:36
 msgid "This will close all open applications."
-msgstr ""
+msgstr "Isasara nito ang lahat ng mga nakabukas na application."
 
 #: src/Widgets/EndSessionDialog.vala:37
 msgid "Log Out"
-msgstr ""
+msgstr "Mag-Log Out"
 
 #: src/Widgets/EndSessionDialog.vala:42
 msgid "Are you sure you want to Shut Down?"
-msgstr ""
+msgstr "Sigurado ka bang gusto mong mag-Shut Down?"
 
 #: src/Widgets/EndSessionDialog.vala:43
 msgid "This will close all open applications and turn off this device."
 msgstr ""
+"Isasara nito ang lahat ng mga nakabukas na application at papatayin ang "
+"device na ito."
 
 #: src/Widgets/EndSessionDialog.vala:44
 msgid "Shut Down"
-msgstr ""
+msgstr "I-Shut Down"
 
 #: src/Widgets/EndSessionDialog.vala:69
 msgid "Cancel"
-msgstr ""
+msgstr "Ikansela"
 
 #: src/Widgets/EndSessionDialog.vala:86
 msgid "Restart"
-msgstr ""
+msgstr "I-Restart"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
@@ -71,20 +77,20 @@ msgstr ""
 #: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
 #: src/Widgets/SessionBox.vala:142
 msgid "Log Out…"
-msgstr ""
+msgstr "Mag-Log Out…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
-msgstr ""
+msgstr "Isuspinde"
 
 #: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:137
 #: src/Widgets/SessionBox.vala:148
 msgid "Lock"
-msgstr ""
+msgstr "I-Lock"
 
 #: src/Widgets/SessionBox.vala:34
 msgid "Shut Down…"
-msgstr ""
+msgstr "Mag-Shut Down…"
 
 #: src/Widgets/TextScale.vala:17
 msgid "Decrease text size"
