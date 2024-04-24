@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: 2024-04-23 17:35+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
-"Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/quick-"
-"settings/nl/>\n"
+"PO-Revision-Date: 2024-04-25 16:13+0000\n"
+"Last-Translator: Dennis ten Hoove <dennistenhoove@protonmail.com>\n"
+"Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/"
+"quick-settings/nl/>\n"
 "Language: nl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,7 +33,7 @@ msgstr "Systeeminstellingen…"
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
-msgstr ""
+msgstr "Donkere modus"
 
 #: src/Widgets/EndSessionDialog.vala:35
 msgid "Are you sure you want to Log Out?"
@@ -62,7 +62,7 @@ msgstr "Afsluiten"
 
 #: src/Widgets/EndSessionDialog.vala:69
 msgid "Cancel"
-msgstr "Annuleer"
+msgstr "Annuleren"
 
 #: src/Widgets/EndSessionDialog.vala:86
 msgid "Restart"
@@ -70,7 +70,7 @@ msgstr "Opnieuw opstarten"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
-msgstr ""
+msgstr "Rotatievergrendeling"
 
 #: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
 #: src/Widgets/SessionBox.vala:142
