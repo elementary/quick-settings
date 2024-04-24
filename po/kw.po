@@ -1,0 +1,95 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the io.elementary.quick-settings package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: io.elementary.quick-settings\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-23 17:01+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: Automatically generated\n"
+"Language-Team: none\n"
+"Language: kw\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: src/PopoverWidget.vala:25
+msgid "Screen Reader"
+msgstr ""
+
+#: src/PopoverWidget.vala:32
+msgid "Onscreen Keyboard"
+msgstr ""
+
+#: src/PopoverWidget.vala:51
+msgid "System Settings…"
+msgstr ""
+
+#: src/Widgets/DarkModeToggle.vala:13
+msgid "Dark Mode"
+msgstr ""
+
+#: src/Widgets/EndSessionDialog.vala:35
+msgid "Are you sure you want to Log Out?"
+msgstr ""
+
+#: src/Widgets/EndSessionDialog.vala:36
+msgid "This will close all open applications."
+msgstr ""
+
+#: src/Widgets/EndSessionDialog.vala:37
+msgid "Log Out"
+msgstr ""
+
+#: src/Widgets/EndSessionDialog.vala:42
+msgid "Are you sure you want to Shut Down?"
+msgstr ""
+
+#: src/Widgets/EndSessionDialog.vala:43
+msgid "This will close all open applications and turn off this device."
+msgstr ""
+
+#: src/Widgets/EndSessionDialog.vala:44
+msgid "Shut Down"
+msgstr ""
+
+#: src/Widgets/EndSessionDialog.vala:69
+msgid "Cancel"
+msgstr ""
+
+#: src/Widgets/EndSessionDialog.vala:86
+msgid "Restart"
+msgstr ""
+
+#: src/Widgets/RotationToggle.vala:10
+msgid "Rotation Lock"
+msgstr ""
+
+#: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
+#: src/Widgets/SessionBox.vala:142
+msgid "Log Out…"
+msgstr ""
+
+#: src/Widgets/SessionBox.vala:24
+msgid "Suspend"
+msgstr ""
+
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:137
+#: src/Widgets/SessionBox.vala:148
+msgid "Lock"
+msgstr ""
+
+#: src/Widgets/SessionBox.vala:34
+msgid "Shut Down…"
+msgstr ""
+
+#: src/Widgets/TextScale.vala:17
+msgid "Decrease text size"
+msgstr ""
+
+#: src/Widgets/TextScale.vala:31
+msgid "Increase text size"
+msgstr ""
