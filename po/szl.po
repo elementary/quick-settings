@@ -8,21 +8,25 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-04-25 16:13+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
+"Language-Team: Silesian <https://l10n.elementary.io/projects/wingpanel/"
+"quick-settings/szl/>\n"
 "Language: szl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
+"|| n%100>=20) ? 1 : 2;\n"
+"X-Generator: Weblate 5.0.2\n"
 
 #: src/PopoverWidget.vala:25
 msgid "Screen Reader"
-msgstr ""
+msgstr "Czytocz ekranowy"
 
 #: src/PopoverWidget.vala:32
 msgid "Onscreen Keyboard"
-msgstr ""
+msgstr "Tastatura na ekranie"
 
 #: src/PopoverWidget.vala:51
 msgid "System Settings…"
@@ -34,35 +38,35 @@ msgstr ""
 
 #: src/Widgets/EndSessionDialog.vala:35
 msgid "Are you sure you want to Log Out?"
-msgstr ""
+msgstr "Na zicher chcesz sie ôdlogować?"
 
 #: src/Widgets/EndSessionDialog.vala:36
 msgid "This will close all open applications."
-msgstr ""
+msgstr "Wszyjske ôtwarte programy bydōm zawarte."
 
 #: src/Widgets/EndSessionDialog.vala:37
 msgid "Log Out"
-msgstr ""
+msgstr "Ôdloguj sie"
 
 #: src/Widgets/EndSessionDialog.vala:42
 msgid "Are you sure you want to Shut Down?"
-msgstr ""
+msgstr "Na zicher chcesz zawrzić?"
 
 #: src/Widgets/EndSessionDialog.vala:43
 msgid "This will close all open applications and turn off this device."
-msgstr ""
+msgstr "Wszyjske ôtwarte programy bydōm zawarte, a maszina zastawiōno."
 
 #: src/Widgets/EndSessionDialog.vala:44
 msgid "Shut Down"
-msgstr ""
+msgstr "Zawrzij"
 
 #: src/Widgets/EndSessionDialog.vala:69
 msgid "Cancel"
-msgstr ""
+msgstr "Pociep"
 
 #: src/Widgets/EndSessionDialog.vala:86
 msgid "Restart"
-msgstr ""
+msgstr "Zresztartuj"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
@@ -71,25 +75,25 @@ msgstr ""
 #: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
 #: src/Widgets/SessionBox.vala:142
 msgid "Log Out…"
-msgstr ""
+msgstr "Ôdloguj…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
-msgstr ""
+msgstr "Strzim"
 
 #: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:137
 #: src/Widgets/SessionBox.vala:148
 msgid "Lock"
-msgstr ""
+msgstr "Zablokuj"
 
 #: src/Widgets/SessionBox.vala:34
 msgid "Shut Down…"
-msgstr ""
+msgstr "Zawrzij…"
 
 #: src/Widgets/TextScale.vala:17
 msgid "Decrease text size"
-msgstr ""
+msgstr "Zmyńszynie srogości tekstu"
 
 #: src/Widgets/TextScale.vala:31
 msgid "Increase text size"
-msgstr ""
+msgstr "Zwiynkszynie srogości tekstu"
