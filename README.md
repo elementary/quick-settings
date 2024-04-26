@@ -1,10 +1,12 @@
 # Quick Settings Indicator
-Prototype quick settings menu
+[![Translation status](https://l10n.elementary.io/widget/wingpanel/quick-settings/svg-badge.svg)](https://l10n.elementary.io/engage/wingpanel/)
 
 ## Building and Installation
 
 You'll need the following dependencies:
 
+* libgranite-dev
+* libhandy-1-dev
 * libwingpanel-dev
 * meson
 * valac
