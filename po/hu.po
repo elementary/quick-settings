@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: 2024-05-06 21:50+0000\n"
+"PO-Revision-Date: 2024-05-07 22:13+0000\n"
 "Last-Translator: György Viktor <wickdj@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/wingpanel/"
 "quick-settings/hu/>\n"
@@ -70,7 +70,7 @@ msgstr "Újraindítás"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
-msgstr ""
+msgstr "Elforgatás zárolása"
 
 #: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
 #: src/Widgets/SessionBox.vala:142
