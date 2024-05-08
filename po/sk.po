@@ -3,27 +3,29 @@
 # This file is distributed under the same license as the io.elementary.quick-settings package.
 # FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
-#, fuzzy
 msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
-"Language: \n"
+"PO-Revision-Date: 2024-04-23 17:35+0000\n"
+"Last-Translator: anonymous <noreply@weblate.org>\n"
+"Language-Team: Slovak <https://l10n.elementary.io/projects/wingpanel/quick-"
+"settings/sk/>\n"
+"Language: sk\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Weblate 5.0.2\n"
 
 #: src/PopoverWidget.vala:25
 msgid "Screen Reader"
-msgstr ""
+msgstr "Čítačka obrazovky"
 
 #: src/PopoverWidget.vala:32
 msgid "Onscreen Keyboard"
-msgstr ""
+msgstr "Klávesnica na obrazovke"
 
 #: src/PopoverWidget.vala:51
 msgid "System Settings…"
@@ -35,35 +37,35 @@ msgstr ""
 
 #: src/Widgets/EndSessionDialog.vala:35
 msgid "Are you sure you want to Log Out?"
-msgstr ""
+msgstr "Naozaj sa chcete odhlásiť?"
 
 #: src/Widgets/EndSessionDialog.vala:36
 msgid "This will close all open applications."
-msgstr ""
+msgstr "Týmto sa ukončia všetky otvorené aplikácie."
 
 #: src/Widgets/EndSessionDialog.vala:37
 msgid "Log Out"
-msgstr ""
+msgstr "Odhlásiť sa"
 
 #: src/Widgets/EndSessionDialog.vala:42
 msgid "Are you sure you want to Shut Down?"
-msgstr ""
+msgstr "Naozaj chcete vypnúť zariadenie?"
 
 #: src/Widgets/EndSessionDialog.vala:43
 msgid "This will close all open applications and turn off this device."
-msgstr ""
+msgstr "Týmto za ukončia všetky otvorené aplikácie a vypne sa toto zariadenie."
 
 #: src/Widgets/EndSessionDialog.vala:44
 msgid "Shut Down"
-msgstr ""
+msgstr "Vypnúť"
 
 #: src/Widgets/EndSessionDialog.vala:69
 msgid "Cancel"
-msgstr ""
+msgstr "Zrušiť"
 
 #: src/Widgets/EndSessionDialog.vala:86
 msgid "Restart"
-msgstr ""
+msgstr "Reštartovať"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
@@ -72,25 +74,25 @@ msgstr ""
 #: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
 #: src/Widgets/SessionBox.vala:142
 msgid "Log Out…"
-msgstr ""
+msgstr "Odhlásiť sa…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
-msgstr ""
+msgstr "Uspať"
 
 #: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:137
 #: src/Widgets/SessionBox.vala:148
 msgid "Lock"
-msgstr ""
+msgstr "Uzamknúť"
 
 #: src/Widgets/SessionBox.vala:34
 msgid "Shut Down…"
-msgstr ""
+msgstr "Vypnúť…"
 
 #: src/Widgets/TextScale.vala:17
 msgid "Decrease text size"
-msgstr ""
+msgstr "Zmenšiť veľkosť textu"
 
 #: src/Widgets/TextScale.vala:31
 msgid "Increase text size"
-msgstr ""
+msgstr "Zväčšiť veľkosť textu"
