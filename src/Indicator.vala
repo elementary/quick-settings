@@ -19,6 +19,10 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
     construct {
         GLib.Intl.bindtextdomain (Constants.GETTEXT_PACKAGE, Constants.LOCALEDIR);
         GLib.Intl.bind_textdomain_codeset (Constants.GETTEXT_PACKAGE, "UTF-8");
+
+        // Prevent a race that skips automatic resource loading
+        // https://github.com/elementary/wingpanel-indicator-bluetooth/issues/203
+        Gtk.IconTheme.get_default ().add_resource_path ("/org/elementary/wingpanel/icons");
     }
 
     public override Gtk.Widget get_display_widget () {
