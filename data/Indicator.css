@@ -9,7 +9,7 @@ quicksettings .togglebox {
 }
 
 quicksettings scalebox scale {
-    margin: 0.666rem 0.666rem 0; /* 6px */
+    margin: 0 0.333rem 0 0.666rem; /* 0 3px 0 6px */
 }
 
 quicksettings separator.horizontal {
