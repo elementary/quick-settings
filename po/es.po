@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: 2024-06-12 14:53+0000\n"
+"PO-Revision-Date: 2024-06-13 02:50+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
 "quick-settings/es/>\n"
@@ -37,7 +37,7 @@ msgstr "Modo oscuro"
 
 #: src/Widgets/EndSessionDialog.vala:35
 msgid "Are you sure you want to Log Out?"
-msgstr "¿Confirma que desea cerrar la sesión?"
+msgstr "¿Está seguro que desea cerrar la sesión?"
 
 #: src/Widgets/EndSessionDialog.vala:36
 msgid "This will close all open applications."
@@ -49,7 +49,7 @@ msgstr "Cerrar la sesión"
 
 #: src/Widgets/EndSessionDialog.vala:42
 msgid "Are you sure you want to Shut Down?"
-msgstr "¿Confirma que desea apagar el equipo?"
+msgstr "¿Está seguro que desea apagar el equipo?"
 
 #: src/Widgets/EndSessionDialog.vala:43
 msgid "This will close all open applications and turn off this device."
