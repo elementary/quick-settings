@@ -12,6 +12,7 @@ sources = [
     'PopoverWidget.vala',
     'DBus' / 'AccountsService.vala',
     'DBus' / 'EndSessionDialogServer.vala',
+    'DBus' / 'GeoclueManager.vala',
     'DBus' / 'LockInterface.vala',
     'DBus' / 'SensorProxy.vala',
     'DBus' / 'SessionInterface.vala',
@@ -21,6 +22,7 @@ sources = [
     'Widgets' / 'RotationToggle.vala',
     'Widgets' / 'SettingsToggle.vala',
     'Widgets' / 'SessionBox.vala',
+    'Widgets' / 'TattleBox.vala',
     'Widgets' / 'TextScale.vala',
 ]
 

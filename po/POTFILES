@@ -11,4 +11,5 @@ src/Widgets/EndSessionDialog.vala
 src/Widgets/RotationToggle.vala
 src/Widgets/SessionBox.vala
 src/Widgets/SettingsToggle.vala
+src/Widgets/TattleBox.vala
 src/Widgets/TextScale.vala
