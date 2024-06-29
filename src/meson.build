@@ -35,7 +35,8 @@ shared_module(
         granite_dep,
         gtk_dep,
         handy_dep,
-        wingpanel_dep
+        wingpanel_dep,
+        portal_dep
     ],
     install: true,
     install_dir : wingpanel_indicatorsdir

@@ -20,6 +20,7 @@ gtk_dep = dependency('gtk+-3.0')
 handy_dep = dependency('libhandy-1', version: '>=1.0')
 wingpanel_dep = dependency('wingpanel')
 wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
+portal_dep = dependency('libportal')
 
 subdir('data')
 subdir('po')

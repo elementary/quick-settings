@@ -52,6 +52,11 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         };
         settings_button.get_style_context ().add_class ("circular");
 
+        var screenshot_button = new Gtk.Button.from_icon_name ("accessories-screenshot-tool-symbolic") {
+            tooltip_text = _("Take Screenshot…")
+        };
+        screenshot_button.get_style_context ().add_class ("circular");
+
         var session_box = new SessionBox (server_type) {
             halign = END,
             hexpand = true,
@@ -60,6 +65,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var bottom_box = new Gtk.Box (HORIZONTAL, 0);
         bottom_box.add (settings_button);
+        bottom_box.add (screenshot_button);
         bottom_box.add (session_box);
         bottom_box.get_style_context ().add_class ("togglebox");
 
@@ -73,6 +79,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         if (server_type == GREETER) {
             bottom_box.remove (settings_button);
+            bottom_box.remove (screenshot_button);
         }
 
         setup_accounts_services.begin ((obj, res) => {
@@ -107,6 +114,36 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             } catch (Error e) {
                 critical ("Failed to open system settings: %s", e.message);
             }
+        });
+
+        screenshot_button.clicked.connect (() => {
+            popover.popdown ();
+
+            var portal = new Xdp.Portal ();
+            portal.take_screenshot.begin (null, INTERACTIVE, null, (obj, res) => {
+                try {
+                    var file_uri = portal.take_screenshot.end (res);
+
+                    var file_icon = new FileIcon (File.new_for_uri (file_uri));
+
+                    var folder_dir = Environment.get_user_special_dir (PICTURES) + "%c".printf (Path.DIR_SEPARATOR) + _("Screenshots");
+
+                    var readable_path = folder_dir.replace (Environment.get_home_dir () + "%c".printf (Path.DIR_SEPARATOR), "");
+
+                    var notification = new Notification (_("Screenshot taken"));
+                    // notification.add_button (
+                    //     _("Open"),
+                    //     Action.print_detailed_name ("app.open", new Variant ("s", file_uri))
+                    // );
+                    notification.set_body (_("Saved to “%s”").printf (readable_path));
+                    notification.set_icon (file_icon);
+                    notification.set_priority (LOW);
+
+                    GLib.Application.get_default ().send_notification ("screenshot", notification);
+                } catch (Error e) {
+                    critical (e.message);
+                }
+            });
         });
 
         var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
