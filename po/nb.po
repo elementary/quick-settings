@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: 2024-04-23 17:35+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2024-06-16 21:16+0000\n"
+"Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/"
 "wingpanel/quick-settings/nb/>\n"
 "Language: nb\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.5.5\n"
 
 #: src/PopoverWidget.vala:25
 msgid "Screen Reader"
@@ -33,15 +33,15 @@ msgstr "Systeminnstillinger …"
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
-msgstr ""
+msgstr "Mørk drakt"
 
 #: src/Widgets/EndSessionDialog.vala:35
 msgid "Are you sure you want to Log Out?"
-msgstr "Er du sikker på at du vil logge ut?"
+msgstr "Logg ut?"
 
 #: src/Widgets/EndSessionDialog.vala:36
 msgid "This will close all open applications."
-msgstr "Dette vil lukke alle åpne programmer."
+msgstr "Dette lukker alle åpne programmer."
 
 #: src/Widgets/EndSessionDialog.vala:37
 msgid "Log Out"
@@ -49,11 +49,11 @@ msgstr "Logg ut"
 
 #: src/Widgets/EndSessionDialog.vala:42
 msgid "Are you sure you want to Shut Down?"
-msgstr "Er du sikker på at du vil slå av?"
+msgstr "Slå av?"
 
 #: src/Widgets/EndSessionDialog.vala:43
 msgid "This will close all open applications and turn off this device."
-msgstr "Dette vil lukke alle åpne programmer og slå av denne enheten."
+msgstr "Dette lukker alle åpne programmer og slår av enheten."
 
 #: src/Widgets/EndSessionDialog.vala:44
 msgid "Shut Down"
@@ -69,12 +69,12 @@ msgstr "Start på nytt"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
-msgstr ""
+msgstr "Rotasjonslås"
 
 #: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
 #: src/Widgets/SessionBox.vala:142
 msgid "Log Out…"
-msgstr "Logg ut…"
+msgstr "Logg ut …"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
@@ -87,7 +87,7 @@ msgstr "Lås"
 
 #: src/Widgets/SessionBox.vala:34
 msgid "Shut Down…"
-msgstr "Slå av…"
+msgstr "Slå av …"
 
 #: src/Widgets/TextScale.vala:17
 msgid "Decrease text size"
