@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 elementary, Inc. <contact@elementary.io> -->
+<component type="addon">
+  <id>io.elementary.quick-settings</id>
+  <translation type="gettext">io.elementary.quick-settings</translation>
+  <extends>io.elementary.wingpanel</extends>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <compulsory_for_desktop>Pantheon</compulsory_for_desktop>
+
+  <name>Quick Settings</name>
+  <summary>Access frequently used settings and system actions</summary>
+  <icon type="stock">preferences-system</icon>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/elementary/quick-settings/main/data/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="bugtracker">https://github.com/elementary/quick-settings/issues</url>
+  <url type="donation">https://elementary.io/get-involved#funding</url>
+  <url type="help">https://github.com/elementary/quick-settings/discussions/categories/q-a</url>
+  <url type="homepage">https://elementary.io/</url>
+  <url type="translate">https://l10n.elementary.io/projects/wingpanel/quick-settings/</url>
+
+  <developer id="org.elementaryos">
+    <name>elementary, Inc.</name>
+  </developer>
+  <project_group>elementary</project_group>
+  <update_contact>contact_at_elementary.io</update_contact>
+
+  <releases>
+    <release version="1.0.0" date="2024-07-17" urgency="medium">
+      <description>
+        <p>First release 🎉️</p>
+      </description>
+    </release>
+  </releases>
+</component>
