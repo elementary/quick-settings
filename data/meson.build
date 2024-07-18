@@ -4,7 +4,7 @@ gresource = gnome.compile_resources(
 )
 
 i18n.merge_file(
-    input: 'quick-settings.metainfo.xml.in',
+    input: 'quick-settings.metainfo.xml',
     output: meson.project_name() + '.metainfo.xml',
     po_dir: meson.source_root() / 'po' /  'extra',
     type: 'xml',
