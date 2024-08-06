@@ -1,6 +1,8 @@
 # Quick Settings Indicator
 [![Translation status](https://l10n.elementary.io/widget/wingpanel/quick-settings/svg-badge.svg)](https://l10n.elementary.io/engage/wingpanel/)
 
+![](https://raw.githubusercontent.com/elementary/quick-settings/main/data/screenshot.png)
+
 ## Building and Installation
 
 You'll need the following dependencies:
