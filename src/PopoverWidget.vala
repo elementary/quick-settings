@@ -52,14 +52,19 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         };
         settings_button.get_style_context ().add_class ("circular");
 
+        var screenshot_button = new Gtk.Button.from_icon_name ("accessories-screenshot-tool-symbolic") {
+            tooltip_text = _("Take Screenshot")
+        };
+        screenshot_button.get_style_context ().add_class ("circular");
+
         var session_box = new SessionBox (server_type) {
             halign = END,
-            hexpand = true,
-            margin_start = 6
+            hexpand = true
         };
 
-        var bottom_box = new Gtk.Box (HORIZONTAL, 0);
+        var bottom_box = new Gtk.Box (HORIZONTAL, 6);
         bottom_box.add (settings_button);
+        bottom_box.add (screenshot_button);
         bottom_box.add (session_box);
         bottom_box.get_style_context ().add_class ("togglebox");
 
@@ -73,6 +78,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         if (server_type == GREETER) {
             bottom_box.remove (settings_button);
+            bottom_box.remove (screenshot_button);
         }
 
         setup_accounts_services.begin ((obj, res) => {
@@ -104,6 +110,16 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
             try {
                 AppInfo.launch_default_for_uri ("settings://", null);
+            } catch (Error e) {
+                critical ("Failed to open system settings: %s", e.message);
+            }
+        });
+
+        screenshot_button.clicked.connect (() => {
+            popover.popdown ();
+
+            try {
+                AppInfo.create_from_commandline ("io.elementary.screenshot", null, NONE).launch (null, null);
             } catch (Error e) {
                 critical ("Failed to open system settings: %s", e.message);
             }
