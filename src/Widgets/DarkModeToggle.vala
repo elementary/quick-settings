@@ -4,9 +4,9 @@
  */
 
 public class QuickSettings.DarkModeToggle: SettingsToggle {
-    public Pantheon.AccountsService pantheon_service { get; construct; }
+    public PantheonAccountsService pantheon_service { get; construct; }
 
-    public DarkModeToggle (Pantheon.AccountsService pantheon_service) {
+    public DarkModeToggle (PantheonAccountsService pantheon_service) {
         Object (
             pantheon_service: pantheon_service,
             icon: new ThemedIcon ("dark-mode-symbolic"),
