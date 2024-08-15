@@ -22,6 +22,8 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
     public EndSessionDialogType dialog_type { get; construct; }
 
+    private Gtk.CheckButton? updates_check_button;
+
     public EndSessionDialog (QuickSettings.EndSessionDialogType type) {
         Object (dialog_type: type);
     }
@@ -105,7 +107,29 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         grid.attach (image, 0, 0, 1, 2);
         grid.attach (primary_label, 1, 0);
         grid.attach (secondary_label, 1, 1);
-        grid.attach (action_area, 0, 2, 2, 1);
+
+        if (dialog_type != LOGOUT) {
+            bool has_prepared_updates = false;
+            try {
+                has_prepared_updates = Pk.offline_get_prepared_ids ().length > 0;
+            } catch (Error e) {
+                warning ("Failed to check for prepared updates, assuming no: %s", e.message);
+            }
+
+            if (has_prepared_updates) {
+                updates_check_button = new Gtk.CheckButton () {
+                    active = true,
+                    label = _("Install pending system updates"),
+                    margin_top = 16
+                };
+                grid.attach (updates_check_button, 1, 2);
+
+                reboot.connect (() => set_offline_trigger (REBOOT));
+            }
+        }
+
+        grid.attach (action_area, 0, 3, 2);
+
         grid.show_all ();
 
         deletable = false;
@@ -140,7 +164,10 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
         confirm.clicked.connect (() => {
             if (dialog_type == EndSessionDialogType.RESTART || dialog_type == EndSessionDialogType.SHUTDOWN) {
-                shutdown ();
+                if (updates_check_button != null) {
+                    set_offline_trigger (POWER_OFF);
+                    reboot ();
+                }
             } else {
                 logout ();
             }
@@ -149,6 +176,28 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         });
 
         realize.connect (() => Idle.add_once (() => init_wl ()));
+    }
+
+    private void set_offline_trigger (Pk.OfflineAction action) {
+        if (updates_check_button == null) {
+            return;
+        }
+
+        if (updates_check_button.active) {
+            try {
+                Pk.offline_trigger (action);
+            } catch (Error e) {
+                critical ("Failed to set offline trigger for updates: %s", e.message);
+            }
+        } else {
+            try {
+                if (Pk.offline_get_action () != UNSET) {
+                    Pk.offline_cancel ();
+                }
+            } catch (Error e) {
+                critical ("Failed to check/cancel offline trigger for updates: %s", e.message);
+            }
+        }
     }
 
     public void registry_handle_global (Wl.Registry wl_registry, uint32 name, string @interface, uint32 version) {
