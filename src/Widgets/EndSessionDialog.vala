@@ -22,6 +22,8 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
     public EndSessionDialogType dialog_type { get; construct; }
 
+    private Gtk.CheckButton? updates_check_button;
+
     public EndSessionDialog (QuickSettings.EndSessionDialogType type) {
         Object (dialog_type: type);
     }
@@ -73,7 +75,6 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
         var action_area = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL) {
             layout_style = Gtk.ButtonBoxStyle.END,
-            margin_top = 16,
             spacing = 6
         };
 
@@ -95,6 +96,33 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         action_area.add (cancel);
         action_area.add (confirm);
 
+        var controls_area = new Gtk.Box (VERTICAL, 6) {
+            margin_top = 16,
+            halign = END
+        };
+
+        if (dialog_type != LOGOUT) {
+            bool has_prepared_updates = false;
+            try {
+                has_prepared_updates = Pk.offline_get_prepared_ids ().length > 0;
+            } catch (Error e) {
+                warning ("Failed to check for prepared updates, assuming no: %s", e.message);
+            }
+
+            if (has_prepared_updates) {
+                updates_check_button = new Gtk.CheckButton () {
+                    halign = START,
+                    label = _("Install pending software updates")
+                };
+                controls_area.add (updates_check_button);
+
+                shutdown.connect (() => set_offline_trigger (POWER_OFF));
+                reboot.connect (() => set_offline_trigger (REBOOT));
+            }
+        }
+
+        controls_area.add (action_area);
+
         var grid = new Gtk.Grid () {
             column_spacing = 12,
             margin_top = 12,
@@ -105,7 +133,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         grid.attach (image, 0, 0, 1, 2);
         grid.attach (primary_label, 1, 0);
         grid.attach (secondary_label, 1, 1);
-        grid.attach (action_area, 0, 2, 2, 1);
+        grid.attach (controls_area, 0, 2, 2, 1);
         grid.show_all ();
 
         deletable = false;
@@ -149,6 +177,28 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         });
 
         realize.connect (() => Idle.add_once (() => init_wl ()));
+    }
+
+    private void set_offline_trigger (Pk.OfflineAction action) {
+        if (updates_check_button == null) {
+            return;
+        }
+
+        if (!updates_check_button.active) {
+            try {
+                Pk.offline_trigger (action);
+            } catch (Error e) {
+                critical ("Failed to set offline trigger for updates: %s", e.message);
+            }
+        } else {
+            try {
+                if (Pk.offline_get_action () != UNSET) {
+                    Pk.offline_cancel ();
+                }
+            } catch (Error e) {
+                critical ("Failed to check/cancel offline trigger for updates: %s", e.message);
+            }
+        }
     }
 
     public void registry_handle_global (Wl.Registry wl_registry, uint32 name, string @interface, uint32 version) {
