@@ -184,7 +184,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
             return;
         }
 
-        if (!updates_check_button.active) {
+        if (updates_check_button.active) {
             try {
                 Pk.offline_trigger (action);
             } catch (Error e) {
