@@ -75,6 +75,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
         var action_area = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL) {
             layout_style = Gtk.ButtonBoxStyle.END,
+            margin_top = 16,
             spacing = 6
         };
 
@@ -96,10 +97,16 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         action_area.add (cancel);
         action_area.add (confirm);
 
-        var controls_area = new Gtk.Box (VERTICAL, 6) {
-            margin_top = 16,
-            halign = END
+        var grid = new Gtk.Grid () {
+            column_spacing = 12,
+            margin_top = 12,
+            margin_bottom = 12,
+            margin_start = 12,
+            margin_end = 12
         };
+        grid.attach (image, 0, 0, 1, 2);
+        grid.attach (primary_label, 1, 0);
+        grid.attach (secondary_label, 1, 1);
 
         if (dialog_type != LOGOUT) {
             bool has_prepared_updates = false;
@@ -111,28 +118,18 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
             if (has_prepared_updates) {
                 updates_check_button = new Gtk.CheckButton () {
-                    halign = START,
-                    label = _("Install pending software updates")
+                    active = true,
+                    label = _("Install pending system updates"),
+                    margin_top = 16
                 };
-                controls_area.add (updates_check_button);
+                grid.attach (updates_check_button, 1, 2);
 
                 reboot.connect (() => set_offline_trigger (REBOOT));
             }
         }
 
-        controls_area.add (action_area);
+        grid.attach (action_area, 0, 3, 2);
 
-        var grid = new Gtk.Grid () {
-            column_spacing = 12,
-            margin_top = 12,
-            margin_bottom = 12,
-            margin_start = 12,
-            margin_end = 12
-        };
-        grid.attach (image, 0, 0, 1, 2);
-        grid.attach (primary_label, 1, 0);
-        grid.attach (secondary_label, 1, 1);
-        grid.attach (controls_area, 0, 2, 2, 1);
         grid.show_all ();
 
         deletable = false;
