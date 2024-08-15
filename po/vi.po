@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-23 17:01+0000\n"
+"POT-Creation-Date: 2024-08-15 18:50+0000\n"
 "PO-Revision-Date: 2024-04-25 16:13+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Vietnamese <https://l10n.elementary.io/projects/wingpanel/"
@@ -35,37 +35,41 @@ msgstr ""
 msgid "Dark Mode"
 msgstr ""
 
-#: src/Widgets/EndSessionDialog.vala:35
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "Bạn có chắc chắn muốn Đăng xuất?"
 
-#: src/Widgets/EndSessionDialog.vala:36
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "Thao tác này sẽ đóng tất cả các ứng dụng đang mở."
 
-#: src/Widgets/EndSessionDialog.vala:37
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "Đăng xuất"
 
-#: src/Widgets/EndSessionDialog.vala:42
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "Bạn có chắc chắn muốn Tắt máy?"
 
-#: src/Widgets/EndSessionDialog.vala:43
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr "Thao tác này sẽ đóng tất cả ứng dụng đang mở và tắt thiết bị này."
 
-#: src/Widgets/EndSessionDialog.vala:44
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "Tắt máy"
 
-#: src/Widgets/EndSessionDialog.vala:69
+#: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
 msgstr "Hủy bỏ"
 
-#: src/Widgets/EndSessionDialog.vala:86
+#: src/Widgets/EndSessionDialog.vala:88
 msgid "Restart"
 msgstr "Khởi động lại"
+
+#: src/Widgets/EndSessionDialog.vala:122
+msgid "Install pending system updates"
+msgstr ""
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"

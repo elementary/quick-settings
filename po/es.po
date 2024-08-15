@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-23 17:01+0000\n"
+"POT-Creation-Date: 2024-08-15 18:50+0000\n"
 "PO-Revision-Date: 2024-06-13 02:50+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
-"quick-settings/es/>\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/quick-"
+"settings/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -35,38 +35,42 @@ msgstr "Configuración del Sistema…"
 msgid "Dark Mode"
 msgstr "Modo oscuro"
 
-#: src/Widgets/EndSessionDialog.vala:35
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "¿Está seguro que desea cerrar la sesión?"
 
-#: src/Widgets/EndSessionDialog.vala:36
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "Esto cerrará todas las aplicaciones abiertas."
 
-#: src/Widgets/EndSessionDialog.vala:37
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "Cerrar la sesión"
 
-#: src/Widgets/EndSessionDialog.vala:42
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "¿Está seguro que desea apagar el equipo?"
 
-#: src/Widgets/EndSessionDialog.vala:43
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr ""
 "Esto cerrará todas las aplicaciones abiertas y apagará este dispositivo."
 
-#: src/Widgets/EndSessionDialog.vala:44
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "Apagar"
 
-#: src/Widgets/EndSessionDialog.vala:69
+#: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/Widgets/EndSessionDialog.vala:86
+#: src/Widgets/EndSessionDialog.vala:88
 msgid "Restart"
 msgstr "Reiniciar"
+
+#: src/Widgets/EndSessionDialog.vala:122
+msgid "Install pending system updates"
+msgstr ""
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
