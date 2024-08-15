@@ -116,7 +116,6 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
                 };
                 controls_area.add (updates_check_button);
 
-                shutdown.connect (() => set_offline_trigger (POWER_OFF));
                 reboot.connect (() => set_offline_trigger (REBOOT));
             }
         }
@@ -168,7 +167,10 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
         confirm.clicked.connect (() => {
             if (dialog_type == EndSessionDialogType.RESTART || dialog_type == EndSessionDialogType.SHUTDOWN) {
-                shutdown ();
+                if (updates_check_button != null) {
+                    set_offline_trigger (POWER_OFF);
+                    reboot ();
+                }
             } else {
                 logout ();
             }
