@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-23 17:01+0000\n"
+"POT-Creation-Date: 2024-08-15 18:50+0000\n"
 "PO-Revision-Date: 2024-04-23 17:35+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Arabic <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -36,37 +36,41 @@ msgstr ""
 msgid "Dark Mode"
 msgstr ""
 
-#: src/Widgets/EndSessionDialog.vala:35
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "هل أنت متأكد بأنك تريد تسجيل الخروج؟"
 
-#: src/Widgets/EndSessionDialog.vala:36
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "سيؤدي هذا إلى إغلاق جميع التطبيقات المفتوحة."
 
-#: src/Widgets/EndSessionDialog.vala:37
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "سجل خروجك"
 
-#: src/Widgets/EndSessionDialog.vala:42
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "هل أنت متأكد بأنك تريد إيقاف التشغيل؟"
 
-#: src/Widgets/EndSessionDialog.vala:43
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr "سيؤدي هذا إلى إغلاق جميع التطبيقات المفتوحة وإطفاء هذا الجهاز."
 
-#: src/Widgets/EndSessionDialog.vala:44
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "أوقف التشغيل"
 
-#: src/Widgets/EndSessionDialog.vala:69
+#: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
 msgstr "ألغ"
 
-#: src/Widgets/EndSessionDialog.vala:86
+#: src/Widgets/EndSessionDialog.vala:88
 msgid "Restart"
 msgstr "أعد التشغيل"
+
+#: src/Widgets/EndSessionDialog.vala:122
+msgid "Install pending system updates"
+msgstr ""
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
