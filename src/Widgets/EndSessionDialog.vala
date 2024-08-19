@@ -164,7 +164,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
         confirm.clicked.connect (() => {
             if (dialog_type == EndSessionDialogType.RESTART || dialog_type == EndSessionDialogType.SHUTDOWN) {
-                if (updates_check_button != null && set_offline_trigger (POWER_OFF)) {
+                if (set_offline_trigger (POWER_OFF)) {
                     reboot ();
                 } else {
                     shutdown ();
