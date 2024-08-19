@@ -164,9 +164,10 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
         confirm.clicked.connect (() => {
             if (dialog_type == EndSessionDialogType.RESTART || dialog_type == EndSessionDialogType.SHUTDOWN) {
-                if (updates_check_button != null) {
-                    set_offline_trigger (POWER_OFF);
+                if (set_offline_trigger (POWER_OFF)) {
                     reboot ();
+                } else {
+                    shutdown ();
                 }
             } else {
                 logout ();
@@ -178,14 +179,15 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         realize.connect (() => Idle.add_once (() => init_wl ()));
     }
 
-    private void set_offline_trigger (Pk.OfflineAction action) {
+    private bool set_offline_trigger (Pk.OfflineAction action) {
         if (updates_check_button == null) {
-            return;
+            return false;
         }
 
         if (updates_check_button.active) {
             try {
                 Pk.offline_trigger (action);
+                return true;
             } catch (Error e) {
                 critical ("Failed to set offline trigger for updates: %s", e.message);
             }
@@ -198,6 +200,8 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
                 critical ("Failed to check/cancel offline trigger for updates: %s", e.message);
             }
         }
+
+        return false;
     }
 
     public void registry_handle_global (Wl.Registry wl_registry, uint32 name, string @interface, uint32 version) {
