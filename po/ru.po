@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: 2024-04-24 13:45+0000\n"
-"Last-Translator: кубик круглый <megarainbow29@gmail.com>\n"
+"POT-Creation-Date: 2024-08-15 18:50+0000\n"
+"PO-Revision-Date: 2024-08-20 02:16+0000\n"
+"Last-Translator: lenemter <lenemter@gmail.com>\n"
 "Language-Team: Russian <https://l10n.elementary.io/projects/wingpanel/"
 "quick-settings/ru/>\n"
 "Language: ru\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: src/PopoverWidget.vala:25
 msgid "Screen Reader"
@@ -36,38 +36,42 @@ msgstr "Параметры системы…"
 msgid "Dark Mode"
 msgstr "Тёмный стиль"
 
-#: src/Widgets/EndSessionDialog.vala:35
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "Выйти из системы?"
 
-#: src/Widgets/EndSessionDialog.vala:36
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "Это приведёт к закрытию всех приложений."
 
-#: src/Widgets/EndSessionDialog.vala:37
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "Выйти"
 
-#: src/Widgets/EndSessionDialog.vala:42
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "Выключить устройство?"
 
-#: src/Widgets/EndSessionDialog.vala:43
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr ""
 "Это приведёт к закрытию всех приложений и выключению данного устройства."
 
-#: src/Widgets/EndSessionDialog.vala:44
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "Выключить"
 
-#: src/Widgets/EndSessionDialog.vala:69
+#: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
 msgstr "Отменить"
 
-#: src/Widgets/EndSessionDialog.vala:86
+#: src/Widgets/EndSessionDialog.vala:88
 msgid "Restart"
 msgstr "Перезагрузить"
+
+#: src/Widgets/EndSessionDialog.vala:122
+msgid "Install pending system updates"
+msgstr "Установить обновления системы"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"

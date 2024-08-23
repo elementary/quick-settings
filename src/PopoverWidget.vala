@@ -153,7 +153,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         });
     }
 
-    private async Pantheon.AccountsService? setup_accounts_services () {
+    private async PantheonAccountsService? setup_accounts_services () {
         unowned GLib.DBusConnection connection;
         string path;
 

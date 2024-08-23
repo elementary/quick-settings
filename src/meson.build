@@ -30,12 +30,17 @@ shared_module(
     gresource,
     sources,
     dependencies: [
+        gdk_wl_dep,
         glib_dep,
         gobject_dep,
         granite_dep,
         gtk_dep,
         handy_dep,
-        wingpanel_dep
+        wingpanel_dep,
+        packagekit_dep,
+        pantheon_desktop_shell_dep,
+        portal_dep,
+        wl_client_dep
     ],
     install: true,
     install_dir : wingpanel_indicatorsdir

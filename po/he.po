@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: 2024-04-23 17:43+0000\n"
+"POT-Creation-Date: 2024-08-15 18:50+0000\n"
+"PO-Revision-Date: 2024-08-18 06:16+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
 "quick-settings/he/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: src/PopoverWidget.vala:25
 msgid "Screen Reader"
@@ -36,37 +36,41 @@ msgstr "הגדרות מערכת…"
 msgid "Dark Mode"
 msgstr "מצב כהה"
 
-#: src/Widgets/EndSessionDialog.vala:35
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "לצאת מהמערכת?"
 
-#: src/Widgets/EndSessionDialog.vala:36
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "הפעולה הזאת תסגור את כל היישומים הפתוחים."
 
-#: src/Widgets/EndSessionDialog.vala:37
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "יציאה"
 
-#: src/Widgets/EndSessionDialog.vala:42
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "לכבות את המערכת?"
 
-#: src/Widgets/EndSessionDialog.vala:43
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr "הפעולה הזאת תסגור את כל היישומים הפתוחים ותכבה את המכשיר הזה."
 
-#: src/Widgets/EndSessionDialog.vala:44
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "כיבוי"
 
-#: src/Widgets/EndSessionDialog.vala:69
+#: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
 msgstr "ביטול"
 
-#: src/Widgets/EndSessionDialog.vala:86
+#: src/Widgets/EndSessionDialog.vala:88
 msgid "Restart"
 msgstr "הפעלה מחדש"
+
+#: src/Widgets/EndSessionDialog.vala:122
+msgid "Install pending system updates"
+msgstr "התקנת עדכוני מערכת ממתינים"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
