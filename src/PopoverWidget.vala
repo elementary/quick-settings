@@ -80,9 +80,11 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             if (pantheon_service != null &&
                 ((DBusProxy) pantheon_service).get_cached_property ("PrefersColorScheme") != null
             ) {
-                var darkmode_button = new DarkModeToggle (pantheon_service);
-                toggle_box.add (darkmode_button);
-                show_all ();
+                if (server_type != GREETER) {
+                    var darkmode_button = new DarkModeToggle (pantheon_service);
+                    toggle_box.add (darkmode_button);
+                    show_all ();
+                }
             }
         });
 
