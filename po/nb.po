@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-08-15 18:50+0000\n"
-"PO-Revision-Date: 2024-06-16 21:16+0000\n"
+"PO-Revision-Date: 2024-09-19 07:22+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/"
 "wingpanel/quick-settings/nb/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: src/PopoverWidget.vala:25
 msgid "Screen Reader"
@@ -69,7 +69,7 @@ msgstr "Start på nytt"
 
 #: src/Widgets/EndSessionDialog.vala:122
 msgid "Install pending system updates"
-msgstr ""
+msgstr "Installer ventende systemoppgraderinger"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
