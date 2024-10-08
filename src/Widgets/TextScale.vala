@@ -46,7 +46,7 @@ public class QuickSettings.TextScale : Gtk.Box {
             if (update_timeout_id != 0) {
                 GLib.Source.remove (update_timeout_id);
             }
-            
+
             update_timeout_id = Timeout.add (750, () => {
                 update_timeout_id = 0;
                 interface_settings.set_double ("text-scaling-factor", zoom_adjustment.value);
