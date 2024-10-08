@@ -38,9 +38,21 @@ public class QuickSettings.TextScale : Gtk.Box {
         add (zoom_in_button);
 
         interface_settings = new Settings ("org.gnome.desktop.interface");
-        interface_settings.bind ("text-scaling-factor", zoom_adjustment, "value", DEFAULT);
         interface_settings.changed["text-scaling-factor"].connect (update_zoom_buttons);
         update_zoom_buttons ();
+
+        uint update_timeout_id = 0;
+        zoom_adjustment.value_changed.connect (() => {
+            if (update_timeout_id != 0) {
+                GLib.Source.remove (update_timeout_id);
+            }
+            
+            update_timeout_id = Timeout.add (500, () => {
+                update_timeout_id = 0;
+                interface_settings.set_double ("text-scaling-factor", zoom_adjustment.value);
+                return GLib.Source.REMOVE;
+            });
+        });
 
         zoom_in_button.clicked.connect (() => {
             zoom_adjustment.value += 0.05;
