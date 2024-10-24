@@ -33,9 +33,6 @@ public class QuickSettings.DarkModeToggle: SettingsToggle {
     }
 
     private void on_activate () {
-        var settings = new Settings ("io.elementary.settings-daemon.prefers-color-scheme");
-        settings.set_string ("prefer-dark-schedule", "disabled");
-
         if (active) {
             pantheon_service.prefers_color_scheme = Granite.Settings.ColorScheme.DARK;
         } else {
