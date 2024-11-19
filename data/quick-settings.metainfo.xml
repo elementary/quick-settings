@@ -31,6 +31,19 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="1.0.1" date="2024-11-19" urgency="medium">
+      <description>
+        <p>Other Improvements:</p>
+        <ul>
+          <li>don't add dark mode toggle in greeter</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/quick-settings/issues/62">Font size slider resizes the UI immediately </issue>
+      </issues>
+    </release>
+
     <release version="1.0.0" date="2024-08-21" urgency="medium">
       <description>
         <p>First release 🎉️</p>
