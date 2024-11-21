@@ -1,3 +1,9 @@
+io.elementary.quick-settings (1.0.1) noble; urgency=medium
+
+  * Release 1.0.1 (#65)
+
+ -- elementary, Inc. <builds@elementary.io>  Thu, 21 Nov 2024 16:05:56 +0000
+
 io.elementary.quick-settings (1.0.0) noble; urgency=medium
 
   * no changes since last release.
