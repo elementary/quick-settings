@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-11-19 23:19+0000\n"
-"PO-Revision-Date: 2024-06-10 23:16+0000\n"
+"PO-Revision-Date: 2024-11-28 12:16+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/"
 "quick-settings/pt/>\n"
@@ -17,86 +17,87 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.5.5\n"
+"X-Generator: Weblate 5.6.2\n"
 
 #: src/PopoverWidget.vala:25
 msgid "Screen Reader"
-msgstr "Leitor de Ecrã"
+msgstr "Leitor de ecrã"
 
 #: src/PopoverWidget.vala:32
 msgid "Onscreen Keyboard"
-msgstr "Teclado no Ecrã"
+msgstr "Teclado no ecrã"
 
 #: src/PopoverWidget.vala:51
 msgid "System Settings…"
-msgstr "Definições do Sistema…"
+msgstr "Definições do sistema…"
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
-msgstr ""
+msgstr "Modo escuro"
 
 #: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
-msgstr ""
+msgstr "Terminar sessão?"
 
 #: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
-msgstr ""
+msgstr "Isto irá fechar todas as aplicações abertas."
 
 #: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
-msgstr ""
+msgstr "Terminar sessão"
 
 #: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
-msgstr ""
+msgstr "Encerrar?"
 
 #: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr ""
+"Isto irá fechar todas as aplicações abertas e desligar este dispositivo."
 
 #: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
-msgstr ""
+msgstr "Encerrar"
 
 #: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
-msgstr ""
+msgstr "Cancelar"
 
 #: src/Widgets/EndSessionDialog.vala:88
 msgid "Restart"
-msgstr ""
+msgstr "Reiniciar"
 
 #: src/Widgets/EndSessionDialog.vala:122
 msgid "Install pending system updates"
-msgstr ""
+msgstr "Instalar atualizações pendentes do sistema"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
-msgstr ""
+msgstr "Bloquear rotação"
 
 #: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
 #: src/Widgets/SessionBox.vala:142
 msgid "Log Out…"
-msgstr ""
+msgstr "Terminar sessão…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
-msgstr ""
+msgstr "Suspender"
 
 #: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:137
 #: src/Widgets/SessionBox.vala:148
 msgid "Lock"
-msgstr ""
+msgstr "Bloquear"
 
 #: src/Widgets/SessionBox.vala:34
 msgid "Shut Down…"
-msgstr ""
+msgstr "Encerrar…"
 
 #: src/Widgets/TextScale.vala:17
 msgid "Decrease text size"
-msgstr ""
+msgstr "Diminuir o tamanho do texto"
 
 #: src/Widgets/TextScale.vala:31
 msgid "Increase text size"
-msgstr ""
+msgstr "Aumentar o tamanho do texto"
