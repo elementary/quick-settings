@@ -3,6 +3,11 @@
  * SPDX-FileCopyrightText: 2023 elementary, Inc. (https://elementary.io)
  */
 
+
+quicksettings tattlebox box {
+    padding: 0.666rem; /* 6px */
+}
+
 quicksettings scalebox,
 quicksettings .togglebox {
     padding: 0.666rem; /* 6px */
