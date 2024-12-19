@@ -87,6 +87,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         if (dialog_type == EndSessionDialogType.RESTART) {
             var confirm_restart = new Gtk.Button.with_label (_("Restart"));
             confirm_restart.clicked.connect (() => {
+                set_offline_trigger (REBOOT); // This will just do nothing if no updates are available
                 reboot ();
                 destroy ();
             });
@@ -123,8 +124,6 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
                     margin_top = 16
                 };
                 grid.attach (updates_check_button, 1, 2);
-
-                reboot.connect (() => set_offline_trigger (REBOOT));
             }
         }
 
