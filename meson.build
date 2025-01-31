@@ -12,7 +12,7 @@ datadir = prefix / get_option('datadir')
 
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language:'c')
 add_project_arguments('-DG_LOG_DOMAIN="@0@"'.format(meson.project_name()), language:'c')
-add_project_arguments(['--vapidir', join_paths(meson.current_source_dir(), 'vapi')], language: 'vala')
+add_project_arguments('--vapidir=' + join_paths(meson.project_source_root(), 'vapi'), language: 'vala')
 
 gdk_wl_dep = dependency('gdk-wayland-3.0')
 glib_dep = dependency('glib-2.0')

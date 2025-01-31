@@ -125,7 +125,8 @@
     }
 
     private void remove_user (Act.User user) {
-        var user_row = user_map[user.get_uid ()];
+        var uid = user.get_uid ();
+        var user_row = user_map[uid];
         if (user_row == null) {
             return;
         }
