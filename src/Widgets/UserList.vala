@@ -24,7 +24,7 @@
 
     construct {
         var current_user = new CurrentUser ();
-        
+
         listbox = new Gtk.ListBox () {
             hexpand = true
         };
