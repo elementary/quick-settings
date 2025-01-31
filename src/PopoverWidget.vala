@@ -52,11 +52,12 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var current_user = new CurrentUser.avatar_only ();
 
-        var current_user_button = new Gtk.Button ();
+        var current_user_button = new Gtk.Button () {
+            child = current_user
+        };
         current_user_button.get_style_context ().add_class ("circular");
         current_user_button.get_style_context ().add_class ("flat");
         current_user_button.get_style_context ().add_class ("no-padding");
-        current_user_button.add (current_user);
 
         var session_box = new SessionBox (server_type) {
             halign = END,

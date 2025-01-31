@@ -25,6 +25,8 @@
     construct {
         var current_user = new CurrentUser ();
 
+        var store = new GLib.ListStore (typeof (Objects.Track));
+
         listbox = new Gtk.ListBox () {
             hexpand = true
         };
@@ -33,9 +35,11 @@
 
         listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
             hscrollbar_policy = NEVER,
-            vscrollbar_policy = NEVER
+            vscrollbar_policy = NEVER,
+            max_content_height = 200,
+            propagate_natural_height = true,
+            child = listbox
         };
-        listbox_scrolled.add (listbox);
 
         var settings_button = new Gtk.ModelButton () {
             text = _("User Accounts Settings…")
@@ -208,7 +212,6 @@
         }
     }
 
-    // We could use here Act.User.collate () but we want to show the logged user first
     public int sort_func (Gtk.ListBoxRow row1, Gtk.ListBoxRow row2) {
         var userbox1 = (UserRow) row1;
         var userbox2 = (UserRow) row2;
@@ -243,10 +246,8 @@
     private void enable_scroll_if_needed () {
         if (user_map.size > MAX_ITEMS_BEFORE_SCROLL + 1) {
             listbox_scrolled.vscrollbar_policy = ALWAYS;
-            listbox_scrolled.height_request = 200;
         } else {
             listbox_scrolled.vscrollbar_policy = NEVER;
-            listbox_scrolled.height_request = -1;
         }
     }
  }

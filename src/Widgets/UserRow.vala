@@ -88,7 +88,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         grid.show_all ();
 
         get_style_context ().add_class ("menuitem");
-        add (grid);
+        child = grid;
 
         update_state.begin ();
     }
