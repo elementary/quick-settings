@@ -24,9 +24,7 @@
 
     construct {
         var current_user = new CurrentUser ();
-
-        var store = new GLib.ListStore (typeof (Objects.Track));
-
+        
         listbox = new Gtk.ListBox () {
             hexpand = true
         };
