@@ -35,7 +35,7 @@
             hscrollbar_policy = NEVER,
             vscrollbar_policy = NEVER
         };
-		listbox_scrolled.add (listbox);
+        listbox_scrolled.add (listbox);
 
         var settings_button = new Gtk.ModelButton () {
             text = _("User Accounts Settings…")
