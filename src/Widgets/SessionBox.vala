@@ -15,6 +15,11 @@ public class QuickSettings.SessionBox : Gtk.Box {
     }
 
     construct {
+        var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
+            tooltip_text = _("System Settings…")
+        };
+        settings_button.get_style_context ().add_class ("circular");
+
         var suspend_button = new Gtk.Button.from_icon_name ("system-suspend-symbolic") {
             tooltip_text = _("Suspend")
         };
@@ -31,9 +36,9 @@ public class QuickSettings.SessionBox : Gtk.Box {
         shutdown_button.get_style_context ().add_class ("circular");
 
         spacing = 6;
+        add (settings_button);
         add (suspend_button);
         add (lock_button);
-        //  add (logout_button);
         add (shutdown_button);
 
         realize.connect (() => {
@@ -41,22 +46,8 @@ public class QuickSettings.SessionBox : Gtk.Box {
         });
 
         if (server_type == SESSION) {
-            setup_session_interface.begin ((obj, res) => {
-                var session_interface = setup_session_interface.end (res);
-
-                //  logout_button.clicked.connect (() => {
-                //      popover.popdown ();
-
-                //      session_interface.logout.begin (0, (obj, res) => {
-                //          try {
-                //              session_interface.logout.end (res);
-                //          } catch (Error e) {
-                //              if (!(e is GLib.IOError.CANCELLED)) {
-                //                  warning ("Unable to open logout dialog: %s", e.message);
-                //              }
-                //          }
-                //      });
-                //  });
+            UserManager.setup_session_interface.begin ((obj, res) => {
+                var session_interface = UserManager.setup_session_interface.end (res);
 
                 shutdown_button.clicked.connect (() => {
                     popover.popdown ();
@@ -89,7 +80,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
                 });
             });
         } else {
-            //  remove (logout_button);
+            remove (settings_button);
             remove (suspend_button);
 
             shutdown_button.clicked.connect (() => {
@@ -125,18 +116,10 @@ public class QuickSettings.SessionBox : Gtk.Box {
         });
 
         var keybinding_settings = new Settings ("org.gnome.settings-daemon.plugins.media-keys");
-        //  logout_button.tooltip_markup = Granite.markup_accel_tooltip (
-        //      keybinding_settings.get_strv ("logout"), _("Log Out…")
-        //  );
+
         lock_button.tooltip_markup = Granite.markup_accel_tooltip (
             keybinding_settings.get_strv ("screensaver"), _("Lock")
         );
-
-        keybinding_settings.changed["logout"].connect (() => {
-            //  logout_button.tooltip_markup = Granite.markup_accel_tooltip (
-            //      keybinding_settings.get_strv ("logout"), _("Log Out…")
-            //  );
-        });
 
         keybinding_settings.changed["screensaver"].connect (() => {
             lock_button.tooltip_markup = Granite.markup_accel_tooltip (
@@ -148,15 +131,16 @@ public class QuickSettings.SessionBox : Gtk.Box {
         EndSessionDialogServer.get_default ().show_dialog.connect (
             (type, timestamp) => show_dialog ((EndSessionDialogType) type, timestamp)
         );
-    }
 
-    private async SessionInterface? setup_session_interface () {
-        try {
-            return yield Bus.get_proxy (BusType.SESSION, "org.gnome.SessionManager", "/org/gnome/SessionManager");
-        } catch (IOError e) {
-            critical ("Unable to connect to GNOME session interface: %s", e.message);
-            return null;
-        }
+        settings_button.clicked.connect (() => {
+            popover.popdown ();
+
+            try {
+                AppInfo.launch_default_for_uri ("settings://", null);
+            } catch (Error e) {
+                critical ("Failed to open system settings: %s", e.message);
+            }
+        });
     }
 
     private async SystemInterface? setup_system_interface () {

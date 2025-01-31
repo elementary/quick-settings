@@ -46,6 +46,9 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
             );
 
             popover_widget = new PopoverWidget (server_type);
+            popover_widget.close.connect (() => {
+                close ();
+            });
         }
 
         return popover_widget;

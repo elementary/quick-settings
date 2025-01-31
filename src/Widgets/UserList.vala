@@ -5,8 +5,8 @@
 
  public class QuickSettings.UserList : Gtk.Box {
     private Gtk.ListBox listbox;
+    private Gtk.Popover? popover;
 
-    private Act.UserManager manager;
     private SeatInterface? dm_proxy = null;
 
     private const string DM_DBUS_ID = "org.freedesktop.DisplayManager";
@@ -22,19 +22,20 @@
     public signal void switch_to_user (string username);
 
     construct {
-        var user_manager = new Services.UserManager ();
+        var current_user = new CurrentUser ();
 
         listbox = new Gtk.ListBox () {
             hexpand = true
         };
         listbox.set_sort_func (sort_func);
-        listbox.set_header_func (header_func);
 
         var settings_button = new Gtk.ModelButton () {
             text = _("User Accounts Settings…")
         };
 
         var main_box = new Gtk.Box (VERTICAL, 0);
+        main_box.add (current_user);
+        main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
         main_box.add (listbox);
         main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) {
             margin_top = 3
@@ -43,17 +44,49 @@
 
         add (main_box);
 
-        manager = Act.UserManager.get_default ();
-
-        init_users ();
-
-        manager.user_added.connect (add_user);
-        manager.user_removed.connect (remove_user);
-        manager.user_is_logged_in_changed.connect (update_user);
-        
-        manager.notify["is-loaded"].connect (() => {
+        if (UserManager.get_usermanager ().is_loaded) {
             init_users ();
-        });
+        } else {
+            UserManager.get_usermanager ().notify["is-loaded"].connect (() => {
+                init_users ();
+            });
+        }
+
+        UserManager.get_usermanager ().user_added.connect (add_user);
+        UserManager.get_usermanager ().user_removed.connect (remove_user);
+        UserManager.get_usermanager ().user_is_logged_in_changed.connect (update_user);
+
+        var seat_path = Environment.get_variable ("XDG_SEAT_PATH");
+        var session_path = Environment.get_variable ("XDG_SESSION_PATH");
+
+        if (seat_path != null) {
+            try {
+                dm_proxy = Bus.get_proxy_sync (BusType.SYSTEM, DM_DBUS_ID, seat_path, DBusProxyFlags.NONE);
+                if (dm_proxy.has_guest_account) {
+                    add_guest ();
+                }
+            } catch (IOError e) {
+                critical ("UserManager error: %s", e.message);
+            }
+        }
+
+        if (dm_proxy != null) {
+            switch_to_guest.connect (() => {
+                try {
+                    dm_proxy.switch_to_guest ("");
+                } catch (Error e) {
+                    warning ("Error switching to guest account: %s", e.message);
+                }
+            });
+
+            switch_to_user.connect ((username) => {
+                try {
+                    dm_proxy.switch_to_user (username, session_path);
+                } catch (Error e) {
+                    warning ("Error switching to user '%s': %s", username, e.message);
+                }
+            });
+        }
 
         listbox.row_activated.connect ((row) => {
             var userbox = (UserRow) row;
@@ -72,31 +105,35 @@
             }
         });
 
-        var seat_path = Environment.get_variable ("XDG_SEAT_PATH");
-        var session_path = Environment.get_variable ("XDG_SESSION_PATH");
-
-        if (seat_path != null) {
-            try {
-                dm_proxy = Bus.get_proxy_sync (BusType.SYSTEM, DM_DBUS_ID, seat_path, DBusProxyFlags.NONE);
-                if (dm_proxy.has_guest_account) {
-                    add_guest ();
-                }
-            } catch (IOError e) {
-                critical ("UserManager error: %s", e.message);
-            }
-        }
-
         settings_button.clicked.connect (() => {
             show_settings ();
+        });
+
+        realize.connect (() => {
+            popover = (Gtk.Popover) get_ancestor (typeof (Gtk.Popover));
+        });
+
+        UserManager.setup_session_interface.begin ((obj, res) => {
+            var session_interface = UserManager.setup_session_interface.end (res);
+
+            current_user.logout.connect (() => {
+                popover.popdown ();
+
+                session_interface.logout.begin (0, (obj, res) => {
+                    try {
+                        session_interface.logout.end (res);
+                    } catch (Error e) {
+                        if (!(e is GLib.IOError.CANCELLED)) {
+                            warning ("Unable to open logout dialog: %s", e.message);
+                        }
+                    }
+                });
+            });
         });
     }
 
     private void init_users () {
-        if (!manager.is_loaded) {
-            return;
-        }
-
-        foreach (Act.User user in manager.list_users ()) {
+        foreach (Act.User user in UserManager.get_usermanager ().list_users ()) {
             add_user (user);
         }
     }
@@ -104,13 +141,15 @@
     private void add_user (Act.User? user) {
         // Don't add any of the system reserved users
         var uid = user.get_uid ();
-        if (uid < RESERVED_UID_RANGE_END || uid == NOBODY_USER_UID || user_map.has_key (uid)) {
+        if (uid < RESERVED_UID_RANGE_END || uid == NOBODY_USER_UID || user_map.has_key (uid) || UserManager.is_current_user (user)) {
             return;
         }
 
         user_map[uid] = new UserRow (user);
         user_map[uid].show ();
+
         listbox.add (user_map[uid]);
+        listbox.invalidate_sort ();
     }
 
     private void add_guest () {
@@ -122,6 +161,7 @@
         user_map[GUEST_USER_UID].show ();
 
         listbox.add (user_map[GUEST_USER_UID]);
+        listbox.invalidate_sort ();
     }
 
     private void remove_user (Act.User user) {
@@ -133,15 +173,22 @@
 
         user_map.unset (uid);
         listbox.remove (user_row);
+        listbox.invalidate_sort ();
     }
 
     private void update_user (Act.User user) {
-        var user_row = user_map[user.get_uid ()];
-        if (user_row == null) {
-            return;
+        foreach (unowned Gtk.Widget widget in listbox.get_children ()) {
+            listbox.remove (widget);
         }
+        user_map.clear ();
 
-        user_row.update_state.begin ();
+        init_users ();
+    }
+
+    public void update_all () {
+        foreach (UserRow row in user_map.values) {
+            row.update_state.begin ();
+        }
     }
 
     // We could use here Act.User.collate () but we want to show the logged user first
@@ -162,12 +209,6 @@
         }
 
         return 0;
-    }
-
-    private void header_func (Gtk.ListBoxRow row, Gtk.ListBoxRow? before) {
-        if (row == listbox.get_row_at_index (1)) {
-            row.set_header (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-        }
     }
 
     private void show_settings () {

@@ -20,7 +20,7 @@ public enum UserState {
     }
 }
 
-public class QuickSettings.Services.UserManager : Object {
+public class QuickSettings.UserManager : Object {
     private const string LOGIN_IFACE = "org.freedesktop.login1";
     private const string LOGIN_PATH = "/org/freedesktop/login1";
 
@@ -38,17 +38,6 @@ public class QuickSettings.Services.UserManager : Object {
         if (login_proxy == null) {
             yield init_login_proxy ();
         }
-
-        //  var message_dialog = new Granite.MessageDialog.with_image_from_icon_name (
-        //      "is_loaded: %s".printf (uuid.to_string ()),
-        //      "",
-        //      //  "is_logged_in: %s".printf (user.is_logged_in ().to_string ()),
-        //      "applications-development",
-        //      Gtk.ButtonsType.CLOSE
-        //  );
-
-        //  message_dialog.run ();
-        //  message_dialog.destroy ();
 
         try {
             UserInfo[] users = login_proxy.list_users ();
@@ -95,5 +84,41 @@ public class QuickSettings.Services.UserManager : Object {
         }
 
         return UserState.OFFLINE;
+    }
+
+    private static Act.UserManager? usermanager = null;
+    public static unowned Act.UserManager? get_usermanager () {
+        if (usermanager != null && usermanager.is_loaded) {
+            return usermanager;
+        }
+
+        usermanager = Act.UserManager.get_default ();
+        return usermanager;
+    }
+
+    public static Act.User? get_current_user () {
+        Act.User? current_user = null;
+
+        foreach (unowned Act.User user in get_usermanager ().list_users ()) {
+            if (is_current_user (user)) {
+                current_user = user;
+                break;
+            }
+        }
+
+        return current_user;
+    }
+
+    public static bool is_current_user (Act.User user) {
+        return user.get_user_name () == GLib.Environment.get_user_name ();
+    }
+
+    public static async SessionInterface? setup_session_interface () {
+        try {
+            return yield Bus.get_proxy (BusType.SESSION, "org.gnome.SessionManager", "/org/gnome/SessionManager");
+        } catch (IOError e) {
+            critical ("Unable to connect to GNOME session interface: %s", e.message);
+            return null;
+        }
     }
 }

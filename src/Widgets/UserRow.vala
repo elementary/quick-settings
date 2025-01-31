@@ -20,7 +20,6 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
     private Hdy.Avatar avatar;
     private Gtk.Label fullname_label;
     private Gtk.Label status_label;
-    private Gtk.Button logout_button;
 
     public UserRow (Act.User user) {
         Object (
@@ -46,16 +45,9 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             halign = Gtk.Align.START
         };
 
-        logout_button = new Gtk.Button.from_icon_name ("system-log-out-symbolic") {
-            tooltip_text = _("Log Out…"),
-            hexpand = true,
-            halign = END,
-            valign = CENTER
-        };
-        logout_button.get_style_context ().add_class ("circular");
-
         if (user == null) {
             avatar = new Hdy.Avatar (ICON_SIZE, null, false);
+
             // We want to use the user's accent, not a random color
             unowned Gtk.StyleContext avatar_context = avatar.get_style_context ();
             avatar_context.remove_class ("color1");
@@ -94,7 +86,6 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         grid.attach (avatar, 0, 0, 1, 2);
         grid.attach (fullname_label, 1, 0, 1, 1);
         grid.attach (status_label, 1, 1, 1, 1);
-        grid.attach (logout_button, 2, 0, 2, 2);
         grid.show_all ();
 
         get_style_context ().add_class ("menuitem");
@@ -115,9 +106,9 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
 
     public async UserState get_user_state () {
         if (is_guest) {
-            return yield Services.UserManager.get_guest_state ();
+            return yield UserManager.get_guest_state ();
         } else {
-            return yield Services.UserManager.get_user_state (user.get_uid ());
+            return yield UserManager.get_user_state (user.get_uid ());
         }
     }
 
@@ -136,17 +127,13 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         selectable = state != UserState.ACTIVE;
         activatable = state != UserState.ACTIVE;
 
-        if (state == UserState.ONLINE || state == UserState.ACTIVE) {
+        if (state == UserState.ACTIVE || state == UserState.ONLINE) {
             status_label.label = _("Logged in");
-            logout_button.visible = true;
-            logout_button.no_show_all = false;
-            avatar.size = ICON_MAIN_SIZE;
         } else {
             status_label.label = _("Logged out");
-            logout_button.visible = false;
-            logout_button.no_show_all = true;
-            avatar.size = ICON_SIZE;
         }
+
+        ((Gtk.ListBox) parent).invalidate_sort ();
 
         show_all ();
     }

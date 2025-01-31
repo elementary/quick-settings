@@ -14,6 +14,8 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     private Gtk.Box main_box;
     private UserList accounts_view;
 
+    public signal void close ();
+
     public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (server_type: server_type);
     }
@@ -50,12 +52,13 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var scale_box = new Gtk.Box (VERTICAL, 0);
 
-        var current_user_button = new CurrentUserButton ();
+        var current_user = new CurrentUser.avatar_only ();
 
-        var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
-            tooltip_text = _("System Settings…")
-        };
-        settings_button.get_style_context ().add_class ("circular");
+        var current_user_button = new Gtk.Button ();
+        current_user_button.get_style_context ().add_class ("circular");
+        current_user_button.get_style_context ().add_class ("flat");
+        current_user_button.get_style_context ().add_class ("no-padding");
+        current_user_button.add (current_user);
 
         var session_box = new SessionBox (server_type) {
             halign = END,
@@ -75,9 +78,10 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         main_box.add (bottom_box);
 
         accounts_view = new UserList ();
-        
+
         stack = new Gtk.Stack () {
-            homogeneous = false,
+            vhomogeneous = false,
+            hhomogeneous = true,
             transition_type = SLIDE_LEFT_RIGHT
         };
 
@@ -87,7 +91,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         add (stack);
 
         if (server_type == GREETER) {
-            bottom_box.remove (settings_button);
+            bottom_box.remove (current_user_button);
         }
 
         setup_accounts_services.begin ((obj, res) => {
@@ -114,16 +118,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         realize.connect (() => {
             popover = (Gtk.Popover) get_ancestor (typeof (Gtk.Popover));
-        });
-
-        settings_button.clicked.connect (() => {
-            popover.popdown ();
-
-            try {
-                AppInfo.launch_default_for_uri ("settings://", null);
-            } catch (Error e) {
-                critical ("Failed to open system settings: %s", e.message);
-            }
         });
 
         var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
@@ -155,6 +149,10 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         current_user_button.clicked.connect (() => {
             stack.visible_child = accounts_view;
+        });
+
+        accounts_view.close.connect (() => {
+            close ();
         });
     }
 
