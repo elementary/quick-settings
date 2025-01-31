@@ -14,8 +14,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     private Gtk.Box main_box;
     private UserList accounts_view;
 
-    public signal void close ();
-
     public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (server_type: server_type);
     }
