@@ -5,7 +5,7 @@
 
 public class QuickSettings.UserRow : Gtk.ListBoxRow {
     private const int ICON_SIZE = 32;
-    
+
     public Act.User? user { get; construct; default = null; }
     public string fullname { get; construct set; }
     public UserState state { get; private set; }
