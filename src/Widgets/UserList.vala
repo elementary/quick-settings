@@ -5,6 +5,7 @@
 
  public class QuickSettings.UserList : Gtk.Box {
     private Gtk.ListBox listbox;
+    private Gtk.ScrolledWindow listbox_scrolled;
     private Gtk.Popover? popover;
 
     private SeatInterface? dm_proxy = null;
@@ -16,8 +17,8 @@
     private const uint GUEST_USER_UID = 999;
     private const uint NOBODY_USER_UID = 65534;
     private const uint RESERVED_UID_RANGE_END = 1000;
+    private const uint MAX_ITEMS_BEFORE_SCROLL = 4;
 
-    public signal void close ();
     public signal void switch_to_guest ();
     public signal void switch_to_user (string username);
 
@@ -28,6 +29,13 @@
             hexpand = true
         };
         listbox.set_sort_func (sort_func);
+        listbox.set_filter_func (set_filter_func);
+
+        listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
+            hscrollbar_policy = NEVER,
+            vscrollbar_policy = NEVER
+        };
+		listbox_scrolled.add (listbox);
 
         var settings_button = new Gtk.ModelButton () {
             text = _("User Accounts Settings…")
@@ -36,7 +44,7 @@
         var main_box = new Gtk.Box (VERTICAL, 0);
         main_box.add (current_user);
         main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-        main_box.add (listbox);
+        main_box.add (listbox_scrolled);
         main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) {
             margin_top = 3
         });
@@ -62,7 +70,8 @@
         if (seat_path != null) {
             try {
                 dm_proxy = Bus.get_proxy_sync (BusType.SYSTEM, DM_DBUS_ID, seat_path, DBusProxyFlags.NONE);
-                if (dm_proxy.has_guest_account) {
+
+                if (dm_proxy.has_guest_account && UserManager.get_current_user () != null) {
                     add_guest ();
                 }
             } catch (IOError e) {
@@ -94,7 +103,8 @@
                 return;
             }
 
-            close ();
+            popover.popdown ();
+
             if (userbox.is_guest) {
                 switch_to_guest ();
             } else {
@@ -141,7 +151,9 @@
     private void add_user (Act.User? user) {
         // Don't add any of the system reserved users
         var uid = user.get_uid ();
-        if (uid < RESERVED_UID_RANGE_END || uid == NOBODY_USER_UID || user_map.has_key (uid) || UserManager.is_current_user (user)) {
+        if (uid < RESERVED_UID_RANGE_END ||
+            uid == NOBODY_USER_UID ||
+            user_map.has_key (uid)) {
             return;
         }
 
@@ -150,6 +162,7 @@
 
         listbox.add (user_map[uid]);
         listbox.invalidate_sort ();
+        enable_scroll_if_needed ();
     }
 
     private void add_guest () {
@@ -162,6 +175,7 @@
 
         listbox.add (user_map[GUEST_USER_UID]);
         listbox.invalidate_sort ();
+        enable_scroll_if_needed ();
     }
 
     private void remove_user (Act.User user) {
@@ -174,15 +188,18 @@
         user_map.unset (uid);
         listbox.remove (user_row);
         listbox.invalidate_sort ();
+        enable_scroll_if_needed ();
     }
 
     private void update_user (Act.User user) {
-        foreach (unowned Gtk.Widget widget in listbox.get_children ()) {
-            listbox.remove (widget);
+        var userbox = user_map[user.get_uid ()];
+        if (userbox == null) {
+            return;
         }
-        user_map.clear ();
 
-        init_users ();
+        userbox.update_state.begin ();
+        listbox.invalidate_filter ();
+        enable_scroll_if_needed ();
     }
 
     public void update_all () {
@@ -196,19 +213,23 @@
         var userbox1 = (UserRow) row1;
         var userbox2 = (UserRow) row2;
 
-        if (userbox1.state == UserState.ACTIVE) {
-            return -1;
-        } else if (userbox2.state == UserState.ACTIVE) {
-            return 1;
-        }
-
         if (userbox1.is_guest && !userbox2.is_guest) {
             return 1;
         } else if (!userbox1.is_guest && userbox2.is_guest) {
             return -1;
         }
 
-        return 0;
+        return userbox1.user.collate (userbox2.user);
+    }
+
+    public bool set_filter_func (Gtk.ListBoxRow row) {
+        var user_row = (UserRow) row;
+
+        if (user_row.is_guest) {
+            return UserManager.get_current_user () != null;
+        }
+
+        return !UserManager.is_current_user (user_row.user);
     }
 
     private void show_settings () {
@@ -216,6 +237,16 @@
             AppInfo.launch_default_for_uri ("settings://accounts", null);
         } catch (Error e) {
             warning ("%s\n", e.message);
+        }
+    }
+
+    private void enable_scroll_if_needed () {
+        if (user_map.size > MAX_ITEMS_BEFORE_SCROLL + 1) {
+            listbox_scrolled.vscrollbar_policy = ALWAYS;
+            listbox_scrolled.height_request = 200;
+        } else {
+            listbox_scrolled.vscrollbar_policy = NEVER;
+            listbox_scrolled.height_request = -1;
         }
     }
  }

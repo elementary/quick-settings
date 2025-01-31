@@ -150,10 +150,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         current_user_button.clicked.connect (() => {
             stack.visible_child = accounts_view;
         });
-
-        accounts_view.close.connect (() => {
-            close ();
-        });
     }
 
     private async PantheonAccountsService? setup_accounts_services () {
