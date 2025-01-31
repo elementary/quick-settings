@@ -39,3 +39,11 @@ quicksettings .image-button:checked {
 quicksettings .image-button:disabled {
     background: @insensitive_bg_color;
 }
+
+quicksettings .no-padding {
+    padding: 0;
+}
+
+quicksettings .fullname-label {
+    font-weight: 700;
+}

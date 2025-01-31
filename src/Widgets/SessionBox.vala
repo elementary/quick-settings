@@ -15,11 +15,6 @@ public class QuickSettings.SessionBox : Gtk.Box {
     }
 
     construct {
-        var logout_button = new Gtk.Button.from_icon_name ("system-log-out-symbolic") {
-            tooltip_text = _("Log Out…")
-        };
-        logout_button.get_style_context ().add_class ("circular");
-
         var suspend_button = new Gtk.Button.from_icon_name ("system-suspend-symbolic") {
             tooltip_text = _("Suspend")
         };
@@ -38,7 +33,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
         spacing = 6;
         add (suspend_button);
         add (lock_button);
-        add (logout_button);
+        //  add (logout_button);
         add (shutdown_button);
 
         realize.connect (() => {
@@ -49,19 +44,19 @@ public class QuickSettings.SessionBox : Gtk.Box {
             setup_session_interface.begin ((obj, res) => {
                 var session_interface = setup_session_interface.end (res);
 
-                logout_button.clicked.connect (() => {
-                    popover.popdown ();
+                //  logout_button.clicked.connect (() => {
+                //      popover.popdown ();
 
-                    session_interface.logout.begin (0, (obj, res) => {
-                        try {
-                            session_interface.logout.end (res);
-                        } catch (Error e) {
-                            if (!(e is GLib.IOError.CANCELLED)) {
-                                warning ("Unable to open logout dialog: %s", e.message);
-                            }
-                        }
-                    });
-                });
+                //      session_interface.logout.begin (0, (obj, res) => {
+                //          try {
+                //              session_interface.logout.end (res);
+                //          } catch (Error e) {
+                //              if (!(e is GLib.IOError.CANCELLED)) {
+                //                  warning ("Unable to open logout dialog: %s", e.message);
+                //              }
+                //          }
+                //      });
+                //  });
 
                 shutdown_button.clicked.connect (() => {
                     popover.popdown ();
@@ -94,7 +89,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
                 });
             });
         } else {
-            remove (logout_button);
+            //  remove (logout_button);
             remove (suspend_button);
 
             shutdown_button.clicked.connect (() => {
@@ -130,17 +125,17 @@ public class QuickSettings.SessionBox : Gtk.Box {
         });
 
         var keybinding_settings = new Settings ("org.gnome.settings-daemon.plugins.media-keys");
-        logout_button.tooltip_markup = Granite.markup_accel_tooltip (
-            keybinding_settings.get_strv ("logout"), _("Log Out…")
-        );
+        //  logout_button.tooltip_markup = Granite.markup_accel_tooltip (
+        //      keybinding_settings.get_strv ("logout"), _("Log Out…")
+        //  );
         lock_button.tooltip_markup = Granite.markup_accel_tooltip (
             keybinding_settings.get_strv ("screensaver"), _("Lock")
         );
 
         keybinding_settings.changed["logout"].connect (() => {
-            logout_button.tooltip_markup = Granite.markup_accel_tooltip (
-                keybinding_settings.get_strv ("logout"), _("Log Out…")
-            );
+            //  logout_button.tooltip_markup = Granite.markup_accel_tooltip (
+            //      keybinding_settings.get_strv ("logout"), _("Log Out…")
+            //  );
         });
 
         keybinding_settings.changed["screensaver"].connect (() => {
