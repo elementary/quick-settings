@@ -4,30 +4,23 @@
  */
 
  public class QuickSettings.UserList : Gtk.Box {
-    private Gtk.ListBox listbox;
-    private Gtk.ScrolledWindow listbox_scrolled;
-    private Gtk.Popover? popover;
-
-    private SeatInterface? dm_proxy = null;
-
-    private const string DM_DBUS_ID = "org.freedesktop.DisplayManager";
-
-    private GLib.ListStore user_list;
-
-    private const uint GUEST_USER_UID = 999;
-    private const uint NOBODY_USER_UID = 65534;
-    private const uint RESERVED_UID_RANGE_END = 1000;
-    private const uint MAX_ITEMS_BEFORE_SCROLL = 4;
-
     public signal void switch_to_guest ();
     public signal void switch_to_user (string username);
+
+    private const string DM_DBUS_ID = "org.freedesktop.DisplayManager";
+    private const uint GUEST_USER_UID = 999;
+
+    private GLib.ListStore user_list;
+    private Gtk.ScrolledWindow listbox_scrolled;
+    private Gtk.Popover? popover;
+    private SeatInterface? dm_proxy = null;
 
     construct {
         var current_user = new CurrentUser ();
 
         user_list = new GLib.ListStore (typeof (Act.User));
 
-        listbox = new Gtk.ListBox () {
+        var listbox = new Gtk.ListBox () {
             hexpand = true
         };
         listbox.bind_model (user_list, create_widget_func);
@@ -45,11 +38,9 @@
 
         var main_box = new Gtk.Box (VERTICAL, 0);
         main_box.add (current_user);
-        main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
+        main_box.add (new Gtk.Separator (HORIZONTAL));
         main_box.add (listbox_scrolled);
-        main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) {
-            margin_top = 3
-        });
+        main_box.add (new Gtk.Separator (HORIZONTAL));
         main_box.add (settings_button);
 
         add (main_box);
@@ -64,7 +55,7 @@
 
         UserManager.get_usermanager ().user_added.connect (add_user);
         UserManager.get_usermanager ().user_removed.connect (remove_user);
-        UserManager.get_usermanager ().user_is_logged_in_changed.connect (update_user);
+        UserManager.get_usermanager ().user_is_logged_in_changed.connect (current_user.update_current_user);
 
         var seat_path = Environment.get_variable ("XDG_SEAT_PATH");
         var session_path = Environment.get_variable ("XDG_SESSION_PATH");
@@ -191,10 +182,6 @@
         if (user_list.find_with_equal_func (user, (EqualFunc<Act.User>) equal_func, out pos)) {
             user_list.remove (pos);
         }
-    }
-
-    private void update_user (Act.User user) {
-        // FIXME: I think this is only for the currently logged user so this isn't a list thing
     }
 
     private Gtk.Widget create_widget_func (Object object) {
