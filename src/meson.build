@@ -13,15 +13,21 @@ sources = [
     'DBus' / 'AccountsService.vala',
     'DBus' / 'EndSessionDialogServer.vala',
     'DBus' / 'LockInterface.vala',
+    'DBus' / 'SeatInterface.vala',
     'DBus' / 'SensorProxy.vala',
     'DBus' / 'SessionInterface.vala',
     'DBus' / 'SystemInterface.vala',
+    'DBus' / 'UserInterface.vala',
+    'Services' / 'UserManager.vala',
+    'Widgets' / 'CurrentUser.vala',
     'Widgets' / 'DarkModeToggle.vala',
     'Widgets' / 'EndSessionDialog.vala',
     'Widgets' / 'RotationToggle.vala',
     'Widgets' / 'SettingsToggle.vala',
     'Widgets' / 'SessionBox.vala',
     'Widgets' / 'TextScale.vala',
+    'Widgets' / 'UserList.vala',
+    'Widgets' / 'UserRow.vala',
 ]
 
 shared_module(
@@ -40,7 +46,8 @@ shared_module(
         packagekit_dep,
         pantheon_desktop_shell_dep,
         portal_dep,
-        wl_client_dep
+        wl_client_dep,
+        accountsservice_dep
     ],
     install: true,
     install_dir : wingpanel_indicatorsdir

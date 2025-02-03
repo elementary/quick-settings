@@ -10,6 +10,9 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     private const string FDO_ACCOUNTS_PATH = "/org/freedesktop/Accounts";
 
     private Gtk.Popover? popover;
+    private Gtk.Stack stack;
+    private Gtk.Box main_box;
+    private UserList accounts_view;
 
     public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (server_type: server_type);
@@ -47,10 +50,14 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var scale_box = new Gtk.Box (VERTICAL, 0);
 
-        var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
-            tooltip_text = _("System Settings…")
+        var current_user = new CurrentUser.avatar_only ();
+
+        var current_user_button = new Gtk.Button () {
+            child = current_user
         };
-        settings_button.get_style_context ().add_class ("circular");
+        current_user_button.get_style_context ().add_class ("circular");
+        current_user_button.get_style_context ().add_class ("flat");
+        current_user_button.get_style_context ().add_class ("no-padding");
 
         var session_box = new SessionBox (server_type) {
             halign = END,
@@ -59,20 +66,31 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         };
 
         var bottom_box = new Gtk.Box (HORIZONTAL, 0);
-        bottom_box.add (settings_button);
+        bottom_box.add (current_user_button);
         bottom_box.add (session_box);
         bottom_box.get_style_context ().add_class ("togglebox");
 
-        var main_box = new Gtk.Box (VERTICAL, 0);
+        main_box = new Gtk.Box (VERTICAL, 0);
         main_box.add (toggle_box);
         main_box.add (scale_box);
         main_box.add (new Gtk.Separator (HORIZONTAL));
         main_box.add (bottom_box);
 
-        add (main_box);
+        accounts_view = new UserList ();
+
+        stack = new Gtk.Stack () {
+            vhomogeneous = false,
+            hhomogeneous = true,
+            transition_type = SLIDE_LEFT_RIGHT
+        };
+
+        stack.add (main_box);
+        stack.add (accounts_view);
+
+        add (stack);
 
         if (server_type == GREETER) {
-            bottom_box.remove (settings_button);
+            bottom_box.remove (current_user_button);
         }
 
         setup_accounts_services.begin ((obj, res) => {
@@ -101,16 +119,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             popover = (Gtk.Popover) get_ancestor (typeof (Gtk.Popover));
         });
 
-        settings_button.clicked.connect (() => {
-            popover.popdown ();
-
-            try {
-                AppInfo.launch_default_for_uri ("settings://", null);
-            } catch (Error e) {
-                critical ("Failed to open system settings: %s", e.message);
-            }
-        });
-
         var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
         applications_settings.bind ("screen-keyboard-enabled", onscreen_keyboard, "active", DEFAULT);
         applications_settings.bind ("screen-reader-enabled", screen_reader, "active", DEFAULT);
@@ -136,6 +144,10 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
                 scale_box.remove (text_scale);
             }
+        });
+
+        current_user_button.clicked.connect (() => {
+            stack.visible_child = accounts_view;
         });
     }
 
@@ -175,5 +187,9 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             info ("Unable to connect to SensorProxy bus, probably means no accelerometer supported: %s", e.message);
             return null;
         }
+    }
+
+    public void reset_stack () {
+        stack.visible_child = main_box;
     }
 }

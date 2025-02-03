@@ -25,6 +25,7 @@ wingpanel_dep = dependency('wingpanel')
 wingpanel_indicatorsdir = wingpanel_dep.get_pkgconfig_variable('indicatorsdir', define_variable: ['libdir', libdir])
 wl_client_dep = dependency('wayland-client')
 portal_dep = dependency('libportal')
+accountsservice_dep = dependency('accountsservice')
 
 subdir('protocol')
 subdir('data')

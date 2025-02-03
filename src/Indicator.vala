@@ -53,7 +53,13 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
 
     public override void opened () {}
 
-    public override void closed () {}
+    public override void closed () {
+        if (popover_widget == null) {
+            return;
+        }
+
+        popover_widget.reset_stack ();
+    }
 }
 
 public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorManager.ServerType server_type) {
