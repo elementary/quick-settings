@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-19 23:19+0000\n"
+"POT-Creation-Date: 2025-02-03 22:15+0000\n"
 "PO-Revision-Date: 2024-09-13 00:01+0000\n"
 "Last-Translator: Piotr Strebski <strebski@gmail.com>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -20,17 +20,30 @@ msgstr ""
 "|| n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.6.2\n"
 
-#: src/PopoverWidget.vala:25
+#: src/PopoverWidget.vala:28
 msgid "Screen Reader"
 msgstr "Czytnik ekranu"
 
-#: src/PopoverWidget.vala:32
+#: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
 msgstr "Klawiatura ekranowa"
 
-#: src/PopoverWidget.vala:51
-msgid "System Settings…"
-msgstr "Ustawienia systemu…"
+#: src/Widgets/CurrentUser.vala:69 src/Widgets/CurrentUser.vala:108
+#: src/Widgets/CurrentUser.vala:113
+msgid "Log Out…"
+msgstr "Wyloguj…"
+
+#: src/Widgets/CurrentUser.vala:126 src/Widgets/UserRow.vala:31
+msgid "Guest"
+msgstr ""
+
+#: src/Widgets/CurrentUser.vala:153 src/Widgets/UserRow.vala:130
+msgid "Logged in"
+msgstr ""
+
+#: src/Widgets/CurrentUser.vala:155 src/Widgets/UserRow.vala:132
+msgid "Logged out"
+msgstr ""
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
@@ -70,7 +83,7 @@ msgstr "Anuluj"
 msgid "Restart"
 msgstr "Uruchom ponownie"
 
-#: src/Widgets/EndSessionDialog.vala:122
+#: src/Widgets/EndSessionDialog.vala:123
 msgid "Install pending system updates"
 msgstr "Zainstaluj oczekujące aktualizacje systemu"
 
@@ -78,17 +91,16 @@ msgstr "Zainstaluj oczekujące aktualizacje systemu"
 msgid "Rotation Lock"
 msgstr "Zablokuj obracanie"
 
-#: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
-#: src/Widgets/SessionBox.vala:142
-msgid "Log Out…"
-msgstr "Wyloguj…"
+#: src/Widgets/SessionBox.vala:19
+msgid "System Settings…"
+msgstr "Ustawienia systemu…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
 msgstr "Wstrzymaj"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:137
-#: src/Widgets/SessionBox.vala:148
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
+#: src/Widgets/SessionBox.vala:126
 msgid "Lock"
 msgstr "Zablokuj"
 
@@ -103,3 +115,9 @@ msgstr "Zmniejsz rozmiar tekstu"
 #: src/Widgets/TextScale.vala:31
 msgid "Increase text size"
 msgstr "Zwiększ rozmiar tekstu"
+
+#: src/Widgets/UserList.vala:43
+#, fuzzy
+#| msgid "System Settings…"
+msgid "User Accounts Settings…"
+msgstr "Ustawienia systemu…"
