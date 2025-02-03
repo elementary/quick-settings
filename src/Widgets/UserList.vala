@@ -12,7 +12,7 @@
 
     private const string DM_DBUS_ID = "org.freedesktop.DisplayManager";
 
-    private Gee.HashMap<uint, UserRow> user_map = new Gee.HashMap<uint, UserRow> ();
+    private GLib.ListStore user_list;
 
     private const uint GUEST_USER_UID = 999;
     private const uint NOBODY_USER_UID = 65534;
@@ -25,11 +25,12 @@
     construct {
         var current_user = new CurrentUser ();
 
+        user_list = new GLib.ListStore (typeof (Act.User));
+
         listbox = new Gtk.ListBox () {
             hexpand = true
         };
-        listbox.set_sort_func (sort_func);
-        listbox.set_filter_func (set_filter_func);
+        listbox.bind_model (user_list, create_widget_func);
 
         listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
             hscrollbar_policy = NEVER,
@@ -145,92 +146,77 @@
     }
 
     private void init_users () {
-        foreach (Act.User user in UserManager.get_usermanager ().list_users ()) {
+        foreach (unowned var user in UserManager.get_usermanager ().list_users ()) {
             add_user (user);
         }
     }
 
     private void add_user (Act.User? user) {
-        // Don't add any of the system reserved users
-        var uid = user.get_uid ();
-        if (uid < RESERVED_UID_RANGE_END ||
-            uid == NOBODY_USER_UID ||
-            user_map.has_key (uid)) {
+        // FIXME: is this not covered by is current?
+        // if (user_row.is_guest) {
+        //     return UserManager.get_current_user () != null;
+        // }
+
+        if (UserManager.is_current_user (user)) {
             return;
         }
 
-        user_map[uid] = new UserRow (user);
-        user_map[uid].show ();
+        // Don't add any of the system reserved users
+        if (user.is_system_account ()) {
+            return;
+        }
 
-        listbox.add (user_map[uid]);
-        listbox.invalidate_sort ();
-        enable_scroll_if_needed ();
+        uint pos = -1;
+        if (user_list.find_with_equal_func (user, equal_func, out pos)) {
+            return;
+        }
+
+        user_list.insert_sorted (user, compare_func);
     }
 
     private void add_guest () {
-        if (user_map[GUEST_USER_UID] != null) {
-            return;
-        }
+        // if (user_map[GUEST_USER_UID] != null) {
+        //     return;
+        // }
 
-        user_map[GUEST_USER_UID] = new UserRow.guest ();
-        user_map[GUEST_USER_UID].show ();
+        // user_map[GUEST_USER_UID] = new UserRow.guest ();
+        // user_map[GUEST_USER_UID].show ();
 
-        listbox.add (user_map[GUEST_USER_UID]);
-        listbox.invalidate_sort ();
-        enable_scroll_if_needed ();
+        // listbox.add (user_map[GUEST_USER_UID]);
+        // listbox.invalidate_sort ();
+        // enable_scroll_if_needed ();
     }
 
     private void remove_user (Act.User user) {
-        var uid = user.get_uid ();
-        var user_row = user_map[uid];
-        if (user_row == null) {
-            return;
+        uint pos = -1;
+        if (user_list.find_with_equal_func (user, (EqualFunc<Act.User>) equal_func, out pos)) {
+            user_list.remove (pos);
         }
-
-        user_map.unset (uid);
-        listbox.remove (user_row);
-        listbox.invalidate_sort ();
-        enable_scroll_if_needed ();
     }
 
     private void update_user (Act.User user) {
-        var userbox = user_map[user.get_uid ()];
-        if (userbox == null) {
-            return;
-        }
-
-        userbox.update_state.begin ();
-        listbox.invalidate_filter ();
-        enable_scroll_if_needed ();
+        // FIXME: Can we update instead of add/remove?
+        remove_user (user);
+        add_user (user);
     }
 
-    public void update_all () {
-        foreach (UserRow row in user_map.values) {
-            row.update_state.begin ();
-        }
+    private Gtk.Widget create_widget_func (Object object) {
+        var user = (Act.User) object;
+
+        return new UserRow (user);
     }
 
-    public int sort_func (Gtk.ListBoxRow row1, Gtk.ListBoxRow row2) {
-        var userbox1 = (UserRow) row1;
-        var userbox2 = (UserRow) row2;
+    private int compare_func (Object a, Object b) {
+        var user_a = (Act.User) a;
+        var user_b = (Act.User) b;
 
-        if (userbox1.is_guest && !userbox2.is_guest) {
-            return 1;
-        } else if (!userbox1.is_guest && userbox2.is_guest) {
-            return -1;
-        }
+        //TODO: handle guest?
 
-        return userbox1.user.collate (userbox2.user);
+        return user_a.collate (user_b);
     }
 
-    public bool set_filter_func (Gtk.ListBoxRow row) {
-        var user_row = (UserRow) row;
-
-        if (user_row.is_guest) {
-            return UserManager.get_current_user () != null;
-        }
-
-        return !UserManager.is_current_user (user_row.user);
+    private static bool equal_func (Object a, Object b) {
+        return ((Act.User) a).uid == ((Act.User) b).uid;
     }
 
     private void show_settings () {
@@ -238,14 +224,6 @@
             AppInfo.launch_default_for_uri ("settings://accounts", null);
         } catch (Error e) {
             warning ("%s\n", e.message);
-        }
-    }
-
-    private void enable_scroll_if_needed () {
-        if (user_map.size > MAX_ITEMS_BEFORE_SCROLL + 1) {
-            listbox_scrolled.vscrollbar_policy = ALWAYS;
-        } else {
-            listbox_scrolled.vscrollbar_policy = NEVER;
         }
     }
  }
