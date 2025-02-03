@@ -11,7 +11,6 @@
     private const uint GUEST_USER_UID = 999;
 
     private GLib.ListStore user_list;
-    private Gtk.ScrolledWindow listbox_scrolled;
     private Gtk.Popover? popover;
     private SeatInterface? dm_proxy = null;
 
@@ -25,7 +24,7 @@
         };
         listbox.bind_model (user_list, create_widget_func);
 
-        listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
+        var listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
             hscrollbar_policy = NEVER,
             max_content_height = 200,
             propagate_natural_height = true,
