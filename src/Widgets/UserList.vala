@@ -34,7 +34,6 @@
 
         listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
             hscrollbar_policy = NEVER,
-            vscrollbar_policy = NEVER,
             max_content_height = 200,
             propagate_natural_height = true,
             child = listbox
@@ -195,9 +194,7 @@
     }
 
     private void update_user (Act.User user) {
-        // FIXME: Can we update instead of add/remove?
-        remove_user (user);
-        add_user (user);
+        // FIXME: I think this is only for the currently logged user so this isn't a list thing
     }
 
     private Gtk.Widget create_widget_func (Object object) {
