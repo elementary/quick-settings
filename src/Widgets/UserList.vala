@@ -33,7 +33,6 @@
 
         listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
             hscrollbar_policy = NEVER,
-            vscrollbar_policy = NEVER,
             max_content_height = 200,
             propagate_natural_height = true,
             child = listbox
@@ -164,7 +163,6 @@
 
         listbox.add (user_map[uid]);
         listbox.invalidate_sort ();
-        enable_scroll_if_needed ();
     }
 
     private void add_guest () {
@@ -177,7 +175,6 @@
 
         listbox.add (user_map[GUEST_USER_UID]);
         listbox.invalidate_sort ();
-        enable_scroll_if_needed ();
     }
 
     private void remove_user (Act.User user) {
@@ -190,7 +187,6 @@
         user_map.unset (uid);
         listbox.remove (user_row);
         listbox.invalidate_sort ();
-        enable_scroll_if_needed ();
     }
 
     private void update_user (Act.User user) {
@@ -201,7 +197,6 @@
 
         userbox.update_state.begin ();
         listbox.invalidate_filter ();
-        enable_scroll_if_needed ();
     }
 
     public void update_all () {
@@ -238,14 +233,6 @@
             AppInfo.launch_default_for_uri ("settings://accounts", null);
         } catch (Error e) {
             warning ("%s\n", e.message);
-        }
-    }
-
-    private void enable_scroll_if_needed () {
-        if (user_map.size > MAX_ITEMS_BEFORE_SCROLL + 1) {
-            listbox_scrolled.vscrollbar_policy = ALWAYS;
-        } else {
-            listbox_scrolled.vscrollbar_policy = NEVER;
         }
     }
  }
