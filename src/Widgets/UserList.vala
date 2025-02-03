@@ -35,14 +35,12 @@
             text = _("User Accounts Settings…")
         };
 
-        var main_box = new Gtk.Box (VERTICAL, 0);
-        main_box.add (current_user);
-        main_box.add (new Gtk.Separator (HORIZONTAL));
-        main_box.add (listbox_scrolled);
-        main_box.add (new Gtk.Separator (HORIZONTAL));
-        main_box.add (settings_button);
-
-        add (main_box);
+        orientation = VERTICAL;
+        add (current_user);
+        add (new Gtk.Separator (HORIZONTAL));
+        add (listbox_scrolled);
+        add (new Gtk.Separator (HORIZONTAL));
+        add (settings_button);
 
         if (UserManager.get_usermanager ().is_loaded) {
             init_users ();
