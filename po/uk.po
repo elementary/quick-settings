@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-11-19 23:19+0000\n"
+"POT-Creation-Date: 2025-02-03 22:15+0000\n"
 "PO-Revision-Date: 2024-08-20 02:16+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/wingpanel/"
@@ -20,17 +20,30 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.6.2\n"
 
-#: src/PopoverWidget.vala:25
+#: src/PopoverWidget.vala:28
 msgid "Screen Reader"
 msgstr "Зчитувач з екрана"
 
-#: src/PopoverWidget.vala:32
+#: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
 msgstr "Екранна клавіатура"
 
-#: src/PopoverWidget.vala:51
-msgid "System Settings…"
-msgstr "Системні налаштування…"
+#: src/Widgets/CurrentUser.vala:69 src/Widgets/CurrentUser.vala:108
+#: src/Widgets/CurrentUser.vala:113
+msgid "Log Out…"
+msgstr "Завершити сеанс…"
+
+#: src/Widgets/CurrentUser.vala:126 src/Widgets/UserRow.vala:31
+msgid "Guest"
+msgstr ""
+
+#: src/Widgets/CurrentUser.vala:153 src/Widgets/UserRow.vala:130
+msgid "Logged in"
+msgstr ""
+
+#: src/Widgets/CurrentUser.vala:155 src/Widgets/UserRow.vala:132
+msgid "Logged out"
+msgstr ""
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
@@ -68,7 +81,7 @@ msgstr "Скасувати"
 msgid "Restart"
 msgstr "Перезапустити"
 
-#: src/Widgets/EndSessionDialog.vala:122
+#: src/Widgets/EndSessionDialog.vala:123
 msgid "Install pending system updates"
 msgstr "Установити оновлення системи з черги"
 
@@ -76,17 +89,16 @@ msgstr "Установити оновлення системи з черги"
 msgid "Rotation Lock"
 msgstr "Блокування обертання"
 
-#: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
-#: src/Widgets/SessionBox.vala:142
-msgid "Log Out…"
-msgstr "Завершити сеанс…"
+#: src/Widgets/SessionBox.vala:19
+msgid "System Settings…"
+msgstr "Системні налаштування…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
 msgstr "Призупинити"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:137
-#: src/Widgets/SessionBox.vala:148
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
+#: src/Widgets/SessionBox.vala:126
 msgid "Lock"
 msgstr "Заблокувати"
 
@@ -101,3 +113,9 @@ msgstr "Зменшити розмір тексту"
 #: src/Widgets/TextScale.vala:31
 msgid "Increase text size"
 msgstr "Збільшити розмір тексту"
+
+#: src/Widgets/UserList.vala:43
+#, fuzzy
+#| msgid "System Settings…"
+msgid "User Accounts Settings…"
+msgstr "Системні налаштування…"
