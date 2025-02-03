@@ -164,16 +164,7 @@
     }
 
     private void add_guest () {
-        // if (user_map[GUEST_USER_UID] != null) {
-        //     return;
-        // }
-
-        // user_map[GUEST_USER_UID] = new UserRow.guest ();
-        // user_map[GUEST_USER_UID].show ();
-
-        // listbox.add (user_map[GUEST_USER_UID]);
-        // listbox.invalidate_sort ();
-        // enable_scroll_if_needed ();
+        
     }
 
     private void remove_user (Act.User user) {
@@ -185,6 +176,10 @@
 
     private Gtk.Widget create_widget_func (Object object) {
         var user = (Act.User) object;
+
+        if (user.uid == GUEST_USER_UID) {
+            return new UserRow.guest ();
+        }
 
         return new UserRow (user);
     }
