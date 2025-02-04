@@ -43,7 +43,3 @@ quicksettings .image-button:disabled {
 quicksettings .no-padding {
     padding: 0;
 }
-
-quicksettings .fullname-label {
-    font-weight: 700;
-}
