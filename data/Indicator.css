@@ -43,3 +43,8 @@ quicksettings .image-button:disabled {
 quicksettings .no-padding {
     padding: 0;
 }
+
+quicksettings .flat avatar {
+    border: none;
+    box-shadow: none;
+}
