@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-03 22:15+0000\n"
-"PO-Revision-Date: 2024-08-22 09:16+0000\n"
+"PO-Revision-Date: 2025-02-04 23:16+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/quick-"
-"settings/ca/>\n"
+"Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
+"quick-settings/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.9.2\n"
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
@@ -34,15 +34,15 @@ msgstr "Surt…"
 
 #: src/Widgets/CurrentUser.vala:126 src/Widgets/UserRow.vala:31
 msgid "Guest"
-msgstr ""
+msgstr "Convidat"
 
 #: src/Widgets/CurrentUser.vala:153 src/Widgets/UserRow.vala:130
 msgid "Logged in"
-msgstr ""
+msgstr "Sessió iniciada"
 
 #: src/Widgets/CurrentUser.vala:155 src/Widgets/UserRow.vala:132
 msgid "Logged out"
-msgstr ""
+msgstr "Sessió tancada"
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
@@ -114,7 +114,5 @@ msgid "Increase text size"
 msgstr "Augmenta la mida del text"
 
 #: src/Widgets/UserList.vala:43
-#, fuzzy
-#| msgid "System Settings…"
 msgid "User Accounts Settings…"
-msgstr "Paràmetres del sistema…"
+msgstr "Paràmetres dels comptes d'usuari…"
