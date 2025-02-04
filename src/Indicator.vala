@@ -51,7 +51,13 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
         return popover_widget;
     }
 
-    public override void opened () {}
+    public override void opened () {
+        if (popover_widget == null) {
+            return;
+        }
+
+        popover_widget.update_user_tooltip.begin ();
+    }
 
     public override void closed () {
         if (popover_widget == null) {

@@ -13,6 +13,8 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     private Gtk.Stack stack;
     private Gtk.Box main_box;
     private UserList accounts_view;
+    private string active_user_real_name;
+    private Gtk.Button current_user_button;
 
     public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (server_type: server_type);
@@ -52,7 +54,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var current_user = new CurrentUser.avatar_only ();
 
-        var current_user_button = new Gtk.Button () {
+        current_user_button = new Gtk.Button () {
             child = current_user
         };
         current_user_button.get_style_context ().add_class ("circular");
@@ -191,5 +193,50 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
     public void reset_stack () {
         stack.visible_child = main_box;
+    }
+
+    public async void update_user_tooltip () {
+        string description;
+
+        if (server_type == SESSION && !is_running_in_demo_mode ()) {
+            if (active_user_real_name == null) {
+                active_user_real_name = Environment.get_real_name ();
+            }
+
+            int n_online_users = (yield UserManager.get_n_active_and_online_users ()) - 1;
+
+            if (n_online_users > 0) {
+                description = dngettext (
+                    Constants.GETTEXT_PACKAGE,
+                    "Logged in as “%s”, %i other user logged in",
+                    "Logged in as “%s”, %i other users logged in",
+                    n_online_users
+                );
+                description = description.printf (active_user_real_name, n_online_users);
+            } else {
+                description = _("Logged in as “%s”").printf (active_user_real_name);
+            }
+        } else {
+            description = _("Not logged in");
+        }
+
+        current_user_button.tooltip_text = description;
+    }
+
+    private bool is_running_in_demo_mode () {
+        var proc_cmdline = File.new_for_path ("/proc/cmdline");
+        try {
+            var @is = proc_cmdline.read ();
+            var dis = new DataInputStream (@is);
+
+            var line = dis.read_line ();
+            if ("boot=casper" in line || "boot=live" in line || "rd.live.image" in line) {
+                return true;
+            }
+        } catch (Error e) {
+            critical ("Couldn't detect if running in Demo Mode: %s", e.message);
+        }
+
+        return false;
     }
 }
