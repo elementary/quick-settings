@@ -37,12 +37,14 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             valign = Gtk.Align.END,
             halign = Gtk.Align.START
         };
-        fullname_label.get_style_context ().add_class ("fullname-label");
+        fullname_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
 
         status_label = new Gtk.Label (null) {
             valign = Gtk.Align.START,
             halign = Gtk.Align.START
         };
+        status_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
+        status_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
         if (user == null) {
             avatar = new Hdy.Avatar (ICON_SIZE, null, false);
