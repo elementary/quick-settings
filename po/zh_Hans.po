@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-03 22:15+0000\n"
+"POT-Creation-Date: 2025-02-05 18:22+0000\n"
 "PO-Revision-Date: 2024-04-23 17:35+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
@@ -19,28 +19,43 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.0.2\n"
 
-#: src/PopoverWidget.vala:28
+#: src/PopoverWidget.vala:30
 msgid "Screen Reader"
 msgstr "屏幕阅读"
 
-#: src/PopoverWidget.vala:35
+#: src/PopoverWidget.vala:37
 msgid "Onscreen Keyboard"
 msgstr "屏幕键盘"
 
-#: src/Widgets/CurrentUser.vala:69 src/Widgets/CurrentUser.vala:108
-#: src/Widgets/CurrentUser.vala:113
+#: src/PopoverWidget.vala:200
+msgid "Not logged in"
+msgstr ""
+
+#: src/PopoverWidget.vala:218
+#, c-format
+msgid "Logged in as “%s”, %i other user logged in"
+msgid_plural "Logged in as “%s”, %i other users logged in"
+msgstr[0] ""
+
+#: src/PopoverWidget.vala:224
+#, c-format
+msgid "Logged in as “%s”"
+msgstr ""
+
+#: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
+#: src/Widgets/CurrentUser.vala:109
 msgid "Log Out…"
 msgstr "注销…"
 
-#: src/Widgets/CurrentUser.vala:126 src/Widgets/UserRow.vala:31
+#: src/Widgets/CurrentUser.vala:122 src/Widgets/UserRow.vala:31
 msgid "Guest"
 msgstr ""
 
-#: src/Widgets/CurrentUser.vala:153 src/Widgets/UserRow.vala:130
+#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:131
 msgid "Logged in"
 msgstr ""
 
-#: src/Widgets/CurrentUser.vala:155 src/Widgets/UserRow.vala:132
+#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:133
 msgid "Logged out"
 msgstr ""
 
@@ -113,6 +128,6 @@ msgstr "缩小文本"
 msgid "Increase text size"
 msgstr "放大文本"
 
-#: src/Widgets/UserList.vala:43
+#: src/Widgets/UserList.vala:42
 msgid "User Accounts Settings…"
 msgstr ""
