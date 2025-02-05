@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-05 18:22+0000\n"
+"POT-Creation-Date: 2025-02-05 18:59+0000\n"
 "PO-Revision-Date: 2024-04-25 16:13+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Belarusian <https://l10n.elementary.io/projects/wingpanel/"
@@ -32,18 +32,18 @@ msgstr ""
 msgid "Not logged in"
 msgstr ""
 
-#: src/PopoverWidget.vala:218
-#, c-format
-msgid "Logged in as “%s”, %i other user logged in"
-msgid_plural "Logged in as “%s”, %i other users logged in"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: src/PopoverWidget.vala:224
+#: src/PopoverWidget.vala:212
 #, c-format
 msgid "Logged in as “%s”"
 msgstr ""
+
+#: src/PopoverWidget.vala:218
+#, c-format
+msgid "%i other person logged in"
+msgid_plural "%i other people logged in"
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
 
 #: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
 #: src/Widgets/CurrentUser.vala:109
