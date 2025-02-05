@@ -24,6 +24,9 @@ public class QuickSettings.UserManager : Object {
     private const string LOGIN_IFACE = "org.freedesktop.login1";
     private const string LOGIN_PATH = "/org/freedesktop/login1";
 
+    private const uint RESERVED_UID_RANGE_END = 1000;
+    private const uint NOBODY_USER_UID = 65534;
+
     private static SystemInterface? login_proxy;
 
     private static async void init_login_proxy () {
@@ -120,5 +123,27 @@ public class QuickSettings.UserManager : Object {
             critical ("Unable to connect to GNOME session interface: %s", e.message);
             return null;
         }
+    }
+
+    public static async int get_n_active_and_online_users () {
+        int n_active_and_online_users = 0;
+
+        if (!get_usermanager ().is_loaded) {
+            critical ("UserManager not yet loaded");
+            return n_active_and_online_users;
+        }
+
+        foreach (var user in get_usermanager ().list_users ()) {
+            if (user.uid < RESERVED_UID_RANGE_END || user.uid == NOBODY_USER_UID) {
+                continue;
+            }
+
+            var state = yield get_user_state (user.uid);
+            if (state == UserState.ACTIVE || state == UserState.ONLINE) {
+                n_active_and_online_users++;
+            }
+        }
+
+        return n_active_and_online_users;
     }
 }
