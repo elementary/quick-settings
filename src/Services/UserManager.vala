@@ -24,9 +24,6 @@ public class QuickSettings.UserManager : Object {
     private const string LOGIN_IFACE = "org.freedesktop.login1";
     private const string LOGIN_PATH = "/org/freedesktop/login1";
 
-    private const uint RESERVED_UID_RANGE_END = 1000;
-    private const uint NOBODY_USER_UID = 65534;
-
     private static SystemInterface? login_proxy;
 
     private static async void init_login_proxy () {
@@ -134,7 +131,7 @@ public class QuickSettings.UserManager : Object {
         }
 
         foreach (var user in get_usermanager ().list_users ()) {
-            if (user.uid < RESERVED_UID_RANGE_END || user.uid == NOBODY_USER_UID) {
+            if (user.system_account) {
                 continue;
             }
 
