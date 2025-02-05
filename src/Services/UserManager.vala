@@ -24,6 +24,7 @@ public class QuickSettings.UserManager : Object {
     private const string LOGIN_IFACE = "org.freedesktop.login1";
     private const string LOGIN_PATH = "/org/freedesktop/login1";
 
+    private static string active_user_real_name;
     private static SystemInterface? login_proxy;
 
     private static async void init_login_proxy () {
@@ -122,25 +123,46 @@ public class QuickSettings.UserManager : Object {
         }
     }
 
-    public static async int get_n_active_and_online_users () {
-        int n_active_and_online_users = 0;
+    public static async string? get_loggedin_tooltip_markup () {
+        if (active_user_real_name == null) {
+            active_user_real_name = Environment.get_real_name ();
+        }
+
+        if (active_user_real_name == null) {
+            return null;
+        }
+
+        var tooltip_markup = _("Logged in as “%s”").printf (active_user_real_name);
 
         if (!get_usermanager ().is_loaded) {
             critical ("UserManager not yet loaded");
-            return n_active_and_online_users;
+            return tooltip_markup;
         }
 
-        foreach (var user in get_usermanager ().list_users ()) {
+        var active_and_online_users = 0;
+        foreach (unowned var user in get_usermanager ().list_users ()) {
             if (user.system_account) {
                 continue;
             }
 
             var state = yield get_user_state (user.uid);
-            if (state == UserState.ACTIVE || state == UserState.ONLINE) {
-                n_active_and_online_users++;
+            if (state == ACTIVE || state == ONLINE) {
+                active_and_online_users++;
             }
         }
 
-        return n_active_and_online_users;
+        var other_users = active_and_online_users - 1;
+        if (other_users > 0) {
+            var description = dngettext (
+                Constants.GETTEXT_PACKAGE,
+                "%i other person logged in",
+                "%i other people logged in",
+                other_users
+            );
+            description = description.printf (other_users);
+            tooltip_markup += "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (description);
+        }
+
+        return tooltip_markup;
     }
 }
