@@ -13,7 +13,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     private Gtk.Stack stack;
     private Gtk.Box main_box;
     private UserList accounts_view;
-    private string active_user_real_name;
     private Gtk.Button current_user_button;
 
     public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
@@ -201,27 +200,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             return;
         }
 
-        if (active_user_real_name == null) {
-            active_user_real_name = Environment.get_real_name ();
-        }
-
-        if (active_user_real_name == null) {
-            return;
-        }
-
-        current_user_button.tooltip_markup = _("Logged in as “%s”").printf (active_user_real_name);
-
-        var n_online_users = (yield UserManager.get_n_active_and_online_users ()) - 1;
-        if (n_online_users > 0) {
-            var description = dngettext (
-                Constants.GETTEXT_PACKAGE,
-                "%i other person logged in",
-                "%i other people logged in",
-                n_online_users
-            );
-            description = description.printf (n_online_users);
-            current_user_button.tooltip_markup += "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (description);
-        }
+        current_user_button.tooltip_markup = yield UserManager.get_loggedin_tooltip_markup ();
     }
 
     private bool is_running_in_demo_mode () {
