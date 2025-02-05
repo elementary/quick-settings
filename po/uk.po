@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-05 18:59+0000\n"
-"PO-Revision-Date: 2025-02-04 23:16+0000\n"
+"PO-Revision-Date: 2025-02-06 21:16+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/wingpanel/"
 "quick-settings/uk/>\n"
@@ -30,20 +30,20 @@ msgstr "Екранна клавіатура"
 
 #: src/PopoverWidget.vala:200
 msgid "Not logged in"
-msgstr ""
+msgstr "Вхід не виконано"
 
 #: src/PopoverWidget.vala:212
 #, c-format
 msgid "Logged in as “%s”"
-msgstr ""
+msgstr "Вхід виконано як “%s”"
 
 #: src/PopoverWidget.vala:218
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "Увійшла ще %i людина"
+msgstr[1] "Увійшли ще %i людей"
+msgstr[2] "Увійшли ще %i людей"
 
 #: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
 #: src/Widgets/CurrentUser.vala:109
@@ -56,11 +56,11 @@ msgstr "Гість"
 
 #: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:131
 msgid "Logged in"
-msgstr ""
+msgstr "Вхід виконано"
 
 #: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:133
 msgid "Logged out"
-msgstr ""
+msgstr "Вихід виконано"
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
