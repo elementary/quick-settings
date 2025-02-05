@@ -209,22 +209,19 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             return;
         }
 
-        string description;
-        int n_online_users = (yield UserManager.get_n_active_and_online_users ()) - 1;
+        current_user_button.tooltip_markup = _("Logged in as “%s”").printf (active_user_real_name);
 
+        var n_online_users = (yield UserManager.get_n_active_and_online_users ()) - 1;
         if (n_online_users > 0) {
-            description = dngettext (
+            var description = dngettext (
                 Constants.GETTEXT_PACKAGE,
-                "Logged in as “%s”, %i other user logged in",
-                "Logged in as “%s”, %i other users logged in",
+                "%i other person logged in",
+                "%i other people logged in",
                 n_online_users
             );
-            description = description.printf (active_user_real_name, n_online_users);
-        } else {
-            description = _("Logged in as “%s”").printf (active_user_real_name);
+            description = description.printf (n_online_users);
+            current_user_button.tooltip_markup += "\n" + Granite.TOOLTIP_SECONDARY_TEXT_MARKUP.printf (description);
         }
-
-        current_user_button.tooltip_text = description;
     }
 
     private bool is_running_in_demo_mode () {
