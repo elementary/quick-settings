@@ -196,28 +196,32 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     }
 
     public async void update_user_tooltip () {
+        if (server_type != SESSION || is_running_in_demo_mode ()) {
+            current_user_button.tooltip_text = _("Not logged in");
+            return;
+        }
+
+        if (active_user_real_name == null) {
+            active_user_real_name = Environment.get_real_name ();
+        }
+
+        if (active_user_real_name == null) {
+            return;
+        }
+
         string description;
+        int n_online_users = (yield UserManager.get_n_active_and_online_users ()) - 1;
 
-        if (server_type == SESSION && !is_running_in_demo_mode ()) {
-            if (active_user_real_name == null) {
-                active_user_real_name = Environment.get_real_name ();
-            }
-
-            int n_online_users = (yield UserManager.get_n_active_and_online_users ()) - 1;
-
-            if (n_online_users > 0) {
-                description = dngettext (
-                    Constants.GETTEXT_PACKAGE,
-                    "Logged in as “%s”, %i other user logged in",
-                    "Logged in as “%s”, %i other users logged in",
-                    n_online_users
-                );
-                description = description.printf (active_user_real_name, n_online_users);
-            } else {
-                description = _("Logged in as “%s”").printf (active_user_real_name);
-            }
+        if (n_online_users > 0) {
+            description = dngettext (
+                Constants.GETTEXT_PACKAGE,
+                "Logged in as “%s”, %i other user logged in",
+                "Logged in as “%s”, %i other users logged in",
+                n_online_users
+            );
+            description = description.printf (active_user_real_name, n_online_users);
         } else {
-            description = _("Not logged in");
+            description = _("Logged in as “%s”").printf (active_user_real_name);
         }
 
         current_user_button.tooltip_text = description;
