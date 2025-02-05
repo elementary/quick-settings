@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-05 18:22+0000\n"
+"POT-Creation-Date: 2025-02-05 18:59+0000\n"
 "PO-Revision-Date: 2025-02-05 18:22+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -34,20 +34,21 @@ msgstr "מקלדת על המסך"
 msgid "Not logged in"
 msgstr "במערכת"
 
-#: src/PopoverWidget.vala:218
-#, c-format
-msgid "Logged in as “%s”, %i other user logged in"
-msgid_plural "Logged in as “%s”, %i other users logged in"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
-
-#: src/PopoverWidget.vala:224
+#: src/PopoverWidget.vala:212
 #, fuzzy, c-format
 #| msgid "Logged in"
 msgid "Logged in as “%s”"
 msgstr "במערכת"
+
+#: src/PopoverWidget.vala:218
+#, fuzzy, c-format
+#| msgid "Logged in"
+msgid "%i other person logged in"
+msgid_plural "%i other people logged in"
+msgstr[0] "במערכת"
+msgstr[1] "במערכת"
+msgstr[2] "במערכת"
+msgstr[3] "במערכת"
 
 #: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
 #: src/Widgets/CurrentUser.vala:109

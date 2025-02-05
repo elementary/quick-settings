@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-05 18:22+0000\n"
+"POT-Creation-Date: 2025-02-05 18:59+0000\n"
 "PO-Revision-Date: 2025-02-04 23:16+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
 "Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -33,18 +33,19 @@ msgstr "Teclado en pantalla"
 msgid "Not logged in"
 msgstr "Sesión iniciada"
 
-#: src/PopoverWidget.vala:218
-#, c-format
-msgid "Logged in as “%s”, %i other user logged in"
-msgid_plural "Logged in as “%s”, %i other users logged in"
-msgstr[0] ""
-msgstr[1] ""
-
-#: src/PopoverWidget.vala:224
+#: src/PopoverWidget.vala:212
 #, fuzzy, c-format
 #| msgid "Logged in"
 msgid "Logged in as “%s”"
 msgstr "Sesión iniciada"
+
+#: src/PopoverWidget.vala:218
+#, fuzzy, c-format
+#| msgid "Logged in"
+msgid "%i other person logged in"
+msgid_plural "%i other people logged in"
+msgstr[0] "Sesión iniciada"
+msgstr[1] "Sesión iniciada"
 
 #: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
 #: src/Widgets/CurrentUser.vala:109
