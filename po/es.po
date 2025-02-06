@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-05 18:59+0000\n"
-"PO-Revision-Date: 2025-02-04 23:16+0000\n"
+"PO-Revision-Date: 2025-02-06 21:16+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <edwood.grant@gmail.com>\n"
-"Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/quick-"
-"settings/es/>\n"
+"Language-Team: Spanish <https://l10n.elementary.io/projects/wingpanel/"
+"quick-settings/es/>\n"
 "Language: es\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -28,24 +28,20 @@ msgid "Onscreen Keyboard"
 msgstr "Teclado en pantalla"
 
 #: src/PopoverWidget.vala:200
-#, fuzzy
-#| msgid "Logged in"
 msgid "Not logged in"
-msgstr "Sesión iniciada"
+msgstr "Sesión no iniciada"
 
 #: src/PopoverWidget.vala:212
-#, fuzzy, c-format
-#| msgid "Logged in"
+#, c-format
 msgid "Logged in as “%s”"
-msgstr "Sesión iniciada"
+msgstr "Sesión iniciada como «%s»"
 
 #: src/PopoverWidget.vala:218
-#, fuzzy, c-format
-#| msgid "Logged in"
+#, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
-msgstr[0] "Sesión iniciada"
-msgstr[1] "Sesión iniciada"
+msgstr[0] "Hay %i persona con una sesión iniciada"
+msgstr[1] "Hay %i personas con una sesión iniciada"
 
 #: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
 #: src/Widgets/CurrentUser.vala:109
