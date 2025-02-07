@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-05 18:59+0000\n"
-"PO-Revision-Date: 2025-02-05 18:22+0000\n"
+"PO-Revision-Date: 2025-02-08 09:16+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/quick-"
-"settings/he/>\n"
+"Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
+"quick-settings/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -29,26 +29,22 @@ msgid "Onscreen Keyboard"
 msgstr "מקלדת על המסך"
 
 #: src/PopoverWidget.vala:200
-#, fuzzy
-#| msgid "Logged in"
 msgid "Not logged in"
-msgstr "במערכת"
+msgstr "לא נכנסת למערכת"
 
 #: src/PopoverWidget.vala:212
-#, fuzzy, c-format
-#| msgid "Logged in"
+#, c-format
 msgid "Logged in as “%s”"
-msgstr "במערכת"
+msgstr "במערכת תחת השם „%s”"
 
 #: src/PopoverWidget.vala:218
-#, fuzzy, c-format
-#| msgid "Logged in"
+#, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
-msgstr[0] "במערכת"
-msgstr[1] "במערכת"
-msgstr[2] "במערכת"
-msgstr[3] "במערכת"
+msgstr[0] "עוד אחד במערכת"
+msgstr[1] "עוד %i במערכת"
+msgstr[2] "עוד %i במערכת"
+msgstr[3] "עוד %i במערכת"
 
 #: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
 #: src/Widgets/CurrentUser.vala:109
