@@ -31,6 +31,20 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
+    <release version="1.1.0" date="2025-02-11" urgency="medium">
+      <description>
+        <p>Other Improvements:</p>
+        <ul>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/quick-settings/issues/27">User List</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/67">Cannot shutdown with staging updates; reboots regardless</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/76">Bring back tooltip text from old session indicator</issue>
+      </issues>
+    </release>
+
     <release version="1.0.1" date="2024-11-20" urgency="medium">
       <description>
         <p>Other Improvements:</p>
