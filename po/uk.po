@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-05 18:59+0000\n"
+"POT-Creation-Date: 2025-02-12 18:27+0000\n"
 "PO-Revision-Date: 2025-02-06 21:16+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementary.io/projects/wingpanel/"
@@ -20,24 +20,24 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.9.2\n"
 
-#: src/PopoverWidget.vala:30
+#: src/PopoverWidget.vala:29
 msgid "Screen Reader"
 msgstr "Зчитувач з екрана"
 
-#: src/PopoverWidget.vala:37
+#: src/PopoverWidget.vala:36
 msgid "Onscreen Keyboard"
 msgstr "Екранна клавіатура"
 
-#: src/PopoverWidget.vala:200
+#: src/PopoverWidget.vala:199
 msgid "Not logged in"
 msgstr "Вхід не виконано"
 
-#: src/PopoverWidget.vala:212
+#: src/Services/UserManager.vala:135
 #, c-format
 msgid "Logged in as “%s”"
 msgstr "Вхід виконано як “%s”"
 
-#: src/PopoverWidget.vala:218
+#: src/Services/UserManager.vala:158
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
