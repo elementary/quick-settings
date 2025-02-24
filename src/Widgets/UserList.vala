@@ -31,14 +31,24 @@
             child = listbox
         };
 
+        var guest_row = new UserRow.guest ();
+
+        var guest_listbox = new Gtk.ListBox () {
+            hexpand = true
+        };
+        guest_listbox.add (guest_row);
+
+        var user_list_vbox = new Gtk.Box (VERTICAL, 0);
+        user_list_vbox.add (new Gtk.Separator (HORIZONTAL));
+        user_list_vbox.add (listbox_scrolled);
+
         var settings_button = new Gtk.ModelButton () {
             text = _("User Accounts Settings…")
         };
 
         orientation = VERTICAL;
         add (current_user);
-        add (new Gtk.Separator (HORIZONTAL));
-        add (listbox_scrolled);
+        add (user_list_vbox);
         add (new Gtk.Separator (HORIZONTAL));
         add (settings_button);
 
@@ -62,7 +72,7 @@
                 dm_proxy = Bus.get_proxy_sync (BusType.SYSTEM, DM_DBUS_ID, seat_path, DBusProxyFlags.NONE);
 
                 if (dm_proxy.has_guest_account && UserManager.get_current_user () != null) {
-                    add_guest ();
+                    user_list_vbox.add (guest_listbox);
                 }
             } catch (IOError e) {
                 critical ("UserManager error: %s", e.message);
@@ -95,13 +105,9 @@
 
             popover.popdown ();
 
-            if (userbox.is_guest) {
-                switch_to_guest ();
-            } else {
-                var user = userbox.user;
-                if (user != null) {
-                    switch_to_user (user.get_user_name ());
-                }
+            var user = userbox.user;
+            if (user != null) {
+                switch_to_user (user.get_user_name ());
             }
         });
 
@@ -130,6 +136,16 @@
                 });
             });
         });
+
+        guest_listbox.row_activated.connect (() => {
+            popover.popdown ();
+            switch_to_guest ();
+        });
+
+        user_list_vbox.visible = user_list.n_items > 0 || guest_listbox.parent != null;
+        user_list.items_changed.connect (() => {
+            user_list_vbox.visible = user_list.n_items > 0 || guest_listbox.parent != null;
+        });
     }
 
     private void init_users () {
@@ -139,11 +155,6 @@
     }
 
     private void add_user (Act.User? user) {
-        // FIXME: is this not covered by is current?
-        // if (user_row.is_guest) {
-        //     return UserManager.get_current_user () != null;
-        // }
-
         if (UserManager.is_current_user (user)) {
             return;
         }
@@ -161,10 +172,6 @@
         user_list.insert_sorted (user, compare_func);
     }
 
-    private void add_guest () {
-        
-    }
-
     private void remove_user (Act.User user) {
         uint pos = -1;
         if (user_list.find_with_equal_func (user, (EqualFunc<Act.User>) equal_func, out pos)) {
@@ -175,18 +182,12 @@
     private Gtk.Widget create_widget_func (Object object) {
         var user = (Act.User) object;
 
-        if (user.uid == GUEST_USER_UID) {
-            return new UserRow.guest ();
-        }
-
         return new UserRow (user);
     }
 
     private int compare_func (Object a, Object b) {
         var user_a = (Act.User) a;
         var user_b = (Act.User) b;
-
-        //TODO: handle guest?
 
         return user_a.collate (user_b);
     }
