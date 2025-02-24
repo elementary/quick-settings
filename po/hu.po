@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-03 22:15+0000\n"
-"PO-Revision-Date: 2025-01-01 21:16+0000\n"
+"POT-Creation-Date: 2025-02-12 18:27+0000\n"
+"PO-Revision-Date: 2025-02-21 19:16+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementary.io/projects/wingpanel/"
 "quick-settings/hu/>\n"
@@ -19,30 +19,46 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.9.2\n"
 
-#: src/PopoverWidget.vala:28
+#: src/PopoverWidget.vala:29
 msgid "Screen Reader"
 msgstr "Képernyőolvasó"
 
-#: src/PopoverWidget.vala:35
+#: src/PopoverWidget.vala:36
 msgid "Onscreen Keyboard"
 msgstr "Képernyőbillentyűzet"
 
-#: src/Widgets/CurrentUser.vala:69 src/Widgets/CurrentUser.vala:108
-#: src/Widgets/CurrentUser.vala:113
+#: src/PopoverWidget.vala:199
+msgid "Not logged in"
+msgstr "Nincs bejelentkezve"
+
+#: src/Services/UserManager.vala:135
+#, c-format
+msgid "Logged in as “%s”"
+msgstr "Bejelentkezve mint \"%s\""
+
+#: src/Services/UserManager.vala:158
+#, c-format
+msgid "%i other person logged in"
+msgid_plural "%i other people logged in"
+msgstr[0] "%i további személy bejelentkezve"
+msgstr[1] "%i további személy bejelentkezve"
+
+#: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
+#: src/Widgets/CurrentUser.vala:109
 msgid "Log Out…"
 msgstr "Kijelentkezés…"
 
-#: src/Widgets/CurrentUser.vala:126 src/Widgets/UserRow.vala:31
+#: src/Widgets/CurrentUser.vala:122 src/Widgets/UserRow.vala:31
 msgid "Guest"
-msgstr ""
+msgstr "Vendég"
 
-#: src/Widgets/CurrentUser.vala:153 src/Widgets/UserRow.vala:130
+#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:131
 msgid "Logged in"
-msgstr ""
+msgstr "Bejelentkezve"
 
-#: src/Widgets/CurrentUser.vala:155 src/Widgets/UserRow.vala:132
+#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:133
 msgid "Logged out"
-msgstr ""
+msgstr "Kijelentkezve"
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
@@ -114,8 +130,6 @@ msgstr "Szövegméret csökkentése"
 msgid "Increase text size"
 msgstr "Szövegméret növelése"
 
-#: src/Widgets/UserList.vala:43
-#, fuzzy
-#| msgid "System Settings…"
+#: src/Widgets/UserList.vala:42
 msgid "User Accounts Settings…"
-msgstr "Rendszerbeállítások…"
+msgstr "A felhasználói fiók beállításai…"

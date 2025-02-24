@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-03 22:15+0000\n"
+"POT-Creation-Date: 2025-02-12 18:27+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,18 +29,18 @@ msgstr ""
 msgid "elementary, Inc."
 msgstr ""
 
-#: data/quick-settings.metainfo.xml:36
+#: data/quick-settings.metainfo.xml:36 data/quick-settings.metainfo.xml:50
 msgid "Other Improvements:"
 msgstr ""
 
-#: data/quick-settings.metainfo.xml:38
-msgid "don't add dark mode toggle in greeter"
-msgstr ""
-
-#: data/quick-settings.metainfo.xml:39
+#: data/quick-settings.metainfo.xml:38 data/quick-settings.metainfo.xml:53
 msgid "Updated translations"
 msgstr ""
 
-#: data/quick-settings.metainfo.xml:49
+#: data/quick-settings.metainfo.xml:52
+msgid "don't add dark mode toggle in greeter"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:63
 msgid "First release 🎉️"
 msgstr ""

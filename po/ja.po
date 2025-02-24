@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-03 22:15+0000\n"
-"PO-Revision-Date: 2024-08-18 06:16+0000\n"
+"POT-Creation-Date: 2025-02-12 18:27+0000\n"
+"PO-Revision-Date: 2025-02-06 21:16+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/quick-"
 "settings/ja/>\n"
@@ -17,32 +17,47 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.9.2\n"
 
-#: src/PopoverWidget.vala:28
+#: src/PopoverWidget.vala:29
 msgid "Screen Reader"
 msgstr "スクリーンリーダー"
 
-#: src/PopoverWidget.vala:35
+#: src/PopoverWidget.vala:36
 msgid "Onscreen Keyboard"
 msgstr "オンスクリーンキーボード"
 
-#: src/Widgets/CurrentUser.vala:69 src/Widgets/CurrentUser.vala:108
-#: src/Widgets/CurrentUser.vala:113
+#: src/PopoverWidget.vala:199
+msgid "Not logged in"
+msgstr "ログインしていません"
+
+#: src/Services/UserManager.vala:135
+#, c-format
+msgid "Logged in as “%s”"
+msgstr "“%s” としてログイン中"
+
+#: src/Services/UserManager.vala:158
+#, c-format
+msgid "%i other person logged in"
+msgid_plural "%i other people logged in"
+msgstr[0] "ほかに%i人のユーザーがログイン中"
+
+#: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
+#: src/Widgets/CurrentUser.vala:109
 msgid "Log Out…"
 msgstr "ログアウト…"
 
-#: src/Widgets/CurrentUser.vala:126 src/Widgets/UserRow.vala:31
+#: src/Widgets/CurrentUser.vala:122 src/Widgets/UserRow.vala:31
 msgid "Guest"
-msgstr ""
+msgstr "ゲスト"
 
-#: src/Widgets/CurrentUser.vala:153 src/Widgets/UserRow.vala:130
+#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:131
 msgid "Logged in"
-msgstr ""
+msgstr "ログイン中"
 
-#: src/Widgets/CurrentUser.vala:155 src/Widgets/UserRow.vala:132
+#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:133
 msgid "Logged out"
-msgstr ""
+msgstr "ログアウト中"
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
@@ -115,8 +130,6 @@ msgstr "テキストサイズを縮小"
 msgid "Increase text size"
 msgstr "テキストサイズを拡大"
 
-#: src/Widgets/UserList.vala:43
-#, fuzzy
-#| msgid "System Settings…"
+#: src/Widgets/UserList.vala:42
 msgid "User Accounts Settings…"
-msgstr "システム設定…"
+msgstr "ユーザーアカウントの設定…"

@@ -13,6 +13,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     private Gtk.Stack stack;
     private Gtk.Box main_box;
     private UserList accounts_view;
+    private Gtk.Button current_user_button;
 
     public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (server_type: server_type);
@@ -52,7 +53,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var current_user = new CurrentUser.avatar_only ();
 
-        var current_user_button = new Gtk.Button () {
+        current_user_button = new Gtk.Button () {
             child = current_user
         };
         current_user_button.get_style_context ().add_class ("circular");
@@ -191,5 +192,31 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
     public void reset_stack () {
         stack.visible_child = main_box;
+    }
+
+    public async void update_user_tooltip () {
+        if (server_type != SESSION || is_running_in_demo_mode ()) {
+            current_user_button.tooltip_text = _("Not logged in");
+            return;
+        }
+
+        current_user_button.tooltip_markup = yield UserManager.get_loggedin_tooltip_markup ();
+    }
+
+    private bool is_running_in_demo_mode () {
+        var proc_cmdline = File.new_for_path ("/proc/cmdline");
+        try {
+            var @is = proc_cmdline.read ();
+            var dis = new DataInputStream (@is);
+
+            var line = dis.read_line ();
+            if ("boot=casper" in line || "boot=live" in line || "rd.live.image" in line) {
+                return true;
+            }
+        } catch (Error e) {
+            critical ("Couldn't detect if running in Demo Mode: %s", e.message);
+        }
+
+        return false;
     }
 }
