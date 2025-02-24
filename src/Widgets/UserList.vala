@@ -4,54 +4,53 @@
  */
 
  public class QuickSettings.UserList : Gtk.Box {
-    private Gtk.ListBox listbox;
-    private Gtk.ScrolledWindow listbox_scrolled;
-    private Gtk.Popover? popover;
-
-    private SeatInterface? dm_proxy = null;
-
-    private const string DM_DBUS_ID = "org.freedesktop.DisplayManager";
-
-    private Gee.HashMap<uint, UserRow> user_map = new Gee.HashMap<uint, UserRow> ();
-
-    private const uint GUEST_USER_UID = 999;
-    private const uint NOBODY_USER_UID = 65534;
-    private const uint RESERVED_UID_RANGE_END = 1000;
-    private const uint MAX_ITEMS_BEFORE_SCROLL = 4;
-
     public signal void switch_to_guest ();
     public signal void switch_to_user (string username);
+
+    private const string DM_DBUS_ID = "org.freedesktop.DisplayManager";
+    private const uint GUEST_USER_UID = 999;
+
+    private GLib.ListStore user_list;
+    private Gtk.Popover? popover;
+    private SeatInterface? dm_proxy = null;
 
     construct {
         var current_user = new CurrentUser ();
 
-        listbox = new Gtk.ListBox () {
+        user_list = new GLib.ListStore (typeof (Act.User));
+
+        var listbox = new Gtk.ListBox () {
             hexpand = true
         };
-        listbox.set_sort_func (sort_func);
-        listbox.set_filter_func (set_filter_func);
+        listbox.bind_model (user_list, create_widget_func);
 
-        listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
+        var listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
             hscrollbar_policy = NEVER,
             max_content_height = 200,
             propagate_natural_height = true,
             child = listbox
         };
 
+        var guest_row = new UserRow.guest ();
+
+        var guest_listbox = new Gtk.ListBox () {
+            hexpand = true
+        };
+        guest_listbox.add (guest_row);
+
+        var user_list_vbox = new Gtk.Box (VERTICAL, 0);
+        user_list_vbox.add (new Gtk.Separator (HORIZONTAL));
+        user_list_vbox.add (listbox_scrolled);
+
         var settings_button = new Gtk.ModelButton () {
             text = _("User Accounts Settings…")
         };
 
-        var main_box = new Gtk.Box (VERTICAL, 0);
-        main_box.add (current_user);
-        main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL));
-        main_box.add (listbox_scrolled);
-        main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) {
-            margin_top = 3
-        });
-        main_box.add (settings_button);
-
-        add (main_box);
+        orientation = VERTICAL;
+        add (current_user);
+        add (user_list_vbox);
+        add (new Gtk.Separator (HORIZONTAL));
+        add (settings_button);
 
         if (UserManager.get_usermanager ().is_loaded) {
             init_users ();
@@ -63,7 +62,7 @@
 
         UserManager.get_usermanager ().user_added.connect (add_user);
         UserManager.get_usermanager ().user_removed.connect (remove_user);
-        UserManager.get_usermanager ().user_is_logged_in_changed.connect (update_user);
+        UserManager.get_usermanager ().user_is_logged_in_changed.connect (current_user.update_current_user);
 
         var seat_path = Environment.get_variable ("XDG_SEAT_PATH");
         var session_path = Environment.get_variable ("XDG_SESSION_PATH");
@@ -73,7 +72,7 @@
                 dm_proxy = Bus.get_proxy_sync (BusType.SYSTEM, DM_DBUS_ID, seat_path, DBusProxyFlags.NONE);
 
                 if (dm_proxy.has_guest_account && UserManager.get_current_user () != null) {
-                    add_guest ();
+                    user_list_vbox.add (guest_listbox);
                 }
             } catch (IOError e) {
                 critical ("UserManager error: %s", e.message);
@@ -106,13 +105,9 @@
 
             popover.popdown ();
 
-            if (userbox.is_guest) {
-                switch_to_guest ();
-            } else {
-                var user = userbox.user;
-                if (user != null) {
-                    switch_to_user (user.get_user_name ());
-                }
+            var user = userbox.user;
+            if (user != null) {
+                switch_to_user (user.get_user_name ());
             }
         });
 
@@ -141,91 +136,64 @@
                 });
             });
         });
+
+        guest_listbox.row_activated.connect (() => {
+            popover.popdown ();
+            switch_to_guest ();
+        });
+
+        user_list_vbox.visible = user_list.n_items > 0 || guest_listbox.parent != null;
+        user_list.items_changed.connect (() => {
+            user_list_vbox.visible = user_list.n_items > 0 || guest_listbox.parent != null;
+        });
     }
 
     private void init_users () {
-        foreach (Act.User user in UserManager.get_usermanager ().list_users ()) {
+        foreach (unowned var user in UserManager.get_usermanager ().list_users ()) {
             add_user (user);
         }
     }
 
     private void add_user (Act.User? user) {
+        if (UserManager.is_current_user (user)) {
+            return;
+        }
+
         // Don't add any of the system reserved users
-        var uid = user.get_uid ();
-        if (uid < RESERVED_UID_RANGE_END ||
-            uid == NOBODY_USER_UID ||
-            user_map.has_key (uid)) {
+        if (user.is_system_account ()) {
             return;
         }
 
-        user_map[uid] = new UserRow (user);
-        user_map[uid].show ();
-
-        listbox.add (user_map[uid]);
-        listbox.invalidate_sort ();
-    }
-
-    private void add_guest () {
-        if (user_map[GUEST_USER_UID] != null) {
+        uint pos = -1;
+        if (user_list.find_with_equal_func (user, equal_func, out pos)) {
             return;
         }
 
-        user_map[GUEST_USER_UID] = new UserRow.guest ();
-        user_map[GUEST_USER_UID].show ();
-
-        listbox.add (user_map[GUEST_USER_UID]);
-        listbox.invalidate_sort ();
+        user_list.insert_sorted (user, compare_func);
     }
 
     private void remove_user (Act.User user) {
-        var uid = user.get_uid ();
-        var user_row = user_map[uid];
-        if (user_row == null) {
-            return;
-        }
-
-        user_map.unset (uid);
-        listbox.remove (user_row);
-        listbox.invalidate_sort ();
-    }
-
-    private void update_user (Act.User user) {
-        var userbox = user_map[user.get_uid ()];
-        if (userbox == null) {
-            return;
-        }
-
-        userbox.update_state.begin ();
-        listbox.invalidate_filter ();
-    }
-
-    public void update_all () {
-        foreach (UserRow row in user_map.values) {
-            row.update_state.begin ();
+        uint pos = -1;
+        if (user_list.find_with_equal_func (user, (EqualFunc<Act.User>) equal_func, out pos)) {
+            user_list.remove (pos);
         }
     }
 
-    public int sort_func (Gtk.ListBoxRow row1, Gtk.ListBoxRow row2) {
-        var userbox1 = (UserRow) row1;
-        var userbox2 = (UserRow) row2;
+    private Gtk.Widget create_widget_func (Object object) {
+        var user = (Act.User) object;
 
-        if (userbox1.is_guest && !userbox2.is_guest) {
-            return 1;
-        } else if (!userbox1.is_guest && userbox2.is_guest) {
-            return -1;
-        }
-
-        return userbox1.user.collate (userbox2.user);
+        return new UserRow (user);
     }
 
-    public bool set_filter_func (Gtk.ListBoxRow row) {
-        var user_row = (UserRow) row;
+    private int compare_func (Object a, Object b) {
+        var user_a = (Act.User) a;
+        var user_b = (Act.User) b;
 
-        if (user_row.is_guest) {
-            return UserManager.get_current_user () != null;
-        }
+        return user_a.collate (user_b);
+    }
 
-        return !UserManager.is_current_user (user_row.user);
+    private static bool equal_func (Object a, Object b) {
+        return ((Act.User) a).uid == ((Act.User) b).uid;
     }
 
     private void show_settings () {
