@@ -182,7 +182,7 @@
             return;
         }
 
-        // Curren user is guest
+        // Current user is guest
         if (UserManager.get_current_user () == null) {
             return;
         }
@@ -223,7 +223,7 @@
         }
     }
 
-    // Users are added to the list even if they are self or locked
+    // Users are added to the list even if they are locked
     private bool has_visible_rows () {
         for (int i = 0; listbox.get_row_at_index (i) != null; i++) {
             if (listbox.get_row_at_index (i).visible = true) {
