@@ -8,10 +8,10 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-02-12 18:27+0000\n"
-"PO-Revision-Date: 2025-02-06 21:16+0000\n"
+"PO-Revision-Date: 2025-03-01 15:19+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
-"Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/quick-"
-"settings/ja/>\n"
+"Language-Team: Japanese <https://l10n.elementary.io/projects/wingpanel/"
+"quick-settings/ja/>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,7 +40,7 @@ msgstr "“%s” としてログイン中"
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
-msgstr[0] "ほかに%i人のユーザーがログイン中"
+msgstr[0] "他に%i人のユーザーがログイン中"
 
 #: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
 #: src/Widgets/CurrentUser.vala:109
