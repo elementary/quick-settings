@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 18:27+0000\n"
+"POT-Creation-Date: 2025-03-03 19:12+0000\n"
 "PO-Revision-Date: 2024-04-25 16:13+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Slovenian <https://l10n.elementary.io/projects/wingpanel/"
@@ -55,11 +55,11 @@ msgstr "Odjava…"
 msgid "Guest"
 msgstr ""
 
-#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:131
+#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:115
 msgid "Logged in"
 msgstr ""
 
-#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:133
+#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:117
 msgid "Logged out"
 msgstr ""
 
@@ -136,3 +136,9 @@ msgstr "Povečaj velikost besedila"
 #: src/Widgets/UserList.vala:42
 msgid "User Accounts Settings…"
 msgstr ""
+
+#: src/Widgets/UserRow.vala:127
+#, fuzzy
+#| msgid "Lock"
+msgid "Locked"
+msgstr "Zakleni"

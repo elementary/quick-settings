@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 18:27+0000\n"
+"POT-Creation-Date: 2025-03-03 19:12+0000\n"
 "PO-Revision-Date: 2024-11-28 12:16+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/"
@@ -52,11 +52,11 @@ msgstr "Terminar sessão…"
 msgid "Guest"
 msgstr ""
 
-#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:131
+#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:115
 msgid "Logged in"
 msgstr ""
 
-#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:133
+#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:117
 msgid "Logged out"
 msgstr ""
 
@@ -135,3 +135,9 @@ msgstr "Aumentar o tamanho do texto"
 #| msgid "System Settings…"
 msgid "User Accounts Settings…"
 msgstr "Definições do sistema…"
+
+#: src/Widgets/UserRow.vala:127
+#, fuzzy
+#| msgid "Lock"
+msgid "Locked"
+msgstr "Bloquear"
