@@ -70,15 +70,8 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             avatar.set_loadable_icon (get_avatar_icon ());
 
             user.changed.connect (() => {
-                update ();
                 update_state.begin ();
             });
-
-            user.bind_property ("locked", this, "visible", BindingFlags.SYNC_CREATE | BindingFlags.INVERT_BOOLEAN);
-            user.bind_property ("locked", this, "no-show-all", BindingFlags.SYNC_CREATE);
-            user.bind_property ("real-name", avatar, "text", BindingFlags.SYNC_CREATE);
-
-            update ();
         }
 
         var grid = new Gtk.Grid () {
@@ -112,15 +105,6 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         }
     }
 
-    private void update () {
-        if (user == null) {
-            return;
-        }
-
-        fullname_label.label = user.real_name;
-        avatar.set_loadable_icon (get_avatar_icon ());
-    }
-
     public async void update_state () {
         state = yield get_user_state ();
 
@@ -131,6 +115,17 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             status_label.label = _("Logged in");
         } else {
             status_label.label = _("Logged out");
+        }
+
+        if (user != null) {
+            fullname_label.label = user.real_name;
+            avatar.text = user.real_name;
+            avatar.set_loadable_icon (get_avatar_icon ());
+            sensitive = !user.locked;
+
+            if (user.locked) {
+                status_label.label = _("Locked");
+            }
         }
 
         ((Gtk.ListBox) parent).invalidate_sort ();
