@@ -174,7 +174,7 @@
         user_map[uid].show ();
 
         listbox.add (user_map[uid]);
-        user_list_revealer.reveal_child = has_visible_rows ();
+        user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
     }
 
     private void add_guest () {
@@ -191,7 +191,7 @@
         user_map[GUEST_USER_UID].show ();
 
         listbox.add (user_map[GUEST_USER_UID]);
-        user_list_revealer.reveal_child = has_visible_rows ();
+        user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
     }
 
     private void remove_user (Act.User user) {
@@ -204,7 +204,7 @@
         user_map.unset (uid);
         listbox.remove (user_row);
         listbox.invalidate_sort ();
-        user_list_revealer.reveal_child = has_visible_rows ();
+        user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
     }
 
     private void update_user (Act.User user) {
@@ -214,24 +214,13 @@
         }
 
         userbox.update_state.begin ();
-        user_list_revealer.reveal_child = has_visible_rows ();
+        user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
     }
 
     public void update_all () {
         foreach (UserRow row in user_map.values) {
             row.update_state.begin ();
         }
-    }
-
-    // Users are added to the list even if they are locked
-    private bool has_visible_rows () {
-        for (int i = 0; listbox.get_row_at_index (i) != null; i++) {
-            if (listbox.get_row_at_index (i).visible = true) {
-                return true;
-            }
-        }
-
-        return false;
     }
 
     public int sort_func (Gtk.ListBoxRow row1, Gtk.ListBoxRow row2) {
