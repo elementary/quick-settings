@@ -4,24 +4,19 @@
  */
 
  public class QuickSettings.UserList : Gtk.Box {
-    private Gtk.ListBox listbox;
-    private Gtk.ScrolledWindow listbox_scrolled;
-    private Gtk.Popover? popover;
-    private Gtk.Revealer user_list_revealer;
-
-    private SeatInterface? dm_proxy = null;
-
-    private const string DM_DBUS_ID = "org.freedesktop.DisplayManager";
-
-    private Gee.HashMap<uint, UserRow> user_map = new Gee.HashMap<uint, UserRow> ();
-
-    private const uint GUEST_USER_UID = 999;
-    private const uint NOBODY_USER_UID = 65534;
-    private const uint RESERVED_UID_RANGE_END = 1000;
-    private const uint MAX_ITEMS_BEFORE_SCROLL = 4;
-
     public signal void switch_to_guest ();
     public signal void switch_to_user (string username);
+
+    private const uint GUEST_USER_UID = 999;
+    private const string DM_DBUS_ID = "org.freedesktop.DisplayManager";
+
+
+    private SeatInterface? dm_proxy = null;
+    private Gee.HashMap<uint, UserRow> user_map = new Gee.HashMap<uint, UserRow> ();
+
+    private Gtk.ListBox listbox;
+    private Gtk.Popover? popover;
+    private Gtk.Revealer user_list_revealer;
 
     construct {
         var current_user = new CurrentUser ();
@@ -31,7 +26,7 @@
         };
         listbox.set_sort_func (sort_func);
 
-        listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
+        var listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
             hscrollbar_policy = NEVER,
             max_content_height = 200,
             propagate_natural_height = true,
@@ -51,15 +46,11 @@
             reveal_child = false
         };
 
-        var main_box = new Gtk.Box (VERTICAL, 0);
-        main_box.add (current_user);
-        main_box.add (user_list_revealer);
-        main_box.add (new Gtk.Separator (Gtk.Orientation.HORIZONTAL) {
-            margin_top = 3
-        });
-        main_box.add (settings_button);
-
-        add (main_box);
+        orientation = VERTICAL;
+        add (current_user);
+        add (user_list_revealer);
+        add (new Gtk.Separator (HORIZONTAL));
+        add (settings_button);
 
         if (UserManager.get_usermanager ().is_loaded) {
             init_users ();
@@ -159,10 +150,12 @@
 
     private void add_user (Act.User? user) {
         // Don't add any of the system reserved users
+        if (user.is_system_account ()) {
+            return;
+        }
+
         var uid = user.get_uid ();
-        if (uid < RESERVED_UID_RANGE_END ||
-            uid == NOBODY_USER_UID ||
-            user_map.has_key (uid)) {
+        if (user_map.has_key (uid)) {
             return;
         }
 
