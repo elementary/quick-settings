@@ -71,7 +71,6 @@
 
         UserManager.get_usermanager ().user_added.connect (add_user);
         UserManager.get_usermanager ().user_removed.connect (remove_user);
-        UserManager.get_usermanager ().user_is_logged_in_changed.connect (update_user);
 
         var seat_path = Environment.get_variable ("XDG_SEAT_PATH");
         var session_path = Environment.get_variable ("XDG_SESSION_PATH");
@@ -204,16 +203,6 @@
         user_map.unset (uid);
         listbox.remove (user_row);
         listbox.invalidate_sort ();
-        user_list_revealer.reveal_child = has_visible_rows ();
-    }
-
-    private void update_user (Act.User user) {
-        var userbox = user_map[user.get_uid ()];
-        if (userbox == null) {
-            return;
-        }
-
-        userbox.update_state.begin ();
         user_list_revealer.reveal_child = has_visible_rows ();
     }
 
