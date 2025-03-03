@@ -31,7 +31,7 @@
   <update_contact>contact_at_elementary.io</update_contact>
 
   <releases>
-    <release version="1.1.0" date="2025-02-11" urgency="medium">
+    <release version="1.1.0" date="2025-03-03" urgency="medium">
       <description>
         <p>Other Improvements:</p>
         <ul>
