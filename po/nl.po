@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-12 18:27+0000\n"
+"POT-Creation-Date: 2025-03-03 19:12+0000\n"
 "PO-Revision-Date: 2025-02-05 18:22+0000\n"
 "Last-Translator: DutchVipperloid <svenroelof@e.email>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -56,11 +56,11 @@ msgstr "Afmelden…"
 msgid "Guest"
 msgstr "Gast"
 
-#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:131
+#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:115
 msgid "Logged in"
 msgstr "Ingelogd"
 
-#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:133
+#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:117
 msgid "Logged out"
 msgstr "Uitgelogd"
 
@@ -137,3 +137,9 @@ msgstr "Vergroot tekstgrootte"
 #: src/Widgets/UserList.vala:42
 msgid "User Accounts Settings…"
 msgstr "Gebruikersaccountsinstellingen…"
+
+#: src/Widgets/UserRow.vala:127
+#, fuzzy
+#| msgid "Lock"
+msgid "Locked"
+msgstr "Vergrendelen"
