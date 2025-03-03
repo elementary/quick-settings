@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-05 18:59+0000\n"
+"POT-Creation-Date: 2025-02-12 18:27+0000\n"
 "PO-Revision-Date: 2024-04-25 16:13+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Norwegian Nynorsk <https://l10n.elementary.io/projects/"
@@ -19,24 +19,24 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.0.2\n"
 
-#: src/PopoverWidget.vala:30
+#: src/PopoverWidget.vala:29
 msgid "Screen Reader"
 msgstr "Skjermopplesar"
 
-#: src/PopoverWidget.vala:37
+#: src/PopoverWidget.vala:36
 msgid "Onscreen Keyboard"
 msgstr "Tastatur på skjermen"
 
-#: src/PopoverWidget.vala:200
+#: src/PopoverWidget.vala:199
 msgid "Not logged in"
 msgstr ""
 
-#: src/PopoverWidget.vala:212
+#: src/Services/UserManager.vala:135
 #, c-format
 msgid "Logged in as “%s”"
 msgstr ""
 
-#: src/PopoverWidget.vala:218
+#: src/Services/UserManager.vala:158
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"

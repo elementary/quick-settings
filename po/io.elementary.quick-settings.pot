@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-02-05 18:59+0000\n"
+"POT-Creation-Date: 2025-03-03 19:12+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,24 +18,24 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: src/PopoverWidget.vala:30
+#: src/PopoverWidget.vala:29
 msgid "Screen Reader"
 msgstr ""
 
-#: src/PopoverWidget.vala:37
+#: src/PopoverWidget.vala:36
 msgid "Onscreen Keyboard"
 msgstr ""
 
-#: src/PopoverWidget.vala:200
+#: src/PopoverWidget.vala:199
 msgid "Not logged in"
 msgstr ""
 
-#: src/PopoverWidget.vala:212
+#: src/Services/UserManager.vala:135
 #, c-format
 msgid "Logged in as “%s”"
 msgstr ""
 
-#: src/PopoverWidget.vala:218
+#: src/Services/UserManager.vala:158
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
@@ -51,11 +51,11 @@ msgstr ""
 msgid "Guest"
 msgstr ""
 
-#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:131
+#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:115
 msgid "Logged in"
 msgstr ""
 
-#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:133
+#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:117
 msgid "Logged out"
 msgstr ""
 
@@ -130,4 +130,8 @@ msgstr ""
 
 #: src/Widgets/UserList.vala:42
 msgid "User Accounts Settings…"
+msgstr ""
+
+#: src/Widgets/UserRow.vala:127
+msgid "Locked"
 msgstr ""
