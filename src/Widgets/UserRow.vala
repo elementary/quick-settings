@@ -133,7 +133,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         selectable = state != UserState.ACTIVE;
         activatable = state != UserState.ACTIVE;
 
-        if (state == UserState.ACTIVE || state == UserState.ONLINE) {
+        if (state == UserState.ACTIVE || state == UserState.ONLINE || UserManager.get_current_user () == null) {
             status_label.label = _("Logged in");
         } else {
             status_label.label = _("Logged out");
@@ -149,7 +149,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
                 status_label.label = _("Locked");
             }
         } else {
-            fullname = _("Guest");
+            fullname_label.label = _("Guest");
         }
 
         ((Gtk.ListBox) parent).invalidate_sort ();
