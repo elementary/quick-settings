@@ -3,13 +3,9 @@
  * SPDX-FileCopyrightText: 2024 elementary, Inc. (https://elementary.io)
  */
 
- public class QuickSettings.CurrentUser : Gtk.Box {
+ public class QuickSettings.AvatarButton : Gtk.Box {
     private Act.User? user = null;
     private Hdy.Avatar avatar;
-
-    public CurrentUser.avatar_only () {
-        Object ();
-    }
 
     construct {
         avatar = new Hdy.Avatar (32, null, true);
