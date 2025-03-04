@@ -19,7 +19,7 @@
     private Gtk.Revealer user_list_revealer;
 
     construct {
-        var current_user = new CurrentUser ();
+        var current_user = new UserRow (UserManager.get_current_user ());
 
         listbox = new Gtk.ListBox () {
             hexpand = true
@@ -180,7 +180,7 @@
             return;
         }
 
-        user_map[GUEST_USER_UID] = new UserRow.guest ();
+        user_map[GUEST_USER_UID] = new UserRow (null);
         user_map[GUEST_USER_UID].show ();
 
         listbox.add (user_map[GUEST_USER_UID]);

@@ -4,7 +4,7 @@
  */
 
 public class QuickSettings.UserRow : Gtk.ListBoxRow {
-    private const int ICON_SIZE = 32;
+    public signal void logout ();
 
     public Act.User? user { get; construct; default = null; }
     public string fullname { get; construct set; }
@@ -20,16 +20,8 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
     private Gtk.Label fullname_label;
     private Gtk.Label status_label;
 
-    public UserRow (Act.User user) {
-        Object (
-            user: user
-        );
-    }
-
-    public UserRow.guest () {
-        Object (
-            fullname: _("Guest")
-        );
+    public UserRow (Act.User? user) {
+        Object (user: user);
     }
 
     construct {
@@ -46,8 +38,10 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         status_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
         status_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
+        var pixel_size = user == UserManager.get_current_user () ? 48 : 32;
+
         if (user == null) {
-            avatar = new Hdy.Avatar (ICON_SIZE, null, false);
+            avatar = new Hdy.Avatar (pixel_size, null, false);
 
             // We want to use the user's accent, not a random color
             unowned Gtk.StyleContext avatar_context = avatar.get_style_context ();
@@ -66,7 +60,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             avatar_context.remove_class ("color13");
             avatar_context.remove_class ("color14");
         } else {
-            avatar = new Hdy.Avatar (ICON_SIZE, fullname, true);
+            avatar = new Hdy.Avatar (pixel_size, fullname, true);
             avatar.set_loadable_icon (get_avatar_icon ());
 
             user.changed.connect (() => {
@@ -78,13 +72,41 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             column_spacing = 12
         };
         grid.attach (avatar, 0, 0, 1, 2);
-        grid.attach (fullname_label, 1, 0, 1, 1);
-        grid.attach (status_label, 1, 1, 1, 1);
-        grid.show_all ();
+        grid.attach (fullname_label, 1, 0);
+        grid.attach (status_label, 1, 1);
 
         get_style_context ().add_class ("menuitem");
         child = grid;
 
+        if (user == UserManager.get_current_user ()) {
+            var logout_button = new Gtk.Button.from_icon_name ("system-log-out-symbolic") {
+                tooltip_text = _("Log Out…"),
+                hexpand = true,
+                halign = END,
+                valign = CENTER
+            };
+            logout_button.get_style_context ().add_class ("circular");
+
+            grid.attach (logout_button, 2, 0, 2, 2);
+
+            var keybinding_settings = new Settings ("org.gnome.settings-daemon.plugins.media-keys");
+
+            logout_button.tooltip_markup = Granite.markup_accel_tooltip (
+                keybinding_settings.get_strv ("logout"), _("Log Out…")
+            );
+
+            keybinding_settings.changed["logout"].connect (() => {
+                logout_button.tooltip_markup = Granite.markup_accel_tooltip (
+                    keybinding_settings.get_strv ("logout"), _("Log Out…")
+                );
+            });
+
+            logout_button.clicked.connect (() => {
+                logout ();
+            });
+        }
+
+        show_all ();
         update_state.begin ();
     }
 
@@ -126,6 +148,8 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             if (user.locked) {
                 status_label.label = _("Locked");
             }
+        } else {
+            fullname = _("Guest");
         }
 
         ((Gtk.ListBox) parent).invalidate_sort ();
