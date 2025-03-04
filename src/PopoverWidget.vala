@@ -51,7 +51,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         var scale_box = new Gtk.Box (VERTICAL, 0);
 
-        var current_user = new CurrentUser.avatar_only ();
+        var current_user = new AvatarButton ();
 
         current_user_button = new Gtk.Button () {
             child = current_user
