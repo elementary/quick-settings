@@ -7,18 +7,23 @@
     public signal void switch_to_guest ();
     public signal void switch_to_user (string username);
 
-    private const uint GUEST_USER_UID = 999;
+    private const uid_t GUEST_USER_UID = 999;
     private const string DM_DBUS_ID = "org.freedesktop.DisplayManager";
 
 
     private SeatInterface? dm_proxy = null;
-    private Gee.HashMap<uint, UserRow> user_map = new Gee.HashMap<uint, UserRow> ();
+    private GLib.HashTable<uid_t?, UserRow> user_map;
 
     private Gtk.ListBox listbox;
     private Gtk.Popover? popover;
     private Gtk.Revealer user_list_revealer;
 
     construct {
+        user_map = new GLib.HashTable<uid_t?, UserRow> ((k) => {
+            return (uint) k;
+        }, (k1, k2) => {
+            return k1 == k2;
+        });
         var current_user = new CurrentUser ();
 
         listbox = new Gtk.ListBox () {
@@ -155,7 +160,7 @@
         }
 
         var uid = user.get_uid ();
-        if (user_map.has_key (uid)) {
+        if (uid in user_map) {
             return;
         }
 
@@ -194,7 +199,7 @@
             return;
         }
 
-        user_map.unset (uid);
+        user_map.remove (uid);
         listbox.remove (user_row);
         listbox.invalidate_sort ();
         user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
@@ -211,7 +216,7 @@
     }
 
     public void update_all () {
-        foreach (UserRow row in user_map.values) {
+        foreach (unowned UserRow row in user_map.get_values ()) {
             row.update_state.begin ();
         }
     }
