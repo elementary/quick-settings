@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-03-03 19:12+0000\n"
-"PO-Revision-Date: 2024-12-12 06:57+0000\n"
+"PO-Revision-Date: 2025-03-17 11:10+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
-"Language-Team: Chinese (Traditional Han script) <https://l10n.elementary.io/"
-"projects/wingpanel/quick-settings/zh_Hant/>\n"
+"Language-Team: Chinese (Traditional Han script) <https://"
+"l10n.elementaryos.org/projects/wingpanel/quick-settings/zh_Hant/>\n"
 "Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.8.4\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #: src/PopoverWidget.vala:29
 msgid "Screen Reader"
@@ -29,18 +29,18 @@ msgstr "螢幕鍵盤"
 
 #: src/PopoverWidget.vala:199
 msgid "Not logged in"
-msgstr ""
+msgstr "未登入"
 
 #: src/Services/UserManager.vala:135
 #, c-format
 msgid "Logged in as “%s”"
-msgstr ""
+msgstr "已作為 \"%s\" 登入"
 
 #: src/Services/UserManager.vala:158
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
-msgstr[0] ""
+msgstr[0] "另外有 %i 人已登入"
 
 #: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
 #: src/Widgets/CurrentUser.vala:109
@@ -49,15 +49,15 @@ msgstr "登出…"
 
 #: src/Widgets/CurrentUser.vala:122 src/Widgets/UserRow.vala:31
 msgid "Guest"
-msgstr ""
+msgstr "訪客"
 
 #: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:115
 msgid "Logged in"
-msgstr ""
+msgstr "已登入"
 
 #: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:117
 msgid "Logged out"
-msgstr ""
+msgstr "已登出"
 
 #: src/Widgets/DarkModeToggle.vala:13
 msgid "Dark Mode"
@@ -81,7 +81,7 @@ msgstr "您確定要關機嗎？"
 
 #: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
-msgstr "這會關閉所有開啟的應用程式並關閉此裝置。"
+msgstr "這會關閉所有開啟的應用程式並將此裝置關機。"
 
 #: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
@@ -129,13 +129,9 @@ msgid "Increase text size"
 msgstr "提高字型大小"
 
 #: src/Widgets/UserList.vala:42
-#, fuzzy
-#| msgid "System Settings…"
 msgid "User Accounts Settings…"
-msgstr "系統設定值…"
+msgstr "使用者帳號設定值…"
 
 #: src/Widgets/UserRow.vala:127
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "鎖定"
+msgstr "已鎖定"
