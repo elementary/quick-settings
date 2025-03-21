@@ -160,7 +160,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             var _insomnia_toggle = (SettingsToggle) obj;
             unowned var application = (Gtk.Application) GLib.Application.get_default ();
 
-            // TODO: reasons?
             if (_insomnia_toggle.active && suspend_cookie == 0 && idle_cookie == 0) {
                 suspend_cookie = application.inhibit (
                     (Gtk.Window) get_toplevel (),
