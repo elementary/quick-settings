@@ -14,6 +14,8 @@ interface QuickSettings.SystemInterface : Object {
     public abstract void suspend (bool interactive) throws GLib.Error;
     public abstract void reboot (bool interactive) throws GLib.Error;
     public abstract void power_off (bool interactive) throws GLib.Error;
+    public abstract void reboot_with_flags (uint64 flags) throws GLib.Error;
+    public abstract void power_off_with_flags (uint64 flags) throws GLib.Error;
 
     public abstract UserInfo[] list_users () throws GLib.Error;
     public abstract string can_suspend () throws GLib.Error;
