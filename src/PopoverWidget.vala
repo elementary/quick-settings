@@ -41,9 +41,9 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             settings_uri = "settings://input/keyboard/behavior"
         };
 
-        var insomnia_toggle = new SettingsToggle (
+        var prevent_sleep_toggle = new SettingsToggle (
             new ThemedIcon ("weather-clear-night"),
-            _("Insomnia")
+            _("Prevent Sleep")
         );
 
         var toggle_box = new Gtk.FlowBox () {
@@ -54,7 +54,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             selection_mode = NONE
         };
         toggle_box.get_style_context ().add_class ("togglebox");
-        toggle_box.add (insomnia_toggle);
+        toggle_box.add (prevent_sleep_toggle);
 
         var text_scale = new TextScale ();
 
