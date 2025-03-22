@@ -156,11 +156,11 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             }
         });
 
-        insomnia_toggle.notify["active"].connect ((obj, pspec) => {
-            var _insomnia_toggle = (SettingsToggle) obj;
+        prevent_sleep_toggle.notify["active"].connect ((obj, pspec) => {
+            var _prevent_sleep_toggle = (SettingsToggle) obj;
             unowned var application = (Gtk.Application) GLib.Application.get_default ();
 
-            if (_insomnia_toggle.active && suspend_cookie == 0 && idle_cookie == 0) {
+            if (_prevent_sleep_toggle.active && suspend_cookie == 0 && idle_cookie == 0) {
                 suspend_cookie = application.inhibit (
                     (Gtk.Window) get_toplevel (),
                     Gtk.ApplicationInhibitFlags.SUSPEND,
@@ -171,7 +171,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                     Gtk.ApplicationInhibitFlags.IDLE,
                     "Prevent session from idle"
                 );
-            } else if (!_insomnia_toggle.active && suspend_cookie > 0 && idle_cookie > 0) {
+            } else if (!_prevent_sleep_toggle.active && suspend_cookie > 0 && idle_cookie > 0) {
                 application.uninhibit (suspend_cookie);
                 application.uninhibit (idle_cookie);
 
