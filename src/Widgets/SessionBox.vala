@@ -46,26 +46,6 @@ public class QuickSettings.SessionBox : Gtk.Box {
         });
 
         if (server_type == SESSION) {
-            UserManager.setup_session_interface.begin ((obj, res) => {
-                var session_interface = UserManager.setup_session_interface.end (res);
-
-                shutdown_button.clicked.connect (() => {
-                    popover.popdown ();
-
-                    // Ask gnome-session to "reboot" which throws the EndSessionDialog
-                    // Our "reboot" dialog also has a shutdown button to give the choice between reboot/shutdown
-                    session_interface.reboot.begin ((obj, res) => {
-                        try {
-                            session_interface.reboot.end (res);
-                        } catch (Error e) {
-                            if (!(e is GLib.IOError.CANCELLED)) {
-                                critical ("Unable to open shutdown dialog: %s", e.message);
-                            }
-                        }
-                    });
-                });
-            });
-
             setup_lock_interface.begin ((obj, res) => {
                 var lock_interface = setup_lock_interface.end (res);
 
@@ -82,12 +62,12 @@ public class QuickSettings.SessionBox : Gtk.Box {
         } else {
             remove (settings_button);
             remove (lock_button);
-
-            shutdown_button.clicked.connect (() => {
-                popover.popdown ();
-                show_dialog (EndSessionDialogType.RESTART, Gtk.get_current_event_time ());
-            });
         }
+
+        shutdown_button.clicked.connect (() => {
+            popover.popdown ();
+            show_dialog (EndSessionDialogType.RESTART, Gtk.get_current_event_time ());
+        });
 
         setup_system_interface.begin ((obj, res) => {
             system_interface = setup_system_interface.end (res);
@@ -179,26 +159,22 @@ public class QuickSettings.SessionBox : Gtk.Box {
         });
 
         current_dialog.shutdown.connect (() => {
-            if (server_type == SESSION) {
-                server.confirmed_shutdown ();
-            } else {
-                try {
-                    system_interface.power_off (false);
-                } catch (Error e) {
-                    warning ("Unable to shutdown: %s", e.message);
-                }
+            try {
+                // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
+                // #define SD_LOGIND_ROOT_CHECK_INHIBITORS (UINT64_C(1) << 0) == 1
+                system_interface.power_off_with_flags (1);
+            } catch (Error e) {
+                warning ("Unable to shutdown: %s", e.message);
             }
         });
 
         current_dialog.reboot.connect (() => {
-            if (server_type == SESSION) {
-                server.confirmed_reboot ();
-            } else {
-                try {
-                    system_interface.reboot (false);
-                } catch (Error e) {
-                    warning ("Unable to reboot: %s", e.message);
-                }
+            try {
+                // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
+                // #define SD_LOGIND_KEXEC_REBOOT (UINT64_C(1) << 1) == 2
+                system_interface.reboot_with_flags (2);
+            } catch (Error e) {
+                warning ("Unable to reboot: %s", e.message);
             }
         });
 
