@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
+"POT-Creation-Date: 2025-04-03 19:07+0000\n"
 "PO-Revision-Date: 2025-03-09 23:55+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
 "Language-Team: Ukrainian <https://l10n.elementaryos.org/projects/wingpanel/"
@@ -20,15 +20,19 @@ msgstr ""
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Weblate 5.10.2\n"
 
-#: src/PopoverWidget.vala:29
+#: src/PopoverWidget.vala:32
 msgid "Screen Reader"
 msgstr "Зчитувач з екрана"
 
-#: src/PopoverWidget.vala:36
+#: src/PopoverWidget.vala:39
 msgid "Onscreen Keyboard"
 msgstr "Екранна клавіатура"
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:46
+msgid "Prevent Sleep"
+msgstr ""
+
+#: src/PopoverWidget.vala:232
 msgid "Not logged in"
 msgstr "Вхід не виконано"
 
@@ -114,8 +118,8 @@ msgstr "Системні налаштування…"
 msgid "Suspend"
 msgstr "Призупинити"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "Заблокувати"
 
