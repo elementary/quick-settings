@@ -1,6 +1,5 @@
 src/Indicator.vala
 src/PopoverWidget.vala
-src/DBus/AccountsService.vala
 src/DBus/EndSessionDialogServer.vala
 src/DBus/LockInterface.vala
 src/DBus/SeatInterface.vala

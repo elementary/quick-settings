@@ -10,7 +10,6 @@ config_file = configure_file(
 sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
-    'DBus' / 'AccountsService.vala',
     'DBus' / 'EndSessionDialogServer.vala',
     'DBus' / 'LockInterface.vala',
     'DBus' / 'SeatInterface.vala',
