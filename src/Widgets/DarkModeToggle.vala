@@ -14,7 +14,7 @@ public class QuickSettings.DarkModeToggle: SettingsToggle {
     construct {
         settings_uri = "settings://desktop/appearance";
 
-        var settings = new GLib.Settings ("org.gnome.desktop.interface");
+        var settings = new GLib.Settings ("io.elementary.settings-daemon.prefers-color-scheme");
 
         active = settings.get_enum ("color-scheme") == Granite.Settings.ColorScheme.DARK;
         settings.changed["color-scheme"].connect (() => {
