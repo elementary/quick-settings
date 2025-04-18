@@ -19,7 +19,10 @@ Homepage: https://github.com/elementary/quick-settings
 
 Package: io.elementary.quick-settings
 Architecture: any
-Depends: ${misc:Depends}, ${shlibs:Depends}
+Depends:
+    io.elementary.settings-daemon (>= 8.3.0),
+    ${misc:Depends},
+    ${shlibs:Depends}
 Enhances: io.elementary.wingpanel
 Description: WingPanel Quick Settings Indicator
  WingPanel Quick Settings Indicator
