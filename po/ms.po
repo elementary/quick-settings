@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-03 19:07+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
 "PO-Revision-Date: 2024-04-25 16:13+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Malay <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -19,19 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.0.2\n"
 
-#: src/PopoverWidget.vala:32
+#: src/PopoverWidget.vala:29
 msgid "Screen Reader"
 msgstr ""
 
-#: src/PopoverWidget.vala:39
+#: src/PopoverWidget.vala:36
 msgid "Onscreen Keyboard"
 msgstr ""
 
-#: src/PopoverWidget.vala:46
-msgid "Prevent Sleep"
-msgstr ""
-
-#: src/PopoverWidget.vala:232
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
 msgstr ""
 
@@ -63,7 +59,7 @@ msgstr ""
 msgid "Logged out"
 msgstr ""
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr ""
 
@@ -101,6 +97,10 @@ msgstr "Mula Semula"
 
 #: src/Widgets/EndSessionDialog.vala:123
 msgid "Install pending system updates"
+msgstr ""
+
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
 msgstr ""
 
 #: src/Widgets/RotationToggle.vala:10
