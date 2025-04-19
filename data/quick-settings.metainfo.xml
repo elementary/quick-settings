@@ -42,6 +42,7 @@
         <issue url="https://github.com/elementary/quick-settings/issues/36">Prevent screensaver mode from activating</issue>
         <issue url="https://github.com/elementary/quick-settings/issues/42">Shut down / log out options should close applications properly</issue>
         <issue url="https://github.com/elementary/quick-settings/issues/89">1.1.0 can't be built</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/98">Lock button actually suspends in Greeter</issue>
         <issue url="https://github.com/elementary/settings-daemon/issues/162">Light/Dark Theme automated switch does not work</issue>
       </issues>
     </release>
