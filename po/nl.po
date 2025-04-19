@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-03 19:07+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
 "PO-Revision-Date: 2025-03-08 12:45+0000\n"
 "Last-Translator: DutchVipperloid <svenroelof@e.email>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -19,19 +19,15 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.10.2\n"
 
-#: src/PopoverWidget.vala:32
+#: src/PopoverWidget.vala:29
 msgid "Screen Reader"
 msgstr "Schermlezer"
 
-#: src/PopoverWidget.vala:39
+#: src/PopoverWidget.vala:36
 msgid "Onscreen Keyboard"
 msgstr "Toetsenbord op het scherm"
 
-#: src/PopoverWidget.vala:46
-msgid "Prevent Sleep"
-msgstr ""
-
-#: src/PopoverWidget.vala:232
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
 msgstr "Niet ingelogd"
 
@@ -64,7 +60,7 @@ msgstr "Ingelogd"
 msgid "Logged out"
 msgstr "Uitgelogd"
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr "Donkere modus"
 
@@ -104,6 +100,10 @@ msgstr "Opnieuw opstarten"
 #: src/Widgets/EndSessionDialog.vala:123
 msgid "Install pending system updates"
 msgstr "Installeer wachtende systeemupdates"
+
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
+msgstr ""
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
