@@ -15,9 +15,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     private UserList accounts_view;
     private Gtk.Button current_user_button;
 
-    private uint suspend_cookie = 0;
-    private uint idle_cookie = 0;
-
     public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (server_type: server_type);
     }
@@ -41,10 +38,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             settings_uri = "settings://input/keyboard/behavior"
         };
 
-        var prevent_sleep_toggle = new SettingsToggle (
-            new ThemedIcon ("weather-clear-night"),
-            _("Prevent Sleep")
-        );
+        var prevent_sleep_toggle = new PreventSleepToggle ();
 
         var toggle_box = new Gtk.FlowBox () {
             column_spacing = 6,
@@ -146,30 +140,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                 toggle_box.remove (onscreen_keyboard);
 
                 scale_box.remove (text_scale);
-            }
-        });
-
-        prevent_sleep_toggle.notify["active"].connect ((obj, pspec) => {
-            var _prevent_sleep_toggle = (SettingsToggle) obj;
-            unowned var application = (Gtk.Application) GLib.Application.get_default ();
-
-            if (_prevent_sleep_toggle.active && suspend_cookie == 0 && idle_cookie == 0) {
-                suspend_cookie = application.inhibit (
-                    (Gtk.Window) get_toplevel (),
-                    Gtk.ApplicationInhibitFlags.SUSPEND,
-                    "Prevent session from suspending"
-                );
-                idle_cookie = application.inhibit (
-                    (Gtk.Window) get_toplevel (),
-                    Gtk.ApplicationInhibitFlags.IDLE,
-                    "Prevent session from idle"
-                );
-            } else if (!_prevent_sleep_toggle.active && suspend_cookie > 0 && idle_cookie > 0) {
-                application.uninhibit (suspend_cookie);
-                application.uninhibit (idle_cookie);
-
-                suspend_cookie = 0;
-                idle_cookie = 0;
             }
         });
 

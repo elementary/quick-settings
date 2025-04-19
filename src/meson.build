@@ -21,6 +21,7 @@ sources = [
     'Widgets' / 'CurrentUser.vala',
     'Widgets' / 'DarkModeToggle.vala',
     'Widgets' / 'EndSessionDialog.vala',
+    'Widgets' / 'PreventSleepToggle.vala',
     'Widgets' / 'RotationToggle.vala',
     'Widgets' / 'SettingsToggle.vala',
     'Widgets' / 'SessionBox.vala',
