@@ -61,7 +61,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
             });
         } else {
             remove (settings_button);
-            remove (suspend_button);
+            remove (lock_button);
         }
 
         shutdown_button.clicked.connect (() => {
@@ -78,21 +78,9 @@ public class QuickSettings.SessionBox : Gtk.Box {
                 try {
                     system_interface.suspend (true);
                 } catch (GLib.Error e) {
-                    critical ("Unable to lock: %s", e.message);
+                    critical ("Unable to suspend: %s", e.message);
                 }
             });
-
-            if (server_type == GREETER) {
-                lock_button.clicked.connect (() => {
-                    popover.popdown ();
-
-                    try {
-                        system_interface.suspend (true);
-                    } catch (GLib.Error e) {
-                        critical ("Unable to lock: %s", e.message);
-                    }
-                });
-            }
         });
 
         var keybinding_settings = new Settings ("org.gnome.settings-daemon.plugins.media-keys");
