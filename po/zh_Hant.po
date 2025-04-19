@@ -7,11 +7,11 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
+"POT-Creation-Date: 2025-04-03 19:07+0000\n"
 "PO-Revision-Date: 2025-03-17 11:10+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
-"Language-Team: Chinese (Traditional Han script) <https://"
-"l10n.elementaryos.org/projects/wingpanel/quick-settings/zh_Hant/>\n"
+"Language-Team: Chinese (Traditional Han script) <https://l10n.elementaryos."
+"org/projects/wingpanel/quick-settings/zh_Hant/>\n"
 "Language: zh_Hant\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -19,15 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.10.2\n"
 
-#: src/PopoverWidget.vala:29
+#: src/PopoverWidget.vala:32
 msgid "Screen Reader"
 msgstr "螢幕閱讀器"
 
-#: src/PopoverWidget.vala:36
+#: src/PopoverWidget.vala:39
 msgid "Onscreen Keyboard"
 msgstr "螢幕鍵盤"
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:46
+msgid "Prevent Sleep"
+msgstr ""
+
+#: src/PopoverWidget.vala:232
 msgid "Not logged in"
 msgstr "未登入"
 
@@ -111,8 +115,8 @@ msgstr "系統設定值…"
 msgid "Suspend"
 msgstr "暫停"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "鎖定"
 

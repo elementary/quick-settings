@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
+"POT-Creation-Date: 2025-04-03 19:07+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,19 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: src/PopoverWidget.vala:29
+#: src/PopoverWidget.vala:32
 msgid "Screen Reader"
 msgstr ""
 
-#: src/PopoverWidget.vala:36
+#: src/PopoverWidget.vala:39
 msgid "Onscreen Keyboard"
 msgstr ""
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:46
+msgid "Prevent Sleep"
+msgstr ""
+
+#: src/PopoverWidget.vala:232
 msgid "Not logged in"
 msgstr ""
 
@@ -111,8 +115,8 @@ msgstr ""
 msgid "Suspend"
 msgstr ""
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr ""
 

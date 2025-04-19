@@ -38,6 +38,8 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             settings_uri = "settings://input/keyboard/behavior"
         };
 
+        var prevent_sleep_toggle = new PreventSleepToggle ();
+
         var toggle_box = new Gtk.FlowBox () {
             column_spacing = 6,
             homogeneous = true,
@@ -46,6 +48,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             selection_mode = NONE
         };
         toggle_box.get_style_context ().add_class ("togglebox");
+        toggle_box.add (prevent_sleep_toggle);
 
         var text_scale = new TextScale ();
 
@@ -94,18 +97,11 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             bottom_box.remove (current_user_button);
         }
 
-        setup_accounts_services.begin ((obj, res) => {
-            var pantheon_service = setup_accounts_services.end (res);
-            if (pantheon_service != null &&
-                ((DBusProxy) pantheon_service).get_cached_property ("PrefersColorScheme") != null
-            ) {
-                if (server_type != GREETER) {
-                    var darkmode_button = new DarkModeToggle (pantheon_service);
-                    toggle_box.add (darkmode_button);
-                    show_all ();
-                }
-            }
-        });
+        if (server_type != GREETER) {
+            var darkmode_button = new DarkModeToggle ();
+            toggle_box.add (darkmode_button);
+            show_all ();
+        }
 
         setup_sensor_proxy.begin ((obj, res) => {
             var sensor_proxy = setup_sensor_proxy.end (res);
@@ -150,35 +146,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         current_user_button.clicked.connect (() => {
             stack.visible_child = accounts_view;
         });
-    }
-
-    private async PantheonAccountsService? setup_accounts_services () {
-        unowned GLib.DBusConnection connection;
-        string path;
-
-        try {
-            connection = yield GLib.Bus.get (SYSTEM);
-
-            var reply = yield connection.call (
-                FDO_ACCOUNTS_NAME, FDO_ACCOUNTS_PATH,
-                FDO_ACCOUNTS_NAME, "FindUserByName",
-                new Variant.tuple ({ new Variant.string (Environment.get_user_name ()) }),
-                new VariantType ("(o)"),
-                NONE,
-                -1
-            );
-            reply.get_child (0, "o", out path);
-        } catch {
-            critical ("Could not connect to AccountsService");
-            return null;
-        }
-
-        try {
-            return yield connection.get_proxy (FDO_ACCOUNTS_NAME, path, GET_INVALIDATED_PROPERTIES);
-        } catch {
-            critical ("Unable to get Pantheon's AccountsService proxy, Dark mode toggle will not be available");
-            return null;
-        }
     }
 
     private async SensorProxy? setup_sensor_proxy () {

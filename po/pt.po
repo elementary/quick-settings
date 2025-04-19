@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
+"POT-Creation-Date: 2025-04-03 19:07+0000\n"
 "PO-Revision-Date: 2024-11-28 12:16+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/"
@@ -19,15 +19,19 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
 "X-Generator: Weblate 5.6.2\n"
 
-#: src/PopoverWidget.vala:29
+#: src/PopoverWidget.vala:32
 msgid "Screen Reader"
 msgstr "Leitor de ecrã"
 
-#: src/PopoverWidget.vala:36
+#: src/PopoverWidget.vala:39
 msgid "Onscreen Keyboard"
 msgstr "Teclado no ecrã"
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:46
+msgid "Prevent Sleep"
+msgstr ""
+
+#: src/PopoverWidget.vala:232
 msgid "Not logged in"
 msgstr ""
 
@@ -113,8 +117,8 @@ msgstr "Definições do sistema…"
 msgid "Suspend"
 msgstr "Suspender"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "Bloquear"
 

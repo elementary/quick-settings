@@ -10,7 +10,6 @@ config_file = configure_file(
 sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
-    'DBus' / 'AccountsService.vala',
     'DBus' / 'EndSessionDialogServer.vala',
     'DBus' / 'LockInterface.vala',
     'DBus' / 'SeatInterface.vala',
@@ -22,6 +21,7 @@ sources = [
     'Widgets' / 'CurrentUser.vala',
     'Widgets' / 'DarkModeToggle.vala',
     'Widgets' / 'EndSessionDialog.vala',
+    'Widgets' / 'PreventSleepToggle.vala',
     'Widgets' / 'RotationToggle.vala',
     'Widgets' / 'SettingsToggle.vala',
     'Widgets' / 'SessionBox.vala',
