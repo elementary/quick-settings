@@ -11,6 +11,7 @@ src/Services/UserManager.vala
 src/Widgets/CurrentUser.vala
 src/Widgets/DarkModeToggle.vala
 src/Widgets/EndSessionDialog.vala
+src/Widgets/PreventSleepToggle.vala
 src/Widgets/RotationToggle.vala
 src/Widgets/SessionBox.vala
 src/Widgets/SettingsToggle.vala
