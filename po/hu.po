@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-04-19 01:49+0000\n"
-"PO-Revision-Date: 2025-03-17 21:21+0000\n"
+"PO-Revision-Date: 2025-04-23 09:55+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
 "Language-Team: Hungarian <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/hu/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #: src/PopoverWidget.vala:29
 msgid "Screen Reader"
@@ -103,7 +103,7 @@ msgstr "Függőben lévő rendszerfrissítések telepítése"
 
 #: src/Widgets/PreventSleepToggle.vala:13
 msgid "Prevent Sleep"
-msgstr ""
+msgstr "Alvómód megakadályozása"
 
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
