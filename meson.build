@@ -12,7 +12,6 @@ datadir = prefix / get_option('datadir')
 
 add_global_arguments('-DGETTEXT_PACKAGE="@0@"'.format(meson.project_name()), language:'c')
 add_project_arguments('-DG_LOG_DOMAIN="@0@"'.format(meson.project_name()), language:'c')
-# add_project_arguments('--vapidir=' + join_paths(meson.project_source_root(), 'vapi'), language: 'vala')
 
 glib_dep = dependency('glib-2.0')
 gobject_dep = dependency('gobject-2.0')
