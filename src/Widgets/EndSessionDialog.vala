@@ -14,7 +14,7 @@ public enum QuickSettings.EndSessionDialogType {
     RESTART = 2
 }
 
-public class QuickSettings.EndSessionDialog : Hdy.Window {
+public class QuickSettings.EndSessionDialog : Gtk.Window {
     public signal void reboot ();
     public signal void shutdown ();
     public signal void logout ();

@@ -9,8 +9,6 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
     public string label { get; construct; }
     public string settings_uri { get; set; default = "settings://"; }
 
-    private Gtk.GestureMultiPress middle_click_gesture;
-
     public SettingsToggle (Icon icon, string label) {
         Object (
             icon: icon,
@@ -46,7 +44,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
 
         bind_property ("icon", image, "gicon");
 
-        middle_click_gesture = new Gtk.GestureMultiPress (button) {
+        var middle_click_gesture = new Gtk.GestureClick () {
             button = Gdk.BUTTON_MIDDLE
         };
         middle_click_gesture.pressed.connect (() => {
@@ -59,5 +57,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
                 critical ("Failed to open system settings: %s", e.message);
             }
         });
+
+        button.add_controller (middle_click_gesture);
     }
 }

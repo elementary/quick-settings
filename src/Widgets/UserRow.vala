@@ -16,7 +16,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         }
     }
 
-    private Hdy.Avatar avatar;
+    private Adw.Avatar avatar;
     private Gtk.Label fullname_label;
     private Gtk.Label status_label;
 
@@ -47,7 +47,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         status_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
         if (user == null) {
-            avatar = new Hdy.Avatar (ICON_SIZE, null, false);
+            avatar = new Adw.Avatar (ICON_SIZE, null, false);
 
             // We want to use the user's accent, not a random color
             unowned Gtk.StyleContext avatar_context = avatar.get_style_context ();
@@ -66,7 +66,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             avatar_context.remove_class ("color13");
             avatar_context.remove_class ("color14");
         } else {
-            avatar = new Hdy.Avatar (ICON_SIZE, fullname, true);
+            avatar = new Adw.Avatar (ICON_SIZE, fullname, true);
             avatar.set_loadable_icon (get_avatar_icon ());
 
             user.changed.connect (() => {

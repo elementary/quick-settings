@@ -7,7 +7,7 @@
     public bool minimal { get; construct; }
     public Act.User? user { get; set; default = null; }
 
-    private Hdy.Avatar avatar;
+    private Adw.Avatar avatar;
     private Gtk.Label fullname_label;
     private Gtk.Label status_label;
     private Gtk.Button logout_button;
@@ -29,7 +29,7 @@
     }
 
     construct {
-        avatar = new Hdy.Avatar (minimal ? 32 : 48, null, true);
+        avatar = new Adw.Avatar (minimal ? 32 : 48, null, true);
 
         // We want to use the user's accent, not a random color
         unowned Gtk.StyleContext avatar_context = avatar.get_style_context ();
