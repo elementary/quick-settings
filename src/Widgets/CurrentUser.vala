@@ -52,14 +52,14 @@
             valign = Gtk.Align.END,
             halign = Gtk.Align.START
         };
-        fullname_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
+        fullname_label.add_css_class (Granite.STYLE_CLASS_H3_LABEL);
 
         status_label = new Gtk.Label (null) {
             valign = Gtk.Align.START,
             halign = Gtk.Align.START
         };
-        status_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
-        status_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
+        status_label.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
+        status_label.add_css_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
         logout_button = new Gtk.Button.from_icon_name ("system-log-out-symbolic") {
             tooltip_text = _("Log Out…"),
@@ -67,10 +67,10 @@
             halign = END,
             valign = CENTER
         };
-        logout_button.get_style_context ().add_class ("circular");
+        logout_button.add_css_class ("circular");
 
         if (minimal) {
-            add (avatar);
+            append (avatar);
         } else {
             var grid = new Gtk.Grid () {
                 column_spacing = 12
@@ -79,11 +79,10 @@
             grid.attach (fullname_label, 1, 0, 1, 1);
             grid.attach (status_label, 1, 1, 1, 1);
             grid.attach (logout_button, 2, 0, 2, 2);
-            grid.show_all ();
 
-            get_style_context ().add_class ("menuitem");
+            add_css_class ("menuitem");
 
-            add (grid);
+            append (grid);
         }
 
         if (UserManager.get_usermanager ().is_loaded) {

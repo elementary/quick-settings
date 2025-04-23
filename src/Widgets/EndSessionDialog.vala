@@ -50,7 +50,8 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
                 break;
         }
 
-        var image = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.DIALOG) {
+        var image = new Gtk.Image.from_icon_name (icon_name) {
+            pixel_size = 48,
             valign = Gtk.Align.START
         };
 
@@ -60,7 +61,7 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
             wrap = true,
             xalign = 0
         };
-        primary_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
+        primary_label.add_css_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
 
         var secondary_label = new Gtk.Label (content_text) {
             max_width_chars = 50,
@@ -71,7 +72,7 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
         var cancel = new Gtk.Button.with_label (_("Cancel"));
 
         var confirm = new Gtk.Button.with_label (button_text);
-        confirm.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        confirm.add_css_class (Granite.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
         var action_area = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL) {
             layout_style = Gtk.ButtonBoxStyle.END,
@@ -129,17 +130,11 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
 
         grid.attach (action_area, 0, 3, 2);
 
-        grid.show_all ();
-
         deletable = false;
         resizable = false;
-        skip_taskbar_hint = true;
-        skip_pager_hint = true;
-        type_hint = Gdk.WindowTypeHint.DIALOG;
-        set_keep_above (true);
-        window_position = Gtk.WindowPosition.CENTER;
-        stick ();
-        add (grid);
+        child = grid;
+
+        add_css_class ("dialog");
 
         cancel.grab_focus ();
 

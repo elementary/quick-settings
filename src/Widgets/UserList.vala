@@ -43,8 +43,8 @@
         };
 
         var user_list_vbox = new Gtk.Box (VERTICAL, 0);
-        user_list_vbox.add (new Gtk.Separator (HORIZONTAL));
-        user_list_vbox.add (listbox_scrolled);
+        user_list_vbox.append (new Gtk.Separator (HORIZONTAL));
+        user_list_vbox.append (listbox_scrolled);
 
         user_list_revealer = new Gtk.Revealer () {
             child = user_list_vbox,
@@ -52,10 +52,10 @@
         };
 
         orientation = VERTICAL;
-        add (current_user);
-        add (user_list_revealer);
-        add (new Gtk.Separator (HORIZONTAL));
-        add (settings_button);
+        append (current_user);
+        append (user_list_revealer);
+        append (new Gtk.Separator (HORIZONTAL));
+        append (settings_button);
 
         if (UserManager.get_usermanager ().is_loaded) {
             init_users ();
@@ -171,7 +171,7 @@
         user_map[uid] = new UserRow (user);
         user_map[uid].show ();
 
-        listbox.add (user_map[uid]);
+        listbox.append (user_map[uid]);
         user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
     }
 
@@ -188,7 +188,7 @@
         user_map[GUEST_USER_UID] = new UserRow.guest ();
         user_map[GUEST_USER_UID].show ();
 
-        listbox.add (user_map[GUEST_USER_UID]);
+        listbox.append (user_map[GUEST_USER_UID]);
         user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
     }
 

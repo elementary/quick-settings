@@ -18,28 +18,28 @@ public class QuickSettings.SessionBox : Gtk.Box {
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
             tooltip_text = _("System Settings…")
         };
-        settings_button.get_style_context ().add_class ("circular");
+        settings_button.add_css_class ("circular");
 
         var suspend_button = new Gtk.Button.from_icon_name ("system-suspend-symbolic") {
             tooltip_text = _("Suspend")
         };
-        suspend_button.get_style_context ().add_class ("circular");
+        suspend_button.add_css_class ("circular");
 
         var lock_button = new Gtk.Button.from_icon_name ("system-lock-screen-symbolic") {
             tooltip_text = _("Lock")
         };
-        lock_button.get_style_context ().add_class ("circular");
+        lock_button.add_css_class ("circular");
 
         var shutdown_button = new Gtk.Button.from_icon_name ("system-shutdown-symbolic") {
             tooltip_text = _("Shut Down…")
         };
-        shutdown_button.get_style_context ().add_class ("circular");
+        shutdown_button.add_css_class ("circular");
 
         spacing = 6;
-        add (settings_button);
-        add (suspend_button);
-        add (lock_button);
-        add (shutdown_button);
+        append (settings_button);
+        append (suspend_button);
+        append (lock_button);
+        append (shutdown_button);
 
         realize.connect (() => {
             popover = (Gtk.Popover) get_ancestor (typeof (Gtk.Popover));
@@ -143,7 +143,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
         unowned var server = EndSessionDialogServer.get_default ();
 
         current_dialog = new EndSessionDialog (type) {
-            transient_for = (Gtk.Window) get_toplevel ()
+            transient_for = (Gtk.Window) get_root ()
         };
         current_dialog.destroy.connect (() => {
             server.closed ();

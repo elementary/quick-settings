@@ -17,7 +17,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
     }
 
     construct {
-        var image = new Gtk.Image.from_gicon (icon, MENU);
+        var image = new Gtk.Image.from_gicon (icon);
 
         var button = new Gtk.ToggleButton () {
             halign = CENTER,
@@ -31,11 +31,11 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
             max_width_chars = 13,
             mnemonic_widget = button
         };
-        label_widget.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
+        label_widget.add_css_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
         var box = new Gtk.Box (VERTICAL, 3);
-        box.add (button);
-        box.add (label_widget);
+        box.append (button);
+        box.append (label_widget);
 
         can_focus = false;
         child = box;

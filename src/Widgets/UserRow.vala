@@ -37,14 +37,14 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             valign = Gtk.Align.END,
             halign = Gtk.Align.START
         };
-        fullname_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
+        fullname_label.add_css_class (Granite.STYLE_CLASS_H3_LABEL);
 
         status_label = new Gtk.Label (null) {
             valign = Gtk.Align.START,
             halign = Gtk.Align.START
         };
-        status_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
-        status_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
+        status_label.add_css_class (Granite.STYLE_CLASS_DIM_LABEL);
+        status_label.add_css_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
         if (user == null) {
             avatar = new Adw.Avatar (ICON_SIZE, null, false);
@@ -80,9 +80,8 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         grid.attach (avatar, 0, 0, 1, 2);
         grid.attach (fullname_label, 1, 0, 1, 1);
         grid.attach (status_label, 1, 1, 1, 1);
-        grid.show_all ();
 
-        get_style_context ().add_class ("menuitem");
+        add_css_class ("menuitem");
         child = grid;
 
         update_state.begin ();
@@ -129,8 +128,6 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         }
 
         ((Gtk.ListBox) parent).invalidate_sort ();
-
-        show_all ();
     }
 
     public override bool draw (Cairo.Context ctx) {
