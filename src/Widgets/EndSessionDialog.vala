@@ -61,7 +61,7 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
             wrap = true,
             xalign = 0
         };
-        primary_label.add_css_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
+        primary_label.add_css_class (Granite.STYLE_CLASS_TITLE_LABEL);
 
         var secondary_label = new Gtk.Label (content_text) {
             max_width_chars = 50,

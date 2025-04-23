@@ -31,7 +31,7 @@
         };
         listbox.set_sort_func (sort_func);
 
-        var listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
+        var listbox_scrolled = new Gtk.ScrolledWindow () {
             hscrollbar_policy = NEVER,
             max_content_height = 200,
             propagate_natural_height = true,
