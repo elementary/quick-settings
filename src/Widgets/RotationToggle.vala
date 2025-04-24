@@ -6,13 +6,13 @@
 public class QuickSettings.RotationToggle: SettingsToggle {
     public RotationToggle () {
         Object (
-            icon: new ThemedIcon ("quick-settings-rotation-locked-symbolic"),
             label: _("Rotation Lock")
         );
     }
 
     construct {
         action_name = "quick-settings.rotation-lock";
+        icon_name = "quick-settings-rotation-locked-symbolic";
         settings_uri = "settings://display";
 
         var settings = new Settings ("org.gnome.settings-daemon.peripherals.touchscreen");
@@ -33,9 +33,9 @@ public class QuickSettings.RotationToggle: SettingsToggle {
 
         rotation_lock_action.change_state.connect ((value) => {
             if (value.get_boolean ()) {
-                icon = new ThemedIcon ("quick-settings-rotation-locked-symbolic");
+                icon_name = "quick-settings-rotation-locked-symbolic";
             } else {
-                icon = new ThemedIcon ("quick-settings-rotation-allowed-symbolic");
+                icon_name = "quick-settings-rotation-allowed-symbolic";
             }
         });
 

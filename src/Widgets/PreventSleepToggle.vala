@@ -11,13 +11,13 @@ public class QuickSettings.PreventSleepToggle: SettingsToggle {
 
     public PreventSleepToggle () {
         Object (
-            icon: new ThemedIcon ("system-suspend-symbolic"),
             label: _("Prevent Sleep")
         );
     }
 
     construct {
         action_name = "quick-settings.inhibit";
+        icon_name = "system-suspend-symbolic";
         settings_uri = "settings://power";
 
         inhibit_action = new SimpleAction.stateful ("inhibit", null, new Variant.boolean (suspend_cookie > 0 && idle_cookie > 0));
@@ -45,13 +45,13 @@ public class QuickSettings.PreventSleepToggle: SettingsToggle {
             );
 
             inhibit_action.set_state (new Variant.boolean (true));
-            icon = new ThemedIcon ("system-suspend-disabled-symbolic");
+            icon_name = "system-suspend-disabled-symbolic";
         } else if (suspend_cookie > 0 && idle_cookie > 0) {
             application.uninhibit (suspend_cookie);
             application.uninhibit (idle_cookie);
 
             inhibit_action.set_state (new Variant.boolean (false));
-            icon = new ThemedIcon ("system-suspend-symbolic");
+            icon_name = "system-suspend-symbolic";
 
             suspend_cookie = 0;
             idle_cookie = 0;
