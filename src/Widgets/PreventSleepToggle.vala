@@ -7,6 +7,8 @@ public class QuickSettings.PreventSleepToggle: SettingsToggle {
     private uint suspend_cookie = 0;
     private uint idle_cookie = 0;
 
+    private SimpleAction inhibit_action;
+
     public PreventSleepToggle () {
         Object (
             icon: new ThemedIcon ("system-suspend-symbolic"),
@@ -15,34 +17,44 @@ public class QuickSettings.PreventSleepToggle: SettingsToggle {
     }
 
     construct {
+        action_name = "quick-settings.inhibit";
         settings_uri = "settings://power";
 
-        notify["active"].connect ((obj, pspec) => {
-            var _prevent_sleep_toggle = (SettingsToggle) obj;
-            unowned var application = (Gtk.Application) GLib.Application.get_default ();
+        inhibit_action = new SimpleAction.stateful ("inhibit", null, new Variant.boolean (suspend_cookie > 0 && idle_cookie > 0));
+        inhibit_action.activate.connect (toggle_inibit);
 
-            if (_prevent_sleep_toggle.active && suspend_cookie == 0 && idle_cookie == 0) {
-                suspend_cookie = application.inhibit (
-                    (Gtk.Window) get_toplevel (),
-                    Gtk.ApplicationInhibitFlags.SUSPEND,
-                    "Prevent session from suspending"
-                );
-                idle_cookie = application.inhibit (
-                    (Gtk.Window) get_toplevel (),
-                    Gtk.ApplicationInhibitFlags.IDLE,
-                    "Prevent session from idle"
-                );
-
-                icon = new ThemedIcon ("system-suspend-disabled-symbolic");
-            } else if (!_prevent_sleep_toggle.active && suspend_cookie > 0 && idle_cookie > 0) {
-                application.uninhibit (suspend_cookie);
-                application.uninhibit (idle_cookie);
-
-                icon = new ThemedIcon ("system-suspend-symbolic");
-
-                suspend_cookie = 0;
-                idle_cookie = 0;
-            }
+        map.connect (() => {
+            var action_group = (SimpleActionGroup) get_action_group ("quick-settings");
+            action_group.add_action (inhibit_action);
         });
+    }
+
+    private void toggle_inibit () {
+        unowned var application = (Gtk.Application) GLib.Application.get_default ();
+
+        if (suspend_cookie == 0 && idle_cookie == 0) {
+            suspend_cookie = application.inhibit (
+                (Gtk.Window) get_toplevel (),
+                Gtk.ApplicationInhibitFlags.SUSPEND,
+                "Prevent session from suspending"
+            );
+            idle_cookie = application.inhibit (
+                (Gtk.Window) get_toplevel (),
+                Gtk.ApplicationInhibitFlags.IDLE,
+                "Prevent session from idle"
+            );
+
+            inhibit_action.set_state (new Variant.boolean (true));
+            icon = new ThemedIcon ("system-suspend-disabled-symbolic");
+        } else if (suspend_cookie > 0 && idle_cookie > 0) {
+            application.uninhibit (suspend_cookie);
+            application.uninhibit (idle_cookie);
+
+            inhibit_action.set_state (new Variant.boolean (false));
+            icon = new ThemedIcon ("system-suspend-symbolic");
+
+            suspend_cookie = 0;
+            idle_cookie = 0;
+        }
     }
 }

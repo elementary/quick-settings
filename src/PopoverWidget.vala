@@ -117,8 +117,40 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         });
 
         var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
-        applications_settings.bind ("screen-keyboard-enabled", onscreen_keyboard, "active", DEFAULT);
-        applications_settings.bind ("screen-reader-enabled", screen_reader, "active", DEFAULT);
+
+        var screen_reader_action = new SimpleAction.stateful (
+            "screen-reader",
+            null,
+            applications_settings.get_boolean ("screen-reader-enabled")
+        );
+
+        screen_reader_action.activate.connect (() => {
+            applications_settings.set_boolean ("screen-reader-enabled", !applications_settings.get_boolean ("screen-reader-enabled"));
+        });
+
+        applications_settings.changed["screen-reader-enabled"].connect (() => {
+            screen_reader_action.set_state (applications_settings.get_boolean ("screen-reader-enabled"));
+        });
+
+        var screen_keyboard_action = new SimpleAction.stateful (
+            "screen-keyboard",
+            null,
+            applications_settings.get_boolean ("screen-keyboard-enabled")
+        );
+
+        screen_keyboard_action.activate.connect (() => {
+            applications_settings.set_boolean ("screen-keyboard-enabled", !applications_settings.get_boolean ("screen-keyboard-enabled"));
+        });
+
+        applications_settings.changed["screen-keyboard-enabled"].connect (() => {
+            screen_keyboard_action.set_state (applications_settings.get_boolean ("screen-keyboard-enabled"));
+        });
+
+        var action_group = new SimpleActionGroup ();
+        action_group.add_action (screen_reader_action);
+        action_group.add_action (screen_keyboard_action);
+
+        insert_action_group ("quick-settings", action_group);
 
         var glib_settings = new Settings ("io.elementary.desktop.quick-settings");
 

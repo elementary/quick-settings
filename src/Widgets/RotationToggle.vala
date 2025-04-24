@@ -12,18 +12,36 @@ public class QuickSettings.RotationToggle: SettingsToggle {
     }
 
     construct {
+        action_name = "quick-settings.rotation-lock";
         settings_uri = "settings://display";
 
-        var touchscreen_settings = new Settings ("org.gnome.settings-daemon.peripherals.touchscreen");
-        touchscreen_settings.bind ("orientation-lock", this, "active", DEFAULT);
+        var settings = new Settings ("org.gnome.settings-daemon.peripherals.touchscreen");
 
-        bind_property ("active", this, "icon", SYNC_CREATE, (binding, srcval, ref targetval) => {
-            if ((bool) srcval) {
-                targetval = new ThemedIcon ("quick-settings-rotation-locked-symbolic");
+        var rotation_lock_action = new SimpleAction.stateful (
+            "rotation-lock",
+            null,
+            settings.get_boolean ("orientation-lock")
+        );
+
+        rotation_lock_action.activate.connect (() => {
+            settings.set_boolean ("orientation-lock", !settings.get_boolean ("orientation-lock"));
+        });
+
+        settings.changed["orientation-lock"].connect (() => {
+            rotation_lock_action.set_state (settings.get_boolean ("orientation-lock"));
+        });
+
+        rotation_lock_action.change_state.connect ((value) => {
+            if (value.get_boolean ()) {
+                icon = new ThemedIcon ("quick-settings-rotation-locked-symbolic");
             } else {
-                targetval = new ThemedIcon ("quick-settings-rotation-allowed-symbolic");
+                icon = new ThemedIcon ("quick-settings-rotation-allowed-symbolic");
             }
-            return true;
+        });
+
+        map.connect (() => {
+            var action_group = (SimpleActionGroup) get_action_group ("quick-settings");
+            action_group.add_action (rotation_lock_action);
         });
     }
 }
