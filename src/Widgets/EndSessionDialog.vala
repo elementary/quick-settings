@@ -23,7 +23,6 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
     public EndSessionDialogType dialog_type { get; construct; }
 
     private Gtk.CheckButton? updates_check_button;
-    private Gtk.EventControllerKey key_controller;
 
     public EndSessionDialog (QuickSettings.EndSessionDialogType type) {
         Object (dialog_type: type);
@@ -94,11 +93,11 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
                 destroy ();
             });
 
-            action_area.add (confirm_restart);
+            action_area.append (confirm_restart);
         }
 
-        action_area.add (cancel);
-        action_area.add (confirm);
+        action_area.append (cancel);
+        action_area.append (confirm);
 
         var grid = new Gtk.Grid () {
             column_spacing = 12,
@@ -149,12 +148,14 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
             cancel_action.activate (null);
         });
 
-        key_controller = new Gtk.EventControllerKey (this);
+        var key_controller = new Gtk.EventControllerKey ();
         key_controller.key_released.connect ((keyval, keycode, state) => {
             if (keyval == Gdk.Key.Escape) {
                 cancel_action.activate (null);
             }
         });
+
+        ((Gtk.Widget) this).add_controller (key_controller);
 
         confirm.clicked.connect (() => {
             if (dialog_type == EndSessionDialogType.RESTART || dialog_type == EndSessionDialogType.SHUTDOWN) {
