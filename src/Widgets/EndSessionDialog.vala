@@ -23,6 +23,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
     public EndSessionDialogType dialog_type { get; construct; }
 
     private Gtk.CheckButton? updates_check_button;
+    private Gtk.EventControllerKey key_controller;
 
     public EndSessionDialog (QuickSettings.EndSessionDialogType type) {
         Object (dialog_type: type);
@@ -153,12 +154,11 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
             cancel_action.activate (null);
         });
 
-        key_press_event.connect ((event) => {
-            if (Gdk.keyval_name (event.keyval) == "Escape") {
+        key_controller = new Gtk.EventControllerKey (this);
+        key_controller.key_released.connect ((keyval, keycode, state) => {
+            if (keyval == Gdk.Key.Escape) {
                 cancel_action.activate (null);
             }
-
-            return Gdk.EVENT_PROPAGATE;
         });
 
         confirm.clicked.connect (() => {
