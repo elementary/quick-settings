@@ -66,7 +66,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
 
         shutdown_button.clicked.connect (() => {
             popover.popdown ();
-            show_dialog (EndSessionDialogType.RESTART, Gtk.get_current_event_time ());
+            show_dialog (EndSessionDialogType.RESTART);
         });
 
         setup_system_interface.begin ((obj, res) => {
@@ -97,7 +97,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
 
         EndSessionDialogServer.init ();
         EndSessionDialogServer.get_default ().show_dialog.connect (
-            (type, timestamp) => show_dialog ((EndSessionDialogType) type, timestamp)
+            (type, timestamp) => show_dialog ((EndSessionDialogType) type)
         );
 
         settings_button.clicked.connect (() => {
@@ -129,7 +129,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
         }
     }
 
-    private void show_dialog (EndSessionDialogType type, uint32 triggering_event_timestamp) {
+    private void show_dialog (EndSessionDialogType type) {
         popover.popdown ();
 
         if (current_dialog != null) {
@@ -178,6 +178,6 @@ public class QuickSettings.SessionBox : Gtk.Box {
             }
         });
 
-        current_dialog.present_with_time (triggering_event_timestamp);
+        current_dialog.present ();
     }
 }
