@@ -73,11 +73,12 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         var confirm = new Gtk.Button.with_label (button_text);
         confirm.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
-        var action_area = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL) {
-            layout_style = Gtk.ButtonBoxStyle.END,
-            margin_top = 16,
-            spacing = 6
+        var action_area = new Gtk.Box (HORIZONTAL, 6) {
+            halign = END,
+            margin_top = 16
         };
+
+        var size_group = new Gtk.SizeGroup (HORIZONTAL);
 
         /*
          * the indicator does not have a separate item for restart, that's
@@ -92,8 +93,12 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
                 destroy ();
             });
 
+            size_group.add_widget (confirm_restart);
             action_area.add (confirm_restart);
         }
+
+        size_group.add_widget (cancel);
+        size_group.add_widget (confirm);
 
         action_area.add (cancel);
         action_area.add (confirm);
