@@ -170,7 +170,7 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
             destroy ();
         });
 
-        realize.connect (() => Idle.add_once (() => init_wl ()));
+        ((Gtk.Widget) this).realize.connect (() => Idle.add_once (() => init_wl ()));
     }
 
     private bool set_offline_trigger (Pk.OfflineAction action) {
