@@ -75,10 +75,9 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
         var action_area = new Gtk.Box (HORIZONTAL, 6) {
             halign = END,
+            homogeneous = true,
             margin_top = 16
         };
-
-        var size_group = new Gtk.SizeGroup (HORIZONTAL);
 
         /*
          * the indicator does not have a separate item for restart, that's
@@ -93,12 +92,8 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
                 destroy ();
             });
 
-            size_group.add_widget (confirm_restart);
             action_area.add (confirm_restart);
         }
-
-        size_group.add_widget (cancel);
-        size_group.add_widget (confirm);
 
         action_area.add (cancel);
         action_area.add (confirm);
