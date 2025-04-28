@@ -19,8 +19,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
         var image = new Gtk.Image ();
 
         var button = new Gtk.ToggleButton () {
-            halign = CENTER,
-            image = image
+            halign = CENTER
         };
 
         var label_widget = new Gtk.Label (label) {

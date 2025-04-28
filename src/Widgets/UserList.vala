@@ -38,7 +38,7 @@
             child = listbox
         };
 
-        var settings_button = new Gtk.ModelButton () {
+        var settings_button = new Wingpanel.PopoverMenuItem () {
             text = _("User Accounts Settings…")
         };
 
