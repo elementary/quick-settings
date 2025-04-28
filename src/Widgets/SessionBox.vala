@@ -134,7 +134,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
 
         if (current_dialog != null) {
             if (current_dialog.dialog_type != type) {
-                current_dialog.destroy ();
+                current_dialog.close ();
             } else {
                 return;
             }
@@ -145,7 +145,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
         current_dialog = new EndSessionDialog (type) {
             transient_for = (Gtk.Window) get_root ()
         };
-        current_dialog.destroy.connect (() => {
+        current_dialog.close_request.connect (() => {
             server.closed ();
             current_dialog = null;
         });
