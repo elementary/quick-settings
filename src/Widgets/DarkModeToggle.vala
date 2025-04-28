@@ -6,12 +6,12 @@
 public class QuickSettings.DarkModeToggle: SettingsToggle {
     public DarkModeToggle () {
         Object (
-            icon: new ThemedIcon ("dark-mode-symbolic"),
             label: _("Dark Mode")
         );
     }
 
     construct {
+        icon_name = "dark-mode-symbolic";
         settings_uri = "settings://desktop/appearance";
 
         var settings = new GLib.Settings ("io.elementary.settings-daemon.prefers-color-scheme");

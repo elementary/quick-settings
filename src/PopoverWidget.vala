@@ -25,16 +25,16 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
     construct {
         var screen_reader = new SettingsToggle (
-            new ThemedIcon ("orca-symbolic"),
             _("Screen Reader")
         ) {
+            icon_name = "orca-symbolic",
             settings_uri = "settings://sound"
         };
 
         var onscreen_keyboard = new SettingsToggle (
-            new ThemedIcon ("input-keyboard-symbolic"),
             _("Onscreen Keyboard")
         ) {
+            icon_name = "input-keyboard-symbolic",
             settings_uri = "settings://input/keyboard/behavior"
         };
 
