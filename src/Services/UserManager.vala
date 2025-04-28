@@ -35,7 +35,7 @@ public class QuickSettings.UserManager : Object {
         }
     }
 
-    public static async UserState get_user_state (uint32 uuid) {
+    public static async UserState get_user_state (uid_t uuid) {
         if (login_proxy == null) {
             yield init_login_proxy ();
         }
@@ -47,7 +47,7 @@ public class QuickSettings.UserManager : Object {
             }
 
             foreach (UserInfo user in users) {
-                if (user.uid == uuid) {
+                if (((uid_t) user.uid) == uuid) {
                     if (user.user_object == null) {
                         return UserState.OFFLINE;
                     }

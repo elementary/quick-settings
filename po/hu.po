@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
-"PO-Revision-Date: 2025-02-21 19:16+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
+"PO-Revision-Date: 2025-04-23 09:55+0000\n"
 "Last-Translator: TomiOhl <ohlslager.tom@gmail.com>\n"
-"Language-Team: Hungarian <https://l10n.elementary.io/projects/wingpanel/"
+"Language-Team: Hungarian <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/hu/>\n"
 "Language: hu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #: src/PopoverWidget.vala:29
 msgid "Screen Reader"
@@ -27,7 +27,7 @@ msgstr "Képernyőolvasó"
 msgid "Onscreen Keyboard"
 msgstr "Képernyőbillentyűzet"
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
 msgstr "Nincs bejelentkezve"
 
@@ -60,7 +60,7 @@ msgstr "Bejelentkezve"
 msgid "Logged out"
 msgstr "Kijelentkezve"
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr "Sötét mód"
 
@@ -101,6 +101,10 @@ msgstr "Újraindítás"
 msgid "Install pending system updates"
 msgstr "Függőben lévő rendszerfrissítések telepítése"
 
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
+msgstr "Alvómód megakadályozása"
+
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
 msgstr "Elforgatás zárolása"
@@ -113,8 +117,8 @@ msgstr "Rendszerbeállítások…"
 msgid "Suspend"
 msgstr "Felfüggesztés"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "Zárolás"
 
@@ -135,7 +139,5 @@ msgid "User Accounts Settings…"
 msgstr "A felhasználói fiók beállításai…"
 
 #: src/Widgets/UserRow.vala:127
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "Zárolás"
+msgstr "Zárolva"

@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
-"PO-Revision-Date: 2025-02-10 16:16+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
+"PO-Revision-Date: 2025-03-08 12:45+0000\n"
 "Last-Translator: Marcin Serwin <marcin@serwin.dev>\n"
 "Language-Team: Polish <https://l10n.elementary.io/projects/wingpanel/quick-"
 "settings/pl/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #: src/PopoverWidget.vala:29
 msgid "Screen Reader"
@@ -28,7 +28,7 @@ msgstr "Czytnik ekranu"
 msgid "Onscreen Keyboard"
 msgstr "Klawiatura ekranowa"
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
 msgstr "Nie zalogowano"
 
@@ -62,7 +62,7 @@ msgstr "Zalogowano"
 msgid "Logged out"
 msgstr "Wylogowano"
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr "Ciemny motyw"
 
@@ -104,6 +104,10 @@ msgstr "Uruchom ponownie"
 msgid "Install pending system updates"
 msgstr "Zainstaluj oczekujące aktualizacje systemu"
 
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
+msgstr ""
+
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
 msgstr "Zablokuj obracanie"
@@ -116,8 +120,8 @@ msgstr "Ustawienia systemu…"
 msgid "Suspend"
 msgstr "Wstrzymaj"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "Zablokuj"
 
@@ -138,7 +142,5 @@ msgid "User Accounts Settings…"
 msgstr "Ustawienia kont użytkowników…"
 
 #: src/Widgets/UserRow.vala:127
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "Zablokuj"
+msgstr "Zablokowane"

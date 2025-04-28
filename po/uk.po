@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
-"PO-Revision-Date: 2025-02-06 21:16+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
+"PO-Revision-Date: 2025-04-05 07:55+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
-"Language-Team: Ukrainian <https://l10n.elementary.io/projects/wingpanel/"
+"Language-Team: Ukrainian <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #: src/PopoverWidget.vala:29
 msgid "Screen Reader"
@@ -28,7 +28,7 @@ msgstr "Зчитувач з екрана"
 msgid "Onscreen Keyboard"
 msgstr "Екранна клавіатура"
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
 msgstr "Вхід не виконано"
 
@@ -62,7 +62,7 @@ msgstr "Вхід виконано"
 msgid "Logged out"
 msgstr "Вихід виконано"
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr "Темний режим"
 
@@ -102,6 +102,10 @@ msgstr "Перезапустити"
 msgid "Install pending system updates"
 msgstr "Установити оновлення системи з черги"
 
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
+msgstr "Запобігати переходу в режим сну"
+
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
 msgstr "Блокування обертання"
@@ -114,8 +118,8 @@ msgstr "Системні налаштування…"
 msgid "Suspend"
 msgstr "Призупинити"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "Заблокувати"
 
@@ -136,7 +140,5 @@ msgid "User Accounts Settings…"
 msgstr "Налаштування облікових записів користувачів…"
 
 #: src/Widgets/UserRow.vala:127
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "Заблокувати"
+msgstr "Заблоковано"

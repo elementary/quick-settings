@@ -7,17 +7,17 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
-"PO-Revision-Date: 2025-02-10 16:16+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
+"PO-Revision-Date: 2025-04-11 19:55+0000\n"
 "Last-Translator: Uwe S <saabisto@gmx.de>\n"
-"Language-Team: German <https://l10n.elementary.io/projects/wingpanel/quick-"
-"settings/de/>\n"
+"Language-Team: German <https://l10n.elementaryos.org/projects/wingpanel/"
+"quick-settings/de/>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #: src/PopoverWidget.vala:29
 msgid "Screen Reader"
@@ -27,7 +27,7 @@ msgstr "Bildschirmleser"
 msgid "Onscreen Keyboard"
 msgstr "Bildschirmtastatur"
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
 msgstr "Nicht angemeldet"
 
@@ -60,7 +60,7 @@ msgstr "Angemeldet"
 msgid "Logged out"
 msgstr "Abgemeldet"
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr "Dunkler Modus"
 
@@ -102,6 +102,10 @@ msgstr "Neu starten"
 msgid "Install pending system updates"
 msgstr "Ausstehende Systemaktualisierungen installieren"
 
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
+msgstr "Ruhezustand verhindern"
+
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
 msgstr "Drehen gesperrt"
@@ -114,8 +118,8 @@ msgstr "Systemeinstellungen …"
 msgid "Suspend"
 msgstr "Bereitschaft"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "Sperren"
 
@@ -136,7 +140,5 @@ msgid "User Accounts Settings…"
 msgstr "Benutzerkontoeinstellungen …"
 
 #: src/Widgets/UserRow.vala:127
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "Sperren"
+msgstr "Gesperrt"

@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
-"PO-Revision-Date: 2025-03-04 04:20+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
+"PO-Revision-Date: 2025-04-16 13:55+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
-"Language-Team: Hebrew <https://l10n.elementary.io/projects/wingpanel/"
+"Language-Team: Hebrew <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/he/>\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.10.4\n"
 
 #: src/PopoverWidget.vala:29
 msgid "Screen Reader"
@@ -28,7 +28,7 @@ msgstr "מקריא מסך"
 msgid "Onscreen Keyboard"
 msgstr "מקלדת על המסך"
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
 msgstr "לא נכנסת למערכת"
 
@@ -63,7 +63,7 @@ msgstr "במערכת"
 msgid "Logged out"
 msgstr "לא במערכת"
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr "מצב כהה"
 
@@ -103,6 +103,10 @@ msgstr "הפעלה מחדש"
 msgid "Install pending system updates"
 msgstr "התקנת עדכוני מערכת ממתינים"
 
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
+msgstr "מניעת שינה"
+
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
 msgstr "נעילת סיבוב"
@@ -115,8 +119,8 @@ msgstr "הגדרות מערכת…"
 msgid "Suspend"
 msgstr "השהיה"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "נעילה"
 

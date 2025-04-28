@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
 "PO-Revision-Date: 2024-04-25 16:13+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Romanian <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -28,7 +28,7 @@ msgstr ""
 msgid "Onscreen Keyboard"
 msgstr ""
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
 msgstr ""
 
@@ -62,7 +62,7 @@ msgstr ""
 msgid "Logged out"
 msgstr ""
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr ""
 
@@ -104,6 +104,10 @@ msgstr "Reporneşte"
 msgid "Install pending system updates"
 msgstr ""
 
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
+msgstr ""
+
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
 msgstr ""
@@ -116,8 +120,8 @@ msgstr ""
 msgid "Suspend"
 msgstr "Suspendă"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "Blochează"
 

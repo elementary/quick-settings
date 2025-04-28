@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
-"PO-Revision-Date: 2025-02-05 18:22+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
+"PO-Revision-Date: 2025-03-08 12:45+0000\n"
 "Last-Translator: DutchVipperloid <svenroelof@e.email>\n"
 "Language-Team: Dutch <https://l10n.elementary.io/projects/wingpanel/quick-"
 "settings/nl/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.9.2\n"
+"X-Generator: Weblate 5.10.2\n"
 
 #: src/PopoverWidget.vala:29
 msgid "Screen Reader"
@@ -27,25 +27,21 @@ msgstr "Schermlezer"
 msgid "Onscreen Keyboard"
 msgstr "Toetsenbord op het scherm"
 
-#: src/PopoverWidget.vala:199
-#, fuzzy
-#| msgid "Logged in"
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
-msgstr "Ingelogd"
+msgstr "Niet ingelogd"
 
 #: src/Services/UserManager.vala:135
-#, fuzzy, c-format
-#| msgid "Logged in"
+#, c-format
 msgid "Logged in as “%s”"
-msgstr "Ingelogd"
+msgstr "Ingelogd als “%s”"
 
 #: src/Services/UserManager.vala:158
-#, fuzzy, c-format
-#| msgid "Logged in"
+#, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
-msgstr[0] "Ingelogd"
-msgstr[1] "Ingelogd"
+msgstr[0] "%i ander persoon is ingelogd"
+msgstr[1] "%i andere personen zijn ingelogd"
 
 #: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
 #: src/Widgets/CurrentUser.vala:109
@@ -64,7 +60,7 @@ msgstr "Ingelogd"
 msgid "Logged out"
 msgstr "Uitgelogd"
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr "Donkere modus"
 
@@ -105,6 +101,10 @@ msgstr "Opnieuw opstarten"
 msgid "Install pending system updates"
 msgstr "Installeer wachtende systeemupdates"
 
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
+msgstr ""
+
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
 msgstr "Rotatievergrendeling"
@@ -117,8 +117,8 @@ msgstr "Systeeminstellingen…"
 msgid "Suspend"
 msgstr "Slaapstand"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "Vergrendelen"
 
@@ -139,7 +139,5 @@ msgid "User Accounts Settings…"
 msgstr "Gebruikersaccountsinstellingen…"
 
 #: src/Widgets/UserRow.vala:127
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "Vergrendelen"
+msgstr "Vergrendeld"

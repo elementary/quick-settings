@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-03-03 19:12+0000\n"
+"POT-Creation-Date: 2025-04-19 01:49+0000\n"
 "PO-Revision-Date: 2024-11-28 12:16+0000\n"
 "Last-Translator: Hugo Carvalho <hugokarvalho@hotmail.com>\n"
 "Language-Team: Portuguese <https://l10n.elementary.io/projects/wingpanel/"
@@ -27,7 +27,7 @@ msgstr "Leitor de ecrã"
 msgid "Onscreen Keyboard"
 msgstr "Teclado no ecrã"
 
-#: src/PopoverWidget.vala:199
+#: src/PopoverWidget.vala:166
 msgid "Not logged in"
 msgstr ""
 
@@ -60,7 +60,7 @@ msgstr ""
 msgid "Logged out"
 msgstr ""
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/Widgets/DarkModeToggle.vala:10
 msgid "Dark Mode"
 msgstr "Modo escuro"
 
@@ -101,6 +101,10 @@ msgstr "Reiniciar"
 msgid "Install pending system updates"
 msgstr "Instalar atualizações pendentes do sistema"
 
+#: src/Widgets/PreventSleepToggle.vala:13
+msgid "Prevent Sleep"
+msgstr ""
+
 #: src/Widgets/RotationToggle.vala:10
 msgid "Rotation Lock"
 msgstr "Bloquear rotação"
@@ -113,8 +117,8 @@ msgstr "Definições do sistema…"
 msgid "Suspend"
 msgstr "Suspender"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:121
-#: src/Widgets/SessionBox.vala:126
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
+#: src/Widgets/SessionBox.vala:106
 msgid "Lock"
 msgstr "Bloquear"
 
