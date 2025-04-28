@@ -74,10 +74,10 @@ public class QuickSettings.EndSessionDialog : Gtk.Window {
         var confirm = new Gtk.Button.with_label (button_text);
         confirm.add_css_class (Granite.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
-        var action_area = new Gtk.ButtonBox (Gtk.Orientation.HORIZONTAL) {
-            layout_style = Gtk.ButtonBoxStyle.END,
-            margin_top = 16,
-            spacing = 6
+        var action_area = new Gtk.Box (HORIZONTAL, 6) {
+            halign = END,
+            homogeneous = true,
+            margin_top = 16
         };
 
         /*
