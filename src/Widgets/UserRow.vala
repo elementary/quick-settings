@@ -129,12 +129,4 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
 
         ((Gtk.ListBox) parent).invalidate_sort ();
     }
-
-    public override bool draw (Cairo.Context ctx) {
-        if (!get_selectable ()) {
-            get_style_context ().set_state (Gtk.StateFlags.NORMAL);
-        }
-
-        return base.draw (ctx);
-    }
 }
