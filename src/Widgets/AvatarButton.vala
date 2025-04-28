@@ -11,21 +11,20 @@
         avatar = new Hdy.Avatar (32, null, true);
 
         // We want to use the user's accent, not a random color
-        unowned Gtk.StyleContext avatar_context = avatar.get_style_context ();
-        avatar_context.remove_class ("color1");
-        avatar_context.remove_class ("color2");
-        avatar_context.remove_class ("color3");
-        avatar_context.remove_class ("color4");
-        avatar_context.remove_class ("color5");
-        avatar_context.remove_class ("color6");
-        avatar_context.remove_class ("color7");
-        avatar_context.remove_class ("color8");
-        avatar_context.remove_class ("color9");
-        avatar_context.remove_class ("color10");
-        avatar_context.remove_class ("color11");
-        avatar_context.remove_class ("color12");
-        avatar_context.remove_class ("color13");
-        avatar_context.remove_class ("color14");
+        avatar.get_style_context ().remove_class ("color1");
+        avatar.get_style_context ().remove_class ("color2");
+        avatar.get_style_context ().remove_class ("color3");
+        avatar.get_style_context ().remove_class ("color4");
+        avatar.get_style_context ().remove_class ("color5");
+        avatar.get_style_context ().remove_class ("color6");
+        avatar.get_style_context ().remove_class ("color7");
+        avatar.get_style_context ().remove_class ("color8");
+        avatar.get_style_context ().remove_class ("color9");
+        avatar.get_style_context ().remove_class ("color10");
+        avatar.get_style_context ().remove_class ("color11");
+        avatar.get_style_context ().remove_class ("color12");
+        avatar.get_style_context ().remove_class ("color13");
+        avatar.get_style_context ().remove_class ("color14");
 
         child = avatar;
 
