@@ -9,8 +9,6 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
     public string label { get; construct; }
     public string settings_uri { get; set; default = "settings://"; }
 
-    private Gtk.GestureMultiPress middle_click_gesture;
-
     public SettingsToggle (string label) {
         Object (
             label: label
@@ -21,8 +19,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
         var image = new Gtk.Image ();
 
         var button = new Gtk.ToggleButton () {
-            halign = CENTER,
-            image = image
+            halign = CENTER
         };
 
         var label_widget = new Gtk.Label (label) {
@@ -32,11 +29,11 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
             max_width_chars = 13,
             mnemonic_widget = button
         };
-        label_widget.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
+        label_widget.add_css_class (Granite.STYLE_CLASS_SMALL_LABEL);
 
         var box = new Gtk.Box (VERTICAL, 3);
-        box.add (button);
-        box.add (label_widget);
+        box.append (button);
+        box.append (label_widget);
 
         can_focus = false;
         child = box;
@@ -45,7 +42,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
 
         bind_property ("icon-name", image, "icon-name");
 
-        middle_click_gesture = new Gtk.GestureMultiPress (button) {
+        var middle_click_gesture = new Gtk.GestureClick () {
             button = Gdk.BUTTON_MIDDLE
         };
         middle_click_gesture.pressed.connect (() => {
@@ -58,5 +55,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
                 critical ("Failed to open system settings: %s", e.message);
             }
         });
+
+        button.add_controller (middle_click_gesture);
     }
 }
