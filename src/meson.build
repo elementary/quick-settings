@@ -18,7 +18,7 @@ sources = [
     'DBus' / 'SystemInterface.vala',
     'DBus' / 'UserInterface.vala',
     'Services' / 'UserManager.vala',
-    'Widgets' / 'CurrentUser.vala',
+    'Widgets' / 'AvatarButton.vala',
     'Widgets' / 'DarkModeToggle.vala',
     'Widgets' / 'EndSessionDialog.vala',
     'Widgets' / 'PreventSleepToggle.vala',
