@@ -131,13 +131,12 @@
         }
     }
 
-    private GLib.LoadableIcon? get_avatar_icon () {
-        var file = File.new_for_path (user.get_icon_file ());
-        if (file.query_exists ()) {
-            return new FileIcon (file);
+    private Gdk.Texture? get_avatar_icon () {
+        try {
+            return Gdk.Texture.from_filename (user.get_icon_file ());
+        } catch {
+            return null;
         }
-
-        return null;
     }
 
     public async void update_state () {
@@ -165,6 +164,6 @@
 
         fullname_label.label = user.real_name;
         avatar.text = user.real_name;
-        avatar.set_loadable_icon (get_avatar_icon ());
+        avatar.custom_image = get_avatar_icon ();
     }
  }

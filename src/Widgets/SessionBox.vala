@@ -148,6 +148,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
         current_dialog.close_request.connect (() => {
             server.closed ();
             current_dialog = null;
+            return Gdk.EVENT_PROPAGATE;
         });
 
         current_dialog.cancelled.connect (() => {

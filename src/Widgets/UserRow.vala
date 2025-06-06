@@ -66,8 +66,9 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             avatar_context.remove_class ("color13");
             avatar_context.remove_class ("color14");
         } else {
-            avatar = new Adw.Avatar (ICON_SIZE, fullname, true);
-            avatar.set_loadable_icon (get_avatar_icon ());
+            avatar = new Adw.Avatar (ICON_SIZE, fullname, true) {
+                custom_image = Gdk.Texture.from_filename (user.get_icon_file ())
+            };
 
             user.changed.connect (() => {
                 update_state.begin ();
@@ -87,13 +88,12 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         update_state.begin ();
     }
 
-    private GLib.LoadableIcon? get_avatar_icon () {
-        var file = File.new_for_path (user.get_icon_file ());
-        if (file.query_exists ()) {
-            return new FileIcon (file);
+    private Gdk.Texture? get_avatar_icon () {
+        try {
+            return Gdk.Texture.from_filename (user.get_icon_file ());
+        } catch {
+            return null;
         }
-
-        return null;
     }
 
     public async UserState get_user_state () {
@@ -119,7 +119,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         if (user != null) {
             fullname_label.label = user.real_name;
             avatar.text = user.real_name;
-            avatar.set_loadable_icon (get_avatar_icon ());
+            avatar.custom_image = get_avatar_icon ();
             sensitive = !user.locked;
 
             if (user.locked) {
