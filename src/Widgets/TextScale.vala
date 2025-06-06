@@ -14,7 +14,8 @@ public class QuickSettings.TextScale : Gtk.Box {
 
     construct {
         zoom_out_button = new Gtk.Button.from_icon_name ("format-text-smaller-symbolic") {
-            tooltip_text = _("Decrease text size")
+            tooltip_text = _("Decrease text size"),
+            valign = CENTER
         };
         zoom_out_button.add_css_class ("circular");
 
@@ -28,7 +29,8 @@ public class QuickSettings.TextScale : Gtk.Box {
         zoom_scale.add_mark (1.5, BOTTOM, null);
 
         zoom_in_button = new Gtk.Button.from_icon_name ("format-text-larger-symbolic") {
-            tooltip_text = _("Increase text size")
+            tooltip_text = _("Increase text size"),
+            valign = CENTER
         };
         zoom_in_button.add_css_class ("circular");
 
