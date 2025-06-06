@@ -67,7 +67,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             avatar_context.remove_class ("color14");
         } else {
             avatar = new Adw.Avatar (ICON_SIZE, fullname, true) {
-                custom_image = Gdk.Texture.from_filename (user.get_icon_file ())
+                custom_image = get_avatar_icon ()
             };
 
             user.changed.connect (() => {
