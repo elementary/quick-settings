@@ -16,8 +16,6 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
     }
 
     construct {
-        var image = new Gtk.Image ();
-
         var button = new Gtk.ToggleButton () {
             halign = CENTER
         };
@@ -40,7 +38,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
 
         button.bind_property ("active", this, "active", SYNC_CREATE | BIDIRECTIONAL);
 
-        bind_property ("icon-name", image, "icon-name");
+        bind_property ("icon-name", button, "icon-name", SYNC_CREATE);
 
         var middle_click_gesture = new Gtk.GestureClick () {
             button = Gdk.BUTTON_MIDDLE
