@@ -11,22 +11,35 @@ public class QuickSettings.DarkModeToggle: SettingsToggle {
     }
 
     construct {
+        action_name = "quick-settings.dark-mode";
         icon_name = "dark-mode-symbolic";
         settings_uri = "settings://desktop/appearance";
 
         var settings = new GLib.Settings ("io.elementary.settings-daemon.prefers-color-scheme");
 
-        active = settings.get_enum ("color-scheme") == Granite.Settings.ColorScheme.DARK;
-        settings.changed["color-scheme"].connect (() => {
-            active = settings.get_enum ("color-scheme") == Granite.Settings.ColorScheme.DARK;
+        var dark_mode_action = new SimpleAction.stateful (
+            "dark-mode",
+            null,
+            new Variant.boolean (settings.get_enum ("color-scheme") == Granite.Settings.ColorScheme.DARK)
+        );
+
+        dark_mode_action.activate.connect (() => {
+            if (settings.get_enum ("color-scheme") == Granite.Settings.ColorScheme.DARK) {
+                settings.set_enum ("color-scheme", Granite.Settings.ColorScheme.NO_PREFERENCE);
+            } else {
+                settings.set_enum ("color-scheme", Granite.Settings.ColorScheme.DARK);
+            }
         });
 
-        notify["active"].connect (() => {
-            if (active) {
-                settings.set_enum ("color-scheme", Granite.Settings.ColorScheme.DARK);
-            } else {
-                settings.set_enum ("color-scheme", Granite.Settings.ColorScheme.NO_PREFERENCE);
-            }
+        settings.changed["color-scheme"].connect (() => {
+            dark_mode_action.set_state (
+                new Variant.boolean (settings.get_enum ("color-scheme") == Granite.Settings.ColorScheme.DARK)
+            );
+        });
+
+        map.connect (() => {
+            var action_group = (SimpleActionGroup) get_action_group ("quick-settings");
+            action_group.add_action (dark_mode_action);
         });
     }
 }

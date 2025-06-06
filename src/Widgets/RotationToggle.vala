@@ -11,19 +11,24 @@ public class QuickSettings.RotationToggle: SettingsToggle {
     }
 
     construct {
+        action_name = "quick-settings.orientation-lock";
         icon_name = "quick-settings-rotation-locked-symbolic";
         settings_uri = "settings://display";
 
-        var touchscreen_settings = new Settings ("org.gnome.settings-daemon.peripherals.touchscreen");
-        touchscreen_settings.bind ("orientation-lock", this, "active", DEFAULT);
+        var settings = new Settings ("org.gnome.settings-daemon.peripherals.touchscreen");
+        var rotation_lock_action = settings.create_action ("orientation-lock");
 
-        bind_property ("active", this, "icon-name", SYNC_CREATE, (binding, srcval, ref targetval) => {
-            if ((bool) srcval) {
-                targetval = "quick-settings-rotation-locked-symbolic";
+        rotation_lock_action.notify["state"].connect (() => {
+            if (rotation_lock_action.state.get_boolean ()) {
+                icon_name = "quick-settings-rotation-locked-symbolic";
             } else {
-                targetval = "quick-settings-rotation-allowed-symbolic";
+                icon_name = "quick-settings-rotation-allowed-symbolic";
             }
-            return true;
+        });
+
+        map.connect (() => {
+            var action_group = (SimpleActionGroup) get_action_group ("quick-settings");
+            action_group.add_action (rotation_lock_action);
         });
     }
 }
