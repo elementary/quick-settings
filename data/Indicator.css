@@ -92,6 +92,9 @@ quicksettings .rotation .toggle:checked image.lock {
 }
 
 @keyframes rotation-allow {
+    from {
+        opacity: 0.5;
+    }
     to {
         -gtk-icon-transform: rotate(1turn);
         opacity: 1;
