@@ -48,3 +48,52 @@ quicksettings .flat avatar {
     border: none;
     box-shadow: none;
 }
+
+quicksettings .rotation .toggle image.arrow {
+    animation: rotation-allow 600ms cubic-bezier(0.4, 0, 0.2, 1) 1;
+    opacity: 1;
+}
+
+quicksettings .rotation .toggle:checked image.arrow {
+    animation: rotation-lock 600ms linear 1;
+    opacity: 0.5;
+}
+
+quicksettings .rotation .toggle image.lock {
+    transition: opacity 300ms cubic-bezier(0.4, 0, 0.2, 1);
+    opacity: 0.5;
+}
+
+quicksettings .rotation .toggle:checked image.lock {
+    opacity: 1;
+}
+
+@keyframes rotation-lock {
+    0% {
+        opacity: 1;
+        -gtk-icon-transform: rotate(0turn);
+    }
+    10% {
+        -gtk-icon-transform: rotate(0.05turn);
+        opacity: 0.5;
+    }
+    40% {
+        -gtk-icon-transform: rotate(-0.04turn);
+        opacity: 0.5;
+    }
+    70% {
+        -gtk-icon-transform: rotate(0.01turn);
+        opacity: 0.5;
+    }
+    100% {
+        -gtk-icon-transform: rotate(0turn);
+        opacity: 0.5;
+    }
+}
+
+@keyframes rotation-allow {
+    to {
+        -gtk-icon-transform: rotate(1turn);
+        opacity: 1;
+    }
+}
