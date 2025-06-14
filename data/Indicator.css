@@ -48,3 +48,11 @@ quicksettings .flat avatar {
     border: none;
     box-shadow: none;
 }
+
+quicksettings .color-scheme .toggle image {
+    transition: all 600ms cubic-bezier(0.66, 3, 0.64, 1);
+}
+
+quicksettings .color-scheme .toggle:checked image {
+    -gtk-icon-transform: rotate(180deg);
+}
