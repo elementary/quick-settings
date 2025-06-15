@@ -22,7 +22,7 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
 
         // Prevent a race that skips automatic resource loading
         // https://github.com/elementary/wingpanel-indicator-bluetooth/issues/203
-        Gtk.IconTheme.get_default ().add_resource_path ("/org/elementary/wingpanel/icons");
+        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/org/elementary/wingpanel/icons");
     }
 
     public override Gtk.Widget get_display_widget () {
@@ -39,8 +39,8 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
             var provider = new Gtk.CssProvider ();
             provider.load_from_resource ("io/elementary/quick-settings/Indicator.css");
 
-            Gtk.StyleContext.add_provider_for_screen (
-                Gdk.Screen.get_default (),
+            Gtk.StyleContext.add_provider_for_display (
+                Gdk.Display.get_default (),
                 provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );

@@ -7,9 +7,9 @@
 
 You'll need the following dependencies:
 
-* libgranite-dev
-* libhandy-1-dev
-* libwingpanel-dev
+* libgranite-7-dev
+* libadwaita-1-dev
+* libwingpanel-8-dev
 * meson
 * valac
 

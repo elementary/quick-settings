@@ -14,7 +14,7 @@ public enum QuickSettings.EndSessionDialogType {
     RESTART = 2
 }
 
-public class QuickSettings.EndSessionDialog : Hdy.Window {
+public class QuickSettings.EndSessionDialog : Gtk.Window {
     public signal void reboot ();
     public signal void shutdown ();
     public signal void logout ();
@@ -23,7 +23,6 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
     public EndSessionDialogType dialog_type { get; construct; }
 
     private Gtk.CheckButton? updates_check_button;
-    private Gtk.EventControllerKey key_controller;
 
     public EndSessionDialog (QuickSettings.EndSessionDialogType type) {
         Object (dialog_type: type);
@@ -51,7 +50,8 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
                 break;
         }
 
-        var image = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.DIALOG) {
+        var image = new Gtk.Image.from_icon_name (icon_name) {
+            pixel_size = 48,
             valign = Gtk.Align.START
         };
 
@@ -61,7 +61,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
             wrap = true,
             xalign = 0
         };
-        primary_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
+        primary_label.add_css_class (Granite.STYLE_CLASS_TITLE_LABEL);
 
         var secondary_label = new Gtk.Label (content_text) {
             max_width_chars = 50,
@@ -72,7 +72,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
         var cancel = new Gtk.Button.with_label (_("Cancel"));
 
         var confirm = new Gtk.Button.with_label (button_text);
-        confirm.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        confirm.add_css_class (Granite.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
         var action_area = new Gtk.Box (HORIZONTAL, 6) {
             halign = END,
@@ -93,11 +93,11 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
                 destroy ();
             });
 
-            action_area.add (confirm_restart);
+            action_area.append (confirm_restart);
         }
 
-        action_area.add (cancel);
-        action_area.add (confirm);
+        action_area.append (cancel);
+        action_area.append (confirm);
 
         var grid = new Gtk.Grid () {
             column_spacing = 12,
@@ -130,17 +130,11 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
 
         grid.attach (action_area, 0, 3, 2);
 
-        grid.show_all ();
-
         deletable = false;
         resizable = false;
-        skip_taskbar_hint = true;
-        skip_pager_hint = true;
-        type_hint = Gdk.WindowTypeHint.DIALOG;
-        set_keep_above (true);
-        window_position = Gtk.WindowPosition.CENTER;
-        stick ();
-        add (grid);
+        child = grid;
+
+        add_css_class ("dialog");
 
         cancel.grab_focus ();
 
@@ -154,12 +148,14 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
             cancel_action.activate (null);
         });
 
-        key_controller = new Gtk.EventControllerKey (this);
+        var key_controller = new Gtk.EventControllerKey ();
         key_controller.key_released.connect ((keyval, keycode, state) => {
             if (keyval == Gdk.Key.Escape) {
                 cancel_action.activate (null);
             }
         });
+
+        ((Gtk.Widget) this).add_controller (key_controller);
 
         confirm.clicked.connect (() => {
             if (dialog_type == EndSessionDialogType.RESTART || dialog_type == EndSessionDialogType.SHUTDOWN) {
@@ -175,7 +171,7 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
             destroy ();
         });
 
-        realize.connect (() => Idle.add_once (() => init_wl ()));
+        ((Gtk.Widget) this).realize.connect (() => Idle.add_once (() => init_wl ()));
     }
 
     private bool set_offline_trigger (Pk.OfflineAction action) {
@@ -206,9 +202,10 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
     public void registry_handle_global (Wl.Registry wl_registry, uint32 name, string @interface, uint32 version) {
         if (@interface == "io_elementary_pantheon_shell_v1") {
             var desktop_shell = wl_registry.bind<Pantheon.Desktop.Shell> (name, ref Pantheon.Desktop.Shell.iface, uint32.min (version, 1));
-            unowned var window = get_window ();
-            if (window is Gdk.Wayland.Window) {
-                unowned var wl_surface = ((Gdk.Wayland.Window) window).get_wl_surface ();
+            unowned var surface = get_surface ();
+            if (surface is Gdk.Wayland.Surface) {
+                unowned var wl_surface = ((Gdk.Wayland.Surface) surface).get_wl_surface ();
+
                 var extended_behavior = desktop_shell.get_extended_behavior (wl_surface);
                 extended_behavior.set_keep_above ();
                 extended_behavior.make_centered ();
