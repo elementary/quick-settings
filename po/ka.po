@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-19 01:49+0000\n"
+"POT-Creation-Date: 2025-06-14 00:24+0000\n"
 "PO-Revision-Date: 2024-09-13 00:01+0000\n"
 "Last-Translator: NorwayFun <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -19,15 +19,23 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Weblate 5.6.2\n"
 
-#: src/PopoverWidget.vala:29
+#: src/PopoverWidget.vala:28
 msgid "Screen Reader"
 msgstr "ეკრანის მკითხველი"
 
-#: src/PopoverWidget.vala:36
+#: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
 msgstr "კლავიატურის ეკრანზე"
 
-#: src/PopoverWidget.vala:166
+#: src/PopoverWidget.vala:160
+msgid "On Screen keyboard is unavailable in the Secure session"
+msgstr ""
+
+#: src/PopoverWidget.vala:161
+msgid "Log out and select “Classic session” to use the On Screen Keyboard."
+msgstr ""
+
+#: src/PopoverWidget.vala:188
 msgid "Not logged in"
 msgstr ""
 
@@ -60,51 +68,51 @@ msgstr ""
 msgid "Logged out"
 msgstr ""
 
-#: src/Widgets/DarkModeToggle.vala:10
+#: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
 msgstr "მუქი რეჟიმი"
 
-#: src/Widgets/EndSessionDialog.vala:37
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "Are you sure you want to Log Out?"
 msgstr "დარწმუნებული ხართ, რომ გამოსვლა გსურთ?"
 
-#: src/Widgets/EndSessionDialog.vala:38
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "This will close all open applications."
 msgstr "ეს ყველა პროგრამის დახურვას გამოიწვევს."
 
-#: src/Widgets/EndSessionDialog.vala:39
+#: src/Widgets/EndSessionDialog.vala:40
 msgid "Log Out"
 msgstr "გასვლა"
 
-#: src/Widgets/EndSessionDialog.vala:44
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "Are you sure you want to Shut Down?"
 msgstr "დარწმუნებული ხართ, რომ გამორთვა გსურთ?"
 
-#: src/Widgets/EndSessionDialog.vala:45
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "This will close all open applications and turn off this device."
 msgstr "ეს დახურავს ყველა პროგრამას და გამორთავს თქვენს მოწყოილობას."
 
-#: src/Widgets/EndSessionDialog.vala:46
+#: src/Widgets/EndSessionDialog.vala:47
 msgid "Shut Down"
 msgstr "გამორთვა"
 
-#: src/Widgets/EndSessionDialog.vala:71
+#: src/Widgets/EndSessionDialog.vala:72
 msgid "Cancel"
 msgstr "გაუქმება"
 
-#: src/Widgets/EndSessionDialog.vala:88
+#: src/Widgets/EndSessionDialog.vala:89
 msgid "Restart"
 msgstr "გადატვირთვა"
 
-#: src/Widgets/EndSessionDialog.vala:123
+#: src/Widgets/EndSessionDialog.vala:124
 msgid "Install pending system updates"
 msgstr ""
 
-#: src/Widgets/PreventSleepToggle.vala:13
+#: src/Widgets/PreventSleepToggle.vala:12
 msgid "Prevent Sleep"
 msgstr ""
 
-#: src/Widgets/RotationToggle.vala:10
+#: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
 msgstr "მობრუნების დაბლოკვა"
 
@@ -116,8 +124,8 @@ msgstr "სისტემის მორგება…"
 msgid "Suspend"
 msgstr "შეჩერება"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
-#: src/Widgets/SessionBox.vala:106
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:89
+#: src/Widgets/SessionBox.vala:94
 msgid "Lock"
 msgstr "დაბლოკვა"
 

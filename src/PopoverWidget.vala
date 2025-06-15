@@ -115,7 +115,6 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         });
 
         var applications_settings = new Settings ("org.gnome.desktop.a11y.applications");
-        applications_settings.bind ("screen-keyboard-enabled", onscreen_keyboard, "active", DEFAULT);
         applications_settings.bind ("screen-reader-enabled", screen_reader, "active", DEFAULT);
 
         var glib_settings = new Settings ("io.elementary.desktop.quick-settings");
@@ -144,6 +143,29 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         current_user_button.clicked.connect (() => {
             stack.visible_child = accounts_view;
         });
+
+        if (!(Gdk.Display.get_default () is Gdk.Wayland.Display)) {
+            applications_settings.bind ("screen-keyboard-enabled", onscreen_keyboard, "active", DEFAULT);
+        } else {
+            onscreen_keyboard.notify["active"].connect (() => {
+                if (!onscreen_keyboard.active) {
+                    return;
+                }
+
+                onscreen_keyboard.active = false;
+
+                var message_dialog = new Granite.MessageDialog (
+                    _("On Screen keyboard is unavailable in the Secure session"),
+                    _("Log out and select “Classic session” to use the On Screen Keyboard."),
+                    new ThemedIcon ("onboard")
+                ) {
+                    badge_icon = new ThemedIcon ("system-log-out"),
+                    transient_for = (Gtk.Window) get_toplevel ()
+                };
+                message_dialog.response.connect (message_dialog.destroy);
+                message_dialog.present ();
+            });
+        }
     }
 
     private async SensorProxy? setup_sensor_proxy () {
