@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-14 00:24+0000\n"
+"POT-Creation-Date: 2025-06-16 20:46+0000\n"
 "PO-Revision-Date: 2024-04-23 17:35+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Korean <https://l10n.elementary.io/projects/wingpanel/quick-"
@@ -71,39 +71,39 @@ msgstr ""
 msgid "Dark Mode"
 msgstr ""
 
-#: src/Widgets/EndSessionDialog.vala:38
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "정말 로그아웃 하시겠습니까?"
 
-#: src/Widgets/EndSessionDialog.vala:39
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "열린 프로그램을 모두 닫게 됩니다."
 
-#: src/Widgets/EndSessionDialog.vala:40
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "로그 아웃"
 
-#: src/Widgets/EndSessionDialog.vala:45
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "정말 컴퓨터를 끄시겠습니까?"
 
-#: src/Widgets/EndSessionDialog.vala:46
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr "모든 애플리케이션을 닫고 컴퓨터를 끕니다."
 
-#: src/Widgets/EndSessionDialog.vala:47
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "컴퓨터 끄기"
 
-#: src/Widgets/EndSessionDialog.vala:72
-msgid "Cancel"
-msgstr "취소"
-
-#: src/Widgets/EndSessionDialog.vala:89
+#: src/Widgets/EndSessionDialog.vala:63
 msgid "Restart"
 msgstr "다시 시작"
 
-#: src/Widgets/EndSessionDialog.vala:124
+#: src/Widgets/EndSessionDialog.vala:71
+msgid "Cancel"
+msgstr "취소"
+
+#: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
 msgstr ""
 

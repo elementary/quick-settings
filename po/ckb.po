@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-14 00:24+0000\n"
+"POT-Creation-Date: 2025-06-16 20:46+0000\n"
 "PO-Revision-Date: 2024-04-23 17:35+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: Kurdish (Central) <https://l10n.elementary.io/projects/"
@@ -72,39 +72,39 @@ msgstr ""
 msgid "Dark Mode"
 msgstr ""
 
-#: src/Widgets/EndSessionDialog.vala:38
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "دڵنیایی لە چوونەدەر؟"
 
-#: src/Widgets/EndSessionDialog.vala:39
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "ئەمە هەموو بەرنامە کراوەکان دادەخاتەوە."
 
-#: src/Widgets/EndSessionDialog.vala:40
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "دەرچوون"
 
-#: src/Widgets/EndSessionDialog.vala:45
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "دڵنیایی لە خامۆشکردن؟"
 
-#: src/Widgets/EndSessionDialog.vala:46
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr "ئەمە هەموو بەرنامە کراوەکان دادەخاتەوە و کۆمپیتەرەکەت دەکوژێنێتەوە."
 
-#: src/Widgets/EndSessionDialog.vala:47
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "خامۆشکردن"
 
-#: src/Widgets/EndSessionDialog.vala:72
-msgid "Cancel"
-msgstr "هەڵوەشاندنەوە"
-
-#: src/Widgets/EndSessionDialog.vala:89
+#: src/Widgets/EndSessionDialog.vala:63
 msgid "Restart"
 msgstr "پێکردنەوە"
 
-#: src/Widgets/EndSessionDialog.vala:124
+#: src/Widgets/EndSessionDialog.vala:71
+msgid "Cancel"
+msgstr "هەڵوەشاندنەوە"
+
+#: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
 msgstr ""
 
