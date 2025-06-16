@@ -91,9 +91,6 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
             }
         }
 
-        // deletable = false;
-        // resizable = false;
-
         cancel.grab_focus ();
 
         var cancel_action = new SimpleAction ("cancel", null);
