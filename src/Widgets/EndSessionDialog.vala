@@ -86,8 +86,9 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
                     active = true,
                     label = _("Install pending system updates"),
                 };
+                updates_check_button.show ();
 
-                get_content_area ().add (updates_check_button);
+                custom_bin.add (updates_check_button);
             }
         }
 
