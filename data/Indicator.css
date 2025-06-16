@@ -49,6 +49,14 @@ quicksettings .flat avatar {
     box-shadow: none;
 }
 
+quicksettings .color-scheme .toggle image {
+    transition: all 600ms cubic-bezier(0.66, 3, 0.64, 1);
+}
+
+quicksettings .color-scheme .toggle:checked image {
+    -gtk-icon-transform: rotate(180deg);
+}
+
 quicksettings .rotation .toggle image.arrow {
     animation: rotation-allow 600ms cubic-bezier(0.4, 0, 0.2, 1) 1;
     opacity: 1;

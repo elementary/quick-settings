@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-14 00:24+0000\n"
-"PO-Revision-Date: 2025-04-05 07:55+0000\n"
+"PO-Revision-Date: 2025-06-15 01:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/ja/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
@@ -29,11 +29,12 @@ msgstr "オンスクリーンキーボード"
 
 #: src/PopoverWidget.vala:160
 msgid "On Screen keyboard is unavailable in the Secure session"
-msgstr ""
+msgstr "セキュアセッションではオンスクリーンキーボードは利用できません"
 
 #: src/PopoverWidget.vala:161
 msgid "Log out and select “Classic session” to use the On Screen Keyboard."
-msgstr ""
+msgstr "オンスクリーンキーボードを利用するには、ログアウトして “クラシックセッション”"
+" を選択してください。"
 
 #: src/PopoverWidget.vala:188
 msgid "Not logged in"
