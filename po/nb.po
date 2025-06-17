@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-14 00:24+0000\n"
+"POT-Creation-Date: 2025-06-16 20:46+0000\n"
 "PO-Revision-Date: 2024-09-19 07:22+0000\n"
 "Last-Translator: Allan Nordhøy <epost@anotheragency.no>\n"
 "Language-Team: Norwegian Bokmål <https://l10n.elementary.io/projects/"
@@ -72,39 +72,39 @@ msgstr ""
 msgid "Dark Mode"
 msgstr "Mørk drakt"
 
-#: src/Widgets/EndSessionDialog.vala:38
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "Logg ut?"
 
-#: src/Widgets/EndSessionDialog.vala:39
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "Dette lukker alle åpne programmer."
 
-#: src/Widgets/EndSessionDialog.vala:40
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "Logg ut"
 
-#: src/Widgets/EndSessionDialog.vala:45
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "Slå av?"
 
-#: src/Widgets/EndSessionDialog.vala:46
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr "Dette lukker alle åpne programmer og slår av enheten."
 
-#: src/Widgets/EndSessionDialog.vala:47
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "Slå av"
 
-#: src/Widgets/EndSessionDialog.vala:72
-msgid "Cancel"
-msgstr "Avbryt"
-
-#: src/Widgets/EndSessionDialog.vala:89
+#: src/Widgets/EndSessionDialog.vala:63
 msgid "Restart"
 msgstr "Start på nytt"
 
-#: src/Widgets/EndSessionDialog.vala:124
+#: src/Widgets/EndSessionDialog.vala:71
+msgid "Cancel"
+msgstr "Avbryt"
+
+#: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
 msgstr "Installer ventende systemoppgraderinger"
 

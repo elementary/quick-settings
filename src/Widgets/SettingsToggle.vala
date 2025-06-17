@@ -9,6 +9,15 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
     public string label { get; construct; }
     public string settings_uri { get; set; default = "settings://"; }
 
+    public Gtk.Widget button_child {
+        set {
+            button.get_child ().unparent ();
+            button.child = value;
+        }
+    }
+
+    private Gtk.ToggleButton button;
+
     public SettingsToggle (string label) {
         Object (
             label: label
@@ -16,7 +25,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
     }
 
     construct {
-        var button = new Gtk.ToggleButton () {
+        button = new Gtk.ToggleButton () {
             halign = CENTER
         };
 

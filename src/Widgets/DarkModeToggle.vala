@@ -13,7 +13,7 @@ public class QuickSettings.DarkModeToggle: SettingsToggle {
     construct {
         icon_name = "dark-mode-symbolic";
         settings_uri = "settings://desktop/appearance";
-        get_style_context ().add_class ("color-scheme");
+        add_css_class ("color-scheme");
 
         var settings = new GLib.Settings ("io.elementary.settings-daemon.prefers-color-scheme");
 

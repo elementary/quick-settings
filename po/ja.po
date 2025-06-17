@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-14 00:24+0000\n"
+"POT-Creation-Date: 2025-06-16 20:46+0000\n"
 "PO-Revision-Date: 2025-06-15 01:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementaryos.org/projects/wingpanel/"
@@ -33,8 +33,9 @@ msgstr "セキュアセッションではオンスクリーンキーボードは
 
 #: src/PopoverWidget.vala:161
 msgid "Log out and select “Classic session” to use the On Screen Keyboard."
-msgstr "オンスクリーンキーボードを利用するには、ログアウトして “クラシックセッション”"
-" を選択してください。"
+msgstr ""
+"オンスクリーンキーボードを利用するには、ログアウトして “クラシックセッショ"
+"ン” を選択してください。"
 
 #: src/PopoverWidget.vala:188
 msgid "Not logged in"
@@ -72,41 +73,41 @@ msgstr "ログアウト中"
 msgid "Dark Mode"
 msgstr "ダークモード"
 
-#: src/Widgets/EndSessionDialog.vala:38
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "ログアウトしてもよろしいですか?"
 
-#: src/Widgets/EndSessionDialog.vala:39
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "続行すると、開いているすべてのアプリケーションを閉じます。"
 
-#: src/Widgets/EndSessionDialog.vala:40
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "ログアウト"
 
-#: src/Widgets/EndSessionDialog.vala:45
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "シャットダウンしてもよろしいですか?"
 
-#: src/Widgets/EndSessionDialog.vala:46
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr ""
 "続行すると、開いているすべてのアプリケーションを閉じてこのデバイスの電源を切"
 "ります。"
 
-#: src/Widgets/EndSessionDialog.vala:47
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "シャットダウン"
 
-#: src/Widgets/EndSessionDialog.vala:72
-msgid "Cancel"
-msgstr "キャンセル"
-
-#: src/Widgets/EndSessionDialog.vala:89
+#: src/Widgets/EndSessionDialog.vala:63
 msgid "Restart"
 msgstr "再起動"
 
-#: src/Widgets/EndSessionDialog.vala:124
+#: src/Widgets/EndSessionDialog.vala:71
+msgid "Cancel"
+msgstr "キャンセル"
+
+#: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
 msgstr "保留中のシステムアップデートをインストール"
 

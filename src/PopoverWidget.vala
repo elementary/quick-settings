@@ -160,7 +160,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                     new ThemedIcon ("onboard")
                 ) {
                     badge_icon = new ThemedIcon ("system-log-out"),
-                    transient_for = (Gtk.Window) get_toplevel ()
+                    transient_for = (Gtk.Window) get_root ()
                 };
                 message_dialog.response.connect (message_dialog.destroy);
                 message_dialog.present ();
