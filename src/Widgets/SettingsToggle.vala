@@ -13,6 +13,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
         set {
             button.get_child ().unparent ();
             button.child = value;
+            button.add_css_class ("image-button");
         }
     }
 
