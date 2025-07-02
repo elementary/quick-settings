@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-06-16 20:46+0000\n"
-"PO-Revision-Date: 2025-04-10 11:55+0000\n"
+"PO-Revision-Date: 2025-07-03 09:55+0000\n"
 "Last-Translator: Nathan <bonnemainsnathan@gmail.com>\n"
 "Language-Team: French <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/fr/>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
@@ -29,11 +29,13 @@ msgstr "Clavier visuel"
 
 #: src/PopoverWidget.vala:160
 msgid "On Screen keyboard is unavailable in the Secure session"
-msgstr ""
+msgstr "Le clavier visuel n'est pas disponible dans la session sécurisée"
 
 #: src/PopoverWidget.vala:161
 msgid "Log out and select “Classic session” to use the On Screen Keyboard."
 msgstr ""
+"Déconnectez-vous et sélectionnez « Session classique » pour utiliser le "
+"clavier visuel."
 
 #: src/PopoverWidget.vala:188
 msgid "Not logged in"
