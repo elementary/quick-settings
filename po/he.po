@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-16 20:46+0000\n"
+"POT-Creation-Date: 2025-07-04 22:43+0000\n"
 "PO-Revision-Date: 2025-04-16 13:55+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementaryos.org/projects/wingpanel/"
@@ -53,23 +53,6 @@ msgstr[0] "עוד אחד במערכת"
 msgstr[1] "עוד %i במערכת"
 msgstr[2] "עוד %i במערכת"
 msgstr[3] "עוד %i במערכת"
-
-#: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
-#: src/Widgets/CurrentUser.vala:109
-msgid "Log Out…"
-msgstr "יציאה…"
-
-#: src/Widgets/CurrentUser.vala:122 src/Widgets/UserRow.vala:31
-msgid "Guest"
-msgstr "אורח"
-
-#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:115
-msgid "Logged in"
-msgstr "במערכת"
-
-#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:117
-msgid "Logged out"
-msgstr "לא במערכת"
 
 #: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
@@ -144,10 +127,27 @@ msgstr "הקטנת גודל הכתב"
 msgid "Increase text size"
 msgstr "הגדלת גודל הכתב"
 
-#: src/Widgets/UserList.vala:42
+#: src/Widgets/UserList.vala:43
 msgid "User Accounts Settings…"
 msgstr "הגדרות חשבונות משתמשים…"
 
-#: src/Widgets/UserRow.vala:127
+#: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
+#: src/Widgets/UserRow.vala:99
+msgid "Log Out…"
+msgstr "יציאה…"
+
+#: src/Widgets/UserRow.vala:136
+msgid "Logged in"
+msgstr "במערכת"
+
+#: src/Widgets/UserRow.vala:138
+msgid "Logged out"
+msgstr "לא במערכת"
+
+#: src/Widgets/UserRow.vala:148
 msgid "Locked"
 msgstr "נעול"
+
+#: src/Widgets/UserRow.vala:151
+msgid "Guest"
+msgstr "אורח"
