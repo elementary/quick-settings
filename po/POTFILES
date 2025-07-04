@@ -8,7 +8,7 @@ src/DBus/SessionInterface.vala
 src/DBus/SystemInterface.vala
 src/DBus/UserInterface.vala
 src/Services/UserManager.vala
-src/Widgets/CurrentUser.vala
+src/Widgets/AvatarButton.vala
 src/Widgets/DarkModeToggle.vala
 src/Widgets/EndSessionDialog.vala
 src/Widgets/PreventSleepToggle.vala
