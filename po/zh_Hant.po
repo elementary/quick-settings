@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-19 01:49+0000\n"
+"POT-Creation-Date: 2025-06-16 20:46+0000\n"
 "PO-Revision-Date: 2025-04-26 12:55+0000\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Chinese (Traditional Han script) <https://"
@@ -19,15 +19,23 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Weblate 5.10.4\n"
 
-#: src/PopoverWidget.vala:29
+#: src/PopoverWidget.vala:28
 msgid "Screen Reader"
 msgstr "螢幕閱讀器"
 
-#: src/PopoverWidget.vala:36
+#: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
 msgstr "螢幕鍵盤"
 
-#: src/PopoverWidget.vala:166
+#: src/PopoverWidget.vala:160
+msgid "On Screen keyboard is unavailable in the Secure session"
+msgstr ""
+
+#: src/PopoverWidget.vala:161
+msgid "Log out and select “Classic session” to use the On Screen Keyboard."
+msgstr ""
+
+#: src/PopoverWidget.vala:188
 msgid "Not logged in"
 msgstr "未登入"
 
@@ -59,7 +67,7 @@ msgstr "已登入"
 msgid "Logged out"
 msgstr "已登出"
 
-#: src/Widgets/DarkModeToggle.vala:10
+#: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
 msgstr "深色模式"
 
@@ -87,23 +95,23 @@ msgstr "這會關閉所有開啟的應用程式並將此裝置關機。"
 msgid "Shut Down"
 msgstr "關機"
 
+#: src/Widgets/EndSessionDialog.vala:63
+msgid "Restart"
+msgstr "重新啟動"
+
 #: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
 msgstr "取消"
 
-#: src/Widgets/EndSessionDialog.vala:88
-msgid "Restart"
-msgstr "重新啟動"
-
-#: src/Widgets/EndSessionDialog.vala:123
+#: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
 msgstr "安裝待處理的系統更新"
 
-#: src/Widgets/PreventSleepToggle.vala:13
+#: src/Widgets/PreventSleepToggle.vala:12
 msgid "Prevent Sleep"
 msgstr "防止睡眠"
 
-#: src/Widgets/RotationToggle.vala:10
+#: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
 msgstr "鎖定旋轉"
 
@@ -115,8 +123,8 @@ msgstr "系統設定值…"
 msgid "Suspend"
 msgstr "暫停"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
-#: src/Widgets/SessionBox.vala:106
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:89
+#: src/Widgets/SessionBox.vala:94
 msgid "Lock"
 msgstr "鎖定"
 

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-19 01:49+0000\n"
+"POT-Creation-Date: 2025-06-16 20:46+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -18,15 +18,23 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=INTEGER; plural=EXPRESSION;\n"
 
-#: src/PopoverWidget.vala:29
+#: src/PopoverWidget.vala:28
 msgid "Screen Reader"
 msgstr ""
 
-#: src/PopoverWidget.vala:36
+#: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
 msgstr ""
 
-#: src/PopoverWidget.vala:166
+#: src/PopoverWidget.vala:160
+msgid "On Screen keyboard is unavailable in the Secure session"
+msgstr ""
+
+#: src/PopoverWidget.vala:161
+msgid "Log out and select “Classic session” to use the On Screen Keyboard."
+msgstr ""
+
+#: src/PopoverWidget.vala:188
 msgid "Not logged in"
 msgstr ""
 
@@ -59,7 +67,7 @@ msgstr ""
 msgid "Logged out"
 msgstr ""
 
-#: src/Widgets/DarkModeToggle.vala:10
+#: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
 msgstr ""
 
@@ -87,23 +95,23 @@ msgstr ""
 msgid "Shut Down"
 msgstr ""
 
+#: src/Widgets/EndSessionDialog.vala:63
+msgid "Restart"
+msgstr ""
+
 #: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
 msgstr ""
 
-#: src/Widgets/EndSessionDialog.vala:88
-msgid "Restart"
-msgstr ""
-
-#: src/Widgets/EndSessionDialog.vala:123
+#: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
 msgstr ""
 
-#: src/Widgets/PreventSleepToggle.vala:13
+#: src/Widgets/PreventSleepToggle.vala:12
 msgid "Prevent Sleep"
 msgstr ""
 
-#: src/Widgets/RotationToggle.vala:10
+#: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
 msgstr ""
 
@@ -115,8 +123,8 @@ msgstr ""
 msgid "Suspend"
 msgstr ""
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
-#: src/Widgets/SessionBox.vala:106
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:89
+#: src/Widgets/SessionBox.vala:94
 msgid "Lock"
 msgstr ""
 

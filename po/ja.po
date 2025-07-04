@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-04-19 01:49+0000\n"
-"PO-Revision-Date: 2025-04-05 07:55+0000\n"
+"POT-Creation-Date: 2025-06-16 20:46+0000\n"
+"PO-Revision-Date: 2025-06-15 01:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/ja/>\n"
@@ -17,17 +17,27 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 
-#: src/PopoverWidget.vala:29
+#: src/PopoverWidget.vala:28
 msgid "Screen Reader"
 msgstr "スクリーンリーダー"
 
-#: src/PopoverWidget.vala:36
+#: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
 msgstr "オンスクリーンキーボード"
 
-#: src/PopoverWidget.vala:166
+#: src/PopoverWidget.vala:160
+msgid "On Screen keyboard is unavailable in the Secure session"
+msgstr "セキュアセッションではオンスクリーンキーボードは利用できません"
+
+#: src/PopoverWidget.vala:161
+msgid "Log out and select “Classic session” to use the On Screen Keyboard."
+msgstr ""
+"オンスクリーンキーボードを利用するには、ログアウトして “クラシックセッショ"
+"ン” を選択してください。"
+
+#: src/PopoverWidget.vala:188
 msgid "Not logged in"
 msgstr "ログインしていません"
 
@@ -59,7 +69,7 @@ msgstr "ログイン中"
 msgid "Logged out"
 msgstr "ログアウト中"
 
-#: src/Widgets/DarkModeToggle.vala:10
+#: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
 msgstr "ダークモード"
 
@@ -89,23 +99,23 @@ msgstr ""
 msgid "Shut Down"
 msgstr "シャットダウン"
 
+#: src/Widgets/EndSessionDialog.vala:63
+msgid "Restart"
+msgstr "再起動"
+
 #: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
 msgstr "キャンセル"
 
-#: src/Widgets/EndSessionDialog.vala:88
-msgid "Restart"
-msgstr "再起動"
-
-#: src/Widgets/EndSessionDialog.vala:123
+#: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
 msgstr "保留中のシステムアップデートをインストール"
 
-#: src/Widgets/PreventSleepToggle.vala:13
+#: src/Widgets/PreventSleepToggle.vala:12
 msgid "Prevent Sleep"
 msgstr "スリープしないようにする"
 
-#: src/Widgets/RotationToggle.vala:10
+#: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
 msgstr "回転ロック"
 
@@ -117,8 +127,8 @@ msgstr "システム設定…"
 msgid "Suspend"
 msgstr "サスペンド"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:101
-#: src/Widgets/SessionBox.vala:106
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:89
+#: src/Widgets/SessionBox.vala:94
 msgid "Lock"
 msgstr "ロック"
 

@@ -14,7 +14,7 @@ public enum QuickSettings.EndSessionDialogType {
     RESTART = 2
 }
 
-public class QuickSettings.EndSessionDialog : Hdy.Window {
+public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
     public signal void reboot ();
     public signal void shutdown ();
     public signal void logout ();
@@ -30,20 +30,19 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
     }
 
     construct {
-        string icon_name, heading_text, button_text, content_text;
-
+        string button_text;
         switch (dialog_type) {
             case EndSessionDialogType.LOGOUT:
-                icon_name = "system-log-out";
-                heading_text = _("Are you sure you want to Log Out?");
-                content_text = _("This will close all open applications.");
+                image_icon = new ThemedIcon ("system-log-out");
+                primary_text = _("Are you sure you want to Log Out?");
+                secondary_text = _("This will close all open applications.");
                 button_text = _("Log Out");
                 break;
             case EndSessionDialogType.SHUTDOWN:
             case EndSessionDialogType.RESTART:
-                icon_name = "system-shutdown";
-                heading_text = _("Are you sure you want to Shut Down?");
-                content_text = _("This will close all open applications and turn off this device.");
+                image_icon = new ThemedIcon ("system-shutdown");
+                primary_text = _("Are you sure you want to Shut Down?");
+                secondary_text = _("This will close all open applications and turn off this device.");
                 button_text = _("Shut Down");
                 break;
             default:
@@ -55,60 +54,24 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
             valign = Gtk.Align.START
         };
 
-        var primary_label = new Gtk.Label (heading_text) {
-            hexpand = true,
-            max_width_chars = 50,
-            wrap = true,
-            xalign = 0
-        };
-        primary_label.get_style_context ().add_class (Granite.STYLE_CLASS_PRIMARY_LABEL);
-
-        var secondary_label = new Gtk.Label (content_text) {
-            max_width_chars = 50,
-            wrap = true,
-            xalign = 0
-        };
-
-        var cancel = new Gtk.Button.with_label (_("Cancel"));
-
-        var confirm = new Gtk.Button.with_label (button_text);
-        confirm.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
-
-        var action_area = new Gtk.Box (HORIZONTAL, 6) {
-            halign = END,
-            homogeneous = true,
-            margin_top = 16
-        };
-
         /*
          * the indicator does not have a separate item for restart, that's
          * why we show both shutdown and restart for the restart action
          * (which is sent for shutdown as described above)
          */
         if (dialog_type == EndSessionDialogType.RESTART) {
-            var confirm_restart = new Gtk.Button.with_label (_("Restart"));
+            var confirm_restart = (Gtk.Button) add_button (_("Restart"), 1);
             confirm_restart.clicked.connect (() => {
                 set_offline_trigger (REBOOT); // This will just do nothing if no updates are available
                 reboot ();
                 destroy ();
             });
-
-            action_area.add (confirm_restart);
         }
 
-        action_area.add (cancel);
-        action_area.add (confirm);
+        var cancel = (Gtk.Button) add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
 
-        var grid = new Gtk.Grid () {
-            column_spacing = 12,
-            margin_top = 12,
-            margin_bottom = 12,
-            margin_start = 12,
-            margin_end = 12
-        };
-        grid.attach (image, 0, 0, 1, 2);
-        grid.attach (primary_label, 1, 0);
-        grid.attach (secondary_label, 1, 1);
+        var confirm = (Gtk.Button) add_button (button_text, Gtk.ResponseType.ACCEPT);
+        confirm.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
 
         if (dialog_type != LOGOUT) {
             bool has_prepared_updates = false;
@@ -122,25 +85,12 @@ public class QuickSettings.EndSessionDialog : Hdy.Window {
                 updates_check_button = new Gtk.CheckButton () {
                     active = true,
                     label = _("Install pending system updates"),
-                    margin_top = 16
                 };
-                grid.attach (updates_check_button, 1, 2);
+                updates_check_button.show ();
+
+                custom_bin.add (updates_check_button);
             }
         }
-
-        grid.attach (action_area, 0, 3, 2);
-
-        grid.show_all ();
-
-        deletable = false;
-        resizable = false;
-        skip_taskbar_hint = true;
-        skip_pager_hint = true;
-        type_hint = Gdk.WindowTypeHint.DIALOG;
-        set_keep_above (true);
-        window_position = Gtk.WindowPosition.CENTER;
-        stick ();
-        add (grid);
 
         cancel.grab_focus ();
 
