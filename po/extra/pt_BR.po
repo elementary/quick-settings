@@ -9,7 +9,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-18 09:02-0700\n"
 "PO-Revision-Date: 2025-07-26 02:55+0000\n"
-"Last-Translator: Max2020 <alcizmaxpereira@gmail.com>\n"
+"Last-Translator: Guilherme Faura <guilhermefaura@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementaryos.org/projects/"
 "wingpanel/quick-settings-extra/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: data/quick-settings.metainfo.xml:11
 msgid "Quick Settings"
-msgstr "Configurações rápidas"
+msgstr "Configurações Rápidas"
 
 #: data/quick-settings.metainfo.xml:12
 msgid "Access frequently used settings and system actions"
