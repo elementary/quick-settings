@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-18 09:02-0700\n"
-"PO-Revision-Date: 2025-07-25 02:11+0000\n"
+"PO-Revision-Date: 2025-07-26 02:55+0000\n"
 "Last-Translator: Max2020 <alcizmaxpereira@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementaryos.org/projects/"
 "wingpanel/quick-settings-extra/pt_BR/>\n"
@@ -25,7 +25,7 @@ msgstr "Configurações rápidas"
 
 #: data/quick-settings.metainfo.xml:12
 msgid "Access frequently used settings and system actions"
-msgstr ""
+msgstr "Acesse as configurações e ações do sistema usadas com frequência"
 
 #: data/quick-settings.metainfo.xml:28
 msgid "elementary, Inc."
@@ -33,4 +33,4 @@ msgstr "elementary, Inc."
 
 #: data/quick-settings.metainfo.xml:36
 msgid "First release 🎉️"
-msgstr ""
+msgstr "Primeiro lançamento 🎉️"
