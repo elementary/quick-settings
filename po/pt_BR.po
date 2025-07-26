@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-04 22:43+0000\n"
-"PO-Revision-Date: 2025-07-26 21:54+0000\n"
-"Last-Translator: Max2020 <alcizmaxpereira@gmail.com>\n"
+"PO-Revision-Date: 2025-07-27 21:55+0000\n"
+"Last-Translator: Guilherme Faura <guilhermefaura@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementaryos.org/projects/"
 "wingpanel/quick-settings/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -102,7 +102,7 @@ msgstr "Bloqueio de Rotação"
 
 #: src/Widgets/SessionBox.vala:19
 msgid "System Settings…"
-msgstr "Configurações do sistema…"
+msgstr "Configurações do Sistema…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
@@ -127,7 +127,7 @@ msgstr "Aumentar o tamanho do texto"
 
 #: src/Widgets/UserList.vala:43
 msgid "User Accounts Settings…"
-msgstr ""
+msgstr "Configurações de Contas de Usuário…"
 
 #: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
 #: src/Widgets/UserRow.vala:99
@@ -136,18 +136,16 @@ msgstr "Encerrar sessão…"
 
 #: src/Widgets/UserRow.vala:136
 msgid "Logged in"
-msgstr ""
+msgstr "Conectado"
 
 #: src/Widgets/UserRow.vala:138
 msgid "Logged out"
-msgstr ""
+msgstr "Desconectado"
 
 #: src/Widgets/UserRow.vala:148
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "Bloquear"
+msgstr "Bloqueado"
 
 #: src/Widgets/UserRow.vala:151
 msgid "Guest"
-msgstr ""
+msgstr "Convidado"
