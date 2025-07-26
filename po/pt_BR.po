@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-04 22:43+0000\n"
-"PO-Revision-Date: 2025-07-26 21:53+0000\n"
-"Last-Translator: Max2020 <alcizmaxpereira@gmail.com>\n"
+"PO-Revision-Date: 2025-07-26 21:54+0000\n"
+"Last-Translator: Guilherme Faura <guilhermefaura@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementaryos.org/projects/"
 "wingpanel/quick-settings/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -98,7 +98,7 @@ msgstr "Impedir Suspensão"
 
 #: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
-msgstr "Bloqueio de rotação"
+msgstr "Bloqueio de Rotação"
 
 #: src/Widgets/SessionBox.vala:19
 msgid "System Settings…"
