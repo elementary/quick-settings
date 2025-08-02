@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-04 22:43+0000\n"
-"PO-Revision-Date: 2024-04-23 17:35+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
-"Language-Team: Chinese (Simplified) <https://l10n.elementary.io/projects/"
-"wingpanel/quick-settings/zh_Hans/>\n"
+"PO-Revision-Date: 2025-08-03 10:55+0000\n"
+"Last-Translator: JieXu <xujie0739@qq.com>\n"
+"Language-Team: Chinese (Simplified Han script) <https://"
+"l10n.elementaryos.org/projects/wingpanel/quick-settings/zh_Hans/>\n"
 "Language: zh_Hans\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
@@ -29,30 +29,30 @@ msgstr "屏幕键盘"
 
 #: src/PopoverWidget.vala:160
 msgid "On Screen keyboard is unavailable in the Secure session"
-msgstr ""
+msgstr "屏幕键盘无法安全模式下启用"
 
 #: src/PopoverWidget.vala:161
 msgid "Log out and select “Classic session” to use the On Screen Keyboard."
-msgstr ""
+msgstr "注销并选择“经典会话”以使用屏幕键盘。"
 
 #: src/PopoverWidget.vala:188
 msgid "Not logged in"
-msgstr ""
+msgstr "未登入"
 
 #: src/Services/UserManager.vala:135
 #, c-format
 msgid "Logged in as “%s”"
-msgstr ""
+msgstr "已以 “%s” 身份登录"
 
 #: src/Services/UserManager.vala:158
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
-msgstr[0] ""
+msgstr[0] "另外有 %i 人已登入"
 
 #: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
-msgstr ""
+msgstr "深色模式"
 
 #: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
@@ -88,19 +88,19 @@ msgstr "取消"
 
 #: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
-msgstr ""
+msgstr "安装待处理的系统更新"
 
 #: src/Widgets/PreventSleepToggle.vala:12
 msgid "Prevent Sleep"
-msgstr ""
+msgstr "阻止睡眠"
 
 #: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
-msgstr ""
+msgstr "旋转锁定"
 
 #: src/Widgets/SessionBox.vala:19
 msgid "System Settings…"
-msgstr ""
+msgstr "系统设置…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
@@ -125,7 +125,7 @@ msgstr "放大文本"
 
 #: src/Widgets/UserList.vala:43
 msgid "User Accounts Settings…"
-msgstr ""
+msgstr "用户帐号设置…"
 
 #: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
 #: src/Widgets/UserRow.vala:99
@@ -134,18 +134,16 @@ msgstr "注销…"
 
 #: src/Widgets/UserRow.vala:136
 msgid "Logged in"
-msgstr ""
+msgstr "已登入"
 
 #: src/Widgets/UserRow.vala:138
 msgid "Logged out"
-msgstr ""
+msgstr "已登出"
 
 #: src/Widgets/UserRow.vala:148
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "锁定"
+msgstr "已锁定"
 
 #: src/Widgets/UserRow.vala:151
 msgid "Guest"
-msgstr ""
+msgstr "访客"
