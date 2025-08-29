@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-07-04 22:43+0000\n"
-"PO-Revision-Date: 2025-06-15 01:55+0000\n"
+"PO-Revision-Date: 2025-08-30 22:55+0000\n"
 "Last-Translator: Ryo Nakano <ryonakaknock3@gmail.com>\n"
 "Language-Team: Japanese <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/ja/>\n"
@@ -129,7 +129,7 @@ msgstr "テキストサイズを拡大"
 
 #: src/Widgets/UserList.vala:43
 msgid "User Accounts Settings…"
-msgstr "ユーザーアカウントの設定…"
+msgstr "ユーザーアカウント設定…"
 
 #: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
 #: src/Widgets/UserRow.vala:99
