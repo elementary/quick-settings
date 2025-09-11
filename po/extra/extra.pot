@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-07-04 22:43+0000\n"
+"POT-Creation-Date: 2025-09-11 20:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -29,20 +29,28 @@ msgstr ""
 msgid "elementary, Inc."
 msgstr ""
 
-#: data/quick-settings.metainfo.xml:36 data/quick-settings.metainfo.xml:52
-#: data/quick-settings.metainfo.xml:67
+#: data/quick-settings.metainfo.xml:36 data/quick-settings.metainfo.xml:50
+#: data/quick-settings.metainfo.xml:66 data/quick-settings.metainfo.xml:81
 msgid "Other Improvements:"
 msgstr ""
 
-#: data/quick-settings.metainfo.xml:38 data/quick-settings.metainfo.xml:54
-#: data/quick-settings.metainfo.xml:70
+#: data/quick-settings.metainfo.xml:38
+msgid "Animate Dark Mode and Rotation Lock toggles"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:39
+msgid "Notify when trying to open Onboard in a Secure Session"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:40 data/quick-settings.metainfo.xml:52
+#: data/quick-settings.metainfo.xml:68 data/quick-settings.metainfo.xml:84
 msgid "Updated translations"
 msgstr ""
 
-#: data/quick-settings.metainfo.xml:69
+#: data/quick-settings.metainfo.xml:83
 msgid "don't add dark mode toggle in greeter"
 msgstr ""
 
-#: data/quick-settings.metainfo.xml:80
+#: data/quick-settings.metainfo.xml:94
 msgid "First release 🎉️"
 msgstr ""
