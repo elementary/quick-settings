@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-11 20:14+0000\n"
-"PO-Revision-Date: 2025-08-03 10:55+0000\n"
+"PO-Revision-Date: 2025-09-13 16:55+0000\n"
 "Last-Translator: JieXu <xujie0739@qq.com>\n"
 "Language-Team: Chinese (Simplified Han script) <https://"
 "l10n.elementaryos.org/projects/wingpanel/quick-settings/zh_Hans/>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
-msgstr "屏幕阅读"
+msgstr "屏幕阅读器"
 
 #: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
