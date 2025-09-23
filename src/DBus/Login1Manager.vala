@@ -25,7 +25,7 @@ public class QuickSettings.Login1Manager : Object {
     public Login1ManagerInterface object;
 
     private static GLib.Once<Login1Manager> instance;
-    public static unowned Login1Manager get_default ()  {
+    public static unowned Login1Manager get_default () {
         return instance.once (() => { return new Login1Manager (); });
     }
 
