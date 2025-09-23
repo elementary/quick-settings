@@ -32,8 +32,7 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
     }
 
     private void show_dialog (EndSessionDialogType type) {
-        unowned var popover = (Gtk.Popover) popover_widget?.get_ancestor (typeof (Gtk.Popover));
-        popover?.popdown ();
+        ((Gtk.Popover?) popover_widget?.get_ancestor (typeof (Gtk.Popover)))?.popdown ();
 
         if (current_dialog != null) {
             if (current_dialog.dialog_type != type) {
