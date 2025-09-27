@@ -5,23 +5,30 @@
 
 public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
     public bool active { get; set; }
-    public Icon icon { get; construct set; }
+    public string icon_name { get; set; }
     public string label { get; construct; }
     public string settings_uri { get; set; default = "settings://"; }
 
+    public Gtk.Widget button_child {
+        set {
+            button.remove (button.get_child ());
+            button.child = value;
+        }
+    }
+
+    private Gtk.ToggleButton button;
     private Gtk.GestureMultiPress middle_click_gesture;
 
-    public SettingsToggle (Icon icon, string label) {
+    public SettingsToggle (string label) {
         Object (
-            icon: icon,
             label: label
         );
     }
 
     construct {
-        var image = new Gtk.Image.from_gicon (icon, MENU);
+        var image = new Gtk.Image ();
 
-        var button = new Gtk.ToggleButton () {
+        button = new Gtk.ToggleButton () {
             halign = CENTER,
             image = image
         };
@@ -44,7 +51,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
 
         button.bind_property ("active", this, "active", SYNC_CREATE | BIDIRECTIONAL);
 
-        bind_property ("icon", image, "gicon");
+        bind_property ("icon-name", image, "icon-name");
 
         middle_click_gesture = new Gtk.GestureMultiPress (button) {
             button = Gdk.BUTTON_MIDDLE

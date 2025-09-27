@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Copyright 2024 elementary, Inc. <contact@elementary.io> -->
+<component type="addon">
+  <id>io.elementary.quick-settings</id>
+  <translation type="gettext">io.elementary.quick-settings</translation>
+  <extends>io.elementary.wingpanel</extends>
+  <metadata_license>CC0-1.0</metadata_license>
+  <project_license>GPL-3.0+</project_license>
+  <compulsory_for_desktop>Pantheon</compulsory_for_desktop>
+
+  <name>Quick Settings</name>
+  <summary>Access frequently used settings and system actions</summary>
+  <icon type="stock">preferences-system</icon>
+
+  <screenshots>
+    <screenshot type="default">
+      <image>https://raw.githubusercontent.com/elementary/quick-settings/1.2.0/data/screenshot.png</image>
+    </screenshot>
+  </screenshots>
+
+  <url type="bugtracker">https://github.com/elementary/quick-settings/issues</url>
+  <url type="donation">https://elementary.io/get-involved#funding</url>
+  <url type="help">https://github.com/elementary/quick-settings/discussions/categories/q-a</url>
+  <url type="homepage">https://elementary.io/</url>
+  <url type="translate">https://l10n.elementary.io/projects/wingpanel/quick-settings/</url>
+
+  <developer id="org.elementaryos">
+    <name>elementary, Inc.</name>
+  </developer>
+  <project_group>elementary</project_group>
+  <update_contact>contact_at_elementary.io</update_contact>
+
+  <releases>
+    <release version="1.3.0" date="2025-09-11" urgency="medium">
+      <description>
+        <p>Other Improvements:</p>
+        <ul>
+          <li>Animate Dark Mode and Rotation Lock toggles</li>
+          <li>Notify when trying to open Onboard in a Secure Session</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/quick-settings/issues/125">Guest account always shows as logged out</issue>
+      </issues>
+    </release>
+
+    <release version="1.2.0" date="2025-04-18" urgency="medium">
+      <description>
+        <p>Other Improvements:</p>
+        <ul>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/quick-settings/issues/36">Prevent screensaver mode from activating</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/42">Shut down / log out options should close applications properly</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/89">1.1.0 can't be built</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/98">Lock button actually suspends in Greeter</issue>
+        <issue url="https://github.com/elementary/settings-daemon/issues/162">Light/Dark Theme automated switch does not work</issue>
+      </issues>
+    </release>
+
+    <release version="1.1.0" date="2025-03-03" urgency="medium">
+      <description>
+        <p>Other Improvements:</p>
+        <ul>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/quick-settings/issues/27">User List</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/67">Cannot shutdown with staging updates; reboots regardless</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/76">Bring back tooltip text from old session indicator</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/85">User account list attempts to log in disabled accounts</issue>
+      </issues>
+    </release>
+
+    <release version="1.0.1" date="2024-11-20" urgency="medium">
+      <description>
+        <p>Other Improvements:</p>
+        <ul>
+          <li>don't add dark mode toggle in greeter</li>
+          <li>Updated translations</li>
+        </ul>
+      </description>
+      <issues>
+        <issue url="https://github.com/elementary/quick-settings/issues/62">Font size slider resizes the UI immediately </issue>
+      </issues>
+    </release>
+
+    <release version="1.0.0" date="2024-08-21" urgency="medium">
+      <description>
+        <p>First release 🎉️</p>
+      </description>
+    </release>
+  </releases>
+</component>

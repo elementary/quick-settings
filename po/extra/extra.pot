@@ -1,0 +1,56 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-11 20:14+0000\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: data/quick-settings.metainfo.xml:11
+msgid "Quick Settings"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:12
+msgid "Access frequently used settings and system actions"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:28
+msgid "elementary, Inc."
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:36 data/quick-settings.metainfo.xml:50
+#: data/quick-settings.metainfo.xml:66 data/quick-settings.metainfo.xml:81
+msgid "Other Improvements:"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:38
+msgid "Animate Dark Mode and Rotation Lock toggles"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:39
+msgid "Notify when trying to open Onboard in a Secure Session"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:40 data/quick-settings.metainfo.xml:52
+#: data/quick-settings.metainfo.xml:68 data/quick-settings.metainfo.xml:84
+msgid "Updated translations"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:83
+msgid "don't add dark mode toggle in greeter"
+msgstr ""
+
+#: data/quick-settings.metainfo.xml:94
+msgid "First release 🎉️"
+msgstr ""

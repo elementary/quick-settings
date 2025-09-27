@@ -7,10 +7,10 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: 2024-04-27 14:13+0000\n"
+"POT-Creation-Date: 2025-09-11 20:14+0000\n"
+"PO-Revision-Date: 2025-06-25 05:55+0000\n"
 "Last-Translator: Ihor Hordiichuk <igor_ck@outlook.com>\n"
-"Language-Team: Ukrainian <https://l10n.elementary.io/projects/wingpanel/"
+"Language-Team: Ukrainian <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/uk/>\n"
 "Language: uk\n"
 "MIME-Version: 1.0\n"
@@ -18,71 +18,101 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && "
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.11.4\n"
 
-#: src/PopoverWidget.vala:25
+#: src/PopoverWidget.vala:28
 msgid "Screen Reader"
 msgstr "Зчитувач з екрана"
 
-#: src/PopoverWidget.vala:32
+#: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
 msgstr "Екранна клавіатура"
 
-#: src/PopoverWidget.vala:51
-msgid "System Settings…"
-msgstr "Системні налаштування…"
+#: src/PopoverWidget.vala:160
+msgid "On Screen keyboard is unavailable in the Secure session"
+msgstr "Екранна клавіатура недоступна в безпечному сеансі"
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/PopoverWidget.vala:161
+msgid "Log out and select “Classic session” to use the On Screen Keyboard."
+msgstr ""
+"Завершіть сеанс і виберіть «Класичний сеанс», щоб використовувати екранну "
+"клавіатуру."
+
+#: src/PopoverWidget.vala:188
+msgid "Not logged in"
+msgstr "Вхід не виконано"
+
+#: src/Services/UserManager.vala:135
+#, c-format
+msgid "Logged in as “%s”"
+msgstr "Вхід виконано як “%s”"
+
+#: src/Services/UserManager.vala:158
+#, c-format
+msgid "%i other person logged in"
+msgid_plural "%i other people logged in"
+msgstr[0] "Увійшла ще %i людина"
+msgstr[1] "Увійшли ще %i людей"
+msgstr[2] "Увійшли ще %i людей"
+
+#: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
 msgstr "Темний режим"
 
-#: src/Widgets/EndSessionDialog.vala:35
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "Ви впевнені, що хочете завершити сеанс?"
 
-#: src/Widgets/EndSessionDialog.vala:36
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "Це закриє всі відкриті застосунки."
 
-#: src/Widgets/EndSessionDialog.vala:37
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "Вийти"
 
-#: src/Widgets/EndSessionDialog.vala:42
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "Ви впевнені, що хочете вимкнути комп'ютер?"
 
-#: src/Widgets/EndSessionDialog.vala:43
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr "Усі відкриті застосунки буде закрито, а цей пристрій — вимкнено."
 
-#: src/Widgets/EndSessionDialog.vala:44
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "Вимкнути"
 
-#: src/Widgets/EndSessionDialog.vala:69
-msgid "Cancel"
-msgstr "Скасувати"
-
-#: src/Widgets/EndSessionDialog.vala:86
+#: src/Widgets/EndSessionDialog.vala:63
 msgid "Restart"
 msgstr "Перезапустити"
 
-#: src/Widgets/RotationToggle.vala:10
+#: src/Widgets/EndSessionDialog.vala:71
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: src/Widgets/EndSessionDialog.vala:87
+msgid "Install pending system updates"
+msgstr "Установити оновлення системи з черги"
+
+#: src/Widgets/PreventSleepToggle.vala:12
+msgid "Prevent Sleep"
+msgstr "Запобігати переходу в режим сну"
+
+#: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
 msgstr "Блокування обертання"
 
-#: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
-#: src/Widgets/SessionBox.vala:142
-msgid "Log Out…"
-msgstr "Завершити сеанс…"
+#: src/Widgets/SessionBox.vala:19
+msgid "System Settings…"
+msgstr "Системні налаштування…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
 msgstr "Призупинити"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:137
-#: src/Widgets/SessionBox.vala:148
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:89
+#: src/Widgets/SessionBox.vala:94
 msgid "Lock"
 msgstr "Заблокувати"
 
@@ -97,3 +127,28 @@ msgstr "Зменшити розмір тексту"
 #: src/Widgets/TextScale.vala:31
 msgid "Increase text size"
 msgstr "Збільшити розмір тексту"
+
+#: src/Widgets/UserList.vala:43
+msgid "User Accounts Settings…"
+msgstr "Налаштування облікових записів користувачів…"
+
+#: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
+#: src/Widgets/UserRow.vala:99
+msgid "Log Out…"
+msgstr "Завершити сеанс…"
+
+#: src/Widgets/UserRow.vala:136
+msgid "Logged in"
+msgstr "Вхід виконано"
+
+#: src/Widgets/UserRow.vala:138
+msgid "Logged out"
+msgstr "Вихід виконано"
+
+#: src/Widgets/UserRow.vala:148
+msgid "Locked"
+msgstr "Заблоковано"
+
+#: src/Widgets/UserRow.vala:151
+msgid "Guest"
+msgstr "Гість"

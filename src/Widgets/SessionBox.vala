@@ -15,10 +15,10 @@ public class QuickSettings.SessionBox : Gtk.Box {
     }
 
     construct {
-        var logout_button = new Gtk.Button.from_icon_name ("system-log-out-symbolic") {
-            tooltip_text = _("Log Out…")
+        var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
+            tooltip_text = _("System Settings…")
         };
-        logout_button.get_style_context ().add_class ("circular");
+        settings_button.get_style_context ().add_class ("circular");
 
         var suspend_button = new Gtk.Button.from_icon_name ("system-suspend-symbolic") {
             tooltip_text = _("Suspend")
@@ -36,9 +36,9 @@ public class QuickSettings.SessionBox : Gtk.Box {
         shutdown_button.get_style_context ().add_class ("circular");
 
         spacing = 6;
+        add (settings_button);
         add (suspend_button);
         add (lock_button);
-        add (logout_button);
         add (shutdown_button);
 
         realize.connect (() => {
@@ -46,40 +46,6 @@ public class QuickSettings.SessionBox : Gtk.Box {
         });
 
         if (server_type == SESSION) {
-            setup_session_interface.begin ((obj, res) => {
-                var session_interface = setup_session_interface.end (res);
-
-                logout_button.clicked.connect (() => {
-                    popover.popdown ();
-
-                    session_interface.logout.begin (0, (obj, res) => {
-                        try {
-                            session_interface.logout.end (res);
-                        } catch (Error e) {
-                            if (!(e is GLib.IOError.CANCELLED)) {
-                                warning ("Unable to open logout dialog: %s", e.message);
-                            }
-                        }
-                    });
-                });
-
-                shutdown_button.clicked.connect (() => {
-                    popover.popdown ();
-
-                    // Ask gnome-session to "reboot" which throws the EndSessionDialog
-                    // Our "reboot" dialog also has a shutdown button to give the choice between reboot/shutdown
-                    session_interface.reboot.begin ((obj, res) => {
-                        try {
-                            session_interface.reboot.end (res);
-                        } catch (Error e) {
-                            if (!(e is GLib.IOError.CANCELLED)) {
-                                critical ("Unable to open shutdown dialog: %s", e.message);
-                            }
-                        }
-                    });
-                });
-            });
-
             setup_lock_interface.begin ((obj, res) => {
                 var lock_interface = setup_lock_interface.end (res);
 
@@ -94,14 +60,14 @@ public class QuickSettings.SessionBox : Gtk.Box {
                 });
             });
         } else {
-            remove (logout_button);
-            remove (suspend_button);
-
-            shutdown_button.clicked.connect (() => {
-                popover.popdown ();
-                show_dialog (EndSessionDialogType.RESTART, Gtk.get_current_event_time ());
-            });
+            remove (settings_button);
+            remove (lock_button);
         }
+
+        shutdown_button.clicked.connect (() => {
+            popover.popdown ();
+            show_dialog (EndSessionDialogType.RESTART);
+        });
 
         setup_system_interface.begin ((obj, res) => {
             system_interface = setup_system_interface.end (res);
@@ -112,36 +78,16 @@ public class QuickSettings.SessionBox : Gtk.Box {
                 try {
                     system_interface.suspend (true);
                 } catch (GLib.Error e) {
-                    critical ("Unable to lock: %s", e.message);
+                    critical ("Unable to suspend: %s", e.message);
                 }
             });
-
-            if (server_type == GREETER) {
-                lock_button.clicked.connect (() => {
-                    popover.popdown ();
-
-                    try {
-                        system_interface.suspend (true);
-                    } catch (GLib.Error e) {
-                        critical ("Unable to lock: %s", e.message);
-                    }
-                });
-            }
         });
 
         var keybinding_settings = new Settings ("org.gnome.settings-daemon.plugins.media-keys");
-        logout_button.tooltip_markup = Granite.markup_accel_tooltip (
-            keybinding_settings.get_strv ("logout"), _("Log Out…")
-        );
+
         lock_button.tooltip_markup = Granite.markup_accel_tooltip (
             keybinding_settings.get_strv ("screensaver"), _("Lock")
         );
-
-        keybinding_settings.changed["logout"].connect (() => {
-            logout_button.tooltip_markup = Granite.markup_accel_tooltip (
-                keybinding_settings.get_strv ("logout"), _("Log Out…")
-            );
-        });
 
         keybinding_settings.changed["screensaver"].connect (() => {
             lock_button.tooltip_markup = Granite.markup_accel_tooltip (
@@ -151,17 +97,18 @@ public class QuickSettings.SessionBox : Gtk.Box {
 
         EndSessionDialogServer.init ();
         EndSessionDialogServer.get_default ().show_dialog.connect (
-            (type, timestamp) => show_dialog ((EndSessionDialogType) type, timestamp)
+            (type, timestamp) => show_dialog ((EndSessionDialogType) type)
         );
-    }
 
-    private async SessionInterface? setup_session_interface () {
-        try {
-            return yield Bus.get_proxy (BusType.SESSION, "org.gnome.SessionManager", "/org/gnome/SessionManager");
-        } catch (IOError e) {
-            critical ("Unable to connect to GNOME session interface: %s", e.message);
-            return null;
-        }
+        settings_button.clicked.connect (() => {
+            popover.popdown ();
+
+            try {
+                AppInfo.launch_default_for_uri ("settings://", null);
+            } catch (Error e) {
+                critical ("Failed to open system settings: %s", e.message);
+            }
+        });
     }
 
     private async SystemInterface? setup_system_interface () {
@@ -182,7 +129,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
         }
     }
 
-    private void show_dialog (EndSessionDialogType type, uint32 triggering_event_timestamp) {
+    private void show_dialog (EndSessionDialogType type) {
         popover.popdown ();
 
         if (current_dialog != null) {
@@ -212,29 +159,25 @@ public class QuickSettings.SessionBox : Gtk.Box {
         });
 
         current_dialog.shutdown.connect (() => {
-            if (server_type == SESSION) {
-                server.confirmed_shutdown ();
-            } else {
-                try {
-                    system_interface.power_off (false);
-                } catch (Error e) {
-                    warning ("Unable to shutdown: %s", e.message);
-                }
+            try {
+                // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
+                // #define SD_LOGIND_ROOT_CHECK_INHIBITORS (UINT64_C(1) << 0) == 1
+                system_interface.power_off_with_flags (1);
+            } catch (Error e) {
+                warning ("Unable to shutdown: %s", e.message);
             }
         });
 
         current_dialog.reboot.connect (() => {
-            if (server_type == SESSION) {
-                server.confirmed_reboot ();
-            } else {
-                try {
-                    system_interface.reboot (false);
-                } catch (Error e) {
-                    warning ("Unable to reboot: %s", e.message);
-                }
+            try {
+                // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
+                // #define SD_LOGIND_KEXEC_REBOOT (UINT64_C(1) << 1) == 2
+                system_interface.reboot_with_flags (2);
+            } catch (Error e) {
+                warning ("Unable to reboot: %s", e.message);
             }
         });
 
-        current_dialog.present_with_time (triggering_event_timestamp);
+        current_dialog.present ();
     }
 }

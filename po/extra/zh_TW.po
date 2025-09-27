@@ -1,0 +1,36 @@
+# Chinese translations for extra package.
+# Copyright (C) 2024 THE extra'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the extra package.
+# Automatically generated, 2024.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: extra\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-07-18 09:02-0700\n"
+"PO-Revision-Date: 2024-09-05 16:16+0000\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Chinese (Traditional) <https://l10n.elementary.io/projects/"
+"wingpanel/quick-settings-extra/zh_Hant/>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.6.2\n"
+
+#: data/quick-settings.metainfo.xml:11
+msgid "Quick Settings"
+msgstr "快速設定"
+
+#: data/quick-settings.metainfo.xml:12
+msgid "Access frequently used settings and system actions"
+msgstr "存取常用的設定與系統操作"
+
+#: data/quick-settings.metainfo.xml:28
+msgid "elementary, Inc."
+msgstr "elementary, Inc."
+
+#: data/quick-settings.metainfo.xml:36
+msgid "First release 🎉️"
+msgstr "初次發佈 🎉️"

@@ -10,20 +10,26 @@ config_file = configure_file(
 sources = [
     'Indicator.vala',
     'PopoverWidget.vala',
-    'DBus' / 'AccountsService.vala',
     'DBus' / 'EndSessionDialogServer.vala',
     'DBus' / 'GeoclueManager.vala',
     'DBus' / 'LockInterface.vala',
+    'DBus' / 'SeatInterface.vala',
     'DBus' / 'SensorProxy.vala',
     'DBus' / 'SessionInterface.vala',
     'DBus' / 'SystemInterface.vala',
+    'DBus' / 'UserInterface.vala',
+    'Services' / 'UserManager.vala',
+    'Widgets' / 'AvatarButton.vala',
     'Widgets' / 'DarkModeToggle.vala',
     'Widgets' / 'EndSessionDialog.vala',
+    'Widgets' / 'PreventSleepToggle.vala',
     'Widgets' / 'RotationToggle.vala',
     'Widgets' / 'SettingsToggle.vala',
     'Widgets' / 'SessionBox.vala',
     'Widgets' / 'TattleBox.vala',
     'Widgets' / 'TextScale.vala',
+    'Widgets' / 'UserList.vala',
+    'Widgets' / 'UserRow.vala',
 ]
 
 shared_module(
@@ -32,12 +38,18 @@ shared_module(
     gresource,
     sources,
     dependencies: [
+        gdk_wl_dep,
         glib_dep,
         gobject_dep,
         granite_dep,
         gtk_dep,
         handy_dep,
-        wingpanel_dep
+        wingpanel_dep,
+        packagekit_dep,
+        pantheon_desktop_shell_dep,
+        portal_dep,
+        wl_client_dep,
+        accountsservice_dep
     ],
     install: true,
     install_dir : wingpanel_indicatorsdir

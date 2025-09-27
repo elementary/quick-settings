@@ -7,81 +7,110 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2024-04-23 17:01+0000\n"
-"PO-Revision-Date: 2024-04-24 13:45+0000\n"
+"POT-Creation-Date: 2025-09-11 20:14+0000\n"
+"PO-Revision-Date: 2025-06-16 20:46+0000\n"
 "Last-Translator: David M <rbndavid@gmail.com>\n"
-"Language-Team: Catalan <https://l10n.elementary.io/projects/wingpanel/"
+"Language-Team: Catalan <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/ca/>\n"
 "Language: ca\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 5.11.4\n"
 
-#: src/PopoverWidget.vala:25
+#: src/PopoverWidget.vala:28
 msgid "Screen Reader"
 msgstr "Lector de pantalla"
 
-#: src/PopoverWidget.vala:32
+#: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
 msgstr "Teclat de pantalla"
 
-#: src/PopoverWidget.vala:51
-msgid "System Settings…"
-msgstr "Paràmetres del sistema…"
+#: src/PopoverWidget.vala:160
+msgid "On Screen keyboard is unavailable in the Secure session"
+msgstr "El teclat de pantalla no està disponible a la sessió segura"
 
-#: src/Widgets/DarkModeToggle.vala:13
+#: src/PopoverWidget.vala:161
+msgid "Log out and select “Classic session” to use the On Screen Keyboard."
+msgstr ""
+"Tanqueu la sessió i seleccioneu la sessió clàssica per usar el teclat de "
+"pantalla."
+
+#: src/PopoverWidget.vala:188
+msgid "Not logged in"
+msgstr "Sessió no iniciada"
+
+#: src/Services/UserManager.vala:135
+#, c-format
+msgid "Logged in as “%s”"
+msgstr "Sessió iniciada com a %s"
+
+#: src/Services/UserManager.vala:158
+#, c-format
+msgid "%i other person logged in"
+msgid_plural "%i other people logged in"
+msgstr[0] "%i persona més amb la sessió iniciada"
+msgstr[1] "%i persones més amb la sessió iniciada"
+
+#: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
 msgstr "Mode fosc"
 
-#: src/Widgets/EndSessionDialog.vala:35
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
 msgstr "Segur que voleu sortir de la sessió?"
 
-#: src/Widgets/EndSessionDialog.vala:36
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
 msgstr "Això tancarà totes les aplicacions obertes."
 
-#: src/Widgets/EndSessionDialog.vala:37
+#: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
 msgstr "Surt"
 
-#: src/Widgets/EndSessionDialog.vala:42
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
 msgstr "Segur que voleu aturar l'ordinador?"
 
-#: src/Widgets/EndSessionDialog.vala:43
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
 msgstr "Això tancarà totes les aplicacions obertes i aturarà el dispositiu."
 
-#: src/Widgets/EndSessionDialog.vala:44
+#: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
 msgstr "Atura"
 
-#: src/Widgets/EndSessionDialog.vala:69
-msgid "Cancel"
-msgstr "Cancel·la"
-
-#: src/Widgets/EndSessionDialog.vala:86
+#: src/Widgets/EndSessionDialog.vala:63
 msgid "Restart"
 msgstr "Reinicia"
 
-#: src/Widgets/RotationToggle.vala:10
+#: src/Widgets/EndSessionDialog.vala:71
+msgid "Cancel"
+msgstr "Cancel·la"
+
+#: src/Widgets/EndSessionDialog.vala:87
+msgid "Install pending system updates"
+msgstr "Instal·la actualitzacions del sistema pendents"
+
+#: src/Widgets/PreventSleepToggle.vala:12
+msgid "Prevent Sleep"
+msgstr "Evita l'adomiment"
+
+#: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
 msgstr "Blocatge de la rotació"
 
-#: src/Widgets/SessionBox.vala:19 src/Widgets/SessionBox.vala:134
-#: src/Widgets/SessionBox.vala:142
-msgid "Log Out…"
-msgstr "Surt…"
+#: src/Widgets/SessionBox.vala:19
+msgid "System Settings…"
+msgstr "Paràmetres del sistema…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
 msgstr "Atura temporalment"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:137
-#: src/Widgets/SessionBox.vala:148
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:89
+#: src/Widgets/SessionBox.vala:94
 msgid "Lock"
 msgstr "Bloqueja"
 
@@ -96,3 +125,28 @@ msgstr "Redueix la mida del text"
 #: src/Widgets/TextScale.vala:31
 msgid "Increase text size"
 msgstr "Augmenta la mida del text"
+
+#: src/Widgets/UserList.vala:43
+msgid "User Accounts Settings…"
+msgstr "Paràmetres dels comptes d'usuari…"
+
+#: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
+#: src/Widgets/UserRow.vala:99
+msgid "Log Out…"
+msgstr "Surt…"
+
+#: src/Widgets/UserRow.vala:136
+msgid "Logged in"
+msgstr "Sessió iniciada"
+
+#: src/Widgets/UserRow.vala:138
+msgid "Logged out"
+msgstr "Sessió tancada"
+
+#: src/Widgets/UserRow.vala:148
+msgid "Locked"
+msgstr "Blocat"
+
+#: src/Widgets/UserRow.vala:151
+msgid "Guest"
+msgstr "Convidat"

@@ -2,7 +2,7 @@
 <schemalist>
   <schema path="/io/elementary/desktop/quick-settings/" id="io.elementary.desktop.quick-settings">
     <key type="b" name="show-a11y">
-      <default>false</default>
+      <default>true</default>
       <summary>Whether to show Universal Access settings</summary>
     </key>
   </schema>

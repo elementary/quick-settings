@@ -4,7 +4,7 @@
  */
 
 [DBus (name = "org.gnome.SessionManager")]
-interface QuickSettings.SessionInterface : Object {
+public interface QuickSettings.SessionInterface : Object {
     public abstract async void logout (uint type) throws GLib.Error;
     public abstract async void reboot () throws GLib.Error;
     public abstract async void shutdown () throws GLib.Error;

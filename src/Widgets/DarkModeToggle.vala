@@ -4,37 +4,29 @@
  */
 
 public class QuickSettings.DarkModeToggle: SettingsToggle {
-    public Pantheon.AccountsService pantheon_service { get; construct; }
-
-    public DarkModeToggle (Pantheon.AccountsService pantheon_service) {
+    public DarkModeToggle () {
         Object (
-            pantheon_service: pantheon_service,
-            icon: new ThemedIcon ("dark-mode-symbolic"),
             label: _("Dark Mode")
         );
     }
 
     construct {
+        icon_name = "dark-mode-symbolic";
         settings_uri = "settings://desktop/appearance";
+        get_style_context ().add_class ("color-scheme");
 
-        active = pantheon_service.prefers_color_scheme == Granite.Settings.ColorScheme.DARK;
+        var settings = new GLib.Settings ("io.elementary.settings-daemon.prefers-color-scheme");
 
-        var settings = new Settings ("io.elementary.settings-daemon.prefers-color-scheme");
-
-        notify["active"].connect (() => {
-            settings.set_string ("prefer-dark-schedule", "disabled");
-
-            if (active) {
-                pantheon_service.prefers_color_scheme = Granite.Settings.ColorScheme.DARK;
-            } else {
-                pantheon_service.prefers_color_scheme = Granite.Settings.ColorScheme.NO_PREFERENCE;
-            }
+        active = settings.get_enum ("color-scheme") == Granite.Settings.ColorScheme.DARK;
+        settings.changed["color-scheme"].connect (() => {
+            active = settings.get_enum ("color-scheme") == Granite.Settings.ColorScheme.DARK;
         });
 
-        ((DBusProxy) pantheon_service).g_properties_changed.connect ((changed, invalid) => {
-            var color_scheme = changed.lookup_value ("PrefersColorScheme", new VariantType ("i"));
-            if (color_scheme != null) {
-                active = (Granite.Settings.ColorScheme) color_scheme.get_int32 () == Granite.Settings.ColorScheme.DARK;
+        notify["active"].connect (() => {
+            if (active) {
+                settings.set_enum ("color-scheme", Granite.Settings.ColorScheme.DARK);
+            } else {
+                settings.set_enum ("color-scheme", Granite.Settings.ColorScheme.NO_PREFERENCE);
             }
         });
     }

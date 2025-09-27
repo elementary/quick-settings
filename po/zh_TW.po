@@ -1,0 +1,149 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the io.elementary.quick-settings package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: io.elementary.quick-settings\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-09-11 20:14+0000\n"
+"PO-Revision-Date: 2025-08-22 15:58+0000\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Chinese (Traditional Han script) <https://"
+"l10n.elementaryos.org/projects/wingpanel/quick-settings/zh_Hant/>\n"
+"Language: zh_TW\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Weblate 5.11.4\n"
+
+#: src/PopoverWidget.vala:28
+msgid "Screen Reader"
+msgstr "螢幕閱讀器"
+
+#: src/PopoverWidget.vala:35
+msgid "Onscreen Keyboard"
+msgstr "螢幕鍵盤"
+
+#: src/PopoverWidget.vala:160
+msgid "On Screen keyboard is unavailable in the Secure session"
+msgstr "螢幕鍵盤在安全工作階段中不可用"
+
+#: src/PopoverWidget.vala:161
+msgid "Log out and select “Classic session” to use the On Screen Keyboard."
+msgstr "如果要使用螢幕鍵盤，請登出後選取「經典工作階段」。"
+
+#: src/PopoverWidget.vala:188
+msgid "Not logged in"
+msgstr "未登入"
+
+#: src/Services/UserManager.vala:135
+#, c-format
+msgid "Logged in as “%s”"
+msgstr "已作為 \"%s\" 登入"
+
+#: src/Services/UserManager.vala:158
+#, c-format
+msgid "%i other person logged in"
+msgid_plural "%i other people logged in"
+msgstr[0] "另外有 %i 人已登入"
+
+#: src/Widgets/DarkModeToggle.vala:9
+msgid "Dark Mode"
+msgstr "深色模式"
+
+#: src/Widgets/EndSessionDialog.vala:37
+msgid "Are you sure you want to Log Out?"
+msgstr "您確定要登出嗎？"
+
+#: src/Widgets/EndSessionDialog.vala:38
+msgid "This will close all open applications."
+msgstr "這會關閉所有開啟的應用程式。"
+
+#: src/Widgets/EndSessionDialog.vala:39
+msgid "Log Out"
+msgstr "登出"
+
+#: src/Widgets/EndSessionDialog.vala:44
+msgid "Are you sure you want to Shut Down?"
+msgstr "您確定要關機嗎？"
+
+#: src/Widgets/EndSessionDialog.vala:45
+msgid "This will close all open applications and turn off this device."
+msgstr "這會關閉所有開啟的應用程式並將此裝置關機。"
+
+#: src/Widgets/EndSessionDialog.vala:46
+msgid "Shut Down"
+msgstr "關機"
+
+#: src/Widgets/EndSessionDialog.vala:63
+msgid "Restart"
+msgstr "重新啟動"
+
+#: src/Widgets/EndSessionDialog.vala:71
+msgid "Cancel"
+msgstr "取消"
+
+#: src/Widgets/EndSessionDialog.vala:87
+msgid "Install pending system updates"
+msgstr "安裝待處理的系統更新"
+
+#: src/Widgets/PreventSleepToggle.vala:12
+msgid "Prevent Sleep"
+msgstr "防止睡眠"
+
+#: src/Widgets/RotationToggle.vala:9
+msgid "Rotation Lock"
+msgstr "鎖定旋轉"
+
+#: src/Widgets/SessionBox.vala:19
+msgid "System Settings…"
+msgstr "系統設定值…"
+
+#: src/Widgets/SessionBox.vala:24
+msgid "Suspend"
+msgstr "暫停"
+
+#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:89
+#: src/Widgets/SessionBox.vala:94
+msgid "Lock"
+msgstr "鎖定"
+
+#: src/Widgets/SessionBox.vala:34
+msgid "Shut Down…"
+msgstr "關機…"
+
+#: src/Widgets/TextScale.vala:17
+msgid "Decrease text size"
+msgstr "降低字型大小"
+
+#: src/Widgets/TextScale.vala:31
+msgid "Increase text size"
+msgstr "提高字型大小"
+
+#: src/Widgets/UserList.vala:43
+msgid "User Accounts Settings…"
+msgstr "使用者帳號設定值…"
+
+#: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
+#: src/Widgets/UserRow.vala:99
+msgid "Log Out…"
+msgstr "登出…"
+
+#: src/Widgets/UserRow.vala:136
+msgid "Logged in"
+msgstr "已登入"
+
+#: src/Widgets/UserRow.vala:138
+msgid "Logged out"
+msgstr "已登出"
+
+#: src/Widgets/UserRow.vala:148
+msgid "Locked"
+msgstr "已鎖定"
+
+#: src/Widgets/UserRow.vala:151
+msgid "Guest"
+msgstr "訪客"
