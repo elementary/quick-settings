@@ -1,3 +1,8 @@
+/*
+ * SPDX-License-Identifier: GPL-2.0-or-later
+ * SPDX-FileCopyrightText: 2011-2024 elementary, Inc. (https://elementary.io)
+ */
+
 public class QuickSettings.TattleBox : Gtk.Bin {
     class construct {
         set_css_name ("tattlebox");
