@@ -27,6 +27,10 @@ public class QuickSettings.TattleBox : Gtk.Bin {
 
         setup_geoclue_manager.begin ((obj, res) => {
             var geoclue_manager = setup_geoclue_manager.end (res);
+            if (geoclue_manager == null) {
+                return;
+            }
+
             location_revealer.reveal_child = geoclue_manager.in_use;
 
             geoclue_manager.g_properties_changed.connect (() => {
