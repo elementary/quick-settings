@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-11 20:14+0000\n"
-"PO-Revision-Date: 2025-10-22 05:31+0000\n"
+"PO-Revision-Date: 2025-10-22 08:08+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/sv/>\n"
@@ -21,39 +21,40 @@ msgstr ""
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
-msgstr ""
+msgstr "Skärmläsare"
 
 #: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
-msgstr ""
+msgstr "Skärmtangentbord"
 
 #: src/PopoverWidget.vala:160
 msgid "On Screen keyboard is unavailable in the Secure session"
-msgstr ""
+msgstr "Skärmtangentbordet är inte tillgängligt i säker session"
 
 #: src/PopoverWidget.vala:161
 msgid "Log out and select “Classic session” to use the On Screen Keyboard."
 msgstr ""
+"Logga ut och välj \"Klassisk session\" för att använda skärmtangentbordet."
 
 #: src/PopoverWidget.vala:188
 msgid "Not logged in"
-msgstr ""
+msgstr "Inte inloggad"
 
 #: src/Services/UserManager.vala:135
 #, c-format
 msgid "Logged in as “%s”"
-msgstr ""
+msgstr "Inloggad som \"%s\""
 
 #: src/Services/UserManager.vala:158
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i annan person loggade in"
+msgstr[1] "%i andra personer loggade in"
 
 #: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
-msgstr ""
+msgstr "Mörkt läge"
 
 #: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
@@ -89,19 +90,19 @@ msgstr "Avbryt"
 
 #: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
-msgstr ""
+msgstr "Installera väntande systemuppdateringar"
 
 #: src/Widgets/PreventSleepToggle.vala:12
 msgid "Prevent Sleep"
-msgstr ""
+msgstr "Förhindra sömn"
 
 #: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
-msgstr ""
+msgstr "Rotationslås"
 
 #: src/Widgets/SessionBox.vala:19
 msgid "System Settings…"
-msgstr ""
+msgstr "Systeminställningar…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
@@ -118,15 +119,15 @@ msgstr "Stäng av…"
 
 #: src/Widgets/TextScale.vala:17
 msgid "Decrease text size"
-msgstr ""
+msgstr "Minska textstorlek"
 
 #: src/Widgets/TextScale.vala:31
 msgid "Increase text size"
-msgstr ""
+msgstr "Öka textstorlek"
 
 #: src/Widgets/UserList.vala:43
 msgid "User Accounts Settings…"
-msgstr ""
+msgstr "Inställningar för användarkonton…"
 
 #: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
 #: src/Widgets/UserRow.vala:99
@@ -135,18 +136,16 @@ msgstr "Logga ut…"
 
 #: src/Widgets/UserRow.vala:136
 msgid "Logged in"
-msgstr ""
+msgstr "Inloggad"
 
 #: src/Widgets/UserRow.vala:138
 msgid "Logged out"
-msgstr ""
+msgstr "Utloggad"
 
 #: src/Widgets/UserRow.vala:148
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "Lås"
+msgstr "Låst"
 
 #: src/Widgets/UserRow.vala:151
 msgid "Guest"
-msgstr ""
+msgstr "Gäst"
