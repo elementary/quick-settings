@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-18 09:02-0700\n"
-"PO-Revision-Date: 2025-10-22 05:31+0000\n"
+"PO-Revision-Date: 2025-10-22 09:58+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings-extra/sv/>\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: data/quick-settings.metainfo.xml:11
 msgid "Quick Settings"
-msgstr ""
+msgstr "Snabbinställningar"
 
 #: data/quick-settings.metainfo.xml:12
 msgid "Access frequently used settings and system actions"
-msgstr ""
+msgstr "Få tillgång till ofta använda inställningar och systemåtgärder"
 
 #: data/quick-settings.metainfo.xml:28
 msgid "elementary, Inc."
@@ -33,4 +33,4 @@ msgstr "elementary, Inc."
 
 #: data/quick-settings.metainfo.xml:36
 msgid "First release 🎉️"
-msgstr ""
+msgstr "Första utgåvan 🎉️"
