@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-11 20:14+0000\n"
-"PO-Revision-Date: 2025-10-22 08:08+0000\n"
+"PO-Revision-Date: 2025-10-31 12:55+0000\n"
 "Last-Translator: Daniel Nylander <po@danielnylander.se>\n"
 "Language-Team: Swedish <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/sv/>\n"
@@ -62,7 +62,7 @@ msgstr "Är du säker på att du vill logga ut?"
 
 #: src/Widgets/EndSessionDialog.vala:38
 msgid "This will close all open applications."
-msgstr "Detta avslutar alla öppna program."
+msgstr "Detta stänger alla öppna program."
 
 #: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
@@ -74,7 +74,7 @@ msgstr "Är du säker på att du vill stänga av?"
 
 #: src/Widgets/EndSessionDialog.vala:45
 msgid "This will close all open applications and turn off this device."
-msgstr "Detta avslutar alla öppna program och stänger av enheten."
+msgstr "Detta stänger alla öppna program och stänger av enheten."
 
 #: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
@@ -115,7 +115,7 @@ msgstr "Lås"
 
 #: src/Widgets/SessionBox.vala:34
 msgid "Shut Down…"
-msgstr "Stäng av…"
+msgstr "Stäng ner…"
 
 #: src/Widgets/TextScale.vala:17
 msgid "Decrease text size"
