@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2025-09-11 20:14+0000\n"
-"PO-Revision-Date: 2025-04-16 13:55+0000\n"
+"PO-Revision-Date: 2025-10-06 12:55+0000\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: Hebrew <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/he/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
@@ -30,11 +30,11 @@ msgstr "מקלדת על המסך"
 
 #: src/PopoverWidget.vala:160
 msgid "On Screen keyboard is unavailable in the Secure session"
-msgstr ""
+msgstr "מקלדת על גבי המסך אינה זמינה בהפעלה המאובטחת"
 
 #: src/PopoverWidget.vala:161
 msgid "Log out and select “Classic session” to use the On Screen Keyboard."
-msgstr ""
+msgstr "יש לצאת ולבחור ב„הפעלה קלסית” כדי להשתמש במקלדת על גבי המסך."
 
 #: src/PopoverWidget.vala:188
 msgid "Not logged in"
