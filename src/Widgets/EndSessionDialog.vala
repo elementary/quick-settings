@@ -155,13 +155,14 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
 
     public void registry_handle_global (Wl.Registry wl_registry, uint32 name, string @interface, uint32 version) {
         if (@interface == "io_elementary_pantheon_shell_v1") {
-            var desktop_shell = wl_registry.bind<Pantheon.Desktop.Shell> (name, ref Pantheon.Desktop.Shell.iface, uint32.min (version, 1));
+            var desktop_shell = wl_registry.bind<PantheonDesktop.Shell> (name, ref PantheonDesktop.Shell.iface, uint32.min (version, 1));
             unowned var window = get_window ();
             if (window is Gdk.Wayland.Window) {
                 unowned var wl_surface = ((Gdk.Wayland.Window) window).get_wl_surface ();
                 var extended_behavior = desktop_shell.get_extended_behavior (wl_surface);
                 extended_behavior.set_keep_above ();
                 extended_behavior.make_centered ();
+                extended_behavior.make_modal (1);
             }
         }
     }

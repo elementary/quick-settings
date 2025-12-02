@@ -4,7 +4,7 @@
  * SPDX-License-Identifier: GPL-3.0-or-later
  */
 
-namespace Pantheon.Desktop {
+namespace PantheonDesktop {
     [CCode (cheader_filename = "pantheon-desktop-shell-client-protocol.h", cname = "struct io_elementary_pantheon_shell_v1", cprefix = "io_elementary_pantheon_shell_v1_")]
     public class Shell : Wl.Proxy {
         [CCode (cheader_filename = "pantheon-desktop-shell-client-protocol.h", cname = "io_elementary_pantheon_shell_v1_interface")]
@@ -13,9 +13,9 @@ namespace Pantheon.Desktop {
         public void* get_user_data ();
         public uint32 get_version ();
         public void destroy ();
-        public Pantheon.Desktop.Panel get_panel (Wl.Surface surface);
-        public Pantheon.Desktop.Widget get_widget (Wl.Surface surface);
-        public Pantheon.Desktop.ExtendedBehavior get_extended_behavior (Wl.Surface surface);
+        public PantheonDesktop.Panel get_panel (Wl.Surface surface);
+        public PantheonDesktop.Widget get_widget (Wl.Surface surface);
+        public PantheonDesktop.ExtendedBehavior get_extended_behavior (Wl.Surface surface);
 
     }
     [CCode (cheader_filename = "pantheon-desktop-shell-client-protocol.h", cname = "enum io_elementary_pantheon_panel_v1_anchor", cprefix="IO_ELEMENTARY_PANTHEON_PANEL_V1_ANCHOR_", has_type_id = false)]
@@ -43,10 +43,10 @@ namespace Pantheon.Desktop {
         public void* get_user_data ();
         public uint32 get_version ();
         public void destroy ();
-        public void set_anchor (Pantheon.Desktop.Anchor anchor);
+        public void set_anchor (PantheonDesktop.Anchor anchor);
         public void focus ();
         public void set_size (int width, int height);
-        public void set_hide_mode (Pantheon.Desktop.HideMode hide_mode);
+        public void set_hide_mode (PantheonDesktop.HideMode hide_mode);
     }
 
     [CCode (cheader_filename = "pantheon-desktop-shell-client-protocol.h", cname = "struct io_elementary_pantheon_widget_v1", cprefix = "io_elementary_pantheon_widget_v1_")]
@@ -69,5 +69,7 @@ namespace Pantheon.Desktop {
         public void destroy ();
         public void set_keep_above ();
         public void make_centered ();
+        public void focus ();
+        public void make_modal (uint dim);
     }
 }
