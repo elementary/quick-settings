@@ -1,7 +1,7 @@
 project(
     'io.elementary.quick-settings',
     'vala', 'c',
-    version: '1.3.0'
+    version: '1.4.0'
 )
 
 gnome = import('gnome')
