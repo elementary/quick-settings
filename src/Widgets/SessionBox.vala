@@ -71,7 +71,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
             popover.popdown ();
 
             try {
-                Login1Manager.get_default ().object.suspend (true);
+                Login1Manager.get_default ().proxy.suspend (true);
             } catch (GLib.Error e) {
                 critical ("Unable to suspend: %s", e.message);
             }

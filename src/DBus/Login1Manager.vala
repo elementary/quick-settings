@@ -1,6 +1,6 @@
 /*
  * SPDX-License-Identifier: GPL-3.0-or-later
- * SPDX-FileCopyrightText: 2024-2025 elementary, Inc. (https://elementary.io)
+ * SPDX-FileCopyrightText: 2024-2026 elementary, Inc. (https://elementary.io)
  */
 
 public class QuickSettings.Login1Manager : Object {
@@ -22,7 +22,7 @@ public class QuickSettings.Login1Manager : Object {
         public abstract string can_suspend () throws GLib.Error;
     }
 
-    public Login1ManagerInterface object;
+    public Login1ManagerInterface proxy { get; private set; }
 
     private static GLib.Once<Login1Manager> instance;
     public static unowned Login1Manager get_default () {
@@ -33,7 +33,7 @@ public class QuickSettings.Login1Manager : Object {
 
     construct {
         try {
-            object = Bus.get_proxy_sync<Login1ManagerInterface> (
+            proxy = Bus.get_proxy_sync<Login1ManagerInterface> (
                 SYSTEM,
                 "org.freedesktop.login1",
                 "/org/freedesktop/login1"

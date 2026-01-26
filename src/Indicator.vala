@@ -56,7 +56,7 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
             try {
                 // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
                 // #define SD_LOGIND_ROOT_CHECK_INHIBITORS (UINT64_C(1) << 0) == 1
-                Login1Manager.get_default ().object.power_off_with_flags (1);
+                Login1Manager.get_default ().proxy.power_off_with_flags (1);
             } catch (Error e) {
                 warning ("Unable to shutdown: %s", e.message);
             }
@@ -66,7 +66,7 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
             try {
                 // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
                 // #define SD_LOGIND_KEXEC_REBOOT (UINT64_C(1) << 1) == 2
-                Login1Manager.get_default ().object.reboot_with_flags (2);
+                Login1Manager.get_default ().proxy.reboot_with_flags (2);
             } catch (Error e) {
                 warning ("Unable to reboot: %s", e.message);
             }
