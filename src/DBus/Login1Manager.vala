@@ -22,7 +22,7 @@ public class QuickSettings.Login1Manager : Object {
         public abstract string can_suspend () throws GLib.Error;
     }
 
-    public Login1ManagerInterface object;
+    public Login1ManagerInterface proxy { get; private set; }
 
     private static GLib.Once<Login1Manager> instance;
     public static unowned Login1Manager get_default () {
