@@ -33,7 +33,7 @@ public class QuickSettings.Login1Manager : Object {
 
     construct {
         try {
-            object = Bus.get_proxy_sync<Login1ManagerInterface> (
+            proxy = Bus.get_proxy_sync<Login1ManagerInterface> (
                 SYSTEM,
                 "org.freedesktop.login1",
                 "/org/freedesktop/login1"

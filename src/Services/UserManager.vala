@@ -25,7 +25,7 @@ public class QuickSettings.UserManager : Object {
 
     public static async UserState get_user_state (uid_t uuid) {
         try {
-            var users = Login1Manager.get_default ().object.list_users ();
+            var users = Login1Manager.get_default ().proxy.list_users ();
             if (users == null) {
                 return UserState.OFFLINE;
             }
@@ -59,7 +59,7 @@ public class QuickSettings.UserManager : Object {
 
     public static async UserState get_guest_state () {
         try {
-            var users = Login1Manager.get_default ().object.list_users ();
+            var users = Login1Manager.get_default ().proxy.list_users ();
             foreach (var user in users) {
                 var state = yield get_user_state (user.uid);
                 if (user.user_name.has_prefix ("guest-")
