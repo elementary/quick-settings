@@ -21,44 +21,35 @@ public enum UserState {
 }
 
 public class QuickSettings.UserManager : Object {
-    private const string LOGIN_IFACE = "org.freedesktop.login1";
-    private const string LOGIN_PATH = "/org/freedesktop/login1";
-
-    private static string active_user_real_name;
-    private static SystemInterface? login_proxy;
-
-    private static async void init_login_proxy () {
-        try {
-            login_proxy = yield Bus.get_proxy (BusType.SYSTEM, LOGIN_IFACE, LOGIN_PATH, DBusProxyFlags.NONE);
-        } catch (IOError e) {
-            critical ("Failed to create login1 dbus proxy: %s", e.message);
-        }
-    }
+    private static string? active_user_real_name;
 
     public static async UserState get_user_state (uid_t uuid) {
-        if (login_proxy == null) {
-            yield init_login_proxy ();
-        }
-
         try {
-            UserInfo[] users = login_proxy.list_users ();
+            var users = Login1Manager.get_default ().object.list_users ();
             if (users == null) {
                 return UserState.OFFLINE;
             }
 
-            foreach (UserInfo user in users) {
-                if (((uid_t) user.uid) == uuid) {
-                    if (user.user_object == null) {
-                        return UserState.OFFLINE;
-                    }
-                    UserInterface? user_interface = yield Bus.get_proxy (BusType.SYSTEM, LOGIN_IFACE, user.user_object, DBusProxyFlags.NONE);
-                    if (user_interface == null) {
-                        return UserState.OFFLINE;
-                    }
-                    return UserState.to_enum (user_interface.state);
+            foreach (var user in users) {
+                if (((uid_t) user.uid) != uuid) {
+                    continue;
                 }
-            }
 
+                if (user.user_object == null) {
+                    return UserState.OFFLINE;
+                }
+
+                var user_interface = yield Bus.get_proxy<UserInterface> (
+                    SYSTEM,
+                    "org.freedesktop.login1",
+                    user.user_object
+                );
+                if (user_interface == null) {
+                    return UserState.OFFLINE;
+                }
+
+                return UserState.to_enum (user_interface.state);
+            }
         } catch (GLib.Error e) {
             critical ("Failed to get user state: %s", e.message);
         }
@@ -67,13 +58,9 @@ public class QuickSettings.UserManager : Object {
     }
 
     public static async UserState get_guest_state () {
-        if (login_proxy == null) {
-            return UserState.OFFLINE;
-        }
-
         try {
-            UserInfo[] users = login_proxy.list_users ();
-            foreach (UserInfo user in users) {
+            var users = Login1Manager.get_default ().object.list_users ();
+            foreach (var user in users) {
                 var state = yield get_user_state (user.uid);
                 if (user.user_name.has_prefix ("guest-")
                     && state == UserState.ACTIVE) {

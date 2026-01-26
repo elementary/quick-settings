@@ -8,7 +8,6 @@ public class QuickSettings.SessionBox : Gtk.Box {
 
     private EndSessionDialog? current_dialog = null;
     private Gtk.Popover? popover;
-    private SystemInterface system_interface;
 
     public SessionBox (Wingpanel.IndicatorManager.ServerType server_type) {
         Object (server_type: server_type);
@@ -69,18 +68,14 @@ public class QuickSettings.SessionBox : Gtk.Box {
             show_dialog (EndSessionDialogType.RESTART);
         });
 
-        setup_system_interface.begin ((obj, res) => {
-            system_interface = setup_system_interface.end (res);
+        suspend_button.clicked.connect (() => {
+            popover.popdown ();
 
-            suspend_button.clicked.connect (() => {
-                popover.popdown ();
-
-                try {
-                    system_interface.suspend (true);
-                } catch (GLib.Error e) {
-                    critical ("Unable to suspend: %s", e.message);
-                }
-            });
+            try {
+                Login1Manager.get_default ().object.suspend (true);
+            } catch (GLib.Error e) {
+                critical ("Unable to suspend: %s", e.message);
+            }
         });
 
         var keybinding_settings = new Settings ("org.gnome.settings-daemon.plugins.media-keys");
@@ -109,15 +104,6 @@ public class QuickSettings.SessionBox : Gtk.Box {
                 critical ("Failed to open system settings: %s", e.message);
             }
         });
-    }
-
-    private async SystemInterface? setup_system_interface () {
-        try {
-            return yield Bus.get_proxy (BusType.SYSTEM, "org.freedesktop.login1", "/org/freedesktop/login1");
-        } catch (IOError e) {
-            critical ("Unable to connect to the login interface: %s", e.message);
-            return null;
-        }
     }
 
     private async LockInterface? setup_lock_interface () {
@@ -162,7 +148,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
             try {
                 // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
                 // #define SD_LOGIND_ROOT_CHECK_INHIBITORS (UINT64_C(1) << 0) == 1
-                system_interface.power_off_with_flags (1);
+                Login1Manager.get_default ().object.power_off_with_flags (1);
             } catch (Error e) {
                 warning ("Unable to shutdown: %s", e.message);
             }
@@ -172,7 +158,7 @@ public class QuickSettings.SessionBox : Gtk.Box {
             try {
                 // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
                 // #define SD_LOGIND_KEXEC_REBOOT (UINT64_C(1) << 1) == 2
-                system_interface.reboot_with_flags (2);
+                Login1Manager.get_default ().object.reboot_with_flags (2);
             } catch (Error e) {
                 warning ("Unable to reboot: %s", e.message);
             }
