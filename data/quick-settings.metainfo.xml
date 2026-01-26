@@ -40,6 +40,7 @@
       </description>
       <issues>
         <issue url="https://github.com/elementary/quick-settings/issues/45">End Session Dialog should pull visual focus</issue>
+        <issue url="https://github.com/elementary/quick-settings/issues/135">Ctrl+Alt+Del not available before opening Quick Settings for the first time</issue>
       </issues>
     </release>
 
