@@ -57,10 +57,10 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         var current_user = new AvatarButton ();
 
         current_user_button = new Gtk.Button () {
-            child = current_user
+            child = current_user,
+            has_frame = false
         };
-        current_user_button.add_css_class ("circular");
-        current_user_button.add_css_class ("flat");
+        current_user_button.add_css_class (Granite.CssClass.CIRCULAR);
         current_user_button.add_css_class ("no-padding");
 
         var session_box = new SessionBox (server_type) {

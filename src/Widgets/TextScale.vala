@@ -17,7 +17,7 @@ public class QuickSettings.TextScale : Gtk.Box {
             tooltip_text = _("Decrease text size"),
             valign = CENTER
         };
-        zoom_out_button.add_css_class ("circular");
+        zoom_out_button.add_css_class (Granite.CssClass.CIRCULAR);
 
         var zoom_adjustment = new Gtk.Adjustment (-1, 0.75, 1.75, 0.05, 0, 0);
 
@@ -32,7 +32,7 @@ public class QuickSettings.TextScale : Gtk.Box {
             tooltip_text = _("Increase text size"),
             valign = CENTER
         };
-        zoom_in_button.add_css_class ("circular");
+        zoom_in_button.add_css_class (Granite.CssClass.CIRCULAR);
 
         add_css_class ("font-size");
         append (zoom_out_button);
