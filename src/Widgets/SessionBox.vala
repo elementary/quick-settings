@@ -16,22 +16,22 @@ public class QuickSettings.SessionBox : Gtk.Box {
         var settings_button = new Gtk.Button.from_icon_name ("preferences-system-symbolic") {
             tooltip_text = _("System Settings…")
         };
-        settings_button.add_css_class ("circular");
+        settings_button.add_css_class (Granite.CssClass.CIRCULAR);
 
         var suspend_button = new Gtk.Button.from_icon_name ("system-suspend-symbolic") {
             tooltip_text = _("Suspend")
         };
-        suspend_button.add_css_class ("circular");
+        suspend_button.add_css_class (Granite.CssClass.CIRCULAR);
 
         var lock_button = new Gtk.Button.from_icon_name ("system-lock-screen-symbolic") {
             tooltip_text = _("Lock")
         };
-        lock_button.add_css_class ("circular");
+        lock_button.add_css_class (Granite.CssClass.CIRCULAR);
 
         var shutdown_button = new Gtk.Button.from_icon_name ("system-shutdown-symbolic") {
             tooltip_text = _("Shut Down…")
         };
-        shutdown_button.add_css_class ("circular");
+        shutdown_button.add_css_class (Granite.CssClass.CIRCULAR);
 
         spacing = 6;
         append (settings_button);

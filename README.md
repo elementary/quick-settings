@@ -9,7 +9,7 @@ You'll need the following dependencies:
 
 * libgranite-7-dev
 * libadwaita-1-dev
-* libwingpanel-8-dev
+* libwingpanel-9-dev
 * meson
 * valac
 
