@@ -37,7 +37,7 @@ public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
             max_width_chars = 13,
             mnemonic_widget = button
         };
-        label_widget.add_css_class (Granite.STYLE_CLASS_SMALL_LABEL);
+        label_widget.add_css_class (Granite.CssClass.SMALL);
 
         var box = new Gtk.Box (VERTICAL, 3);
         box.append (button);

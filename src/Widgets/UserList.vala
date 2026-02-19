@@ -24,7 +24,8 @@
         }, (k1, k2) => {
             return k1 == k2;
         });
-        var current_user = new CurrentUser ();
+
+        var current_user = new UserRow (UserManager.get_current_user ());
 
         listbox = new Gtk.ListBox () {
             hexpand = true
@@ -185,7 +186,7 @@
             return;
         }
 
-        user_map[GUEST_USER_UID] = new UserRow.guest ();
+        user_map[GUEST_USER_UID] = new UserRow (null);
         user_map[GUEST_USER_UID].show ();
 
         listbox.append (user_map[GUEST_USER_UID]);

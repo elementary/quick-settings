@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-16 20:46+0000\n"
+"POT-Creation-Date: 2026-01-08 15:36+0000\n"
 "PO-Revision-Date: 2024-04-25 16:13+0000\n"
 "Last-Translator: anonymous <noreply@weblate.org>\n"
 "Language-Team: English (Canada) <https://l10n.elementary.io/projects/"
@@ -50,23 +50,6 @@ msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
 msgstr[0] ""
 msgstr[1] ""
-
-#: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
-#: src/Widgets/CurrentUser.vala:109
-msgid "Log Out…"
-msgstr "Log Out…"
-
-#: src/Widgets/CurrentUser.vala:122 src/Widgets/UserRow.vala:31
-msgid "Guest"
-msgstr ""
-
-#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:115
-msgid "Logged in"
-msgstr ""
-
-#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:117
-msgid "Logged out"
-msgstr ""
 
 #: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
@@ -141,12 +124,29 @@ msgstr ""
 msgid "Increase text size"
 msgstr ""
 
-#: src/Widgets/UserList.vala:42
+#: src/Widgets/UserList.vala:43
 msgid "User Accounts Settings…"
 msgstr ""
 
-#: src/Widgets/UserRow.vala:127
+#: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
+#: src/Widgets/UserRow.vala:99
+msgid "Log Out…"
+msgstr "Log Out…"
+
+#: src/Widgets/UserRow.vala:136
+msgid "Logged in"
+msgstr ""
+
+#: src/Widgets/UserRow.vala:138
+msgid "Logged out"
+msgstr ""
+
+#: src/Widgets/UserRow.vala:148
 #, fuzzy
 #| msgid "Lock"
 msgid "Locked"
 msgstr "Lock"
+
+#: src/Widgets/UserRow.vala:151
+msgid "Guest"
+msgstr ""

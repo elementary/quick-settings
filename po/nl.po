@@ -7,9 +7,9 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2025-06-16 20:46+0000\n"
-"PO-Revision-Date: 2025-05-02 03:55+0000\n"
-"Last-Translator: DutchVipperloid <svenroelof@e.email>\n"
+"POT-Creation-Date: 2026-01-08 15:36+0000\n"
+"PO-Revision-Date: 2026-01-03 14:55+0000\n"
+"Last-Translator: Bas Ernst <50556177+ErnstBas@users.noreply.github.com>\n"
 "Language-Team: Dutch <https://l10n.elementaryos.org/projects/wingpanel/quick-"
 "settings/nl/>\n"
 "Language: nl\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
@@ -29,11 +29,13 @@ msgstr "Schermtoetsenbord"
 
 #: src/PopoverWidget.vala:160
 msgid "On Screen keyboard is unavailable in the Secure session"
-msgstr ""
+msgstr "Het schermtoetsenbord is niet beschikbaar in de Beveiligde sessie"
 
 #: src/PopoverWidget.vala:161
 msgid "Log out and select “Classic session” to use the On Screen Keyboard."
 msgstr ""
+"Uitloggen en \"Klassieke sessie\" kiezen om het schermtoetsenbord te "
+"gebruiken."
 
 #: src/PopoverWidget.vala:188
 msgid "Not logged in"
@@ -50,23 +52,6 @@ msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
 msgstr[0] "%i ander persoon is ingelogd"
 msgstr[1] "%i andere personen zijn ingelogd"
-
-#: src/Widgets/CurrentUser.vala:65 src/Widgets/CurrentUser.vala:104
-#: src/Widgets/CurrentUser.vala:109
-msgid "Log Out…"
-msgstr "Afmelden…"
-
-#: src/Widgets/CurrentUser.vala:122 src/Widgets/UserRow.vala:31
-msgid "Guest"
-msgstr "Gast"
-
-#: src/Widgets/CurrentUser.vala:148 src/Widgets/UserRow.vala:115
-msgid "Logged in"
-msgstr "Ingelogd"
-
-#: src/Widgets/CurrentUser.vala:150 src/Widgets/UserRow.vala:117
-msgid "Logged out"
-msgstr "Uitgelogd"
 
 #: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
@@ -142,10 +127,27 @@ msgstr "Verklein de tekstgrootte"
 msgid "Increase text size"
 msgstr "Vergroot tekstgrootte"
 
-#: src/Widgets/UserList.vala:42
+#: src/Widgets/UserList.vala:43
 msgid "User Accounts Settings…"
 msgstr "Gebruikersaccountsinstellingen…"
 
-#: src/Widgets/UserRow.vala:127
+#: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
+#: src/Widgets/UserRow.vala:99
+msgid "Log Out…"
+msgstr "Afmelden…"
+
+#: src/Widgets/UserRow.vala:136
+msgid "Logged in"
+msgstr "Ingelogd"
+
+#: src/Widgets/UserRow.vala:138
+msgid "Logged out"
+msgstr "Uitgelogd"
+
+#: src/Widgets/UserRow.vala:148
 msgid "Locked"
 msgstr "Vergrendeld"
+
+#: src/Widgets/UserRow.vala:151
+msgid "Guest"
+msgstr "Gast"

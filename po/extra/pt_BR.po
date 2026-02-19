@@ -8,8 +8,8 @@ msgstr ""
 "Project-Id-Version: extra\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-07-18 09:02-0700\n"
-"PO-Revision-Date: 2025-05-04 18:17+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
+"PO-Revision-Date: 2025-07-26 02:55+0000\n"
+"Last-Translator: Guilherme Faura <guilhermefaura@gmail.com>\n"
 "Language-Team: Portuguese (Brazil) <https://l10n.elementaryos.org/projects/"
 "wingpanel/quick-settings-extra/pt_BR/>\n"
 "Language: pt_BR\n"
@@ -17,15 +17,15 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.10.4\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #: data/quick-settings.metainfo.xml:11
 msgid "Quick Settings"
-msgstr ""
+msgstr "Configurações Rápidas"
 
 #: data/quick-settings.metainfo.xml:12
 msgid "Access frequently used settings and system actions"
-msgstr ""
+msgstr "Acesse as configurações e ações do sistema usadas com frequência"
 
 #: data/quick-settings.metainfo.xml:28
 msgid "elementary, Inc."
@@ -33,4 +33,4 @@ msgstr "elementary, Inc."
 
 #: data/quick-settings.metainfo.xml:36
 msgid "First release 🎉️"
-msgstr ""
+msgstr "Primeiro lançamento 🎉️"

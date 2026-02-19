@@ -6,6 +6,7 @@
 public class QuickSettings.Indicator : Wingpanel.Indicator {
     public Wingpanel.IndicatorManager.ServerType server_type { get; construct; }
 
+    private EndSessionDialog? current_dialog;
     private PopoverWidget? popover_widget;
 
     public Indicator (Wingpanel.IndicatorManager.ServerType server_type) {
@@ -23,6 +24,55 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
         // Prevent a race that skips automatic resource loading
         // https://github.com/elementary/wingpanel-indicator-bluetooth/issues/203
         Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/org/elementary/wingpanel/icons");
+
+        EndSessionDialogServer.init ();
+        EndSessionDialogServer.get_default ().show_dialog.connect (
+            (type) => show_dialog ((EndSessionDialogType) type)
+        );
+    }
+
+    private void show_dialog (EndSessionDialogType type) {
+        ((Gtk.Popover?) popover_widget?.get_ancestor (typeof (Gtk.Popover)))?.popdown ();
+
+        if (current_dialog != null) {
+            if (current_dialog.dialog_type != type) {
+                current_dialog.destroy ();
+            } else {
+                return;
+            }
+        }
+
+        unowned var server = EndSessionDialogServer.get_default ();
+
+        current_dialog = new EndSessionDialog (type);
+        ((Gtk.Widget) current_dialog).destroy.connect (() => {
+            server.closed ();
+            current_dialog = null;
+        });
+
+        current_dialog.cancelled.connect (() => server.canceled ());
+        current_dialog.logout.connect (() => server.confirmed_logout ());
+        current_dialog.shutdown.connect (() => {
+            try {
+                // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
+                // #define SD_LOGIND_ROOT_CHECK_INHIBITORS (UINT64_C(1) << 0) == 1
+                Login1Manager.get_default ().proxy.power_off_with_flags (1);
+            } catch (Error e) {
+                warning ("Unable to shutdown: %s", e.message);
+            }
+        });
+
+        current_dialog.reboot.connect (() => {
+            try {
+                // See https://www.freedesktop.org/software/systemd/man/latest/org.freedesktop.login1.html for flags values
+                // #define SD_LOGIND_KEXEC_REBOOT (UINT64_C(1) << 1) == 2
+                Login1Manager.get_default ().proxy.reboot_with_flags (2);
+            } catch (Error e) {
+                warning ("Unable to reboot: %s", e.message);
+            }
+        });
+
+        current_dialog.present ();
     }
 
     public override Gtk.Widget get_display_widget () {
