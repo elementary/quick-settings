@@ -23,7 +23,6 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
     public EndSessionDialogType dialog_type { get; construct; }
 
     private Gtk.CheckButton? updates_check_button;
-    private Gtk.EventControllerKey key_controller;
 
     public EndSessionDialog (QuickSettings.EndSessionDialogType type) {
         Object (dialog_type: type);
@@ -50,10 +49,6 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
                 break;
         }
 
-        var image = new Gtk.Image.from_icon_name (icon_name, Gtk.IconSize.DIALOG) {
-            valign = Gtk.Align.START
-        };
-
         /*
          * the indicator does not have a separate item for restart, that's
          * why we show both shutdown and restart for the restart action
@@ -71,7 +66,7 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
         var cancel = (Gtk.Button) add_button (_("Cancel"), Gtk.ResponseType.CANCEL);
 
         var confirm = (Gtk.Button) add_button (button_text, Gtk.ResponseType.ACCEPT);
-        confirm.get_style_context ().add_class (Gtk.STYLE_CLASS_DESTRUCTIVE_ACTION);
+        confirm.add_css_class (Granite.CssClass.DESTRUCTIVE);
 
         if (dialog_type != LOGOUT) {
             bool has_prepared_updates = false;
@@ -86,9 +81,8 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
                     active = true,
                     label = _("Install pending system updates"),
                 };
-                updates_check_button.show ();
 
-                custom_bin.add (updates_check_button);
+                custom_bin.append (updates_check_button);
             }
         }
 
@@ -104,12 +98,14 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
             cancel_action.activate (null);
         });
 
-        key_controller = new Gtk.EventControllerKey (this);
+        var key_controller = new Gtk.EventControllerKey ();
         key_controller.key_released.connect ((keyval, keycode, state) => {
             if (keyval == Gdk.Key.Escape) {
                 cancel_action.activate (null);
             }
         });
+
+        ((Gtk.Widget) this).add_controller (key_controller);
 
         confirm.clicked.connect (() => {
             if (dialog_type == EndSessionDialogType.RESTART || dialog_type == EndSessionDialogType.SHUTDOWN) {
@@ -125,7 +121,7 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
             destroy ();
         });
 
-        realize.connect (() => Idle.add_once (() => init_wl ()));
+        ((Gtk.Widget) this).realize.connect (() => Idle.add_once (() => init_wl ()));
     }
 
     private bool set_offline_trigger (Pk.OfflineAction action) {
@@ -156,9 +152,9 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
     public void registry_handle_global (Wl.Registry wl_registry, uint32 name, string @interface, uint32 version) {
         if (@interface == "io_elementary_pantheon_shell_v1") {
             var desktop_shell = wl_registry.bind<PantheonDesktop.Shell> (name, ref PantheonDesktop.Shell.iface, uint32.min (version, 1));
-            unowned var window = get_window ();
-            if (window is Gdk.Wayland.Window) {
-                unowned var wl_surface = ((Gdk.Wayland.Window) window).get_wl_surface ();
+            unowned var surface = get_surface ();
+            if (surface is Gdk.Wayland.Surface) {
+                unowned var wl_surface = ((Gdk.Wayland.Surface) surface).get_wl_surface ();
                 var extended_behavior = desktop_shell.get_extended_behavior (wl_surface);
                 extended_behavior.set_keep_above ();
                 extended_behavior.make_centered ();

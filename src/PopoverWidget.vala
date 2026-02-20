@@ -47,8 +47,8 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             row_spacing = 12,
             selection_mode = NONE
         };
-        toggle_box.get_style_context ().add_class ("togglebox");
-        toggle_box.add (prevent_sleep_toggle);
+        toggle_box.add_css_class ("togglebox");
+        toggle_box.append (prevent_sleep_toggle);
 
         var text_scale = new TextScale ();
 
@@ -57,11 +57,11 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         var current_user = new AvatarButton ();
 
         current_user_button = new Gtk.Button () {
-            child = current_user
+            child = current_user,
+            has_frame = false
         };
-        current_user_button.get_style_context ().add_class ("circular");
-        current_user_button.get_style_context ().add_class ("flat");
-        current_user_button.get_style_context ().add_class ("no-padding");
+        current_user_button.add_css_class (Granite.CssClass.CIRCULAR);
+        current_user_button.add_css_class ("no-padding");
 
         var session_box = new SessionBox (server_type) {
             halign = END,
@@ -70,15 +70,15 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         };
 
         var bottom_box = new Gtk.Box (HORIZONTAL, 0);
-        bottom_box.add (current_user_button);
-        bottom_box.add (session_box);
-        bottom_box.get_style_context ().add_class ("togglebox");
+        bottom_box.append (current_user_button);
+        bottom_box.append (session_box);
+        bottom_box.add_css_class ("togglebox");
 
         main_box = new Gtk.Box (VERTICAL, 0);
-        main_box.add (toggle_box);
-        main_box.add (scale_box);
-        main_box.add (new Gtk.Separator (HORIZONTAL));
-        main_box.add (bottom_box);
+        main_box.append (toggle_box);
+        main_box.append (scale_box);
+        main_box.append (new Gtk.Separator (HORIZONTAL));
+        main_box.append (bottom_box);
 
         accounts_view = new UserList ();
 
@@ -88,10 +88,10 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
             transition_type = SLIDE_LEFT_RIGHT
         };
 
-        stack.add (main_box);
-        stack.add (accounts_view);
+        stack.add_child (main_box);
+        stack.add_child (accounts_view);
 
-        add (stack);
+        append (stack);
 
         if (server_type == GREETER) {
             bottom_box.remove (current_user_button);
@@ -99,16 +99,14 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
 
         if (server_type != GREETER) {
             var darkmode_button = new DarkModeToggle ();
-            toggle_box.add (darkmode_button);
-            show_all ();
+            toggle_box.append (darkmode_button);
         }
 
         setup_sensor_proxy.begin ((obj, res) => {
             var sensor_proxy = setup_sensor_proxy.end (res);
             if (sensor_proxy.has_accelerometer) {
                 var rotation_toggle = new RotationToggle ();
-                toggle_box.add (rotation_toggle);
-                show_all ();
+                toggle_box.append (rotation_toggle);
             };
         });
 
@@ -122,18 +120,18 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         var glib_settings = new Settings ("io.elementary.desktop.quick-settings");
 
         if (server_type == GREETER || glib_settings.get_boolean ("show-a11y")) {
-            toggle_box.add (screen_reader);
-            toggle_box.add (onscreen_keyboard);
+            toggle_box.append (screen_reader);
+            toggle_box.append (onscreen_keyboard);
 
-            scale_box.add (text_scale);
+            scale_box.append (text_scale);
         }
 
         glib_settings.changed["show-a11y"].connect (() => {
             if (glib_settings.get_boolean ("show-a11y") && screen_reader.parent == null) {
-                toggle_box.add (screen_reader);
-                toggle_box.add (onscreen_keyboard);
+                toggle_box.append (screen_reader);
+                toggle_box.append (onscreen_keyboard);
 
-                scale_box.add (text_scale);
+                scale_box.append (text_scale);
             } else {
                 toggle_box.remove (screen_reader);
                 toggle_box.remove (onscreen_keyboard);
@@ -162,7 +160,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
                     new ThemedIcon ("onboard")
                 ) {
                     badge_icon = new ThemedIcon ("system-log-out"),
-                    transient_for = (Gtk.Window) get_toplevel ()
+                    transient_for = (Gtk.Window) get_root ()
                 };
                 message_dialog.response.connect (message_dialog.destroy);
                 message_dialog.present ();

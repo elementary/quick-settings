@@ -14,9 +14,10 @@ public class QuickSettings.TextScale : Gtk.Box {
 
     construct {
         zoom_out_button = new Gtk.Button.from_icon_name ("format-text-smaller-symbolic") {
-            tooltip_text = _("Decrease text size")
+            tooltip_text = _("Decrease text size"),
+            valign = CENTER
         };
-        zoom_out_button.get_style_context ().add_class ("circular");
+        zoom_out_button.add_css_class (Granite.CssClass.CIRCULAR);
 
         var zoom_adjustment = new Gtk.Adjustment (-1, 0.75, 1.75, 0.05, 0, 0);
 
@@ -28,14 +29,15 @@ public class QuickSettings.TextScale : Gtk.Box {
         zoom_scale.add_mark (1.5, BOTTOM, null);
 
         zoom_in_button = new Gtk.Button.from_icon_name ("format-text-larger-symbolic") {
-            tooltip_text = _("Increase text size")
+            tooltip_text = _("Increase text size"),
+            valign = CENTER
         };
-        zoom_in_button.get_style_context ().add_class ("circular");
+        zoom_in_button.add_css_class (Granite.CssClass.CIRCULAR);
 
-        get_style_context ().add_class ("font-size");
-        add (zoom_out_button);
-        add (zoom_scale);
-        add (zoom_in_button);
+        add_css_class ("font-size");
+        append (zoom_out_button);
+        append (zoom_scale);
+        append (zoom_in_button);
 
         interface_settings = new Settings ("org.gnome.desktop.interface");
         interface_settings.bind ("text-scaling-factor", zoom_adjustment, "value", GET);

@@ -23,7 +23,7 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
 
         // Prevent a race that skips automatic resource loading
         // https://github.com/elementary/wingpanel-indicator-bluetooth/issues/203
-        Gtk.IconTheme.get_default ().add_resource_path ("/org/elementary/wingpanel/icons");
+        Gtk.IconTheme.get_for_display (Gdk.Display.get_default ()).add_resource_path ("/org/elementary/wingpanel/icons");
 
         EndSessionDialogServer.init ();
         EndSessionDialogServer.get_default ().show_dialog.connect (
@@ -45,7 +45,7 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
         unowned var server = EndSessionDialogServer.get_default ();
 
         current_dialog = new EndSessionDialog (type);
-        current_dialog.destroy.connect (() => {
+        ((Gtk.Widget) current_dialog).destroy.connect (() => {
             server.closed ();
             current_dialog = null;
         });
@@ -89,8 +89,8 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
             var provider = new Gtk.CssProvider ();
             provider.load_from_resource ("io/elementary/quick-settings/Indicator.css");
 
-            Gtk.StyleContext.add_provider_for_screen (
-                Gdk.Screen.get_default (),
+            Gtk.StyleContext.add_provider_for_display (
+                Gdk.Display.get_default (),
                 provider,
                 Gtk.STYLE_PROVIDER_PRIORITY_APPLICATION
             );

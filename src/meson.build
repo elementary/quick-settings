@@ -36,11 +36,11 @@ shared_module(
     gresource,
     sources,
     dependencies: [
-        gdk_wl_dep,
         glib_dep,
         gobject_dep,
         granite_dep,
         gtk_dep,
+        gtk_wayland_dep,
         handy_dep,
         wingpanel_dep,
         packagekit_dep,
