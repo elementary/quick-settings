@@ -8,16 +8,16 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-08 15:36+0000\n"
-"PO-Revision-Date: 2024-12-02 09:41+0000\n"
+"PO-Revision-Date: 2026-03-22 15:55+0000\n"
 "Last-Translator: Jiri Grönroos <jiri.gronroos@iki.fi>\n"
-"Language-Team: Finnish <https://l10n.elementary.io/projects/wingpanel/quick-"
-"settings/fi/>\n"
+"Language-Team: Finnish <https://l10n.elementaryos.org/projects/wingpanel/"
+"quick-settings/fi/>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Weblate 5.6.2\n"
+"X-Generator: Weblate 5.11.4\n"
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
@@ -29,27 +29,29 @@ msgstr "Näyttönäppäimistö"
 
 #: src/PopoverWidget.vala:160
 msgid "On Screen keyboard is unavailable in the Secure session"
-msgstr ""
+msgstr "Näyttönäppäimistö ei ole saatavilla suojatussa istunnossa"
 
 #: src/PopoverWidget.vala:161
 msgid "Log out and select “Classic session” to use the On Screen Keyboard."
 msgstr ""
+"Kirjaudu ulos ja valitse “Perinteinen istunto” käyttääksesi "
+"näyttönäppäimistöä."
 
 #: src/PopoverWidget.vala:188
 msgid "Not logged in"
-msgstr ""
+msgstr "Ei sisäänkirjautuneena"
 
 #: src/Services/UserManager.vala:135
 #, c-format
 msgid "Logged in as “%s”"
-msgstr ""
+msgstr "Sisäänkirjautuneena käyttäjänä “%s”"
 
 #: src/Services/UserManager.vala:158
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%i muu henkilö sisäänkirjautuneena"
+msgstr[1] "%i muuta henkilöä sisäänkirjautuneena"
 
 #: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
@@ -93,7 +95,7 @@ msgstr "Asenna odottavat järjestelmäpäivitykset"
 
 #: src/Widgets/PreventSleepToggle.vala:12
 msgid "Prevent Sleep"
-msgstr ""
+msgstr "Estä unitila"
 
 #: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
@@ -125,10 +127,8 @@ msgid "Increase text size"
 msgstr "Suurenna tekstin kokoa"
 
 #: src/Widgets/UserList.vala:43
-#, fuzzy
-#| msgid "System Settings…"
 msgid "User Accounts Settings…"
-msgstr "Järjestelmän asetukset…"
+msgstr "Käyttäjätilien asetukset…"
 
 #: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
 #: src/Widgets/UserRow.vala:99
@@ -137,18 +137,16 @@ msgstr "Kirjaudu ulos…"
 
 #: src/Widgets/UserRow.vala:136
 msgid "Logged in"
-msgstr ""
+msgstr "Sisäänkirjautuneena"
 
 #: src/Widgets/UserRow.vala:138
 msgid "Logged out"
-msgstr ""
+msgstr "Uloskirjautuneena"
 
 #: src/Widgets/UserRow.vala:148
-#, fuzzy
-#| msgid "Lock"
 msgid "Locked"
-msgstr "Lukitse"
+msgstr "Lukittu"
 
 #: src/Widgets/UserRow.vala:151
 msgid "Guest"
-msgstr ""
+msgstr "Vieras"
