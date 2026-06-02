@@ -8,9 +8,10 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-08 15:36+0000\n"
-"PO-Revision-Date: 2024-04-25 16:13+0000\n"
-"Last-Translator: anonymous <noreply@weblate.org>\n"
-"Language-Team: Lithuanian <https://l10n.elementary.io/projects/wingpanel/"
+"PO-Revision-Date: 2026-06-03 05:56+0000\n"
+"Last-Translator: Automatic translation add-on <noreply-addon-"
+"autotranslate@weblate.org>\n"
+"Language-Team: Lithuanian <https://l10n.elementaryos.org/projects/wingpanel/"
 "quick-settings/lt/>\n"
 "Language: lt\n"
 "MIME-Version: 1.0\n"
@@ -19,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n % 10 == 1 && (n % 100 < 11 || n % 100 > "
 "19)) ? 0 : ((n % 10 >= 2 && n % 10 <= 9 && (n % 100 < 11 || n % 100 > 19)) ? "
 "1 : 2);\n"
-"X-Generator: Weblate 5.0.2\n"
+"X-Generator: Weblate 2026.5\n"
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
@@ -68,7 +69,7 @@ msgstr ""
 
 #: src/Widgets/EndSessionDialog.vala:39
 msgid "Log Out"
-msgstr ""
+msgstr "Atsijungti"
 
 #: src/Widgets/EndSessionDialog.vala:44
 msgid "Are you sure you want to Shut Down?"
@@ -80,11 +81,11 @@ msgstr ""
 
 #: src/Widgets/EndSessionDialog.vala:46
 msgid "Shut Down"
-msgstr ""
+msgstr "Išjungti"
 
 #: src/Widgets/EndSessionDialog.vala:63
 msgid "Restart"
-msgstr ""
+msgstr "Paleisti iš naujo"
 
 #: src/Widgets/EndSessionDialog.vala:71
 msgid "Cancel"
@@ -108,12 +109,12 @@ msgstr ""
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
-msgstr ""
+msgstr "Pristabdyti"
 
 #: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:89
 #: src/Widgets/SessionBox.vala:94
 msgid "Lock"
-msgstr ""
+msgstr "Užrakinti"
 
 #: src/Widgets/SessionBox.vala:34
 msgid "Shut Down…"
