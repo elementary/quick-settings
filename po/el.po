@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2026-01-08 15:36+0000\n"
-"PO-Revision-Date: 2026-06-29 09:56+0000\n"
+"PO-Revision-Date: 2026-07-10 15:01+0000\n"
 "Last-Translator: Jim Spentzos <jimspentzos2000@gmail.com>\n"
 "Language-Team: Greek <https://l10n.elementaryos.org/projects/wingpanel/quick-"
 "settings/el/>\n"
@@ -21,11 +21,11 @@ msgstr ""
 
 #: src/PopoverWidget.vala:28
 msgid "Screen Reader"
-msgstr ""
+msgstr "Ανάγνωση οθόνης"
 
 #: src/PopoverWidget.vala:35
 msgid "Onscreen Keyboard"
-msgstr ""
+msgstr "Πληκτρολόγιο οθόνης"
 
 #: src/PopoverWidget.vala:160
 msgid "On Screen keyboard is unavailable in the Secure session"
@@ -53,7 +53,7 @@ msgstr[1] ""
 
 #: src/Widgets/DarkModeToggle.vala:9
 msgid "Dark Mode"
-msgstr ""
+msgstr "Σκουρόχρωμη λειτουργία"
 
 #: src/Widgets/EndSessionDialog.vala:37
 msgid "Are you sure you want to Log Out?"
@@ -91,7 +91,7 @@ msgstr "Ακύρωση"
 
 #: src/Widgets/EndSessionDialog.vala:87
 msgid "Install pending system updates"
-msgstr ""
+msgstr "Εγκατάσταση εκκρεμών ενημερώσεων συστήματος"
 
 #: src/Widgets/PreventSleepToggle.vala:12
 msgid "Prevent Sleep"
@@ -99,11 +99,11 @@ msgstr ""
 
 #: src/Widgets/RotationToggle.vala:9
 msgid "Rotation Lock"
-msgstr ""
+msgstr "Κλείδωμα περιστροφής"
 
 #: src/Widgets/SessionBox.vala:19
 msgid "System Settings…"
-msgstr ""
+msgstr "Ρυθμίσεις συστήματος…"
 
 #: src/Widgets/SessionBox.vala:24
 msgid "Suspend"
@@ -120,15 +120,15 @@ msgstr "Τερματισμός…"
 
 #: src/Widgets/TextScale.vala:17
 msgid "Decrease text size"
-msgstr ""
+msgstr "Σμίκρυνση κειμένου"
 
 #: src/Widgets/TextScale.vala:31
 msgid "Increase text size"
-msgstr ""
+msgstr "Μεγέθυνση κειμένου"
 
 #: src/Widgets/UserList.vala:43
 msgid "User Accounts Settings…"
-msgstr ""
+msgstr "Ρυθμίσεις λογαριασμών χρηστών…"
 
 #: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
 #: src/Widgets/UserRow.vala:99
@@ -151,4 +151,4 @@ msgstr "Κλείδωμα"
 
 #: src/Widgets/UserRow.vala:151
 msgid "Guest"
-msgstr ""
+msgstr "Επισκέπτης"
