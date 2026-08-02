@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: io.elementary.quick-settings\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-01-08 15:36+0000\n"
+"POT-Creation-Date: 2026-08-02 00:42+0000\n"
 "PO-Revision-Date: 2025-06-15 01:55+0000\n"
 "Last-Translator: Italo Felipe Capasso Ballesteros <italo@gp-mail.com>\n"
 "Language-Team: Spanish <https://l10n.elementaryos.org/projects/wingpanel/"
@@ -27,26 +27,16 @@ msgstr "Lector de pantalla"
 msgid "Onscreen Keyboard"
 msgstr "Teclado en pantalla"
 
-#: src/PopoverWidget.vala:160
-msgid "On Screen keyboard is unavailable in the Secure session"
-msgstr "El teclado en pantalla no está disponible la Sesión segura"
-
-#: src/PopoverWidget.vala:161
-msgid "Log out and select “Classic session” to use the On Screen Keyboard."
-msgstr ""
-"Cierre la sesión y seleccione «Sesión clásica» para utilizar el Teclado en "
-"pantalla."
-
-#: src/PopoverWidget.vala:188
+#: src/PopoverWidget.vala:164
 msgid "Not logged in"
 msgstr "Sesión no iniciada"
 
-#: src/Services/UserManager.vala:135
+#: src/Services/UserManager.vala:122
 #, c-format
 msgid "Logged in as “%s”"
 msgstr "Sesión iniciada como «%s»"
 
-#: src/Services/UserManager.vala:158
+#: src/Services/UserManager.vala:145
 #, c-format
 msgid "%i other person logged in"
 msgid_plural "%i other people logged in"
@@ -57,40 +47,40 @@ msgstr[1] "Hay %i personas con una sesión iniciada"
 msgid "Dark Mode"
 msgstr "Modo oscuro"
 
-#: src/Widgets/EndSessionDialog.vala:37
+#: src/Widgets/EndSessionDialog.vala:36
 msgid "Are you sure you want to Log Out?"
 msgstr "¿Está seguro que desea cerrar la sesión?"
 
-#: src/Widgets/EndSessionDialog.vala:38
+#: src/Widgets/EndSessionDialog.vala:37
 msgid "This will close all open applications."
 msgstr "Esto cerrará todas las aplicaciones abiertas."
 
-#: src/Widgets/EndSessionDialog.vala:39
+#: src/Widgets/EndSessionDialog.vala:38
 msgid "Log Out"
 msgstr "Cerrar la sesión"
 
-#: src/Widgets/EndSessionDialog.vala:44
+#: src/Widgets/EndSessionDialog.vala:43
 msgid "Are you sure you want to Shut Down?"
 msgstr "¿Está seguro que desea apagar el equipo?"
 
-#: src/Widgets/EndSessionDialog.vala:45
+#: src/Widgets/EndSessionDialog.vala:44
 msgid "This will close all open applications and turn off this device."
 msgstr ""
 "Esto cerrará todas las aplicaciones abiertas y apagará este dispositivo."
 
-#: src/Widgets/EndSessionDialog.vala:46
+#: src/Widgets/EndSessionDialog.vala:45
 msgid "Shut Down"
 msgstr "Apagar"
 
-#: src/Widgets/EndSessionDialog.vala:63
+#: src/Widgets/EndSessionDialog.vala:58
 msgid "Restart"
 msgstr "Reiniciar"
 
-#: src/Widgets/EndSessionDialog.vala:71
+#: src/Widgets/EndSessionDialog.vala:66
 msgid "Cancel"
 msgstr "Cancelar"
 
-#: src/Widgets/EndSessionDialog.vala:87
+#: src/Widgets/EndSessionDialog.vala:82
 msgid "Install pending system updates"
 msgstr "Instalar actualizaciones del sistema pendientes"
 
@@ -102,20 +92,20 @@ msgstr "Evitar la suspensión"
 msgid "Rotation Lock"
 msgstr "Bloqueo de rotación"
 
-#: src/Widgets/SessionBox.vala:19
+#: src/Widgets/SessionBox.vala:17
 msgid "System Settings…"
 msgstr "Configuración del Sistema…"
 
-#: src/Widgets/SessionBox.vala:24
+#: src/Widgets/SessionBox.vala:22
 msgid "Suspend"
 msgstr "Suspender"
 
-#: src/Widgets/SessionBox.vala:29 src/Widgets/SessionBox.vala:89
-#: src/Widgets/SessionBox.vala:94
+#: src/Widgets/SessionBox.vala:27 src/Widgets/SessionBox.vala:83
+#: src/Widgets/SessionBox.vala:88
 msgid "Lock"
 msgstr "Bloquear"
 
-#: src/Widgets/SessionBox.vala:34
+#: src/Widgets/SessionBox.vala:32
 msgid "Shut Down…"
 msgstr "Apagar…"
 
@@ -123,7 +113,7 @@ msgstr "Apagar…"
 msgid "Decrease text size"
 msgstr "Disminuir el tamaño del texto"
 
-#: src/Widgets/TextScale.vala:31
+#: src/Widgets/TextScale.vala:32
 msgid "Increase text size"
 msgstr "Aumentar el tamaño del texto"
 
@@ -131,23 +121,31 @@ msgstr "Aumentar el tamaño del texto"
 msgid "User Accounts Settings…"
 msgstr "Configuración de Cuentas de usuario…"
 
-#: src/Widgets/UserRow.vala:82 src/Widgets/UserRow.vala:94
-#: src/Widgets/UserRow.vala:99
+#: src/Widgets/UserRow.vala:83 src/Widgets/UserRow.vala:95
+#: src/Widgets/UserRow.vala:100
 msgid "Log Out…"
 msgstr "Cerrar la sesión…"
 
-#: src/Widgets/UserRow.vala:136
+#: src/Widgets/UserRow.vala:135
 msgid "Logged in"
 msgstr "Sesión iniciada"
 
-#: src/Widgets/UserRow.vala:138
+#: src/Widgets/UserRow.vala:137
 msgid "Logged out"
 msgstr "Sesión cerrada"
 
-#: src/Widgets/UserRow.vala:148
+#: src/Widgets/UserRow.vala:147
 msgid "Locked"
 msgstr "Bloqueado"
 
-#: src/Widgets/UserRow.vala:151
+#: src/Widgets/UserRow.vala:150
 msgid "Guest"
 msgstr "Invitado"
+
+#~ msgid "On Screen keyboard is unavailable in the Secure session"
+#~ msgstr "El teclado en pantalla no está disponible la Sesión segura"
+
+#~ msgid "Log out and select “Classic session” to use the On Screen Keyboard."
+#~ msgstr ""
+#~ "Cierre la sesión y seleccione «Sesión clásica» para utilizar el Teclado "
+#~ "en pantalla."
