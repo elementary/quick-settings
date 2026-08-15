@@ -3,21 +3,21 @@
  * SPDX-FileCopyrightText: 2011-2025 elementary, Inc. (https://elementary.io)
  */
 
-public class QuickSettings.TattleBox : Gtk.Bin {
+public class QuickSettings.TattleBox : Granite.Bin {
     class construct {
         set_css_name ("tattlebox");
     }
 
     construct {
-        var location_image = new Gtk.Image.from_icon_name ("location-active-symbolic", MENU);
-        location_image.get_style_context ().add_class (Granite.STYLE_CLASS_ACCENT);
-        location_image.get_style_context ().add_class ("purple");
+        var location_image = new Gtk.Image.from_icon_name ("location-active-symbolic");
+        location_image.add_css_class (Granite.CssClass.ACCENT);
+        location_image.add_css_class ("purple");
 
         var location_label = new Gtk.Label (_("Location services in use"));
 
         var location_box = new Gtk.Box (HORIZONTAL, 3);
-        location_box.add (location_image);
-        location_box.add (location_label);
+        location_box.append (location_image);
+        location_box.append (location_label);
 
         var location_revealer = new Gtk.Revealer () {
             child = location_box
