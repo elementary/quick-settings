@@ -5,7 +5,6 @@ src/DBus/LockInterface.vala
 src/DBus/SeatInterface.vala
 src/DBus/SensorProxy.vala
 src/DBus/SessionInterface.vala
-src/DBus/SystemInterface.vala
 src/DBus/UserInterface.vala
 src/Services/UserManager.vala
 src/Widgets/AvatarButton.vala

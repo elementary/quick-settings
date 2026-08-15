@@ -12,21 +12,20 @@ public class QuickSettings.RotationToggle: SettingsToggle {
 
     construct {
         var lock_image = new Gtk.Image ();
-        lock_image.get_style_context ().add_class ("lock");
+        lock_image.add_css_class ("lock");
 
-        var arrow_image = new Gtk.Image.from_icon_name ("quick-settings-rotation-arrow-symbolic", BUTTON);
-        arrow_image.get_style_context ().add_class ("arrow");
+        var arrow_image = new Gtk.Image.from_icon_name ("quick-settings-rotation-arrow-symbolic");
+        arrow_image.add_css_class ("arrow");
 
         var overlay = new Gtk.Overlay () {
+            can_target = false,
             child = lock_image
         };
         overlay.add_overlay (arrow_image);
-        overlay.set_overlay_pass_through (arrow_image, true);
-        overlay.set_overlay_pass_through (lock_image, true);
 
         button_child = overlay;
 
-        get_style_context ().add_class ("rotation");
+        add_css_class ("rotation");
         settings_uri = "settings://display";
 
         var touchscreen_settings = new Settings ("org.gnome.settings-daemon.peripherals.touchscreen");

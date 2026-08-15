@@ -23,12 +23,12 @@ public class QuickSettings.PreventSleepToggle: SettingsToggle {
 
             if (_prevent_sleep_toggle.active && suspend_cookie == 0 && idle_cookie == 0) {
                 suspend_cookie = application.inhibit (
-                    (Gtk.Window) get_toplevel (),
+                    (Gtk.Window) get_root (),
                     Gtk.ApplicationInhibitFlags.SUSPEND,
                     "Prevent session from suspending"
                 );
                 idle_cookie = application.inhibit (
-                    (Gtk.Window) get_toplevel (),
+                    (Gtk.Window) get_root (),
                     Gtk.ApplicationInhibitFlags.IDLE,
                     "Prevent session from idle"
                 );

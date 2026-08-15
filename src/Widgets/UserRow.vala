@@ -16,7 +16,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         }
     }
 
-    private Hdy.Avatar avatar;
+    private Adw.Avatar avatar;
     private Gtk.Label fullname_label;
     private Gtk.Label status_label;
 
@@ -29,38 +29,39 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             valign = Gtk.Align.END,
             halign = Gtk.Align.START
         };
-        fullname_label.get_style_context ().add_class (Granite.STYLE_CLASS_H3_LABEL);
+        fullname_label.add_css_class (Granite.STYLE_CLASS_H3_LABEL);
 
         status_label = new Gtk.Label (null) {
             valign = Gtk.Align.START,
             halign = Gtk.Align.START
         };
-        status_label.get_style_context ().add_class (Gtk.STYLE_CLASS_DIM_LABEL);
-        status_label.get_style_context ().add_class (Granite.STYLE_CLASS_SMALL_LABEL);
+        status_label.add_css_class (Granite.CssClass.DIM);
+        status_label.add_css_class (Granite.CssClass.SMALL);
 
         var pixel_size = user == UserManager.get_current_user () ? 48 : 32;
 
         if (user == null) {
-            avatar = new Hdy.Avatar (pixel_size, null, false);
+            avatar = new Adw.Avatar (pixel_size, null, false);
 
             // We want to use the user's accent, not a random color
-            avatar.get_style_context ().remove_class ("color1");
-            avatar.get_style_context ().remove_class ("color2");
-            avatar.get_style_context ().remove_class ("color3");
-            avatar.get_style_context ().remove_class ("color4");
-            avatar.get_style_context ().remove_class ("color5");
-            avatar.get_style_context ().remove_class ("color6");
-            avatar.get_style_context ().remove_class ("color7");
-            avatar.get_style_context ().remove_class ("color8");
-            avatar.get_style_context ().remove_class ("color9");
-            avatar.get_style_context ().remove_class ("color10");
-            avatar.get_style_context ().remove_class ("color11");
-            avatar.get_style_context ().remove_class ("color12");
-            avatar.get_style_context ().remove_class ("color13");
-            avatar.get_style_context ().remove_class ("color14");
+            avatar.remove_css_class ("color1");
+            avatar.remove_css_class ("color2");
+            avatar.remove_css_class ("color3");
+            avatar.remove_css_class ("color4");
+            avatar.remove_css_class ("color5");
+            avatar.remove_css_class ("color6");
+            avatar.remove_css_class ("color7");
+            avatar.remove_css_class ("color8");
+            avatar.remove_css_class ("color9");
+            avatar.remove_css_class ("color10");
+            avatar.remove_css_class ("color11");
+            avatar.remove_css_class ("color12");
+            avatar.remove_css_class ("color13");
+            avatar.remove_css_class ("color14");
         } else {
-            avatar = new Hdy.Avatar (pixel_size, fullname, true);
-            avatar.set_loadable_icon (get_avatar_icon ());
+            avatar = new Adw.Avatar (pixel_size, fullname, true) {
+                custom_image = get_avatar_icon ()
+            };
 
             user.changed.connect (() => {
                 update_state.begin ();
@@ -74,7 +75,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         grid.attach (fullname_label, 1, 0);
         grid.attach (status_label, 1, 1);
 
-        get_style_context ().add_class ("menuitem");
+        add_css_class ("menuitem");
         child = grid;
 
         if (user == UserManager.get_current_user ()) {
@@ -84,7 +85,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
                 halign = END,
                 valign = CENTER
             };
-            logout_button.get_style_context ().add_class ("circular");
+            logout_button.add_css_class (Granite.CssClass.CIRCULAR);
 
             grid.attach (logout_button, 2, 0, 2, 2);
 
@@ -105,17 +106,15 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
             });
         }
 
-        show_all ();
         update_state.begin ();
     }
 
-    private GLib.LoadableIcon? get_avatar_icon () {
-        var file = File.new_for_path (user.get_icon_file ());
-        if (file.query_exists ()) {
-            return new FileIcon (file);
+    private Gdk.Texture? get_avatar_icon () {
+        try {
+            return Gdk.Texture.from_filename (user.get_icon_file ());
+        } catch {
+            return null;
         }
-
-        return null;
     }
 
     public async UserState get_user_state () {
@@ -141,7 +140,7 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         if (user != null) {
             fullname_label.label = user.real_name;
             avatar.text = user.real_name;
-            avatar.set_loadable_icon (get_avatar_icon ());
+            avatar.custom_image = get_avatar_icon ();
             sensitive = !user.locked;
 
             if (user.locked) {
@@ -152,7 +151,5 @@ public class QuickSettings.UserRow : Gtk.ListBoxRow {
         }
 
         ((Gtk.ListBox) parent).invalidate_sort ();
-
-        show_all ();
     }
 }

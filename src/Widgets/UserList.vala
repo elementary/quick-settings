@@ -32,20 +32,20 @@
         };
         listbox.set_sort_func (sort_func);
 
-        var listbox_scrolled = new Gtk.ScrolledWindow (null, null) {
+        var listbox_scrolled = new Gtk.ScrolledWindow () {
             hscrollbar_policy = NEVER,
             max_content_height = 200,
             propagate_natural_height = true,
             child = listbox
         };
 
-        var settings_button = new Gtk.ModelButton () {
+        var settings_button = new Wingpanel.PopoverMenuItem () {
             text = _("User Accounts Settings…")
         };
 
         var user_list_vbox = new Gtk.Box (VERTICAL, 0);
-        user_list_vbox.add (new Gtk.Separator (HORIZONTAL));
-        user_list_vbox.add (listbox_scrolled);
+        user_list_vbox.append (new Gtk.Separator (HORIZONTAL));
+        user_list_vbox.append (listbox_scrolled);
 
         user_list_revealer = new Gtk.Revealer () {
             child = user_list_vbox,
@@ -53,10 +53,10 @@
         };
 
         orientation = VERTICAL;
-        add (current_user);
-        add (user_list_revealer);
-        add (new Gtk.Separator (HORIZONTAL));
-        add (settings_button);
+        append (current_user);
+        append (user_list_revealer);
+        append (new Gtk.Separator (HORIZONTAL));
+        append (settings_button);
 
         if (UserManager.get_usermanager ().is_loaded) {
             init_users ();
@@ -172,7 +172,7 @@
         user_map[uid] = new UserRow (user);
         user_map[uid].show ();
 
-        listbox.add (user_map[uid]);
+        listbox.append (user_map[uid]);
         user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
     }
 
@@ -189,7 +189,7 @@
         user_map[GUEST_USER_UID] = new UserRow (null);
         user_map[GUEST_USER_UID].show ();
 
-        listbox.add (user_map[GUEST_USER_UID]);
+        listbox.append (user_map[GUEST_USER_UID]);
         user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
     }
 
