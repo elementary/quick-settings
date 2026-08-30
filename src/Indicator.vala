@@ -36,7 +36,8 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
 
         if (current_dialog != null) {
             if (current_dialog.dialog_type != type) {
-                current_dialog.destroy ();
+                current_dialog.close ();
+                current_dialog = null;
             } else {
                 return;
             }
@@ -45,7 +46,7 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
         unowned var server = EndSessionDialogServer.get_default ();
 
         current_dialog = new EndSessionDialog (type);
-        ((Gtk.Widget) current_dialog).destroy.connect (() => {
+        current_dialog.close.connect (() => {
             server.closed ();
             current_dialog = null;
         });

@@ -59,7 +59,7 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
             confirm_restart.clicked.connect (() => {
                 set_offline_trigger (REBOOT); // This will just do nothing if no updates are available
                 reboot ();
-                destroy ();
+                close ();
             });
         }
 
@@ -91,7 +91,7 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
         var cancel_action = new SimpleAction ("cancel", null);
         cancel_action.activate.connect (() => {
             cancelled ();
-            destroy ();
+            close ();
         });
 
         cancel.clicked.connect (() => {
@@ -118,7 +118,7 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
                 logout ();
             }
 
-            destroy ();
+            close ();
         });
 
         ((Gtk.Widget) this).realize.connect (() => Idle.add_once (() => init_wl ()));
