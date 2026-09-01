@@ -27,6 +27,9 @@
 
         var current_user = new UserRow (UserManager.get_current_user ());
 
+        var current_user_list_box = new Gtk.ListBox ();
+        current_user_list_box.append (current_user);
+
         listbox = new Gtk.ListBox () {
             hexpand = true
         };
@@ -53,7 +56,7 @@
         };
 
         orientation = VERTICAL;
-        append (current_user);
+        append (current_user_list_box);
         append (user_list_revealer);
         append (new Gtk.Separator (HORIZONTAL));
         append (settings_button);
@@ -170,7 +173,6 @@
         }
 
         user_map[uid] = new UserRow (user);
-        user_map[uid].show ();
 
         listbox.append (user_map[uid]);
         user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;
@@ -187,7 +189,6 @@
         }
 
         user_map[GUEST_USER_UID] = new UserRow (null);
-        user_map[GUEST_USER_UID].show ();
 
         listbox.append (user_map[GUEST_USER_UID]);
         user_list_revealer.reveal_child = listbox.get_row_at_index (0) != null;

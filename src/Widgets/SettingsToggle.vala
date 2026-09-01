@@ -5,7 +5,7 @@
 
 public class QuickSettings.SettingsToggle : Gtk.FlowBoxChild {
     public bool active { get; set; }
-    public string icon_name { get; set; }
+    public string icon_name { get; set; default = ""; }
     public string label { get; construct; }
     public string settings_uri { get; set; default = "settings://"; }
 
