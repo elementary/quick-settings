@@ -24,6 +24,10 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     }
 
     construct {
+        var tattle_box = new TattleBox () {
+            halign = CENTER
+        };
+
         var screen_reader = new SettingsToggle (
             _("Screen Reader")
         ) {
@@ -75,6 +79,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
         bottom_box.add_css_class ("togglebox");
 
         main_box = new Gtk.Box (VERTICAL, 0);
+        main_box.append (tattle_box);
         main_box.append (toggle_box);
         main_box.append (scale_box);
         main_box.append (new Gtk.Separator (HORIZONTAL));
