@@ -4,11 +4,11 @@
  */
 
 public class QuickSettings.SessionBox : Gtk.Box {
-    public Wingpanel.IndicatorManager.ServerType server_type { get; construct; }
+    public Wingpanel.ServerType server_type { get; construct; }
 
     private Gtk.Popover? popover;
 
-    public SessionBox (Wingpanel.IndicatorManager.ServerType server_type) {
+    public SessionBox (Wingpanel.ServerType server_type) {
         Object (server_type: server_type);
     }
 

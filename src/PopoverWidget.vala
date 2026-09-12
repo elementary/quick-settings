@@ -4,7 +4,7 @@
  */
 
 public class QuickSettings.PopoverWidget : Gtk.Box {
-    public Wingpanel.IndicatorManager.ServerType server_type { get; construct; }
+    public Wingpanel.ServerType server_type { get; construct; }
 
     private const string FDO_ACCOUNTS_NAME = "org.freedesktop.Accounts";
     private const string FDO_ACCOUNTS_PATH = "/org/freedesktop/Accounts";
@@ -15,7 +15,7 @@ public class QuickSettings.PopoverWidget : Gtk.Box {
     private UserList accounts_view;
     private Gtk.Button current_user_button;
 
-    public PopoverWidget (Wingpanel.IndicatorManager.ServerType server_type) {
+    public PopoverWidget (Wingpanel.ServerType server_type) {
         Object (server_type: server_type);
     }
 

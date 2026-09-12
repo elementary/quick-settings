@@ -4,12 +4,12 @@
  */
 
 public class QuickSettings.Indicator : Wingpanel.Indicator {
-    public Wingpanel.IndicatorManager.ServerType server_type { get; construct; }
+    public Wingpanel.ServerType server_type { get; construct; }
 
     private EndSessionDialog? current_dialog;
     private PopoverWidget? popover_widget;
 
-    public Indicator (Wingpanel.IndicatorManager.ServerType server_type) {
+    public Indicator (Wingpanel.ServerType server_type) {
         Object (
             code_name: "quick-settings",
             server_type: server_type,
@@ -119,6 +119,6 @@ public class QuickSettings.Indicator : Wingpanel.Indicator {
     }
 }
 
-public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.IndicatorManager.ServerType server_type) {
+public Wingpanel.Indicator? get_indicator (Module module, Wingpanel.ServerType server_type) {
     return new QuickSettings.Indicator (server_type);
 }
