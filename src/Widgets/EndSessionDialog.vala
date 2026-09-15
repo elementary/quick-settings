@@ -23,6 +23,7 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
     public EndSessionDialogType dialog_type { get; construct; }
 
     private Gtk.CheckButton? updates_check_button;
+    private Gtk.CheckButton? reboot_to_firmware_setup_button;
 
     public EndSessionDialog (QuickSettings.EndSessionDialogType type) {
         Object (dialog_type: type);
@@ -57,6 +58,7 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
         if (dialog_type == EndSessionDialogType.RESTART) {
             var confirm_restart = (Gtk.Button) add_button (_("Restart"), 1);
             confirm_restart.clicked.connect (() => {
+                check_and_set_reboot_to_firmware_setup ();
                 set_offline_trigger (REBOOT); // This will just do nothing if no updates are available
                 reboot ();
                 close ();
@@ -84,6 +86,22 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
 
                 custom_bin.append (updates_check_button);
             }
+
+            bool can_reboot_to_firmware_setup = false;
+            try {
+                can_reboot_to_firmware_setup = Login1Manager.get_default ().proxy.can_reboot_to_firmware_setup () == "yes";
+            } catch (Error e) {
+                warning ("Cannot reboot to firmware setup: %s", e.message);
+            }
+
+            if (can_reboot_to_firmware_setup) {
+                reboot_to_firmware_setup_button = new Gtk.CheckButton () {
+                    active = false,
+                    label = _("Enter firmware setup on next startup"),
+                };
+
+                custom_bin.append (reboot_to_firmware_setup_button);
+            }
         }
 
         cancel.grab_focus ();
@@ -109,6 +127,7 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
 
         confirm.clicked.connect (() => {
             if (dialog_type == EndSessionDialogType.RESTART || dialog_type == EndSessionDialogType.SHUTDOWN) {
+                check_and_set_reboot_to_firmware_setup ();
                 if (set_offline_trigger (POWER_OFF)) {
                     reboot ();
                 } else {
@@ -147,6 +166,18 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
         }
 
         return false;
+    }
+
+    private void check_and_set_reboot_to_firmware_setup () {
+        if (reboot_to_firmware_setup_button != null && reboot_to_firmware_setup_button.active) {
+            try {
+                Login1Manager.get_default ().proxy.set_reboot_to_firmware_setup (true);
+            } catch (Error e) {
+                // Presume we won't reach here (only log warning) if previous check for
+                // Login1Manager.get_default ().proxy.can_reboot_to_firmware_setup () succeeded
+                warning ("Could not set reboot to firmware setup: %s", e.message);
+            }
+        }
     }
 
     public void registry_handle_global (Wl.Registry wl_registry, uint32 name, string @interface, uint32 version) {
