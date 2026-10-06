@@ -18,6 +18,9 @@ public class QuickSettings.Login1Manager : Object {
         public abstract void reboot_with_flags (uint64 flags) throws GLib.Error;
         public abstract void power_off_with_flags (uint64 flags) throws GLib.Error;
 
+        public abstract void set_reboot_to_firmware_setup (bool interactive) throws GLib.Error;
+        public abstract string can_reboot_to_firmware_setup () throws GLib.Error;
+
         public abstract UserInfo[] list_users () throws GLib.Error;
         public abstract string can_suspend () throws GLib.Error;
     }
