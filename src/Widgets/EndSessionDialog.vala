@@ -159,6 +159,7 @@ public class QuickSettings.EndSessionDialog : Granite.MessageDialog {
                 extended_behavior.set_keep_above ();
                 extended_behavior.make_centered ();
                 extended_behavior.make_modal (1);
+                extended_behavior.focus ();
             }
         }
     }
